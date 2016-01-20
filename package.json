@@ -1,0 +1,25 @@
+{
+  "name": "music-fly",
+  "version": "1.0.0",
+  "description": "A website for merging playlists across multiple platforms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "jordac67"
+  },
+  "keywords": [
+    "music",
+    "playlist"
+  ],
+  "author": "Jordan Chan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "spotify": "^0.3.0",
+    "spotify-web-api-node": "^2.2.0"
+  }
+}
