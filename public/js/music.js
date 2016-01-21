@@ -2,22 +2,20 @@ angular.module('musicApp', [])
   .controller('spotifyController', ['$scope', '$http', 'spotifySearch', function ($scope, $http, spotifySearch) {
     vm = this;
     vm.tracks = {};
-    // vm.listings = vm.tracks.trackInfo.data.body.tracks.items
+    $scope.query = '';
     $scope.spotifySearch = function () {
       // console.log(response)
       spotifySearch.makeRequest().then(
         function (response) {
-          var listings = response.data.body.tracks.items
-          // vm.tracks.trackInfo = response;
+          var listings = response.data.tracks.items;
           // console.log(response)
           vm.tracks = listings;
-          console.log(vm.tracks);
+          // console.log(vm.tracks);
         }
       )
     }
 
   }])
-
   .directive('musicDirective', function () {
     return {
       scope: true,
@@ -26,25 +24,29 @@ angular.module('musicApp', [])
     }
   })
 
+
   .factory('spotifySearch', ['$http', '$q', function ($http, $q) {
     var deferred = $q.defer();
     var search = {};
-
+    
+    // console.log(query)
     search.makeRequest = function () {
       $http({
         url: 'http://localhost:3000/spotify',
         method: 'GET'
       }).then(function success (response) {
         deferred.resolve(response)
-        // console.log(deferred.promise);        
+        // console.log(deferred.promise);
+        console.log(response)      
       })
       return deferred.promise;  
     } 
     return search;
-  }]);
+  }])
 
 
 
-//1) clean up the results
 //2) integrate a text input
 
+
+  

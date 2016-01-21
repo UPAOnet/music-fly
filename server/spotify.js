@@ -9,7 +9,7 @@ var spotifyApi = new SpotifyWebApi()
 spotify.get('/', function (req, res) {
   spotifyApi.searchTracks('Love')
     .then(function(data) {
-      res.send(data);
+      res.send(data.body);
     }, function(err) {
       console.error(err);
     });
