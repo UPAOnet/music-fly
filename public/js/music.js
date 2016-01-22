@@ -32,12 +32,12 @@ angular.module('musicApp', [])
     // console.log(query)
     search.makeRequest = function () {
       $http({
+        data: 'love',
         url: 'http://localhost:3000/spotify',
-        method: 'GET'
+        method: 'POST'
       }).then(function success (response) {
         deferred.resolve(response)
-        // console.log(deferred.promise);
-        console.log(response)      
+              
       })
       return deferred.promise;  
     } 
@@ -49,4 +49,5 @@ angular.module('musicApp', [])
 //2) integrate a text input
 
 
-  
+  // console.log(deferred.promise);
+        // console.log(response)

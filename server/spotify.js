@@ -3,11 +3,14 @@ var SpotifyWebApi = require('spotify-web-api-node');
     spotify = express.Router()
     bodyParser = require('body-parser');
     parseText = bodyParser.text();
+    parseJSON = bodyParser.json();
 
 var spotifyApi = new SpotifyWebApi()
 
-spotify.get('/', function (req, res) {
-  spotifyApi.searchTracks('Love')
+spotify.post('/', parseJSON, function (req, res) {
+  var query = req.body
+  console.log(query)
+  spotifyApi.searchTracks(query)
     .then(function(data) {
       res.send(data.body);
     }, function(err) {
