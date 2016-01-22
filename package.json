@@ -19,6 +19,9 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.1.1",
     "spotify": "^0.3.0",
     "spotify-web-api-node": "^2.2.0"
   }
