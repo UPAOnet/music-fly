@@ -18,4 +18,4 @@ app.get('/a', function (req, res) {
 
 
 app.listen(3000)
-console.log('music-fly running');
+console.log('music-fly running on port 3000');

@@ -18,21 +18,13 @@ spotify.post('/', parseJSON, function (req, res) {
     });
 })
 
+spotify.get('/player', function (req, res) {
+  console.log('https://p.scdn.co/mp3-preview/2d89e5af25a276eaf6b9e56baef79a543263afab')
+})
 
 
-// spotify.get('/' , function (req, res) {
-//   res.send('data');
-// });
+
+
 
 module.exports = spotify;
 
-
-
-
-// // search artists whose name contains 'Love'
-// spotifyApi.searchArtists('Love')
-//   .then(function(data) {
-//     console.log('Search artists by "Love"', data);
-//   }, function(err) {
-//     console.error(err);
-//   });
