@@ -1,0 +1,7 @@
+#bower files
+
+./client/bower_components
+
+#node modules
+
+./node_modules
