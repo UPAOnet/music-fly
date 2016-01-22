@@ -8,7 +8,7 @@ var SpotifyWebApi = require('spotify-web-api-node');
 var spotifyApi = new SpotifyWebApi()
 
 spotify.post('/', parseJSON, function (req, res) {
-  var query = req.body
+  var query = req.body.queryInput
   console.log(query)
   spotifyApi.searchTracks(query)
     .then(function(data) {

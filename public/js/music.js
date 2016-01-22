@@ -5,7 +5,7 @@ angular.module('musicApp', [])
     $scope.query = '';
     $scope.spotifySearch = function () {
       // console.log(response)
-      spotifySearch.makeRequest().then(
+      spotifySearch.makeRequest($scope.query).then(
         function (response) {
           var listings = response.data.tracks.items;
           // console.log(response)
@@ -30,11 +30,15 @@ angular.module('musicApp', [])
     var search = {};
     
     // console.log(query)
-    search.makeRequest = function () {
+    search.makeRequest = function (input) {
+      var query = JSON.stringify({queryInput: input})
       $http({
-        data: 'love',
+        data: query,
         url: 'http://localhost:3000/spotify',
-        method: 'POST'
+        method: 'POST',
+        // headers: {
+        //   'Content-Type': 'application/x-www-form-urlencoded'
+        // }
       }).then(function success (response) {
         deferred.resolve(response)
               
