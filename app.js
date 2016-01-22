@@ -2,16 +2,17 @@ var express = require('express');
     app = express();    
     spotify = require('./server/spotify.js');
 
-app.use(express.static('public'));
-app.use(express.static('vendor'));
+app.use(express.static('./client/app'));
+app.use(express.static('./client/bower_components'));
+
 app.use('/spotify', spotify);
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/public/views/index.html')
+  res.sendFile(__dirname + '/client/index.html')
 })
 
 app.get('/a', function (req, res) {
-  res.sendFile(__dirname + '/public/views/music.html')
+  res.sendFile(__dirname + '/client/views/music.html')
 })
 
 
