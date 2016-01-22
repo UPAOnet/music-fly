@@ -19,13 +19,13 @@ angular.module('musicApp', [])
     }
 
   }])
-  .directive('musicDirective', function () {
-    return {
-      scope: true,
-      replace: false,    
-      template: '<button type="button" ng-click="spotifySearch()"/>'
-    }
-  })
+  // .directive('musicDirective', function () {
+  //   return {
+  //     scope: true,
+  //     replace: false,    
+  //     template: '<button type="button" ng-click="spotifySearch()"/>'
+  //   }
+  // })
   .factory('spotifySearch', ['$http', '$q', function ($http, $q) {
     var deferred = $q.defer();
     var search = {};
