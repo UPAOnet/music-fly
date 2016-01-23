@@ -1,11 +1,14 @@
 var express = require('express');
     app = express();    
     spotify = require('./server/spotify.js');
+    sc = require('./server/sc.js');
+
 
 app.use(express.static('./client/app'));
 app.use(express.static('./client/bower_components'));
 
 app.use('/spotify', spotify);
+app.use('/sc', sc);
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/client/index.html')

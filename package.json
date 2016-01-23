@@ -22,6 +22,7 @@
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-sass": "^2.1.1",
+    "node-soundcloud": "0.0.4",
     "spotify": "^0.3.0",
     "spotify-web-api-node": "^2.2.0"
   }
