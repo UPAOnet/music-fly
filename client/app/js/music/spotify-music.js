@@ -19,7 +19,7 @@ angular.module('musicApp', [])
       template: '<button type="button" ng-click="spotifySearch()"/>'
     }
   })
-  .factory('spotifySearch', ['$http', '$q', function ($http, $q) {
+  .factory('spotifySearch', ['$http', function ($http) {
     var search = {};
     search.makeRequest = function (input) {
       var query = JSON.stringify({queryInput: input})

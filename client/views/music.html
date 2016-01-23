@@ -9,26 +9,37 @@
   
 
   <body>
-    <div>
-
-      <div id="sc-section" ng-controller= "scController as sc">
-        <h1>Soundcloud</h1>
-        {{sc.test}}
+    <div id="music-app">
+      <div id="user-bar">
       </div>
-
-
-      <div id="spotify-section" ng-controller="spotifyController as spotify">
-        <h2>Spotify</h2>
-        <input id="searchBox" type="text" ng-model="query">
-        <input type='button' id="spotifyButton" ng-click="spotifySearch()">        
+      <div id="music-player">
         <audio src='https://p.scdn.co/mp3-preview/2d89e5af25a276eaf6b9e56baef79a543263afab' controls preload="auto"></audio>
-        <li ng-repeat= "track in spotify.tracks">
-          {{track.name}} {{track.artists[0].name}} {{track.album.name}}
-        </li>
-      
       </div>
-    
+      <div id="song-interface">
+        <div id="searchBox">
+          <div id="search-spotify" ng-controller="spotifyController as spotify">
+            <h2>Spotify</h2>
+            <input id="searchBox" type="text" ng-model="query">
+            <input type='button' id="spotifyButton" ng-click="spotifySearch()">
+          </div>
+          <div id="search-sc" ng-controller= "scController as sc">
+            <h1>Soundcloud</h1>
+            {{sc.test}}
+          </div>
+          <div id="search-list">
+            <li ng-repeat= "track in spotify.tracks">
+              {{track.name}} {{track.artists[0].name}} {{track.album.name}}
+            </li>
+          </div>
+        </div>
+      </div>
     </div>
+        
+
+
+
+             
+
   
   </body>
 </html>
