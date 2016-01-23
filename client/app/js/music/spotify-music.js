@@ -8,15 +8,8 @@ angular.module('musicApp', [])
     vm.tracks = {};
     $scope.query = '';
     $scope.spotifySearch = function () {
-      spotifySearch.makeRequest($scope.query).then(
-        function (response) {
-          vm.tracks = {};
-          var listings = response.data.tracks.items;
-          // console.log(vm.tracks);
-          vm.tracks = listings;
-        }
-      )
-    }
+      spotifySearch.makeRequest($scope.query)
+    };
 
   }])
   .directive('musicDirective', function () {
@@ -27,31 +20,41 @@ angular.module('musicApp', [])
     }
   })
   .factory('spotifySearch', ['$http', '$q', function ($http, $q) {
-    var deferred = $q.defer();
     var search = {};
-    // console.log(query)
     search.makeRequest = function (input) {
       var query = JSON.stringify({queryInput: input})
-      // console.log(query);
       $http({
         data: query,
         url: 'http://localhost:3000/spotify',
         method: 'POST',
       }).then(function success (response) {
-        deferred.resolve(response)
-        // console.log(response);     
-      })
-      return deferred.promise;  
+        vm.tracks = response.data.tracks.items;
+        console.log(response);     
+      }) 
     } 
     return search;
   }])
 
-SC.initialize({
-  client_id: 'b10a9e77003de676a40bcd4ce7346f03'
-})
+// SC.initialize({
+//   client_id: 'b10a9e77003de676a40bcd4ce7346f03'
+// })
 
-SC.get('/tracks', {
-  q: 'Calvin Harris', limit: 20
-}).then(function(tracks) {
-  console.log(tracks);
-});
+// SC.get('/tracks', {
+//   q: 'Calvin Harris', limit: 20
+// }).then(function(tracks) {
+//   console.log(tracks);
+// });
+
+// SC.stream('/tracks/190452632').then(function(player){
+//   player.play();
+//   player.pause();
+// });
+
+
+
+
+
+
+
+
+
