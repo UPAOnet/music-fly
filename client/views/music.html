@@ -1,8 +1,10 @@
 <html ng-app= "musicApp">
 
 <script type="text/javascript" src="/angular/angular.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/home.css">
-<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script> 
+<script type="text/javascript" src="/jquery/dist/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/music.css">
+<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+
   <script type="text/javascript" src="/js/music/music-app.js"></script>
   <script type="text/javascript" src="/js/music/spotify-music.js"></script>
    <script type="text/javascript" src="/js/music/sc-music.js"></script>
@@ -12,25 +14,30 @@
     <div id="music-app">
       <div id="user-bar">
       </div>
-      <div id="music-player">
+
+      <div id="music-player" ng-controller= "musicPlayer as player">
+        <input type="button" value="play">
         <audio src='https://p.scdn.co/mp3-preview/2d89e5af25a276eaf6b9e56baef79a543263afab' controls preload="auto"></audio>
       </div>
+
       <div id="song-interface">
-        <div id="searchBox">
+        <div id="search-box">
+
           <div id="search-spotify" ng-controller="spotifyController as spotify">
             <h2>Spotify</h2>
             <input id="searchBox" type="text" ng-model="query">
-            <input type='button' id="spotifyButton" ng-click="spotifySearch()">
+            <input type='button' id="spotifyButton" ng-click="spotifySearch()"> d
           </div>
+
           <div id="search-sc" ng-controller= "scController as sc">
             <h1>Soundcloud</h1>
             {{sc.test}}
           </div>
-          <div id="search-list">
-            <li ng-repeat= "track in spotify.tracks">
-              {{track.name}} {{track.artists[0].name}} {{track.album.name}}
-            </li>
+
+          <div id="search-list" ng-controller="spotifyController as spotify">
+            <div song-list></div>
           </div>
+
         </div>
       </div>
     </div>
