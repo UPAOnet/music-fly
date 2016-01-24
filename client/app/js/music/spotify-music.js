@@ -2,7 +2,14 @@ angular.module('musicApp', [])
 
   .controller('musicPlayer', ['$scope', function ($scope) {
     vm = this;
-
+    var button = document.getElementById('pauseBtn')
+    console.log(button)
+    button.addEventListener('click', function (event) {
+      audio.pause();
+})
+    // $scope.playMusic = function () {
+    //   musicControls.playMusic;
+    // } 
   }])
   .controller('scController',  ['$scope', function ($scope) {
       vm = this;
@@ -17,6 +24,19 @@ angular.module('musicApp', [])
     };
   }]) 
   // })
+
+  // .factory('playerControls', [function () {
+  //   var player = new Audio();
+  //   console.log('factory');
+
+  //   player.playMusic = function () {
+  //     player.play()
+  //   }
+  //   player.pauseMusic = function () {
+  //     player.pause();
+  //   }
+  //   return player
+  // }])
 
 // Factories 
   .factory('spotifySearch', ['$http', function ($http) {
@@ -34,15 +54,7 @@ angular.module('musicApp', [])
     } 
     return search;
   }])
-  .factory('musicControls', ['$scope', function ($scope) {
-    var player = {};
 
-    player.play = function () {
-
-    }
-
-    return player
-  }])
   
 
 //Directives 
@@ -61,15 +73,13 @@ angular.module('musicApp', [])
         });
 
         elem.bind('dblclick', function (event) {
-          console.log($('#play').play);
+          audio.play();
         })
       }
     }
   })
 
 var audio = new Audio('https://p.scdn.co/mp3-preview/2d89e5af25a276eaf6b9e56baef79a543263afab')
-
-audio.play();
 
 // SC.initialize({
 //   client_id: 'b10a9e77003de676a40bcd4ce7346f03'
