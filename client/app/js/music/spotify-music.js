@@ -37,8 +37,7 @@ angular.module('musicApp', [])
         url: 'http://localhost:3000/spotify',
         method: 'POST',
       }).then(function success (response) {
-        vm.tracks = response.data.tracks.items;
-        // console.log(vm.tracks);     
+        vm.tracks = response.data.tracks.items;   
       }) 
     } 
     return search;
@@ -57,7 +56,7 @@ angular.module('musicApp', [])
       })
       currentList = vm.tracks;
       player.pause();
-      player.play()
+      player.play();
     }
     return player
   }])
