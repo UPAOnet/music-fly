@@ -27,8 +27,8 @@
 
           <div id="search-spotify" ng-controller="spotifyController as spotify">
             <h2>Spotify</h2>
-            <input id="searchBox" type="text" ng-model="query">
-            <input type='button' id="spotifyButton" ng-click="spotifySearch()"> d
+            <input id="searchBox" type="text" ng-model="query" ng-keypress="spotifySearchEnter()">
+            <input type='button' id="spotifyButton" ng-click="spotifySearch()">
           </div>
 
           <div id="search-sc" ng-controller= "scController as sc">

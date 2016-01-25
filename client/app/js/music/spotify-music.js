@@ -18,8 +18,13 @@ angular.module('musicApp', [])
     vm.tracks = {};
     $scope.query = '';
     $scope.spotifySearch = function () {
-      spotifySearch.makeRequest($scope.query)
+      spotifySearch.makeRequest($scope.query);
     };
+    $scope.spotifySearchEnter = function () {
+      if (event.keyCode === 13) {
+        spotifySearch.makeRequest($scope.query);
+      }
+    }
     $scope.playMusic = function (song) {
       playerControls.playMusic(song);
     }
