@@ -1,7 +1,15 @@
 angular.module('musicApp', [])
 
   .controller('musicPlayer', ['$scope', 'playerControls', function ($scope, playerControls) {
-    vm = this;        
+    vm = this; 
+    vm.playerTitle = playerControls.title;
+    vm.playerInfo = playerControls.info;
+    vm.setTitle = function () {
+      newTitle = playerControls.setPlayerInfo.title;
+    }
+    vm.setInfo = function () {
+      newTitle = playerControls.setPlayerInfo.title;
+    }   
     $scope.pauseMusic = function () {
       playerControls.pause();
     }
@@ -16,6 +24,9 @@ angular.module('musicApp', [])
   .controller('spotifyController', ['$scope', '$http', 'spotifySearch', 'playerControls', function ($scope, $http, spotifySearch, playerControls) {
     vm = this;
     vm.tracks = {};
+    vm.playerTitle = 'allo';
+    vm.playerInfo = playerControls.info;
+    // console.log(this)
     $scope.query = '';
     $scope.spotifySearch = function () {
       spotifySearch.makeRequest($scope.query);
@@ -50,19 +61,31 @@ angular.module('musicApp', [])
 
   .factory('playerControls', [function () {
     var currentList;    
-    var player = new Audio();   
+    var player = new Audio(); 
+    player.title = '';
+    player.info = '' 
+    player.setPlayerInfo = function (newTitle, newInfo) {
+      player.title = 'title';
+      player.info = 'info';
+      console.log(player.title)
+      return player
+    } 
     player.playMusic = function (song) {
       currentList = vm.tracks;
       _.each(currentList, function (eachSong) {
         if (eachSong.name === song) {
-          source = eachSong.preview_url;
+          console.log(eachSong.album.name)
+    
           player.src = eachSong.preview_url;
+          // player.setPlayerInfo(song.name, song.album);
         }       
       })
       currentList = vm.tracks;
       player.pause();
       player.play();
     }
+
+    
     return player
   }])
 
@@ -87,7 +110,7 @@ angular.module('musicApp', [])
         elem.bind('dblclick', function (event) {
           var song = event.target.getAttribute('data-song')
           scope.playMusic(song);
-          // console.log(song);
+          console.log(document.getElementById('playerTrackTitle'));
 
         })
       }
