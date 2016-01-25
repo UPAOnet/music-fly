@@ -2,6 +2,7 @@
 
 <script type="text/javascript" src="/angular/angular.js"></script>
 <script type="text/javascript" src="/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="/underscore/underscore.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/music.css">
 <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
 
@@ -16,7 +17,8 @@
       </div>
 
       <div id="music-player" ng-controller= "musicPlayer as player">
-        <input type="button" value="pause" id="pauseBtn">
+        <input type="button" value="pause" id="pauseBtn" ng-click=pauseMusic()>
+        <input type="button" value="play" id="playBtn" ng-click=playMusic()>
         <audio id="play" src='https://p.scdn.co/mp3-preview/2d89e5af25a276eaf6b9e56baef79a543263afab' preload="auto"></audio>
       </div>
 
