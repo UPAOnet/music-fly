@@ -7,7 +7,6 @@ angular.module('musicApp', [])
     vm.playerArtist;
     vm.playerInfo;
     vm.tracks = []; 
-
     $scope.spotifyQuery;
     $scope.scQuery;
 
@@ -17,12 +16,16 @@ angular.module('musicApp', [])
     $scope.pauseMusic = function () {
       playerControls.pause();
     }
+
+
     $scope.playSpotifyMusic = function (song) {
       playerControls.playSpotifyMusic(song);   
     } 
     $scope.playSoundCloud = function (song) {
       playerControls.playSoundCloud(song);
-      console.log(playerControls.SC);    
+      // playerControls.playSoundCloud(song).then(function (player) {
+        
+      // });   
     }
 
 
@@ -61,6 +64,8 @@ angular.module('musicApp', [])
   return song; 
 }])
 
+
+
 .factory('spotifySearch', ['$http', 'songConstructor', function ($http, songConstructor) {
     var search = {};
     search.makeRequest = function (input) {
@@ -86,27 +91,34 @@ angular.module('musicApp', [])
 
 .factory('scSearch', ['songConstructor', function (songConstructor) {
   var search = {}; 
+
   search.allTracks = function (input) {
     var query = input;
+
     SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) {
       vm.tracks = [];
       var trackResults = tracks;
+
       _.map(trackResults, function (each) {
-        vm.tracks.push(
-          new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'sc', each.stream_url, each.permalink_url)
-        )
+        var stream = each.stream_url;
+
+        function getUrl (stream) {
+          var urlNumber = stream.slice(-16, -7)
+          SC.stream('/tracks/' + urlNumber).then(function (player) {
+            vm.tracks.push(
+              new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'sc', player.streamInfo.url, each.permalink_url)
+            )
+          });
+        }        
       })
-      console.log(vm.tracks); 
+      
     })
   };
   return search
 }])
 
-.factory('playerControls', [function () {
-    Audio.soundCloud = SC;  
-    var masterPlayer = new Audio(); 
-    console.log(Audio.soundCloud);
-
+.factory('playerControls', [function () { 
+    var masterPlayer = new Audio();
     masterPlayer.playSpotifyMusic = function (song) {
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
@@ -120,18 +132,11 @@ angular.module('musicApp', [])
     }
 
     masterPlayer.playSoundCloud = function (song) {
-      var urlNumber;
-      _.each(vm.tracks, function (eachSong) {
-        if (eachSong.name === song) {
-          urlNumber = eachSong.urlSource.slice(-16, -7)
-        }
-      })
       
-      SC.stream('/tracks/' + urlNumber).then(function(player){
-      // player.play();
       
-      });
-      return SC
+      masterPlayer.soundCloud = SC.stream;
+      // console.log(masterPlayer.soundCloud);
+      masterPlayer.soundCloud
     }
 
     return masterPlayer
@@ -172,4 +177,4 @@ SC.initialize({
 
 
 
-
+// https://cf-media.sndcdn.com/p7Uw60gtODDZ.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vcDdVdzYwZ3RPRERaLjEyOC5tcDMiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE0NTM4NTA1NzR9fX1dfQ__&Signature=sOYC2N6DXNSTj-XpEWDVftOM9l-RnPVsFifGmmTl65IeexGKYQs8jWBRvLpk9IFHmrJuzvlZkLiiJ7iKzbLSG4v3HgCV~Ou8Hvjzj4PpXUPpEfVMfKCNl6mNr-5sRcJn5fdq0xYSCDcpZiRXoClndM2LZYE0OcJswJk4sQJTlQjvFsRAktZS-py6MXuDYdtb5sIGRcMz7CrtAk9Fdnf9F56l~teZx7GeMve3Unb34iVRfKRYosI8f-W7k~7m9R-GudqHJBJg9NBHLPQplYXPurUJWs4owThfaG~PG7hlJffGOreqwT40VohsEZb011WPbCEpVzVXZ4LnivRtxxz8bw__&Key-Pair-Id=APKAJAGZ7VMH2PFPW6UQ
