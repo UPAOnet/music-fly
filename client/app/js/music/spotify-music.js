@@ -14,8 +14,8 @@ angular.module('musicApp', [])
     $scope.pauseMusic = function () {
       playerControls.pause();
     }
-    $scope.playMusic = function (song) {
-      playerControls.playMusic(song);
+    $scope.playSpotifyMusic = function (song) {
+      playerControls.playSpotifyMusic(song);
    
     } 
 
@@ -40,20 +40,21 @@ angular.module('musicApp', [])
     }    
   }])
 
-.service('listConstructor', [function () {
-  function song (name, image, album, artist, duration, urlSource, pageSource) {
+.service('songConstructor', [function () {
+  function song (name, image, album, artist, duration, source, urlSource, pageSource) {
     this.name = name;
     this.image = image;
     this.album = album;
     this.artist = artist;
     this.duration = duration;
+    this.source = source; 
     this.urlSource = urlSource;
     this.pageSource = pageSource;
   }
   return song; 
 }])
 
-.factory('spotifySearch', ['$http', 'listConstructor', function ($http, listConstructor) {
+.factory('spotifySearch', ['$http', 'songConstructor', function ($http, songConstructor) {
     var search = {};
     search.makeRequest = function (input) {
       var query = JSON.stringify({queryInput: input})
@@ -62,11 +63,12 @@ angular.module('musicApp', [])
         url: 'http://localhost:3000/spotify',
         method: 'POST',
       }).then(function success (response) {
+        vm.tracks = [];
         trackResults = response.data.tracks.items;
         // console.log(trackResults);
         _.map(trackResults, function (each) {
           vm.tracks.push(
-            new listConstructor(each.name, each.album.images[2].url, each.album.name, each.artists[0].name, each.duration_ms, each.preview_url, each.external_urls.spotify)
+            new songConstructor(each.name, each.album.images[2].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', each.preview_url, each.external_urls.spotify)
           );
         })
         // console.log(vm.tracks);  
@@ -75,19 +77,19 @@ angular.module('musicApp', [])
     return search;
   }])
 
-.factory('scSearch', ['listConstructor', function (listConstructor) {
-  var search = {};
-  
+.factory('scSearch', ['songConstructor', function (songConstructor) {
+  var search = {}; 
   search.allTracks = function (input) {
     var query = input;
     SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) {
+      vm.tracks = [];
       var trackResults = tracks;
       _.map(trackResults, function (each) {
         vm.tracks.push(
-          new listConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, each.stream_url, each.permalink_url)
+          new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'sc', each.stream_url, each.permalink_url)
         )
       })
-      // console.log(vm.tracks); 
+      console.log(vm.tracks); 
     })
   };
   return search
@@ -95,7 +97,8 @@ angular.module('musicApp', [])
 
 .factory('playerControls', [function () {  
     var player = new Audio(); 
-    player.playMusic = function (song) {
+
+    player.playSpotifyMusic = function (song) {
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
           vm.playerTitle = eachSong.name;
@@ -105,7 +108,12 @@ angular.module('musicApp', [])
         }               
       })
       player.play()            
-    }    
+    }
+
+    player.playSoundCloud = function (song) {
+
+    }
+
     return player
   }])
 
@@ -126,8 +134,7 @@ angular.module('musicApp', [])
 
         elem.bind('dblclick', function (event) {
           var song = event.target.getAttribute('data-song')
-          // console.log(scope.playMusic);
-          scope.playMusic(song);
+          scope.playSpotifyMusic(song);
         })
       }
     }
@@ -144,7 +151,9 @@ SC.initialize({
 
 
 // SC.stream('/tracks/190452632').then(function(player){
+
 //   player.play();
+//   console.log(SC.stream);
 //   // player.pause();
 // });
 
