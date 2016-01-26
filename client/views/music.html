@@ -43,8 +43,9 @@
           </div>
           <div id="search-sc">
             <h2>SoundCloud</h2>
-            <input id="scBox" type="text" ng-model="scQuery" >
-            <input type='button' id="scButton" ng-click="scSearch()">
+            <input id="scBox" type="text" ng-model="scQuery"
+            ng-keypress="scSearchEnter()"/>
+            <input type='button' id="scButton" ng-click="scSearch()"/>
           </div>
 
           <div id="search-list">

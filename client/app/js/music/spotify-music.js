@@ -20,10 +20,14 @@ angular.module('musicApp', [])
     } 
 
     $scope.scSearch = function () {
-      // console.log('bound');
-      scSearch.allTracks();
-      // console.log(vm.tracks);
+      scSearch.allTracks($scope.scQuery);
     }
+    $scope.scSearchEnter = function () {
+      if (event.keyCode === 13) {
+        scSearch.allTracks($scope.scQuery);
+      };
+    }
+
 
     $scope.spotifySearch = function () {
       spotifySearch.makeRequest($scope.spotifyQuery);
@@ -37,13 +41,14 @@ angular.module('musicApp', [])
   }])
 
 .service('listConstructor', [function () {
-  function song (name, image, album, artist, duration, urlSource) {
+  function song (name, image, album, artist, duration, urlSource, pageSource) {
     this.name = name;
     this.image = image;
     this.album = album;
     this.artist = artist;
     this.duration = duration;
     this.urlSource = urlSource;
+    this.pageSource = pageSource;
   }
   return song; 
 }])
@@ -57,44 +62,46 @@ angular.module('musicApp', [])
         url: 'http://localhost:3000/spotify',
         method: 'POST',
       }).then(function success (response) {
-
         trackResults = response.data.tracks.items;
+        // console.log(trackResults);
         _.map(trackResults, function (each) {
           vm.tracks.push(
-            new listConstructor(each.name, each.album.images[2].url, each.album.name, each.artists[0].name, each.duration, each.preview_url)
+            new listConstructor(each.name, each.album.images[2].url, each.album.name, each.artists[0].name, each.duration_ms, each.preview_url, each.external_urls.spotify)
           );
         })
-        console.log(vm.tracks);  
+        // console.log(vm.tracks);  
       }) 
     } 
     return search;
   }])
 
-.factory('scSearch', [function () {
+.factory('scSearch', ['listConstructor', function (listConstructor) {
   var search = {};
-  search.allTracks = function () {
-    SC.get('/tracks', {q: 'Calvin Harris', limit: 20}).then(function(tracks) {
-      vm.tracks = tracks;
-      _.map(vm.tracks, function (each) {
-        console.log(each);
+  
+  search.allTracks = function (input) {
+    var query = input;
+    SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) {
+      var trackResults = tracks;
+      _.map(trackResults, function (each) {
+        vm.tracks.push(
+          new listConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, each.stream_url, each.permalink_url)
+        )
       })
+      // console.log(vm.tracks); 
     })
   };
-
   return search
 }])
 
-.factory('playerControls', ['$q', function ($q) {  
+.factory('playerControls', [function () {  
     var player = new Audio(); 
-
     player.playMusic = function (song) {
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
-          // vm.playerTitle = eachSong.name;
-          // vm.playerArtist = eachSong.artists[0].name;
-          // vm.playerInfo = eachSong.album.name;
+          vm.playerTitle = eachSong.name;
+          vm.playerArtist = eachSong.artist;
+          vm.playerInfo = eachSong.album;
           player.src = eachSong.urlSource;
-          // console.log(vm.playerTitle);
         }               
       })
       player.play()            
@@ -140,14 +147,6 @@ SC.initialize({
 //   player.play();
 //   // player.pause();
 // });
-
-// .controller('scController',  ['$scope', function ($scope) {
-//       vm = this;
-//       vm.test = 'this is sc';
-//   }])
-
-
-
 
 // SC.get('/tracks', {q: 'Calvin Harris', limit: 20}).then(function(tracks){console.log(tracks)})
 
