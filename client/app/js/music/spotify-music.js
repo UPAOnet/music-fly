@@ -6,7 +6,7 @@ angular.module('musicApp', [])
     vm.playerTitle;
     vm.playerArtist;
     vm.playerInfo;
-    vm.tracks = {}; 
+    vm.tracks = []; 
 
     $scope.spotifyQuery;
     $scope.scQuery;
@@ -16,7 +16,7 @@ angular.module('musicApp', [])
     }
     $scope.playMusic = function (song) {
       playerControls.playMusic(song);
-      // console.log('works');      
+   
     } 
 
     $scope.scSearch = function () {
@@ -27,6 +27,7 @@ angular.module('musicApp', [])
 
     $scope.spotifySearch = function () {
       spotifySearch.makeRequest($scope.spotifyQuery);
+
     }
     $scope.spotifySearchEnter = function () {
       if (event.keyCode === 13) {
@@ -35,7 +36,19 @@ angular.module('musicApp', [])
     }    
   }])
 
-.factory('spotifySearch', ['$http', function ($http) {
+.service('listConstructor', [function () {
+  function song (name, image, album, artist, duration, urlSource) {
+    this.name = name;
+    this.image = image;
+    this.album = album;
+    this.artist = artist;
+    this.duration = duration;
+    this.urlSource = urlSource;
+  }
+  return song; 
+}])
+
+.factory('spotifySearch', ['$http', 'listConstructor', function ($http, listConstructor) {
     var search = {};
     search.makeRequest = function (input) {
       var query = JSON.stringify({queryInput: input})
@@ -44,7 +57,14 @@ angular.module('musicApp', [])
         url: 'http://localhost:3000/spotify',
         method: 'POST',
       }).then(function success (response) {
-        vm.tracks = response.data.tracks.items;   
+
+        trackResults = response.data.tracks.items;
+        _.map(trackResults, function (each) {
+          vm.tracks.push(
+            new listConstructor(each.name, each.album.images[2].url, each.album.name, each.artists[0].name, each.duration, each.preview_url)
+          );
+        })
+        console.log(vm.tracks);  
       }) 
     } 
     return search;
@@ -55,25 +75,25 @@ angular.module('musicApp', [])
   search.allTracks = function () {
     SC.get('/tracks', {q: 'Calvin Harris', limit: 20}).then(function(tracks) {
       vm.tracks = tracks;
-      // console.log(vm.tracks);
+      _.map(vm.tracks, function (each) {
+        console.log(each);
+      })
     })
   };
 
   return search
 }])
 
-.factory('playerControls', ['$q', function ($q) {
-    var currentList;    
+.factory('playerControls', ['$q', function ($q) {  
     var player = new Audio(); 
 
     player.playMusic = function (song) {
-      currentList = vm.tracks;
-      _.each(currentList, function (eachSong) {
+      _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
-          vm.playerTitle = eachSong.name;
-          vm.playerArtist = eachSong.artists[0].name;
-          vm.playerInfo = eachSong.album.name;
-          player.src = eachSong.preview_url;
+          // vm.playerTitle = eachSong.name;
+          // vm.playerArtist = eachSong.artists[0].name;
+          // vm.playerInfo = eachSong.album.name;
+          player.src = eachSong.urlSource;
           // console.log(vm.playerTitle);
         }               
       })
@@ -88,7 +108,7 @@ angular.module('musicApp', [])
       restrict: 'A',
       replace: false,
       template: '<li class="songs" ng-repeat= "track in player.tracks" ng-click="song-select" data-song = {{track.name}}>' +
-                '<img ng-src="{{track.album.images[2].url}}"/> {{track.name}} {{track.artists[0].name}} {{track.album.name}}' +
+                '<img ng-src="{{track.image}}"/> {{track.name}} {{track.artist}} {{track.album}}' +
                 '</li>',
       link: function (scope, elem, attrs) {
         elem.bind('click', function (event) {
