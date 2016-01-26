@@ -1,25 +1,30 @@
 angular.module('musicApp', [])
 
-.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 
-  function ($scope, $http, spotifySearch, playerControls) {
+.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch',
+  function ($scope, $http, spotifySearch, playerControls, scSearch) {
     vm = this; 
     vm.playerTitle;
     vm.playerArtist;
     vm.playerInfo;
     vm.tracks = {}; 
+
     $scope.spotifyQuery;
     $scope.scQuery;
+
     $scope.pauseMusic = function () {
       playerControls.pause();
     }
     $scope.playMusic = function (song) {
       playerControls.playMusic(song);
-      console.log('works');
-      
+      // console.log('works');      
     } 
-    // $scope.playMusic = function (song) {
-    //   playerControls.playMusic(song);
-    // }
+
+    $scope.scSearch = function () {
+      // console.log('bound');
+      scSearch.allTracks();
+      // console.log(vm.tracks);
+    }
+
     $scope.spotifySearch = function () {
       spotifySearch.makeRequest($scope.spotifyQuery);
     }
@@ -27,8 +32,7 @@ angular.module('musicApp', [])
       if (event.keyCode === 13) {
         spotifySearch.makeRequest($scope.spotifyQuery);
       }
-    }
-    
+    }    
   }])
 
 .factory('spotifySearch', ['$http', function ($http) {
@@ -48,13 +52,14 @@ angular.module('musicApp', [])
 
 .factory('scSearch', [function () {
   var search = {};
+  search.allTracks = function () {
+    SC.get('/tracks', {q: 'Calvin Harris', limit: 20}).then(function(tracks) {
+      vm.tracks = tracks;
+      // console.log(vm.tracks);
+    })
+  };
 
-    SC.get('/tracks', {
-    q: 'Calvin Harris', limit: 20
-  }).then(function(tracks) {
-    console.log(tracks);
-  });
-
+  return search
 }])
 
 .factory('playerControls', ['$q', function ($q) {
@@ -124,5 +129,5 @@ SC.initialize({
 
 
 
-
+// SC.get('/tracks', {q: 'Calvin Harris', limit: 20}).then(function(tracks){console.log(tracks)})
 
