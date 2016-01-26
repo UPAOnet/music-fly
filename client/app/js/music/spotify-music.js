@@ -11,13 +11,20 @@ angular.module('musicApp', [])
     $scope.spotifyQuery;
     $scope.scQuery;
 
+    $scope.playMusic = function () {
+      playerControls.play();
+    }
     $scope.pauseMusic = function () {
       playerControls.pause();
     }
     $scope.playSpotifyMusic = function (song) {
-      playerControls.playSpotifyMusic(song);
-   
+      playerControls.playSpotifyMusic(song);   
     } 
+    $scope.playSoundCloud = function (song) {
+      playerControls.playSoundCloud(song);
+      console.log(playerControls.SC);    
+    }
+
 
     $scope.scSearch = function () {
       scSearch.allTracks($scope.scQuery);
@@ -95,26 +102,39 @@ angular.module('musicApp', [])
   return search
 }])
 
-.factory('playerControls', [function () {  
-    var player = new Audio(); 
+.factory('playerControls', [function () {
+    Audio.soundCloud = SC;  
+    var masterPlayer = new Audio(); 
+    console.log(Audio.soundCloud);
 
-    player.playSpotifyMusic = function (song) {
+    masterPlayer.playSpotifyMusic = function (song) {
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
           vm.playerTitle = eachSong.name;
           vm.playerArtist = eachSong.artist;
           vm.playerInfo = eachSong.album;
-          player.src = eachSong.urlSource;
+          masterPlayer.src = eachSong.urlSource;
         }               
       })
-      player.play()            
+      masterPlayer.play()            
     }
 
-    player.playSoundCloud = function (song) {
-
+    masterPlayer.playSoundCloud = function (song) {
+      var urlNumber;
+      _.each(vm.tracks, function (eachSong) {
+        if (eachSong.name === song) {
+          urlNumber = eachSong.urlSource.slice(-16, -7)
+        }
+      })
+      
+      SC.stream('/tracks/' + urlNumber).then(function(player){
+      // player.play();
+      
+      });
+      return SC
     }
 
-    return player
+    return masterPlayer
   }])
 
 .directive('songList', () => {
@@ -122,7 +142,7 @@ angular.module('musicApp', [])
       scope: true,
       restrict: 'A',
       replace: false,
-      template: '<li class="songs" ng-repeat= "track in player.tracks" ng-click="song-select" data-song = {{track.name}}>' +
+      template: '<li class="songs" ng-repeat= "track in player.tracks" ng-click="song-select" data-song = {{track.name}} data-source ={{track.source}}>' +
                 '<img ng-src="{{track.image}}"/> {{track.name}} {{track.artist}} {{track.album}}' +
                 '</li>',
       link: function (scope, elem, attrs) {
@@ -134,7 +154,13 @@ angular.module('musicApp', [])
 
         elem.bind('dblclick', function (event) {
           var song = event.target.getAttribute('data-song')
-          scope.playSpotifyMusic(song);
+          if (event.target.getAttribute('data-source') === 'spotify') {
+            scope.playSpotifyMusic(song);
+          }
+          if (event.target.getAttribute('data-source') === 'sc') {
+            scope.playSoundCloud(song);
+
+          }
         })
       }
     }
@@ -144,18 +170,6 @@ SC.initialize({
   client_id: 'b10a9e77003de676a40bcd4ce7346f03'
 })
 
-// var audio = new Audio('https://api.soundcloud.com/tracks/143553285/stream')
 
 
-
-
-
-// SC.stream('/tracks/190452632').then(function(player){
-
-//   player.play();
-//   console.log(SC.stream);
-//   // player.pause();
-// });
-
-// SC.get('/tracks', {q: 'Calvin Harris', limit: 20}).then(function(tracks){console.log(tracks)})
 
