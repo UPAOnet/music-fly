@@ -7,20 +7,20 @@ angular.module('musicApp', [])
     vm.playerArtist;
     vm.playerInfo;
     vm.tracks = {}; 
-    $scope.query;
+    $scope.spotifyQuery;
     $scope.pauseMusic = function () {
       playerControls.pause();
     }
     $scope.playMusic = function () {
       (playerControls.playMusic())
-      $scope.apply(vm.playerTitle)
+      $scope.$apply();
     } 
     $scope.spotifySearch = function () {
-      spotifySearch.makeRequest($scope.query);
+      spotifySearch.makeRequest($scope.spotifyQuery);
     }
     $scope.spotifySearchEnter = function () {
       if (event.keyCode === 13) {
-        spotifySearch.makeRequest($scope.query);
+        spotifySearch.makeRequest($scope.spotifyQuery);
       }
     }
     $scope.playMusic = function (song) {
@@ -42,6 +42,17 @@ angular.module('musicApp', [])
     } 
     return search;
   }])
+
+.factory('scSearch', [function () {
+  var search = {};
+
+  //   SC.get('/tracks', {
+  //   q: 'Calvin Harris', limit: 20
+  // }).then(function(tracks) {
+  //   console.log(tracks);
+  // });
+
+}])
 
 .factory('playerControls', ['$q', function ($q) {
     var currentList;    
@@ -94,11 +105,7 @@ SC.initialize({
 
 
 
-// SC.get('/tracks', {
-//   q: 'Calvin Harris', limit: 20
-// }).then(function(tracks) {
-//   console.log(tracks);
-// });
+
 
 // SC.stream('/tracks/190452632').then(function(player){
 //   player.play();

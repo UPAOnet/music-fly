@@ -38,7 +38,12 @@
 
           <div id="search-spotify">
             <h2>Spotify</h2>
-            <input id="searchBox" type="text" ng-model="query" ng-keypress="spotifySearchEnter()">
+            <input id="spotifyBox" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()">
+            <input type='button' id="spotifyButton" ng-click="spotifySearch()">
+          </div>
+          <div id="search-spotify">
+            <h2>SoundCloud</h2>
+            <input id="scBox" type="text" ng-model="scQuery" >
             <input type='button' id="spotifyButton" ng-click="spotifySearch()">
           </div>
 
