@@ -16,12 +16,14 @@
       <div id="user-bar">
       </div>
 
-      <div id="music-player" ng-controller= "musicPlayer as player">
+    <div ng-controller= "musicPlayer as player">
+      <div id="music-player">
       <div>
         <div>
           <h3 id="playerTrackTitle">{{player.playerTitle}}</h3>
         </div>
         <div id="playerTrackInfo">
+          {{player.playerArtist}}
           {{player.playerInfo}}
         </div>
 
@@ -34,26 +36,20 @@
       <div id="song-interface">
         <div id="search-box">
 
-          <div id="search-spotify" ng-controller="spotifyController as spotify">
+          <div id="search-spotify">
             <h2>Spotify</h2>
             <input id="searchBox" type="text" ng-model="query" ng-keypress="spotifySearchEnter()">
             <input type='button' id="spotifyButton" ng-click="spotifySearch()">
           </div>
 
-          <div id="search-sc" ng-controller= "scController as sc">
-            <h1>Soundcloud</h1>
-            {{sc.test}}
-          </div>
-
-          <div id="search-list" ng-controller="spotifyController as spotify">
+          <div id="search-list">
             <div song-list></div>
           </div>
 
         </div>
       </div>
     </div>
-        
-
+  </div>
 
 
              

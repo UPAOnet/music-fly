@@ -1,36 +1,23 @@
 angular.module('musicApp', [])
 
-  .controller('musicPlayer', ['$scope', 'playerControls', function ($scope, playerControls) {
+.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 
+  function ($scope, $http, spotifySearch, playerControls) {
     vm = this; 
-    vm.playerTitle = playerControls.title;
-    vm.playerInfo = playerControls.info;
-    vm.setTitle = function () {
-      newTitle = playerControls.setPlayerInfo.title;
-    }
-    vm.setInfo = function () {
-      newTitle = playerControls.setPlayerInfo.title;
-    }   
+    vm.playerTitle;
+    vm.playerArtist;
+    vm.playerInfo;
+    vm.tracks = {}; 
+    $scope.query;
     $scope.pauseMusic = function () {
       playerControls.pause();
     }
     $scope.playMusic = function () {
-      playerControls.playMusic();
+      (playerControls.playMusic())
+      $scope.apply(vm.playerTitle)
     } 
-  }])
-  .controller('scController',  ['$scope', function ($scope) {
-      vm = this;
-      vm.test = 'this is sc';
-  }])
-  .controller('spotifyController', ['$scope', '$http', 'spotifySearch', 'playerControls', function ($scope, $http, spotifySearch, playerControls) {
-    vm = this;
-    vm.tracks = {};
-    vm.playerTitle = 'allo';
-    vm.playerInfo = playerControls.info;
-    // console.log(this)
-    $scope.query = '';
     $scope.spotifySearch = function () {
       spotifySearch.makeRequest($scope.query);
-    };
+    }
     $scope.spotifySearchEnter = function () {
       if (event.keyCode === 13) {
         spotifySearch.makeRequest($scope.query);
@@ -39,12 +26,9 @@ angular.module('musicApp', [])
     $scope.playMusic = function (song) {
       playerControls.playMusic(song);
     }
-  }]) 
+  }])
 
-  
-
-// Factories 
-  .factory('spotifySearch', ['$http', function ($http) {
+.factory('spotifySearch', ['$http', function ($http) {
     var search = {};
     search.makeRequest = function (input) {
       var query = JSON.stringify({queryInput: input})
@@ -59,45 +43,32 @@ angular.module('musicApp', [])
     return search;
   }])
 
-  .factory('playerControls', [function () {
+.factory('playerControls', ['$q', function ($q) {
     var currentList;    
     var player = new Audio(); 
-    player.title = '';
-    player.info = '' 
-    player.setPlayerInfo = function (newTitle, newInfo) {
-      player.title = 'title';
-      player.info = 'info';
-      console.log(player.title)
-      return player
-    } 
+
     player.playMusic = function (song) {
       currentList = vm.tracks;
       _.each(currentList, function (eachSong) {
         if (eachSong.name === song) {
-          console.log(eachSong.album.name)
-    
+          vm.playerTitle = eachSong.name;
+          vm.playerArtist = eachSong.artists[0].name;
+          vm.playerInfo = eachSong.album.name;
           player.src = eachSong.preview_url;
-          // player.setPlayerInfo(song.name, song.album);
-        }       
+          console.log(vm.playerTitle);
+        }               
       })
-      currentList = vm.tracks;
-      player.pause();
-      player.play();
-    }
-
-    
+      player.play()            
+    }    
     return player
   }])
 
-  
-
-//Directives 
-  .directive('songList', () => {
+.directive('songList', () => {
     return {
       scope: true,
       restrict: 'A',
       replace: false,
-      template: '<li class="songs" ng-repeat= "track in spotify.tracks" ng-click="song-select" data-song = {{track.name}}>' +
+      template: '<li class="songs" ng-repeat= "track in player.tracks" ng-click="song-select" data-song = {{track.name}}>' +
                 '<img ng-src="{{track.album.images[2].url}}"/> {{track.name}} {{track.artists[0].name}} {{track.album.name}}' +
                 '</li>',
       link: function (scope, elem, attrs) {
@@ -110,8 +81,6 @@ angular.module('musicApp', [])
         elem.bind('dblclick', function (event) {
           var song = event.target.getAttribute('data-song')
           scope.playMusic(song);
-          console.log(document.getElementById('playerTrackTitle'));
-
         })
       }
     }
@@ -136,7 +105,10 @@ SC.initialize({
 //   // player.pause();
 // });
 
-
+// .controller('scController',  ['$scope', function ($scope) {
+//       vm = this;
+//       vm.test = 'this is sc';
+//   }])
 
 
 
