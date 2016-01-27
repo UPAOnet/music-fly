@@ -94,26 +94,30 @@ angular.module('musicApp', [])
 
   search.allTracks = function (input) {
     var query = input;
+    vm.tracks = [];
+    function getUrl (urlStream) {
+      // console.log(urlStream);
+      if (urlStream.length === 50) {
+        return urlStream.slice(-16, -7);
+      }
+      else if (urlStream.length === 49) {
+        return urlStream.slice(-15, -7)
+      }
+    }
 
-    SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) {
-      vm.tracks = [];
-      var trackResults = tracks;
-
+    SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) {     
+      var trackResults = tracks; 
+         
       _.map(trackResults, function (each) {
         var stream = each.stream_url;
-
-        function getUrl (stream) {
-          var urlNumber = stream.slice(-16, -7)
-          SC.stream('/tracks/' + urlNumber).then(function (player) {
-            vm.tracks.push(
-              new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'sc', player.streamInfo.url, each.permalink_url)
-            )
-          });
-        }        
+        var url = getUrl(stream); 
+        console.log(url);
+        // console.log(stream.length);
+        
       })
-      
-    })
+    })    
   };
+
   return search
 }])
 
@@ -174,6 +178,14 @@ angular.module('musicApp', [])
 SC.initialize({
   client_id: 'b10a9e77003de676a40bcd4ce7346f03'
 })
+
+
+ // console.log(urlNumber); 
+          // SC.stream('/tracks/' + urlNumber).then(function (player) {
+          //   // console.log('success')
+          // });
+
+        // vm.tracks.push(new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'sc', player.streamInfo.url, each.permalink_url))
 
 
 
