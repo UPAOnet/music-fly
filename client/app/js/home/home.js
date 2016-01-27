@@ -1,11 +1,21 @@
-var homeApp = angular.module('home', ['nav']);
+angular.module('home', ['ngRoute'])
 
-homeApp.controller('hero', ['$scope', function ($scope) {
+.config(['$routeProvider', function ($routeProvider) {
+  $routeProvider. 
+    when('/music', {
+      template: 'music.html'
+    }).
+    otherwise({redirectTo: '/'})
+}])
+
+.controller('hero', ['$scope', function ($scope) {
   // $scope.video = "/assets/video/sun.mp4";
   $scope.poster = "/assets/images/home/poster.jpg";
 }])
 
-homeApp.directive('heroVideo', function () {
+
+
+.directive('heroVideo', function () {
   return {
     restrict: 'E', 
     replace: false,

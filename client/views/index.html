@@ -1,10 +1,11 @@
 <html ng-app="home">
 <link rel="stylesheet" type="text/css" href="/css/home.css">
-<script type="text/javascript" src="../vendor/angular.js"></script>
+<script type="text/javascript" src="/angular/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
   <body>
-
+    <a href= "http://localhost:3000/music"><input type="button" value="Go to Music Section"></a>
     <div ng-app="nav">
-      <div ng-controller="navigator">
+      <div>
         {{test}}
       </div>
     </div>
@@ -12,10 +13,12 @@
     <div ng-controller="hero" id="hero">
       <hero-video/>
     </div>
+    
+    <div ng-view></div>
   
  
   </body>
-  <script type="text/javascript" src="/js/nav.js"></script>
-  <script type="text/javascript" src="/js/home.js"></script>
+  <script type="text/javascript" src="/js/navigation/nav.js"></script>
+  <script type="text/javascript" src="/js/home/home.js"></script>
   
 </html>
