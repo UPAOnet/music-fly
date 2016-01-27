@@ -7,19 +7,17 @@ angular.module('musicApp', [])
     vm.playerArtist;
     vm.playerInfo;
     vm.tracks = []; 
-    vm.scPlayer;
+    vm.scPlayer = {};
     $scope.spotifyQuery;
     $scope.scQuery;
-
-    $scope.playMusic = function () {
-      playerControls.play();
+    $scope.playMusic = function () {      
+      vm.scPlayer.player.play();
     }
     $scope.pauseMusic = function () {
-      playerControls.pause();
+      vm.scPlayer.player.pause();
     }
-
-
     $scope.playSpotifyMusic = function (song) {
+      // vm.scPlayer.player.pause();
       playerControls.playSpotifyMusic(song);   
     } 
     $scope.playSoundCloud = function (song) {
@@ -95,7 +93,7 @@ angular.module('musicApp', [])
 
   search.allTracks = function (input) {
     var query = input;
-    vm.tracks = [];
+    
     function getUrl (urlStream) {
       // console.log(urlStream);
       if (urlStream.length === 50) {
@@ -106,7 +104,8 @@ angular.module('musicApp', [])
       }
     }
 
-    SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) {     
+    SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) { 
+      vm.tracks = [];    
       var trackResults = tracks; 
       
       _.map(trackResults, function (each) {
@@ -141,21 +140,24 @@ angular.module('musicApp', [])
     masterPlayer.playSoundCloud = function (song) {
 
       _.each(vm.tracks, function (eachSong) {
-        // eachSong.urlSource.reset();
+
+        // eachSong.urlSource.reset();       
         if (eachSong.name === song) {
-          console.log(eachSong)
-          
+          vm.scPlayer.player = eachSong.urlSource;
+          console.log(vm.scPlayer);
+          masterPlayer.pause();
           vm.playerTitle = eachSong.name;
           vm.playerArtist = eachSong.artist;
           vm.playerInfo = eachSong.album;
-          masterPlayer.pause();
-          eachSong.urlSource.play()
+          
+          eachSong.urlSource.play();
         };
       });
     };
 
     return masterPlayer
   }])
+
 
 .directive('songList', () => {
     return {
@@ -174,9 +176,6 @@ angular.module('musicApp', [])
 
         elem.bind('dblclick', function (event) {
           var song = event.target.getAttribute('data-song')
-          if (event.target.getAttribute('data-source') === 'spotify') {
-            scope.playSpotifyMusic(song);
-          }
           if (event.target.getAttribute('data-source') === 'sc') {
             scope.playSoundCloud(song);
             // console.log('this is a sc song')
@@ -191,18 +190,38 @@ SC.initialize({
   client_id: 'b10a9e77003de676a40bcd4ce7346f03'
 })
 
- // SC.stream('/tracks/' + 143553285).then(function (player) {
- //            // console.log(player);
- //            player._isPlaying === true;
- //            console.log(player)
- //          });
 
- // console.log(urlNumber); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
          
-
-       
-
-
 

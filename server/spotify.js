@@ -18,13 +18,5 @@ spotify.post('/', parseJSON, function (req, res) {
     });
 })
 
-spotify.get('/player', function (req, res) {
-  console.log('https://p.scdn.co/mp3-preview/2d89e5af25a276eaf6b9e56baef79a543263afab')
-})
-
-
-
-
-
 module.exports = spotify;
 
