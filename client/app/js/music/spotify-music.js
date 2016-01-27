@@ -3,6 +3,7 @@ angular.module('musicApp', [])
 .controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch',
   function ($scope, $http, spotifySearch, playerControls, scSearch) {
     vm = this; 
+    vm.playerImage;
     vm.playerTitle;
     vm.playerArtist;
     vm.playerInfo;
@@ -28,20 +29,28 @@ angular.module('musicApp', [])
 
     $scope.scSearch = function () {
       scSearch.allTracks($scope.scQuery);
+      $scope.scQuery = "";
       $scope.digest();
+
     }
     $scope.scSearchEnter = function () {
       if (event.keyCode === 13) {
         scSearch.allTracks($scope.scQuery);
+        $scope.scQuery = "";
+        $scope.digest();
       };
     }
     $scope.spotifySearch = function () {
       spotifySearch.makeRequest($scope.spotifyQuery);
+      $scope.spotifyQuery = "";
+      $scope.digest();
 
     }
     $scope.spotifySearchEnter = function () {
       if (event.keyCode === 13) {
         spotifySearch.makeRequest($scope.spotifyQuery);
+        $scope.spotifyQuery = "";
+        $scope.digest();
       }
     }    
   }])
@@ -124,10 +133,12 @@ angular.module('musicApp', [])
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
           console.log('match')
+          vm.playerImage = eachSong.image;
           vm.playerTitle = eachSong.name;
           vm.playerArtist = eachSong.artist;
           vm.playerInfo = eachSong.album;
           masterPlayer.src = eachSong.urlSource;
+          vm.digest()
         }               
       })
     masterPlayer.play()         
@@ -137,33 +148,16 @@ angular.module('musicApp', [])
       var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
+          vm.playerImage = eachSong.image;
           vm.playerTitle = eachSong.name;
           vm.playerArtist = eachSong.artist;
           vm.playerInfo = eachSong.album;
           masterPlayer.src = 'https://api.soundcloud.com/tracks/' + eachSong.urlSource + '/stream?client_id=' + scClient;
+          vm.digest();
         }               
       })
       masterPlayer.play() 
     }
-
-    // masterPlayer.playSoundCloud = function (song) {
-
-    //   _.each(vm.tracks, function (eachSong) {
-
-    //     // eachSong.urlSource.reset();       
-    //     if (eachSong.name === song) {
-    //       vm.scPlayer.player = eachSong.urlSource;
-    //       console.log(eachSong);
-    //       masterPlayer.pause();
-    //       vm.playerTitle = eachSong.name;
-    //       vm.playerArtist = eachSong.artist;
-    //       vm.playerInfo = eachSong.album;
-          
-    //       eachSong.urlSource.play();
-    //     };
-    //   });
-    // };
-
     return masterPlayer
   }])
 
