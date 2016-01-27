@@ -7,7 +7,9 @@ angular.module('musicApp', [])
     vm.playerArtist;
     vm.playerInfo;
     vm.tracks = []; 
-    vm.scPlayer = {};
+    vm.digest = function () {
+      $scope.$digest()
+    }
     $scope.spotifyQuery;
     $scope.scQuery;
     $scope.playMusic = function () {      
@@ -26,6 +28,7 @@ angular.module('musicApp', [])
 
     $scope.scSearch = function () {
       scSearch.allTracks($scope.scQuery);
+      $scope.digest();
     }
     $scope.scSearchEnter = function () {
       if (event.keyCode === 13) {
@@ -59,18 +62,17 @@ angular.module('musicApp', [])
   return song; 
 }])
 
-
-
 .factory('spotifySearch', ['$http', 'songConstructor', function ($http, songConstructor) {
     var search = {};
     search.makeRequest = function (input) {
       var query = JSON.stringify({queryInput: input})
+      vm.tracks = [];
       $http({
         data: query,
         url: 'http://localhost:3000/spotify',
         method: 'POST',
       }).then(function success (response) {
-        vm.tracks = [];
+       
         trackResults = response.data.tracks.items;
         _.map(trackResults, function (each) {
           vm.tracks.push(
@@ -108,10 +110,10 @@ angular.module('musicApp', [])
         // console.log(stream);
         // console.log(url);        
         vm.tracks.push(new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'sc', each.stream_url, url, each.permalink_url))
+        vm.digest()
       });
     })    
   };
-
   return search
 }])
 
