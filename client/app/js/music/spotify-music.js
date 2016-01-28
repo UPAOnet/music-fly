@@ -18,7 +18,6 @@ angular.module('musicApp', [])
 
     vm.togglePlay = function () {
       playerControls.togglePlay();
-      console.log('toggling play')
     }
     
     $scope.playMusic = function (song) {      
@@ -139,17 +138,20 @@ angular.module('musicApp', [])
         masterPlayer.playState.playing = true;
         vm.playStateButton = 'pause icon';
         console.log(masterPlayer.playState)
+        vm.digest();
         return
       }
       if (masterPlayer.playState.playing === true) {
         masterPlayer.playState.playing = false;
         vm.playStateButton = 'play icon';
         console.log(masterPlayer.playState)
+        vm.digest();
         return
       }
     }
 
     masterPlayer.togglePlay = function () {
+      if (masterPlayer.src === '') {return};
       if (masterPlayer.playState.playing === false) {
         masterPlayer.play();
         masterPlayer.toggleState();
