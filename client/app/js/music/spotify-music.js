@@ -172,8 +172,7 @@ angular.module('musicApp', [])
           vm.playerInfo = eachSong.album;
           masterPlayer.src = companyBrand(eachSong, scClient);
           vm.digest();
-          masterPlayer.togglePlay();
-          
+          (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();          
         }
       })
     }
