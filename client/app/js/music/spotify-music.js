@@ -8,16 +8,21 @@ angular.module('musicApp', [])
     vm.playerArtist;
     vm.playerInfo;
     vm.tracks = []; 
+    $scope.spotifyQuery;
+    $scope.scQuery;   
+    vm.togglePlayButton = 'play icon';
+
     vm.digest = function () {
       $scope.$digest()
     }
-    $scope.spotifyQuery;
-    $scope.scQuery;
-    $scope.playMusic = function () {      
-      playerControls.play()
+    
+    $scope.playMusic = function (song) {      
+      playerControls.playMusic(song);
+
     }
     $scope.pauseMusic = function () {
       playerControls.pause()
+
     }
 
     $scope.playSoundCloud = function (song) {
@@ -123,21 +128,31 @@ angular.module('musicApp', [])
 .factory('playerControls', [function () { 
     var masterPlayer = new Audio();
 
-    masterPlayer.playSpotifyMusic = function (song) {
-      _.each(vm.tracks, function (eachSong) {
-        if (eachSong.name === song) {
-          vm.playerImage = eachSong.image;
-          vm.playerTitle = eachSong.name;
-          vm.playerArtist = eachSong.artist;
-          vm.playerInfo = eachSong.album;
-          masterPlayer.src = eachSong.urlSource;
-          vm.digest()
-        }               
-      })
-    masterPlayer.play()         
+    function companyBrand (song, client) {
+      if (song.company === 'sc') {
+        return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + client;
+      }
+      else if (song.company === 'spotify') {
+        return song.urlSource;
+      }
+    };
+
+    masterPlayer.playState = {
+      playing: false
     }
 
-    masterPlayer.playSoundCloud = function (song) {
+    masterPlayer.togglePlay = function () {
+      if (this.playState.playing === false) {
+        this.playState = true;
+        vm.togglePlayButton = 'pause icon';
+      }
+      if (this.playState.playing === true) {
+        this.playState = false;
+        vm.togglePlayButton = 'play icon';
+      }
+    }
+
+    masterPlayer.playMusic = function (song) {
       var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
@@ -145,12 +160,42 @@ angular.module('musicApp', [])
           vm.playerTitle = eachSong.name;
           vm.playerArtist = eachSong.artist;
           vm.playerInfo = eachSong.album;
-          masterPlayer.src = 'https://api.soundcloud.com/tracks/' + eachSong.urlSource + '/stream?client_id=' + scClient;
+          masterPlayer.src = companyBrand(eachSong, scClient);
           vm.digest();
-        }               
+          masterPlayer.play()
+        // (masterPlayer.playState === false) ? 
+        }
       })
-      masterPlayer.play() 
     }
+
+    // masterPlayer.playSpotifyMusic = function (song) {
+    //   _.each(vm.tracks, function (eachSong) {
+    //     if (eachSong.name === song) {
+    //       vm.playerImage = eachSong.image;
+    //       vm.playerTitle = eachSong.name;
+    //       vm.playerArtist = eachSong.artist;
+    //       vm.playerInfo = eachSong.album;
+    //       masterPlayer.src = eachSong.urlSource;
+    //       vm.digest()
+    //     }               
+    //   })
+    // masterPlayer.play()         
+    // }
+
+    // masterPlayer.playSoundCloud = function (song) {
+    //   var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
+    //   _.each(vm.tracks, function (eachSong) {
+    //     if (eachSong.name === song) {
+    //       vm.playerImage = eachSong.image;
+    //       vm.playerTitle = eachSong.name;
+    //       vm.playerArtist = eachSong.artist;
+    //       vm.playerInfo = eachSong.album;
+    //       masterPlayer.src = 'https://api.soundcloud.com/tracks/' + eachSong.urlSource + '/stream?client_id=' + scClient;
+    //       vm.digest();
+    //     }               
+      // })
+    //   masterPlayer.play()
+    // }
     return masterPlayer
   }])
 
@@ -171,14 +216,15 @@ angular.module('musicApp', [])
         });
 
         elem.bind('dblclick', function (event) {
-          var song = event.target.getAttribute('data-song')
-          if (event.target.getAttribute('data-company') === 'sc') {
-            scope.playSoundCloud(song);
-          }
-          if (event.target.getAttribute('data-company') === 'spotify') {
-            scope.playSpotifyMusic(song);
-          }
-        })
+          var song = event.target.getAttribute('data-song');
+          scope.playMusic(song);
+          // if (event.target.getAttribute('data-company') === 'sc') {
+          //   scope.playSoundCloud(song);
+          // }
+          // if (event.target.getAttribute('data-company') === 'spotify') {
+          //   scope.playSpotifyMusic(song);
+          })
+      
       }
     }
   })

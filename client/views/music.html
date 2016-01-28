@@ -13,7 +13,6 @@
 
   <script type="text/javascript" src="/js/music/music-app.js"></script>
   <script type="text/javascript" src="/js/music/spotify-music.js"></script>
-  <script type="text/javascript" src="/js/music/sc-music.js"></script>
   
 
   <body>
@@ -32,8 +31,10 @@
           {{player.playerArtist}}
           {{player.playerInfo}}       
         </div>
-        <div id="playBtn" ng-click=playMusic()><i class="play icon" ng-click=togglePlay()></i></div>
-        <div id="pauseBtn" ng-click=pauseMusic()><i class="pause icon"></i></div>
+
+        <div id="playBtn" ng-click=playMusic()><i class="{{player.togglePlayButton}}" ng-click=togglePlay()></i></div>
+
+        <!-- <div id="pauseBtn" ng-click=pauseMusic()><i class="pause icon"></i></div> -->
 
         
         <audio id="play" src='https://p.scdn.co/mp3-preview/2d89e5af25a276eaf6b9e56baef79a543263afab' preload="auto"></audio>
