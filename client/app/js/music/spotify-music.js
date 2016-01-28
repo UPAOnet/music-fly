@@ -10,28 +10,22 @@ angular.module('musicApp', [])
     vm.tracks = []; 
     $scope.spotifyQuery;
     $scope.scQuery;   
-    vm.togglePlayButton = 'play icon';
+    vm.playStateButton = 'play icon';
 
     vm.digest = function () {
       $scope.$digest()
+    }
+
+    vm.togglePlay = function () {
+      playerControls.togglePlay();
+      console.log('toggling play')
     }
     
     $scope.playMusic = function (song) {      
       playerControls.playMusic(song);
 
     }
-    $scope.pauseMusic = function () {
-      playerControls.pause()
-
-    }
-
-    $scope.playSoundCloud = function (song) {
-      playerControls.playSoundCloud(song);  
-    }
-    $scope.playSpotifyMusic = function (song) {
-      playerControls.playSpotifyMusic(song);   
-    } 
-
+    
     $scope.scSearch = function () {
       scSearch.allTracks($scope.scQuery);
       $scope.scQuery = "";
@@ -127,7 +121,6 @@ angular.module('musicApp', [])
 
 .factory('playerControls', [function () { 
     var masterPlayer = new Audio();
-
     function companyBrand (song, client) {
       if (song.company === 'sc') {
         return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + client;
@@ -141,14 +134,31 @@ angular.module('musicApp', [])
       playing: false
     }
 
-    masterPlayer.togglePlay = function () {
-      if (this.playState.playing === false) {
-        this.playState = true;
-        vm.togglePlayButton = 'pause icon';
+    masterPlayer.toggleState = function () {
+      if (masterPlayer.playState.playing === false) {
+        masterPlayer.playState.playing = true;
+        vm.playStateButton = 'pause icon';
+        console.log(masterPlayer.playState)
+        return
       }
-      if (this.playState.playing === true) {
-        this.playState = false;
-        vm.togglePlayButton = 'play icon';
+      if (masterPlayer.playState.playing === true) {
+        masterPlayer.playState.playing = false;
+        vm.playStateButton = 'play icon';
+        console.log(masterPlayer.playState)
+        return
+      }
+    }
+
+    masterPlayer.togglePlay = function () {
+      if (masterPlayer.playState.playing === false) {
+        masterPlayer.play();
+        masterPlayer.toggleState();
+        return 
+      }
+      if (masterPlayer.playState.playing === true) {
+        masterPlayer.pause();
+        masterPlayer.toggleState();
+        return 
       }
     }
 
@@ -162,40 +172,11 @@ angular.module('musicApp', [])
           vm.playerInfo = eachSong.album;
           masterPlayer.src = companyBrand(eachSong, scClient);
           vm.digest();
-          masterPlayer.play()
-        // (masterPlayer.playState === false) ? 
+          masterPlayer.togglePlay();
+          
         }
       })
     }
-
-    // masterPlayer.playSpotifyMusic = function (song) {
-    //   _.each(vm.tracks, function (eachSong) {
-    //     if (eachSong.name === song) {
-    //       vm.playerImage = eachSong.image;
-    //       vm.playerTitle = eachSong.name;
-    //       vm.playerArtist = eachSong.artist;
-    //       vm.playerInfo = eachSong.album;
-    //       masterPlayer.src = eachSong.urlSource;
-    //       vm.digest()
-    //     }               
-    //   })
-    // masterPlayer.play()         
-    // }
-
-    // masterPlayer.playSoundCloud = function (song) {
-    //   var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
-    //   _.each(vm.tracks, function (eachSong) {
-    //     if (eachSong.name === song) {
-    //       vm.playerImage = eachSong.image;
-    //       vm.playerTitle = eachSong.name;
-    //       vm.playerArtist = eachSong.artist;
-    //       vm.playerInfo = eachSong.album;
-    //       masterPlayer.src = 'https://api.soundcloud.com/tracks/' + eachSong.urlSource + '/stream?client_id=' + scClient;
-    //       vm.digest();
-    //     }               
-      // })
-    //   masterPlayer.play()
-    // }
     return masterPlayer
   }])
 
@@ -214,17 +195,10 @@ angular.module('musicApp', [])
           $('.songs').removeClass('highlight');
           song.classList.add('highlight');
         });
-
         elem.bind('dblclick', function (event) {
           var song = event.target.getAttribute('data-song');
           scope.playMusic(song);
-          // if (event.target.getAttribute('data-company') === 'sc') {
-          //   scope.playSoundCloud(song);
-          // }
-          // if (event.target.getAttribute('data-company') === 'spotify') {
-          //   scope.playSpotifyMusic(song);
-          })
-      
+        })
       }
     }
   })
