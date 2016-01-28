@@ -6,7 +6,7 @@ angular.module('musicApp', [])
     vm.playerImage = 'assets/images/music-player/default-album.png';
     vm.playerTitle = 'Title';
     vm.playerArtist = 'Artist';
-    vm.playerInfo;
+    vm.playerInfo = 'album';
     vm.tracks = []; 
     $scope.spotifyQuery;
     $scope.scQuery;   
