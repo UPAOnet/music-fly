@@ -22,17 +22,20 @@
       
 
     <div ng-controller= "musicPlayer as player">
-      <div id="music-player">       
-        <div>
-          <img id="player-img" ng-src= "{{player.playerImage}}">
-          <h3 id="playerTrackTitle">{{player.playerTitle}}</h3>
-        </div>
-        <div id="playerTrackInfo">
-          {{player.playerArtist}}
-          {{player.playerInfo}}       
+      <div id="music-player" class="center">       
+        <img id="player-img" ng-src= "{{player.playerImage}}" class="ui large rounded image">
+        <div id="player-track-info">
+          <div id="track-info">
+            <h3 id="player-track-title">{{player.playerTitle}}</h3>
+            {{player.playerArtist}}
+            {{player.playerInfo}}
+          </div>
+          <div id="player-controls" ng-click=player.togglePlay()>
+            <i id="play-btn"  class="large circular {{player.playStateButton}}"></i>
+          </div>       
         </div>
 
-        <div ng-click=player.togglePlay()><i id="play-btn"  class="large circular {{player.playStateButton}}" ></i></div>
+        
       
       </div>
 

@@ -4,8 +4,8 @@ angular.module('musicApp', [])
   function ($scope, $http, spotifySearch, playerControls, scSearch) {
     vm = this; 
     vm.playerImage = 'assets/images/music-player/default-album.png';
-    vm.playerTitle;
-    vm.playerArtist;
+    vm.playerTitle = 'Title';
+    vm.playerArtist = 'Artist';
     vm.playerInfo;
     vm.tracks = []; 
     $scope.spotifyQuery;
@@ -19,8 +19,7 @@ angular.module('musicApp', [])
     }   
     $scope.playMusic = function (song) {      
       playerControls.playMusic(song);
-    }
-    
+    }    
     $scope.scSearch = function () {
       scSearch.allTracks($scope.scQuery);
       $scope.scQuery = "";
@@ -172,7 +171,6 @@ angular.module('musicApp', [])
     }
     return masterPlayer
   }])
-
 
 .directive('songList', () => {
     return {
