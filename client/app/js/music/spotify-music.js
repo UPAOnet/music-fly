@@ -3,7 +3,7 @@ angular.module('musicApp', [])
 .controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch',
   function ($scope, $http, spotifySearch, playerControls, scSearch) {
     vm = this; 
-    vm.playerImage;
+    vm.playerImage = 'assets/images/music-player/default-album.png';
     vm.playerTitle;
     vm.playerArtist;
     vm.playerInfo;

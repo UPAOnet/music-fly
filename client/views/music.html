@@ -8,35 +8,39 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.1.0/annyang.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="/dist/semantic.css">
+<script src="/dist/semantic.js"></script>
 
   <script type="text/javascript" src="/js/music/music-app.js"></script>
   <script type="text/javascript" src="/js/music/spotify-music.js"></script>
-   <script type="text/javascript" src="/js/music/sc-music.js"></script>
+  <script type="text/javascript" src="/js/music/sc-music.js"></script>
   
 
   <body>
-    <div id="music-app">
-      <div id="user-bar">
+    <div id="user-bar">
       </div>
+    <div id="music-app">
+      
 
     <div ng-controller= "musicPlayer as player">
       <div id="music-player">       
         <div>
-          <img ng-src= "{{player.playerImage}}">
+          <img id="player-img" ng-src= "{{player.playerImage}}">
           <h3 id="playerTrackTitle">{{player.playerTitle}}</h3>
         </div>
         <div id="playerTrackInfo">
           {{player.playerArtist}}
           {{player.playerInfo}}       
         </div>
-        <input type="button" value="pause" id="pauseBtn" ng-click=pauseMusic()>
-        <input type="button" value="play" id="playBtn" ng-click=playMusic()>
+        <div id="playBtn" ng-click=playMusic()><i class="play icon" ng-click=togglePlay()></i></div>
+        <div id="pauseBtn" ng-click=pauseMusic()><i class="pause icon"></i></div>
+
+        
         <audio id="play" src='https://p.scdn.co/mp3-preview/2d89e5af25a276eaf6b9e56baef79a543263afab' preload="auto"></audio>
       </div>
 
       <div id="song-interface">
         <div id="search-box">
-
           <div id="search-spotify">
             <h2>Spotify</h2>
             <input id="spotifyBox" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()">
@@ -48,13 +52,13 @@
             ng-keypress="scSearchEnter()"/>
             <input type='button' id="scButton" ng-click="scSearch()"/>
           </div>
-
           <div id="search-list">
             <div song-list></div>
           </div>
-
         </div>
       </div>
+    </div>
+
     </div>
   </div>
 

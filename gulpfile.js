@@ -16,17 +16,14 @@ gulp.task('scripts', () => {
     .pipe(gulp.dest('client/app/js'))
 });
 
-
-
 gulp.task('sass', function () {
   return gulp.src('client/scss/**/*.scss')
     .pipe(sass())
     .pipe(gulp.dest('client/app/css'))
-
 });
 
 gulp.task('watch', function () {
-  gulp.watch('client/app/scss/*.scss', ['sass']);
+  gulp.watch('client/scss/**/*.scss', ['sass']);
   gulp.watch('client/app/js/**/*.js', ['scripts']);
 });
 

@@ -5,6 +5,7 @@ var express = require('express');
 
 
 app.use(express.static('./client/app'));
+app.use(express.static('./client/semantic'));
 app.use(express.static('./client/bower_components'));
 
 app.use('/spotify', spotify);
