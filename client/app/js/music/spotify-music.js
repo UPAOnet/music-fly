@@ -11,18 +11,14 @@ angular.module('musicApp', [])
     $scope.spotifyQuery;
     $scope.scQuery;   
     vm.playStateButton = 'play icon';
-
     vm.digest = function () {
       $scope.$digest()
     }
-
     vm.togglePlay = function () {
       playerControls.togglePlay();
-    }
-    
+    }   
     $scope.playMusic = function (song) {      
       playerControls.playMusic(song);
-
     }
     
     $scope.scSearch = function () {
@@ -46,7 +42,6 @@ angular.module('musicApp', [])
       }
     }    
   }])
-
 
 .service('songConstructor', [function () {
   function song (name, image, album, artist, duration, company, fetchSource, urlSource, pageSource) {
@@ -137,31 +132,28 @@ angular.module('musicApp', [])
       if (masterPlayer.playState.playing === false) {
         masterPlayer.playState.playing = true;
         vm.playStateButton = 'pause icon';
-        console.log(masterPlayer.playState)
-        vm.digest();
-        return
       }
-      if (masterPlayer.playState.playing === true) {
+      else if (masterPlayer.playState.playing === true) {
         masterPlayer.playState.playing = false;
         vm.playStateButton = 'play icon';
-        console.log(masterPlayer.playState)
-        vm.digest();
-        return
+        
       }
     }
 
     masterPlayer.togglePlay = function () {
-      if (masterPlayer.src === '') {return};
-      if (masterPlayer.playState.playing === false) {
-        masterPlayer.play();
-        masterPlayer.toggleState();
-        return 
+      var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
+      if (vm.tracks.length > 1 && masterPlayer.src === '') {
+        masterPlayer.src = companyBrand(vm.tracks[0], scClient);
+        vm.playerImage = vm.tracks[0].image;
+        vm.playerTitle = vm.tracks[0].name;
+        vm.playerArtist = vm.tracks[0].artist;
+        vm.playerInfo = vm.tracks[0].album;        
       }
-      if (masterPlayer.playState.playing === true) {
-        masterPlayer.pause();
-        masterPlayer.toggleState();
-        return 
-      }
+      else if (masterPlayer.src === '') {
+        return
+      };      
+      (masterPlayer.playState.playing === false) ? masterPlayer.play() : masterPlayer.pause();
+      masterPlayer.toggleState();
     }
 
     masterPlayer.playMusic = function (song) {
@@ -172,9 +164,9 @@ angular.module('musicApp', [])
           vm.playerTitle = eachSong.name;
           vm.playerArtist = eachSong.artist;
           vm.playerInfo = eachSong.album;
-          masterPlayer.src = companyBrand(eachSong, scClient);
+          masterPlayer.src = companyBrand(eachSong, scClient);          
+          (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
           vm.digest();
-          (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();          
         }
       })
     }
