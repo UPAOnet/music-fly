@@ -7,3 +7,10 @@
 /* Song List */
 .highlight {
   background-color: blue; }
+
+/*Player Pages */
+#search-page {
+  visibility: hidden; }
+
+#playlists-page {
+  visibility: hidden; }

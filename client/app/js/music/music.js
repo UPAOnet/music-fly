@@ -2,7 +2,8 @@ angular.module('musicApp', [])
 
 .controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch',
   function ($scope, $http, spotifySearch, playerControls, scSearch) {
-    vm = this; 
+    vm = this;
+    vm.topArtists;
     vm.playerImage = 'assets/images/music-player/default-album.png';
     vm.playerTitle = 'Title';
     vm.playerArtist = 'Artist';
@@ -93,8 +94,7 @@ angular.module('musicApp', [])
     }
     SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) { 
       vm.tracks = [];    
-      var trackResults = tracks; 
-      
+      var trackResults = tracks;      
       _.map(trackResults, function (each) {
         var stream = each.stream_url;
         var url = getUrl(stream);       
