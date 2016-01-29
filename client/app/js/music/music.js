@@ -73,7 +73,7 @@ angular.module('musicApp', [])
           vm.tracks.push(
             new songConstructor(each.name, each.album.images[2].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
           );
-        })  
+        }) 
       }) 
     } 
     return search;
@@ -81,12 +81,9 @@ angular.module('musicApp', [])
 
 .factory('scSearch', ['songConstructor', function (songConstructor) {
   var search = {}; 
-
   search.allTracks = function (input) {
     var query = input;
-    
     function getUrl (urlStream) {
-      // console.log(urlStream);
       if (urlStream.length === 50) {
         return urlStream.slice(-16, -7);
       }
@@ -94,19 +91,16 @@ angular.module('musicApp', [])
         return urlStream.slice(-15, -7)
       }
     }
-
     SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) { 
       vm.tracks = [];    
       var trackResults = tracks; 
       
       _.map(trackResults, function (each) {
         var stream = each.stream_url;
-        var url = getUrl(stream);
-        // console.log(stream);
-        // console.log(url);        
-        vm.tracks.push(new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'sc', each.stream_url, url, each.permalink_url))
-        vm.digest()
+        var url = getUrl(stream);       
+        vm.tracks.push(new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'sc', each.stream_url, url, each.permalink_url))       
       });
+      vm.digest()
     })    
   };
   return search
@@ -114,7 +108,7 @@ angular.module('musicApp', [])
 
 .factory('playerControls', [function () { 
     var masterPlayer = new Audio();
-    function companyBrand (song, client) {
+    function getSong (song, client) {
       if (song.company === 'sc') {
         return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + client;
       }
@@ -142,7 +136,7 @@ angular.module('musicApp', [])
     masterPlayer.togglePlay = function () {
       var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
       if (vm.tracks.length > 1 && masterPlayer.src === '') {
-        masterPlayer.src = companyBrand(vm.tracks[0], scClient);
+        masterPlayer.src = getSong(vm.tracks[0], scClient);
         vm.playerImage = vm.tracks[0].image;
         vm.playerTitle = vm.tracks[0].name;
         vm.playerArtist = vm.tracks[0].artist;
@@ -163,7 +157,7 @@ angular.module('musicApp', [])
           vm.playerTitle = eachSong.name;
           vm.playerArtist = eachSong.artist;
           vm.playerInfo = eachSong.album;
-          masterPlayer.src = companyBrand(eachSong, scClient);          
+          masterPlayer.src = getSong(eachSong, scClient);          
           (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
           vm.digest();
         }
@@ -203,31 +197,4 @@ SC.initialize({
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         
 

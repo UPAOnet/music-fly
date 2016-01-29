@@ -9,11 +9,8 @@ angular.module('home', ['ngRoute'])
 }])
 
 .controller('hero', ['$scope', function ($scope) {
-  // $scope.video = "/assets/video/sun.mp4";
   $scope.poster = "/assets/images/home/poster.jpg";
 }])
-
-
 
 .directive('heroVideo', function () {
   return {

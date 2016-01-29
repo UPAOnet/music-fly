@@ -1,30 +1,23 @@
 var gulp = require('gulp');
-    sass = require ('gulp-sass');
-    concat = require('gulp-concat');
-    nodemon = require('gulp-nodemon')
+var sass = require ('gulp-sass');
+var concat = require('gulp-concat');
+var nodemon = require('gulp-nodemon');
 
-gulp.task('start', function () {
+gulp.task('start', () => {
   nodemon({
     script: 'app.js',
     env: { 'NODE_ENV': 'development' }
   })
 })
 
-gulp.task('scripts', () => {
-  gulp.src('client/app/js/**/*.js')
-    .pipe(concat('all.js'))
-    .pipe(gulp.dest('client/app/js'))
-});
-
-gulp.task('sass', function () {
-  return gulp.src('client/scss/**/*.scss')
+gulp.task('sass', () => {
+  gulp.src('client/scss/**/*.scss')
     .pipe(sass())
     .pipe(gulp.dest('client/app/css'))
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   gulp.watch('client/scss/**/*.scss', ['sass']);
-  gulp.watch('client/app/js/**/*.js', ['scripts']);
 });
 
-gulp.task('default', ['start', 'scripts', 'sass', 'watch']);
+gulp.task('default', ['start', 'sass', 'watch']);

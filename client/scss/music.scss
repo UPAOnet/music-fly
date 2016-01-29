@@ -1,11 +1,13 @@
 /*ksldjfalsdfjjfs*/
 
 #music-app {
- /* background-image: url(../assets/images/music-player/recording-studio.jpg);
+  margin-top: 50px;
+  border: solid;
+  /*background-image: url(../assets/images/music-player/recording-studio.jpg);
   background-attachment: fixed;
   background-repeat: none;
-  background-size: 100%;
-  height: 100%;*/
+  background-size: 100%;*/
+  height: 500px;
 }
 
 /* Music Player*/
@@ -47,7 +49,7 @@
 #player-img {
   /*height: 150px;
   width: 150px;*/
-  display:inline-block;
+  /*display:inline-block;*/
   /*text-align: center;
   img {
   height: 110%;

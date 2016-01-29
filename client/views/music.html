@@ -3,64 +3,66 @@
     <title>Music Fly</title>
     <link rel="stylesheet" type="text/css" href="/css/music.css">
     <link rel="stylesheet" type="text/css" href="/dist/semantic.css">
+    
     <script type="text/javascript" src="/angular/angular.js"></script>
     <script type="text/javascript" src="/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="/underscore/underscore.js"></script>
-    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+    <script src="/dist/semantic.js"></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.1.0/annyang.min.js"></script>
-    <script src="/dist/semantic.js"></script>
-    <script type="text/javascript" src="/js/music/music-app.js"></script>
-    <script type="text/javascript" src="/js/music/spotify-music.js"></script>
   </head>
-
   <body>
-    
-    <div class = "ui container">
-      <div id="user-bar">
-      </div>
-      <div id="music-app">
-        <div ng-controller= "musicPlayer as player">
-          <div id="music-player" class="center ui sixteen column grid">
-            <div class="row">              
-              <div id="player-img" class="ui four wide column">       
-                <img ng-src= "{{player.playerImage}}" class="ui large rounded image">
-              </div>
-              <div id="player-track-info" class="twelve wide column">
-                <div id="track-info">
-                  <h4 id="player-track-title">{{player.playerTitle}}</h4>
-                  <span id="player-track-artist">{{player.playerArtist}}</span>
-                  <span id="player-track-album">{{player.playerInfo}}</span>
-                </div>
-                <div id="player-controls" ng-click=player.togglePlay()>
-                  <i id="play-btn"  class="large circular {{player.playStateButton}}"></i>
-                </div>       
-              </div>                  
-            </div>
+    <div id="user-bar">
+    </div>
+    <div class = "ui container sixteen wide column grid" ng-controller= "musicPlayer as player">  
+      <div id="music-app" class="row">
+        <div class = "ui two wide column">
+          <div id="top-artists">
+            <i class="star icon"></i>
           </div>
-          <div id="song-interface">
-            <div>
-              <div id="search-box">
-                <div id="search-spotify">
-                  <h2>Spotify</h2>
-                  <input id="spotifyBox" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()">
-                  <input type='button' id="spotifyButton" ng-click="spotifySearch()">
-                </div>
-                <div id="search-sc">
-                  <h2>SoundCloud</h2>
-                  <input id="scBox" type="text" ng-model="scQuery"
-                  ng-keypress="scSearchEnter()"/>
-                  <input type='button' id="scButton" ng-click="scSearch()"/>
-                </div>
-                <div id="search-list">
-                  <div song-list></div>
-                </div>
-              </div>
-            </div>
+          <div id="search">
+            <i class="search icon"></i>
+          </div>
+          <div id = "playlists">
           </div>
         </div>
+        <div id="song-interface" class="ui eleven wide column">
+          <div id="search-box">
+            <div id="search-spotify">
+              <h2>Spotify</h2>
+              <input id="spotifyBox" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()">
+              <input type='button' id="spotifyButton" ng-click="spotifySearch()">
+            </div>
+            <div id="search-sc">
+              <h2>SoundCloud</h2>
+              <input id="scBox" type="text" ng-model="scQuery"
+              ng-keypress="scSearchEnter()"/>
+              <input type='button' id="scButton" ng-click="scSearch()"/>
+            </div>
+            <div id="search-list">
+              <div song-list></div>
+            </div>
+          </div>
+        </div> 
+        <div id="music-player" class="ui three wide column">
+          <div class= "">
+            <div id="player-img" class="ui centered">       
+              <img ng-src= "{{player.playerImage}}" class="ui image">
+            </div>
+            <div id="player-track-info" class="">
+              <div id="track-info">
+                <h4 id="player-track-title">{{player.playerTitle}}</h4>
+                <span id="player-track-artist">{{player.playerArtist}}</span>
+                <span id="player-track-album">{{player.playerInfo}}</span>
+              </div>
+              <div id="player-controls" ng-click=player.togglePlay()>
+                <i id="play-btn"  class="large circular {{player.playStateButton}}"></i>
+              </div>       
+            </div>  
+          </div>                
+        </div>          
       </div>
-    </div>
-
+  <script type="text/javascript" src="/underscore/underscore.js"></script>
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.1.0/annyang.min.js"></script>
+  <script type="text/javascript" src="/js/music/music.js"></script>
   </body>
 </html>
