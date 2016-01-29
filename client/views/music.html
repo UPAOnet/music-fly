@@ -14,32 +14,46 @@
     <div class = "ui fluid container sixteen wide column grid" ng-controller= "musicPlayer as player">  
       <div id="music-app" class="row">
         <div class = "ui two wide column">
-          <div id="top-artists">
+
+
+          <div id="top-artists" >
             <i class="star icon"></i>
-            <span>Top Artists</span>
+            <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="topArtists">Top Artists</span>
           </div>
+
           <div id="search">
             <div>
               <i class="search icon"></i>
-              <span>Search</span>
+              <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="search">Search</span>
             </div>
           </div>
-          <div id = "playlists">
+
+          <div id ="playlists">
             <div>  
               <i class="list icon"></i>
               <span>Playlists</span>  
             </div>
             <div>
               <i class="music icon"></i>
-              <span>Playlist 1</span>
+              <span class="music-tab" ng-click="player.switchTabs($event)">Playlist 1</span>
             </div>       
           </div>
         </div>
-        <div id="pages-secion" class="ui eleven wide column">
-          <div id="top-artists-page">
+
+
+
+
+
+        <div id="pages-section" class="ui eleven wide column">
+
+
+          <div id="top-artists-page" class="music-page hidden" data-page="topArtists">
             This will be the top Artists Page
           </div>
-          <div id="song-interface" >
+
+
+
+          <div id="song-interface" class="music-page" data-page="search">
             <div id="search-page">
               <div id="search-spotify">
                 <h2>Spotify</h2>
@@ -56,11 +70,14 @@
                 <div song-list></div>
               </div>
             </div>
-          </div> 
-          <div id="playlists-page">
+          </div>
+
+
+          <div id="playlists-page" class="music-page hidden">
             This will be the playlists page
           </div>
         </div>
+
         <div id="music-player" class="ui three wide column">
           <div class= "">
             <div id="player-img" class="ui centered">       

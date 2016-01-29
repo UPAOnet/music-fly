@@ -1,7 +1,7 @@
 angular.module('musicApp', [])
 
-.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch',
-  function ($scope, $http, spotifySearch, playerControls, scSearch) {
+.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'switchTabs',
+  function ($scope, $http, spotifySearch, playerControls, scSearch, switchTabs) {
     vm = this;
     vm.topArtists;
     vm.playerImage = 'assets/images/music-player/default-album.png';
@@ -12,6 +12,11 @@ angular.module('musicApp', [])
     $scope.spotifyQuery;
     $scope.scQuery;   
     vm.playStateButton = 'play icon';
+
+    vm.switchTabs = function (event) {
+      var attribute = event.target.getAttribute('data-tab');
+      switchTabs.switchTabs(attribute);
+    }
     vm.digest = function () {
       $scope.$digest()
     }
@@ -42,6 +47,52 @@ angular.module('musicApp', [])
       }
     }    
   }])
+
+.factory('switchTabs', [function () {
+  var tabSwitcher = {};
+
+  tabSwitcher.switchTabs = function (tabAttribute) {
+    var allPages = document.getElementsByClassName('music-page');
+    var allTabs = document.getElementsByClassName('music-tab');
+    // console.log(allPages.length)
+    for (var i =0; i<allPages.length; i++) {
+      allPages[i].classList.add('hidden');
+      if (allPages[i].getAttribute('data-page') === tabAttribute) {
+        allPages[i].classList.remove('hidden');
+      }
+    }
+    // console.log(allPages[].getAttribute('data-page'))
+  }
+
+  // tabSwitcher.pageState = {
+  //   topArtists: true,
+  //   search: false, 
+  //   playlists: false
+  // }
+
+  // tabSwitcher.switchPages = function (states) {
+  //   var allPages = $('.music-page').attr('data-tab')
+  //   _.map(states, function (eachState, i) {
+  //     if (allPages !== eachState) {
+  //       tabSwitcher.pageState[eachState] = !tabSwitcher.pageState[eachState]
+  //       $('.music-page').toggleClass('hidden');
+  //     }
+  //   })
+  // }
+
+  // tabSwitcher.switchTabs = function (attribute) {
+  //   var stateName = Object.keys(tabSwitcher.pageState)
+  //   // console.log(stateName);
+  //   _.map(stateName, function (each) {
+  //     if (each === 'topArtists') {
+  //       tabSwitcher.pageState.search = !tabSwitcher.pageState.search;
+  //       tabSwitcher.switchPages(stateName);
+  //     }
+  //   })
+    
+  // }
+  return tabSwitcher;
+}])
 
 .service('songConstructor', [function () {
   function song (name, image, album, artist, duration, company, fetchSource, urlSource, pageSource) {
