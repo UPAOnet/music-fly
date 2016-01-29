@@ -1,9 +1,9 @@
 var SpotifyWebApi = require('spotify-web-api-node');
-    express = require('express');
-    spotify = express.Router()
-    bodyParser = require('body-parser');
-    parseText = bodyParser.text();
-    parseJSON = bodyParser.json();
+var express = require('express');
+var spotify = express.Router()
+var bodyParser = require('body-parser');
+var parseText = bodyParser.text();
+var parseJSON = bodyParser.json();
 
 var spotifyApi = new SpotifyWebApi()
 
