@@ -7,5 +7,10 @@
   "description": "",
   "main": "",
   "moduleType": [],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.4.9",
+    "jquery": "~2.2.0",
+    "underscore": "~1.8.3"
+  }
 }
