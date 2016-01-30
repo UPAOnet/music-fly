@@ -37,7 +37,7 @@
             </div>
             <div>
 
-              <li ng-repeat = "playlist in player.playlistTabs" class="music-tab" data-tab='{{playlist.name}}' ng-click="player.switchTabs($event)">
+              <li ng-repeat = "playlist in player.playlistTabs" class="music-tab" data-tab='{{playlist.name}}' data-playlist = "playlist.name" ng-click="player.switchTabs($event, playlist.name)">
                 <i class="music icon"></i>
                 {{playlist.name}}
               </li>
@@ -80,6 +80,7 @@
             <li ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page hidden">
               <div>
                 <h3>{{playlistPage.name}}</h3>
+                <div song-list></div>
               </div>
             </li>
           </div>

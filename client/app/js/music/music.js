@@ -24,8 +24,12 @@ angular.module('musicApp', [])
     vm.addTrack = function (track, playlist) {
       playlists.addTrack(track, playlist);
     } 
-    vm.switchTabs = function (event) {
+    vm.switchTabs = function (event, playlist) {
       var attribute = event.target.getAttribute('data-tab');
+      var isPlaylist = event.target.getAttribute('data-playlist');
+      if (isPlaylist) {
+        playlists.displayTracks(playlist);     
+      }
       switchTabs.switchTabs(attribute);
     }
     vm.createNewPlaylist = function () {
@@ -80,7 +84,15 @@ angular.module('musicApp', [])
     _.map(vm.tracks, function findTrack (eachTrack) {
       if (eachTrack.name === track) {
         currentPlaylist.tracks.push(eachTrack);
-        console.log(currentPlaylist)
+      }
+    })
+  }
+
+  playlist.displayTracks = function (playlist) {
+    vm.tracks = [];
+    _.map(vm.playlistTabs, function findTrackList (eachPlaylist) {
+      if (eachPlaylist.name === playlist) {
+        vm.tracks = eachPlaylist.tracks;
       }
     })
   }
@@ -88,7 +100,6 @@ angular.module('musicApp', [])
   playlist.createNewPlaylist = function (name) {
     var newPlaylist = new playlistConstructor (name);
     playlist.currentPlaylists.push(newPlaylist);
-    console.log(vm.playlistTabs)
   }
   return playlist;
 }])

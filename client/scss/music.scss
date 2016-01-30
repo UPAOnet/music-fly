@@ -9,13 +9,10 @@
 
 /* Music Player*/
 
-/*#player-img {
-  height:180px;
-  img{
-    width: 100%;
-    height:100%;
-  }
-}*/
+#music-player {
+  position: fixed;
+}
+
 #track-info {
   margin-top: 30px;
 }
@@ -46,10 +43,6 @@
 .music-tab {
   list-style-type: none;
 }
-
-/*#playlist-field {
-  margin-top: 12px;
-}*/
 
 /*Player Pages */
 

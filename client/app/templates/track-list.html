@@ -1,23 +1,25 @@
 <div class="songs ui row" ng-repeat= "track in player.tracks" data-song = '{{track.name}}' data-company ='{{track.company}}'>
-  <img ng-src="{{track.image}}" />
-  <span data-song = '{{track.name}}'>{{track.name}}</span>
-  <span data-song = '{{track.name}}'>{{track.artist}}</span>
-  <span data-song = '{{track.name}}'>{{track.album}}</span>
-  <div>
+  <div class = "ui five wide column">
+    <img ng-src="{{track.image}}" />
+    <span data-song = '{{track.name}}'>{{track.name}}</span>
+    <span data-song = '{{track.name}}'>{{track.artist}}</span>
+    <span data-song = '{{track.name}}'>{{track.album}}</span>
+  </div>
+  <div class="ui six wide column">
 
-  <div class="ui compact menu">
-    <div class="ui simple dropdown item">
-    <i class="add circle icon"></i>
-    Add 
-      <i class="dropdown icon"></i>
-      <div class="menu">
-        <div class="item" ng-repeat="playlist in player.playlistTabs"
-        ng-click= 'player.addTrack(track.name, playlist.name)'>
-          {{playlist.name}}
+    <div class="ui compact menu">
+      <div class="ui simple dropdown item">
+      <i class="add circle icon"></i>
+      Add 
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item" ng-repeat="playlist in player.playlistTabs"
+          ng-click= 'player.addTrack(track.name, playlist.name)'>
+            {{playlist.name}}
+          </div>
         </div>
       </div>
     </div>
-  </div>
     
 
   </div>
