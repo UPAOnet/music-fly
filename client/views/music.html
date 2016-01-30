@@ -11,7 +11,7 @@
   <body>
     <div id="user-bar">
     </div>
-    <div class = "ui fluid container sixteen wide column grid" ng-controller= "musicPlayer as player">  
+    <div class = "ui fluid sixteen wide column grid" ng-controller= "musicPlayer as player">  
       <div id="music-app" class="row">
         <div class = "ui two wide column">
 
@@ -31,11 +31,14 @@
           <div id ="playlists">
             <div>  
               <i class="list icon"></i>
-              <span>Playlists</span>  
+              <span>Playlists</span>
+              <input id="playlist-field" type="text" ng-model="newPlaylist"/>
+              <span id="playlist-add" ng-click="player.createNewPlaylist()">Add new</span> 
             </div>
             <div>
-              <i class="music icon"></i>
-              <span class="music-tab" ng-click="player.switchTabs($event)">Playlist 1</span>
+              <li ng-repeat = "playlist in player.playlistTabs">
+                <span class="music-tab" data-tab= '{{playlist}}' >{{playlist}}</span>
+              </li>
             </div>       
           </div>
         </div>
@@ -73,7 +76,7 @@
           </div>
 
 
-          <div id="playlists-page" class="music-page hidden">
+          <div id="playlists-page" data-page="playlist1" class="music-page hidden">
             This will be the playlists page
           </div>
         </div>

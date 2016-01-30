@@ -1,27 +1,38 @@
 angular.module('musicApp', [])
 
-.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'switchTabs',
-  function ($scope, $http, spotifySearch, playerControls, scSearch, switchTabs) {
+.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'switchTabs', 'playlists',
+  function ($scope, $http, spotifySearch, playerControls, scSearch, switchTabs, playlists) {
     vm = this;
     vm.topArtists;
+    vm.tracks = [];
     vm.playerImage = 'assets/images/music-player/default-album.png';
     vm.playerTitle = 'Title';
     vm.playerArtist = 'Artist';
     vm.playerInfo = 'album';
-    vm.tracks = []; 
+    vm.playStateButton = 'play icon';    
+    vm.playlistTabs = ['playlist1']; 
     $scope.spotifyQuery;
-    $scope.scQuery;   
-    vm.playStateButton = 'play icon';
+    $scope.scQuery; 
+    $scope.newPlaylist; 
+    
 
-    vm.switchTabs = function (event) {
-      var attribute = event.target.getAttribute('data-tab');
-      switchTabs.switchTabs(attribute);
-    }
     vm.digest = function () {
       _.defer(function() {
         $scope.$digest();
       })
     }
+
+    vm.switchTabs = function (event) {
+      var attribute = event.target.getAttribute('data-tab');
+      switchTabs.switchTabs(attribute);
+    }
+    vm.createNewPlaylist = function () {
+      if ($scope.newPlaylist === undefined) {
+        return 
+      }
+      playlists.createNewPlaylist($scope.newPlaylist);
+    }
+    
     vm.togglePlay = function () {
       playerControls.togglePlay();
     }   
@@ -50,20 +61,40 @@ angular.module('musicApp', [])
     }    
   }])
 
+.factory('playlists', ['playlistConstructor', function (playlistConstructor) {
+  var playlist = {};
+
+  playlist.createNewPlaylist = function (name) {
+    vm.playlistTabs.push(name);
+    console.log(vm.playlistTabs)
+  }
+
+  return playlist;
+}])
+
 .factory('switchTabs', [function () {
   var tabSwitcher = {};
 
   tabSwitcher.switchTabs = function (tabAttribute) {
     var allPages = document.getElementsByClassName('music-page');
-    var allTabs = document.getElementsByClassName('music-tab');
+    var allTabs = document.getElementsByClassName('music-tab');    
     for (var i =0; i<allPages.length; i++) {
       allPages[i].classList.add('hidden');
+      allTabs[i].classList.remove('highlight');
       if (allPages[i].getAttribute('data-page') === tabAttribute) {
         allPages[i].classList.remove('hidden');
+        allTabs[i].classList.add('highlight');
       }
     }
   }
   return tabSwitcher;
+}])
+
+.service('playlistConstructor', [function () {
+  function playlist (name, tracks) {
+    this.name = name;
+    this.tracks = tracks;
+  }
 }])
 
 .service('songConstructor', [function () {
