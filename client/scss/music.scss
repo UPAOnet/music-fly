@@ -9,15 +9,28 @@
 
 /* Music Player*/
 
-
-
-
-
-/* Song List */
-
-.highlight {
-  background-color: blue;
+/*#player-img {
+  height:180px;
+  img{
+    width: 100%;
+    height:100%;
+  }
+}*/
+#track-info {
+  margin-top: 30px;
 }
+
+#player-track-artist {
+  margin-bottom: 4px;
+}
+
+#player-controls {
+  text-align: center;
+  margin-top: 30px;
+}
+
+
+
 
 
 /*Player Pages */
@@ -26,7 +39,19 @@
   display: none;
 }
 
+/* Track List */
 
+#search-list {
+  margin-top: 20px;
+}
+
+.songs {
+  list-style: none;
+}
+
+.highlight {
+  background-color: blue;
+}
 
 
 

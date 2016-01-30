@@ -18,7 +18,9 @@ angular.module('musicApp', [])
       switchTabs.switchTabs(attribute);
     }
     vm.digest = function () {
-      $scope.$digest()
+      _.defer(function() {
+        $scope.$digest();
+      })
     }
     vm.togglePlay = function () {
       playerControls.togglePlay();
@@ -54,43 +56,13 @@ angular.module('musicApp', [])
   tabSwitcher.switchTabs = function (tabAttribute) {
     var allPages = document.getElementsByClassName('music-page');
     var allTabs = document.getElementsByClassName('music-tab');
-    // console.log(allPages.length)
     for (var i =0; i<allPages.length; i++) {
       allPages[i].classList.add('hidden');
       if (allPages[i].getAttribute('data-page') === tabAttribute) {
         allPages[i].classList.remove('hidden');
       }
     }
-    // console.log(allPages[].getAttribute('data-page'))
   }
-
-  // tabSwitcher.pageState = {
-  //   topArtists: true,
-  //   search: false, 
-  //   playlists: false
-  // }
-
-  // tabSwitcher.switchPages = function (states) {
-  //   var allPages = $('.music-page').attr('data-tab')
-  //   _.map(states, function (eachState, i) {
-  //     if (allPages !== eachState) {
-  //       tabSwitcher.pageState[eachState] = !tabSwitcher.pageState[eachState]
-  //       $('.music-page').toggleClass('hidden');
-  //     }
-  //   })
-  // }
-
-  // tabSwitcher.switchTabs = function (attribute) {
-  //   var stateName = Object.keys(tabSwitcher.pageState)
-  //   // console.log(stateName);
-  //   _.map(stateName, function (each) {
-  //     if (each === 'topArtists') {
-  //       tabSwitcher.pageState.search = !tabSwitcher.pageState.search;
-  //       tabSwitcher.switchPages(stateName);
-  //     }
-  //   })
-    
-  // }
   return tabSwitcher;
 }])
 
@@ -217,20 +189,20 @@ angular.module('musicApp', [])
     return masterPlayer
   }])
 
-.directive('songList', () => {
+.directive('songList', function () {
     return {
       scope: true,
       restrict: 'A',
       replace: false,
-      template: '<li class="songs" ng-repeat= "track in player.tracks" ng-click="song-select" data-song = {{track.name}} data-company ={{track.company}}>' +
-                '<img ng-src="{{track.image}}"/> {{track.name}} {{track.artist}} {{track.album}}' +
-                '</li>',
+      templateUrl: 'templates/track-list.html',
       link: function (scope, elem, attrs) {
+
         elem.bind('click', function (event) {
           var song = event.target
           $('.songs').removeClass('highlight');
           song.classList.add('highlight');
         });
+
         elem.bind('dblclick', function (event) {
           var song = event.target.getAttribute('data-song');
           scope.playMusic(song);
