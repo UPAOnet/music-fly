@@ -28,9 +28,21 @@
 #playlist-field {
   width: 100px; }
 
+#playlists {
+  margin-top: 12px; }
+
+.music-tab {
+  list-style-type: none; }
+
+/*#playlist-field {
+  margin-top: 12px;
+}*/
 /*Player Pages */
 .hidden {
   display: none; }
+
+.music-page {
+  list-style-type: none; }
 
 /* Track List */
 #search-list {

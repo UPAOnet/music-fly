@@ -1,6 +1,24 @@
-<li class="songs ui row" ng-dblclick = "player.doubleClickPlay($event)"  ng-repeat= "track in player.tracks" ng-click="song-select" data-song = '{{track.name}}' data-company ={{track.company}}>
+<div class="songs ui row" ng-dblclick = "player.doubleClickPlay($event)"  ng-repeat= "track in player.tracks" ng-click="song-select" data-song = '{{track.name}}' data-company ={{track.company}}>
   <img ng-src="{{track.image}}" />
   <span data-song = '{{track.name}}'>{{track.name}}</span>
   <span data-song = '{{track.name}}'>{{track.artist}}</span>
   <span data-song = '{{track.name}}'>{{track.album}}</span>
-</li>
+  <div>
+
+  <div class="ui compact menu">
+    <div class="ui simple dropdown item">
+    Add
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <!-- <div class="item"></div> -->
+        <div class="item" ng-repeat="playlist in player.playlistTabs">
+          {{playlist.name}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
+  </div>
+</div>

@@ -5,12 +5,12 @@ angular.module('musicApp', [])
     vm = this;
     vm.topArtists;
     vm.tracks = [];
+    vm.playlistTabs = playlists.currentPlaylists;
     vm.playerImage = 'assets/images/music-player/default-album.png';
     vm.playerTitle = 'Title';
     vm.playerArtist = 'Artist';
     vm.playerInfo = 'album';
-    vm.playStateButton = 'play icon';    
-    vm.playlistTabs = playlists.currentPlaylists;
+    vm.playStateButton = 'play icon';        
     $scope.spotifyQuery;
     $scope.scQuery; 
     $scope.newPlaylist; 
@@ -64,14 +64,15 @@ angular.module('musicApp', [])
 
 .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
   var playlist = {};
-  playlist.currentPlaylists = [];
+  playlist.currentPlaylists = [{
+    name: 'sample'
+  }];
 
   playlist.createNewPlaylist = function (name) {
     var newPlaylist = new playlistConstructor (name);
     playlist.currentPlaylists.push(newPlaylist);
     console.log(vm.playlistTabs)
   }
-
   return playlist;
 }])
 
