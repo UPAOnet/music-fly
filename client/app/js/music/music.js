@@ -10,12 +10,11 @@ angular.module('musicApp', [])
     vm.playerArtist = 'Artist';
     vm.playerInfo = 'album';
     vm.playStateButton = 'play icon';    
-    vm.playlistTabs = ['playlist1']; 
+    vm.playlistTabs = playlists.currentPlaylists;
     $scope.spotifyQuery;
     $scope.scQuery; 
     $scope.newPlaylist; 
     
-
     vm.digest = function () {
       _.defer(function() {
         $scope.$digest();
@@ -27,10 +26,12 @@ angular.module('musicApp', [])
       switchTabs.switchTabs(attribute);
     }
     vm.createNewPlaylist = function () {
-      if ($scope.newPlaylist === undefined) {
+      if ($scope.newPlaylist === "" || $scope.newPlaylist === undefined) {
+        alert('please enter playlist name')
         return 
       }
       playlists.createNewPlaylist($scope.newPlaylist);
+      $scope.newPlaylist= "";
     }
     
     vm.togglePlay = function () {
@@ -63,9 +64,11 @@ angular.module('musicApp', [])
 
 .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
   var playlist = {};
+  playlist.currentPlaylists = [];
 
   playlist.createNewPlaylist = function (name) {
-    vm.playlistTabs.push(name);
+    var newPlaylist = new playlistConstructor (name);
+    playlist.currentPlaylists.push(newPlaylist);
     console.log(vm.playlistTabs)
   }
 
@@ -95,6 +98,7 @@ angular.module('musicApp', [])
     this.name = name;
     this.tracks = tracks;
   }
+  return playlist
 }])
 
 .service('songConstructor', [function () {

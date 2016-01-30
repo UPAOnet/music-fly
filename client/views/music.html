@@ -36,8 +36,8 @@
               <span id="playlist-add" ng-click="player.createNewPlaylist()">Add new</span> 
             </div>
             <div>
-              <li ng-repeat = "playlist in player.playlistTabs">
-                <span class="music-tab" data-tab= '{{playlist}}' >{{playlist}}</span>
+              <li ng-repeat = "playlist in player.playlistTabs" class="music-tab" data-tab='{{playlist.name}}' ng-click="player.switchTabs($event)">
+                {{playlist.name}}
               </li>
             </div>       
           </div>
@@ -48,8 +48,6 @@
 
 
         <div id="pages-section" class="ui eleven wide column">
-
-
           <div id="top-artists-page" class="music-page hidden" data-page="topArtists">
             This will be the top Artists Page
           </div>
@@ -74,13 +72,18 @@
               </div>
             </div>
           </div>
+          <div>
 
 
-          <div id="playlists-page" data-page="playlist1" class="music-page hidden">
-            This will be the playlists page
+            <li ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page hidden">
+              <div>
+                <span>{{playlistPage.name}}</span>
+              </div>
+            </li>
           </div>
-        </div>
+        
 
+        </div> 
         <div id="music-player" class="ui three wide column">
           <div class= "">
             <div id="player-img" class="ui centered">       
