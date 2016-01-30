@@ -21,6 +21,9 @@ angular.module('musicApp', [])
       })
     }
 
+    vm.addTrack = function (track, playlist) {
+      playlists.addTrack(track, playlist);
+    } 
     vm.switchTabs = function (event) {
       var attribute = event.target.getAttribute('data-tab');
       switchTabs.switchTabs(attribute);
@@ -64,9 +67,23 @@ angular.module('musicApp', [])
 
 .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
   var playlist = {};
-  playlist.currentPlaylists = [{
-    name: 'sample'
-  }];
+  var samplePlaylist = new playlistConstructor('sample');
+  playlist.currentPlaylists = [samplePlaylist];
+
+  playlist.addTrack = function (track, playlist) {
+    var currentPlaylist;
+    _.map(vm.playlistTabs, function findPlaylist (eachPlaylist) {
+      if (eachPlaylist.name === playlist) {
+        currentPlaylist = eachPlaylist;        
+      }
+    })
+    _.map(vm.tracks, function findTrack (eachTrack) {
+      if (eachTrack.name === track) {
+        currentPlaylist.tracks.push(eachTrack);
+        console.log(currentPlaylist)
+      }
+    })
+  }
 
   playlist.createNewPlaylist = function (name) {
     var newPlaylist = new playlistConstructor (name);
@@ -95,9 +112,9 @@ angular.module('musicApp', [])
 }])
 
 .service('playlistConstructor', [function () {
-  function playlist (name, tracks) {
+  function playlist (name) {
     this.name = name;
-    this.tracks = tracks;
+    this.tracks = [];
   }
   return playlist
 }])
