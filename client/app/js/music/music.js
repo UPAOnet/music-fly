@@ -51,13 +51,12 @@ angular.module('musicApp', [])
     }
     
      
-    $scope.playMusic = function (song) {      
+    $scope.playMusic = function (event) { 
+      // console.log('linked')
+      var song = event.target.getAttribute('data-song');     
       playerControls.playMusic(song);
     }    
-    // $scope.scSearch = function () {
-    //   scSearch.allTracks($scope.scQuery);
-    //   $scope.scQuery = "";
-    // }
+    
     $scope.scSearchEnter = function () {            
       if (event.keyCode === 13) {
         var attribute = event.target.getAttribute('data-tab');
@@ -65,11 +64,7 @@ angular.module('musicApp', [])
         scSearch.allTracks($scope.scQuery);
         $scope.scQuery = "";
       };
-    }
-    // $scope.spotifySearch = function () {
-    //   spotifySearch.makeRequest($scope.spotifyQuery);
-    //   $scope.spotifyQuery = "";
-    // }
+    }   
     $scope.spotifySearchEnter = function () {
       if (event.keyCode === 13) {
         var attribute = event.target.getAttribute('data-tab');
@@ -77,7 +72,15 @@ angular.module('musicApp', [])
         spotifySearch.makeRequest($scope.spotifyQuery);
         $scope.spotifyQuery = "";
       }
-    }    
+    }
+    // $scope.spotifySearch = function () {
+    //   spotifySearch.makeRequest($scope.spotifyQuery);
+    //   $scope.spotifyQuery = "";
+    // }
+    // $scope.scSearch = function () {
+    //   scSearch.allTracks($scope.scQuery);
+    //   $scope.scQuery = "";
+    // }    
   }])
 
 .factory('searchType', [function () {

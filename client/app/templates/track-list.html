@@ -1,12 +1,15 @@
 <div class="songs ui row" ng-repeat= "track in player.tracks" data-song = '{{track.name}}' data-company ='{{track.company}}'>
   <div class = "ui grid thirteen wide column">
-    <div class="ui four wide column">
-      <img class=" song-img" ng-src="{{track.image}}"/>
+    <div class="ui three wide column">
+      <img class="song-img" ng-src="{{track.image}}"/>
     </div>
-    <div class="ui nine wide column">
-      <span data-song = '{{track.name}}'>{{track.name}}</span>
-      <p data-song = '{{track.name}}'>{{track.artist}}</p>
-      <p data-song = '{{track.name}}'>{{track.album}}</p>
+    <div class="ui ten wide column">
+      <i id="song-play-btn" class="play icon" ng-click="playMusic($event)" data-song="{{track.name}}">Play</i>
+      <div>
+        <span data-song ='{{track.name}}'>{{track.name}}</span>
+        <p data-song = '{{track.name}}'>{{track.artist}}</p>
+        <p data-song = '{{track.name}}'>{{track.album}}</p>
+      </div>
     </div>   
   </div>
   <div class="ui three wide column">
