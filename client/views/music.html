@@ -2,7 +2,8 @@
   <head>
     <title>Music Fly</title>
     <link rel="stylesheet" type="text/css" href="/css/music.css">
-    <link rel="stylesheet" type="text/css" href="/dist/semantic.css">    
+    <link rel="stylesheet" type="text/css" href="/dist/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.css">      
     <script type="text/javascript" src="/angular/angular.js"></script>
     <script type="text/javascript" src="/jquery/dist/jquery.js"></script>
     <script src="/dist/semantic.js"></script>    
@@ -13,9 +14,22 @@
     </div>
     <div class = "ui fluid sixteen wide column grid" ng-controller= "musicPlayer as player">  
       <div id="music-app" class="row">
-        <div class = "ui two wide column">
-
-
+        <div class = "ui three wide column">
+          <div id="search-type">
+            <span>Search By:</span>
+            <i class="fa fa-soundcloud fa-3x" ng-click= "player.changeSearch($event)" data-search="sc"></i>
+            <i class="fa fa-spotify fa-3x" ng-click= "player.changeSearch($event)" data-search="spotify"></i>            
+          </div>
+          <div id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
+            <h4 >Spotify</h4>
+            <input id="spotify-box" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()" >
+          </div>
+          <div id="search-sc" ng-show='player.searchDisplay.sc'>
+            <h5>SoundCloud</h>
+            <input id="sc-box" type="text" ng-model="scQuery"
+            ng-keypress="scSearchEnter()"/>
+          </div>
+          
           <div id="top-artists" >
             <i class="star icon"></i>
             <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="topArtists">Top Artists</span>
@@ -36,7 +50,6 @@
               <span id="playlist-add" ng-click="player.createNewPlaylist()">Add new</span> 
             </div>
             <div>
-
               <li ng-repeat = "playlist in player.playlistTabs" class="music-tab" data-tab='{{playlist.name}}' data-playlist = "playlist.name" ng-click="player.switchTabs($event, playlist.name)">
                 <i class="music icon"></i>
                 {{playlist.name}}
@@ -49,7 +62,7 @@
 
 
 
-        <div id="pages-section" class="ui eleven wide column">
+        <div id="pages-section" class="ui nine wide column">
           <div id="top-artists-page" class="music-page hidden" data-page="topArtists">
             This will be the top Artists Page
           </div>
@@ -57,26 +70,13 @@
 
 
           <div id="song-interface" class="music-page" data-page="search">
-            <div id="search-page">
-              <div id="search-spotify">
-                <h2>Spotify</h2>
-                <input id="spotifyBox" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()">
-                <input type='button' id="spotifyButton" ng-click="spotifySearch()">
-              </div>
-              <div id="search-sc">
-                <h2>SoundCloud</h2>
-                <input id="scBox" type="text" ng-model="scQuery"
-                ng-keypress="scSearchEnter()"/>
-                <input type='button' id="scButton" ng-click="scSearch()"/>
-              </div>
+            <div id="search-page">                            
               <div id="search-list" >
                 <div class= "ui container grid eleven wide column" song-list></div>
               </div>
             </div>
           </div>
           <div>
-
-
             <li ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page hidden">
               <div>
                 <h3>{{playlistPage.name}}</h3>
@@ -84,10 +84,9 @@
               </div>
             </li>
           </div>
-        
-
         </div> 
-        <div id="music-player" class="ui three wide column">
+
+        <div id="music-player" class="ui four wide column">
           <div class= "">
             <div id="player-img" class="ui centered">       
               <img ng-src= "{{player.playerImage}}" class="ui image">

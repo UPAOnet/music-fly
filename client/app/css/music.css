@@ -1,6 +1,16 @@
 #music-app {
+  margin-left: 20px;
+  margin-right: 20px; }
+
+#sc-box {
+  width: 120px; }
+
+#spotify-box {
+  width: 120px; }
+
+#music-app {
   margin-top: 50px;
-  border: solid;
+  /*  border: solid;*/
   height: 500px; }
 
 /* Music Player*/

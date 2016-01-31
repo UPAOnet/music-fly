@@ -1,7 +1,7 @@
 angular.module('musicApp', [])
 
-.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'switchTabs', 'playlists',
-  function ($scope, $http, spotifySearch, playerControls, scSearch, switchTabs, playlists) {
+.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'switchTabs', 'playlists', 'searchType',
+  function ($scope, $http, spotifySearch, playerControls, scSearch, switchTabs, playlists, searchType) {
     vm = this;
     vm.topArtists;
     vm.tracks = [];
@@ -10,7 +10,8 @@ angular.module('musicApp', [])
     vm.playerTitle = 'Title';
     vm.playerArtist = 'Artist';
     vm.playerInfo = 'album';
-    vm.playStateButton = 'play icon';        
+    vm.playStateButton = 'play icon';
+    vm.searchDisplay = searchType.searchState;      
     $scope.spotifyQuery;
     $scope.scQuery; 
     $scope.newPlaylist; 
@@ -20,10 +21,15 @@ angular.module('musicApp', [])
         $scope.$digest();
       })
     }
+    vm.changeSearch = function (event) {
+      var attribute = event.target.getAttribute('data-search');
+      searchType.changeSearch(attribute)
+    }
 
     vm.addTrack = function (track, playlist) {
       playlists.addTrack(track, playlist);
     } 
+
     vm.switchTabs = function (event, playlist) {
       var attribute = event.target.getAttribute('data-tab');
       var isPlaylist = event.target.getAttribute('data-playlist');
@@ -68,6 +74,28 @@ angular.module('musicApp', [])
       }
     }    
   }])
+
+.factory('searchType', [function () {
+  var search = {};
+  search.searchState = {
+    sc: true,
+    spotify: false
+  };
+  search.changeSearch = function (attribute) {
+    // console.log('works')
+    if (attribute === 'sc' && search.searchState.sc === false) {
+      search.searchState.sc = true;
+      search.searchState.spotify = false;
+      console.log(search.searchState)
+    }
+    else if (attribute === 'spotify' && search.searchState.spotify === false) {
+      search.searchState.spotify = true;
+      search.searchState.sc = false;
+      console.log(search.searchState.spotify)
+    }
+  }
+  return search
+}])
 
 .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
   var playlist = {};
