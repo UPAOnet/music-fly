@@ -32,7 +32,8 @@
   display: block; }
 
 #playlist-field {
-  width: 100px; }
+  width: 100px;
+  display: block; }
 
 #playlists {
   margin-top: 12px; }

@@ -1,7 +1,7 @@
 angular.module('musicApp', [])
 
-.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'switchTabs', 'playlists', 'searchType',
-  function ($scope, $http, spotifySearch, playerControls, scSearch, switchTabs, playlists, searchType) {
+.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType',
+  function ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType) {
     vm = this;
     vm.topArtists;
     vm.tracks = [];
@@ -21,6 +21,9 @@ angular.module('musicApp', [])
         $scope.$digest();
       })
     }
+    vm.togglePlay = function () {
+      playerControls.togglePlay();
+    } 
     vm.changeSearch = function (event) {
       var attribute = event.target.getAttribute('data-search');
       searchType.changeSearch(attribute)
@@ -36,7 +39,7 @@ angular.module('musicApp', [])
       if (isPlaylist) {
         playlists.displayTracks(playlist);     
       }
-      switchTabs.switchTabs(attribute);
+      tabs.switchTabs(attribute);
     }
     vm.createNewPlaylist = function () {
       if ($scope.newPlaylist === "" || $scope.newPlaylist === undefined) {
@@ -47,26 +50,27 @@ angular.module('musicApp', [])
       $scope.newPlaylist= "";
     }
     
-    vm.togglePlay = function () {
-      playerControls.togglePlay();
-    }   
+     
     $scope.playMusic = function (song) {      
       playerControls.playMusic(song);
     }    
-    $scope.scSearch = function () {
-      scSearch.allTracks($scope.scQuery);
-      $scope.scQuery = "";
-    }
-    $scope.scSearchEnter = function () {
+    // $scope.scSearch = function () {
+    //   scSearch.allTracks($scope.scQuery);
+    //   $scope.scQuery = "";
+    // }
+    $scope.scSearchEnter = function () {            
       if (event.keyCode === 13) {
+        var attribute = event.target.getAttribute('data-tab');
+        tabs.switchTabs(attribute);
+        console.log(attribute);
         scSearch.allTracks($scope.scQuery);
         $scope.scQuery = "";
       };
     }
-    $scope.spotifySearch = function () {
-      spotifySearch.makeRequest($scope.spotifyQuery);
-      $scope.spotifyQuery = "";
-    }
+    // $scope.spotifySearch = function () {
+    //   spotifySearch.makeRequest($scope.spotifyQuery);
+    //   $scope.spotifyQuery = "";
+    // }
     $scope.spotifySearchEnter = function () {
       if (event.keyCode === 13) {
         spotifySearch.makeRequest($scope.spotifyQuery);
@@ -82,19 +86,25 @@ angular.module('musicApp', [])
     spotify: false
   };
   search.changeSearch = function (attribute) {
-    // console.log('works')
     if (attribute === 'sc' && search.searchState.sc === false) {
       search.searchState.sc = true;
       search.searchState.spotify = false;
-      console.log(search.searchState)
     }
     else if (attribute === 'spotify' && search.searchState.spotify === false) {
       search.searchState.spotify = true;
       search.searchState.sc = false;
-      console.log(search.searchState.spotify)
     }
   }
   return search
+}])
+
+.factory('playlistCreator', [function () {
+  var makePlaylist = {};
+  makePlaylist.state = {
+    playlistField: false,
+    addButton: true
+  }
+
 }])
 
 .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
@@ -132,7 +142,7 @@ angular.module('musicApp', [])
   return playlist;
 }])
 
-.factory('switchTabs', [function () {
+.factory('tabs', [function () {
   var tabSwitcher = {};
 
   tabSwitcher.switchTabs = function (tabAttribute) {
