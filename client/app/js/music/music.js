@@ -62,7 +62,6 @@ angular.module('musicApp', [])
       if (event.keyCode === 13) {
         var attribute = event.target.getAttribute('data-tab');
         tabs.switchTabs(attribute);
-        console.log(attribute);
         scSearch.allTracks($scope.scQuery);
         $scope.scQuery = "";
       };
@@ -73,6 +72,8 @@ angular.module('musicApp', [])
     // }
     $scope.spotifySearchEnter = function () {
       if (event.keyCode === 13) {
+        var attribute = event.target.getAttribute('data-tab');
+        tabs.switchTabs(attribute);
         spotifySearch.makeRequest($scope.spotifyQuery);
         $scope.spotifyQuery = "";
       }
@@ -197,7 +198,7 @@ angular.module('musicApp', [])
         trackResults = response.data.tracks.items;
         _.map(trackResults, function (each) {
           vm.tracks.push(
-            new songConstructor(each.name, each.album.images[2].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
+            new songConstructor(each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
           );
         }) 
       }) 
@@ -298,13 +299,6 @@ angular.module('musicApp', [])
       replace: false,
       templateUrl: 'templates/track-list.html',
       link: function (scope, elem, attrs) {
-
-        elem.bind('click', function (event) {
-          var song = event.target
-          $('.songs').removeClass('highlight');
-          song.classList.add('highlight');
-        });
-
         elem.bind('dblclick', function (event) {
           var song = event.target.getAttribute('data-song');
           scope.playMusic(song);
