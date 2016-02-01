@@ -6,14 +6,28 @@
   background-color: rgba(0 0 0)
 }*/
 #logo {
-  margin-right: 80px;
-  margin-left: 80px; }
+  margin-right: 60px;
+  margin-left: 80px;
+  font-family: helvetica; }
+
+#logo-title-m {
+  color: #FF8300;
+  position: absolute;
+  left: -66px;
+  font-size: 45px; }
+
+#logo-title {
+  position: relative;
+  top: 10px;
+  font-size: 25px;
+  left: -20px;
+  color: white; }
 
 #logo-picture {
-  width: 100px;
+  width: 70px;
   position: absolute;
-  left: -80px;
-  top: -7px; }
+  left: -82px;
+  top: -18px; }
 
 #hero-img {
   width: 100%;
