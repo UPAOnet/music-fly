@@ -4,11 +4,16 @@
       <img class="song-img" ng-src="{{track.image}}"/>
     </div>
     <div class="ui ten wide column">
-      <i id="song-play-btn" class="play icon" ng-click="playMusic($event)" data-song="{{track.name}}">Play</i>
+      <i class="play icon song-play-btn" ng-click="playMusic($event)" data-song="{{track.name}}"></i><span class="song-play-btn" data-song="{{track.name}}" ng-click="playMusic($event)">Play</span>
       <div>
         <span data-song ='{{track.name}}'>{{track.name}}</span>
         <p data-song = '{{track.name}}'>{{track.artist}}</p>
         <p data-song = '{{track.name}}'>{{track.album}}</p>
+      <div class="song-options">
+        <a href="{{track.pageSource}}">Listen on<i class="fa fa-{{track.company}} song-option-icon"></i><span>{{track.company}}</span>
+        </a>
+
+      </div>
       </div>
     </div>   
   </div>

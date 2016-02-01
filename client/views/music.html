@@ -16,30 +16,32 @@
       <div id="music-app" class="row">
         <div id="player-menu" class = "ui three wide column">
           <div id="search-type">
-            <span>Search By:</span>
-            <i class="fa fa-soundcloud fa-3x" ng-click= "player.changeSearch($event)" data-search="sc"></i>
-            <i class="fa fa-spotify fa-3x" ng-click= "player.changeSearch($event)" data-search="spotify"></i>            
+            <span>Search:</span>
+            <div id="icon-box">
+              <i class="fa fa-soundcloud fa-2x soundcloud" ng-click= "player.changeSearch($event)" data-search="sc"></i>
+              <i class="fa fa-spotify fa-2x spotify" ng-click= "player.changeSearch($event)" data-search="spotify"></i> 
+            </div>           
           </div>
           <div id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
-            <h5 >Spotify</h5>
-            <input id="spotify-box" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()" data-tab="search" >
+            <!-- <span>Spotify</span> -->
+            <input id="spotify-box" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()" data-tab="search" placeholder="Spotify...">
           </div>
           <div id="search-sc" ng-show='player.searchDisplay.sc'>
-            <h5>SoundCloud</h5>
+           <!--  <span>SoundCloud</span> -->
             <input id="sc-box" type="text" ng-model="scQuery"
-            ng-keypress="scSearchEnter()" data-tab="search"/>
+            ng-keypress="scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
           </div>
           
-          <div id="top-artists" >
-            <!-- <i class="star icon"></i> -->
-            <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="topArtists"></span>
-          </div>
-
-          <div id="search">
-            <div>
-              <span class="music-tab" data-tab="search"></span>
+          
+             <div id="top-artists" >
+              <i class="star icon"></i>
+              <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="topArtists">Top Artists</span>
             </div>
-          </div>
+            <div id="search">
+              <div>
+                <span class="music-tab" data-tab="search"></span>
+              </div>
+            </div>
 
           <div id ="playlists">
             <div>  

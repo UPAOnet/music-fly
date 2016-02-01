@@ -201,7 +201,7 @@ angular.module('musicApp', [])
         trackResults = response.data.tracks.items;
         _.map(trackResults, function (each) {
           vm.tracks.push(
-            new songConstructor(each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
+            new songConstructor(each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'Spotify', null, each.preview_url, each.external_urls.spotify)
           );
         }) 
       }) 
@@ -227,7 +227,7 @@ angular.module('musicApp', [])
       _.map(trackResults, function (each) {
         var stream = each.stream_url;
         var url = getUrl(stream);       
-        vm.tracks.push(new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'sc', each.stream_url, url, each.permalink_url))       
+        vm.tracks.push(new songConstructor(each.title, each.artwork_url, each.album, each.user.username, each.duration, 'SoundCloud', each.stream_url, url, each.permalink_url))       
       });
       vm.digest()
     })    
@@ -238,10 +238,10 @@ angular.module('musicApp', [])
 .factory('playerControls', [function () { 
     var masterPlayer = new Audio();
     function getSong (song, client) {
-      if (song.company === 'sc') {
+      if (song.company === 'SoundCloud') {
         return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + client;
       }
-      else if (song.company === 'spotify') {
+      else if (song.company === 'Spotify') {
         return song.urlSource;
       }
     };

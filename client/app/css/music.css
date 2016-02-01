@@ -1,13 +1,31 @@
 #music-app {
+  /*background-image:url(../assets/images/music-player/mosaic.jpg);*/
   margin-left: 20px;
   margin-right: 20px;
-  height: 600px; }
+  height: 2000px; }
+
+/*Search Fields */
+#search-type {
+  margin-bottom: 10px; }
+
+.soundcloud {
+  color: #ff8800; }
+
+.spotify {
+  color: #2ebd59; }
+
+#icon-box {
+  display: inline-block;
+  margin-left: 2px;
+  cursor: pointer; }
 
 #sc-box {
-  width: 120px; }
+  width: 120px;
+  color: black; }
 
 #spotify-box {
-  width: 120px; }
+  width: 120px;
+  color: black; }
 
 #music-app {
   margin-top: 50px;
@@ -30,7 +48,7 @@
 
 #player-img {
   width: 100%;
-  height: 130px; }
+  height: 140px; }
 
 #player-controls {
   text-align: center;
@@ -38,20 +56,27 @@
 
 /*player Tabs*/
 #player-menu {
+  /* color: white;*/
   width: 220px !important;
-  position: fixed; }
+  position: fixed;
+  /*background-color: black;*/
+  height: 1000px; }
 
 #playlist-add {
   display: block; }
+
+#top-artists {
+  margin-top: 20px; }
 
 #playlist-field {
   width: 100px;
   display: block; }
 
 #playlists {
-  margin-top: 12px; }
+  /*margin-top: 40px;*/ }
 
 .music-tab {
+  cursor: pointer;
   list-style-type: none; }
 
 /*Player Pages */
@@ -73,8 +98,17 @@
   list-style: none; }
 
 .highlight {
-  background-color: blue; }
+  color: blue; }
 
 .song-img {
   width: 100px;
   height: 100px; }
+
+.song-option-icon {
+  margin-left: 10px; }
+
+.song-play-btn {
+  cursor: pointer; }
+
+.song-list-info {
+  margin-top: 10px; }
