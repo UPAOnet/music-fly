@@ -42,32 +42,38 @@
             <input id="sc-box" type="text" ng-model="scQuery"
             ng-keypress="scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
           </div>
-          
-          
-             <div id="top-artists" >
-              <i class="star icon"></i>
-              <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="topArtists">Top Artists</span>
-            </div>
             <div id="search">
               <div>
                 <span class="music-tab" data-tab="search"></span>
               </div>
             </div>
+            <div id="main">
+              <span>Main</span>
+             <div id="top-artists" >
+                <i class="star icon"></i>
+                <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="topArtists">Top Artists</span>
+              </div>
+            </div>
+            
 
           <div id ="playlists">
             <div>  
-              <i class="list icon"></i>
+              <!-- <i class="list icon"></i> -->
               <span>Playlists</span>
-              <input id="playlist-field" type="text" ng-model="newPlaylist"/>
-              <span id="playlist-add" ng-click="player.createNewPlaylist()">Add new</span> 
+              
             </div>
+
             <div>
-              <li ng-repeat = "playlist in player.playlistTabs" class="music-tab" data-tab='{{playlist.name}}' data-playlist = "playlist.name" ng-click="player.switchTabs($event, playlist.name)">
+              <li ng-repeat = "playlist in player.playlistTabs" class="music-tab playlist-tab" data-tab='{{playlist.name}}' data-playlist = "playlist.name" ng-click="player.switchTabs($event, playlist.name)">
                 <i class="music icon"></i>
                 {{playlist.name}}
               </li>
+              <input id="playlist-field" type="text" ng-model="newPlaylist" ng-show="player.addPlaylistState" ng-keypress="player.createNewPlaylist($event)"/>
+              <span id="playlist-add" ng-click="player.revealNewPlaylist()" ng-show="player.addPlaylistButton"><i class="ui plus icon"></i>Add new</span> 
             </div>       
           </div>
+
+
           <div class="ui row">
             <div id="music-player" class="ui">
               <div  class="ui">       
@@ -92,13 +98,13 @@
 
 
         <div id="pages-section" class="ui thirteen wide column">
-          <div id="top-artists-page" class="music-page hidden" data-page="topArtists">
+          <div id="top-artists-page" class="music-page" data-page="topArtists">
             This will be the top Artists Page
           </div>
 
 
 
-          <div id="song-interface" class="music-page" data-page="search">
+          <div id="song-interface" class="music-page hidden" data-page="search">
             <div id="search-page">                            
               <div id="search-list" >
                 <h4>Search Results</h4>

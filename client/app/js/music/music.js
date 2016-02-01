@@ -12,7 +12,8 @@ angular.module('musicApp', [])
     vm.playerInfo = 'album';
     vm.playStateButton = 'play icon';
     vm.searchDisplay = searchType.searchState; 
-    vm.brandDisplay =      
+    vm.addPlaylistState = playlists.state.addField;
+    vm.addPlaylistButton = playlists.state.addButton;    
     $scope.spotifyQuery;
     $scope.scQuery; 
     $scope.newPlaylist; 
@@ -42,18 +43,24 @@ angular.module('musicApp', [])
       }
       tabs.switchTabs(attribute);
     }
-    vm.createNewPlaylist = function () {
-      if ($scope.newPlaylist === "" || $scope.newPlaylist === undefined) {
-        alert('please enter playlist name')
-        return 
-      }
-      playlists.createNewPlaylist($scope.newPlaylist);
-      $scope.newPlaylist= "";
+    vm.revealNewPlaylist = function () {
+      playlists.revealAddField();
+      vm.addPlaylistState = playlists.state.addField;
+      vm.addPlaylistButton = playlists.state.addButton;
     }
-    
-     
+    vm.createNewPlaylist = function (event) {
+      if(event.keyCode === 13) {
+        if ($scope.newPlaylist === "" || $scope.newPlaylist === undefined) {
+          alert('please enter playlist name')
+          return 
+        }
+        playlists.createNewPlaylist($scope.newPlaylist);
+        $scope.newPlaylist= "";
+        vm.addPlaylistState = playlists.state.addField;
+        vm.addPlaylistButton = playlists.state.addButton;
+      }
+    }         
     $scope.playMusic = function (event) { 
-      // console.log('linked')
       var song = event.target.getAttribute('data-song');     
       playerControls.playMusic(song);
     }    
@@ -103,19 +110,20 @@ angular.module('musicApp', [])
   return search
 }])
 
-.factory('playlistCreator', [function () {
-  var makePlaylist = {};
-  makePlaylist.state = {
-    playlistField: false,
-    addButton: true
-  }
-
-}])
-
 .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
   var playlist = {};
   var samplePlaylist = new playlistConstructor('sample');
   playlist.currentPlaylists = [samplePlaylist];
+
+  playlist.state = {
+    addField: false,
+    addButton: true
+  }
+
+  playlist.revealAddField = function () {
+      playlist.state.addField = true;
+      playlist.state.addButton = false;
+    }
 
   playlist.addTrack = function (track, playlist) {
     var currentPlaylist;
@@ -143,6 +151,8 @@ angular.module('musicApp', [])
   playlist.createNewPlaylist = function (name) {
     var newPlaylist = new playlistConstructor (name);
     playlist.currentPlaylists.push(newPlaylist);
+    playlist.state.addField = false;
+    playlist.state.addButton = true;
   }
   return playlist;
 }])
@@ -197,8 +207,7 @@ angular.module('musicApp', [])
         data: query,
         url: 'http://localhost:3000/spotify',
         method: 'POST',
-      }).then(function success (response) {
-       
+      }).then(function success (response) {       
         trackResults = response.data.tracks.items;
         _.map(trackResults, function (each) {
           vm.tracks.push(

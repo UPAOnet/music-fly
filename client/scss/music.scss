@@ -28,6 +28,7 @@ $logo: #FF8300;
   font-size: 25px;
   left: -20px;
   color:white;
+  letter-spacing: 1px
 }
 
 #logo-picture {
@@ -76,7 +77,7 @@ $logo: #FF8300;
 /* Music Player*/
 
 #music-player {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
 #player-track-title {
@@ -113,12 +114,12 @@ $logo: #FF8300;
   height: 1000px;
 }
 
-#playlist-add {
-  display: block;
+#top-artists {
+  /*margin-top: 20px;*/
 }
 
-#top-artists {
-  margin-top: 20px;
+#playlist-add {
+  display: block;
 }
 
 #playlist-field {
@@ -127,8 +128,13 @@ $logo: #FF8300;
 }
 
 #playlists {
-  /*margin-top: 40px;*/
+  margin-top: 10px;
 }
+
+.playlist-tab {
+  margin-left: 7px;
+}
+
 .music-tab {
   cursor:pointer;
   list-style-type: none;

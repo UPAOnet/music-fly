@@ -20,7 +20,8 @@
   top: 10px;
   font-size: 25px;
   left: -20px;
-  color: white; }
+  color: white;
+  letter-spacing: 1px; }
 
 #logo-picture {
   width: 70px;
@@ -58,7 +59,7 @@
 
 /* Music Player*/
 #music-player {
-  margin-top: 80px; }
+  margin-top: 40px; }
 
 #player-track-title {
   margin-bottom: 0px; }
@@ -86,18 +87,21 @@
   /*background-color: black;*/
   height: 1000px; }
 
+#top-artists {
+  /*margin-top: 20px;*/ }
+
 #playlist-add {
   display: block; }
-
-#top-artists {
-  margin-top: 20px; }
 
 #playlist-field {
   width: 100px;
   display: block; }
 
 #playlists {
-  /*margin-top: 40px;*/ }
+  margin-top: 10px; }
+
+.playlist-tab {
+  margin-left: 7px; }
 
 .music-tab {
   cursor: pointer;
