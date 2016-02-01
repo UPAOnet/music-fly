@@ -80,15 +80,7 @@ angular.module('musicApp', [])
         spotifySearch.makeRequest($scope.spotifyQuery);
         $scope.spotifyQuery = "";
       }
-    }
-    // $scope.spotifySearch = function () {
-    //   spotifySearch.makeRequest($scope.spotifyQuery);
-    //   $scope.spotifyQuery = "";
-    // }
-    // $scope.scSearch = function () {
-    //   scSearch.allTracks($scope.scQuery);
-    //   $scope.scQuery = "";
-    // }    
+    }   
   }])
 
 .factory('searchType', [function () {
@@ -165,10 +157,8 @@ angular.module('musicApp', [])
     var allTabs = document.getElementsByClassName('music-tab');    
     for (var i =0; i<allPages.length; i++) {
       allPages[i].classList.add('hidden');
-      allTabs[i].classList.remove('highlight');
       if (allPages[i].getAttribute('data-page') === tabAttribute) {
         allPages[i].classList.remove('hidden');
-        allTabs[i].classList.add('highlight');
       }
     }
   }

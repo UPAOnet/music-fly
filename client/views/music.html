@@ -27,10 +27,10 @@
       <div id="music-app" class="row">
         <div id="player-menu" class = "ui three wide column">
           <div id="search-type">
-            <span>Search:</span>
+            <span id="search-header">Search</span>
             <div id="icon-box">
-              <i class="fa fa-soundcloud fa-2x soundcloud" ng-click= "player.changeSearch($event)" data-search="sc"></i>
-              <i class="fa fa-spotify fa-2x spotify" ng-click= "player.changeSearch($event)" data-search="spotify"></i> 
+              <i id="sc-icon" class="fa fa-soundcloud fa-2x soundcloud sc-active" ng-click= "player.changeSearch($event)" data-search="sc"></i>
+              <i id="spotify-icon" class="fa fa-spotify fa-2x spotify" ng-click= "player.changeSearch($event)" data-search="spotify"></i> 
             </div>           
           </div>
           <div id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
@@ -38,22 +38,22 @@
             <input id="spotify-box" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()" data-tab="search" placeholder="Spotify...">
           </div>
           <div id="search-sc" ng-show='player.searchDisplay.sc'>
-           <!--  <span>SoundCloud</span> -->
             <input id="sc-box" type="text" ng-model="scQuery"
             ng-keypress="scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
           </div>
-            <div id="search">
-              <div>
-                <span class="music-tab" data-tab="search"></span>
-              </div>
+
+          <div id="search">
+            <div>
+              <span class="music-tab" data-tab="search"></span>
             </div>
-            <div id="main">
-              <span>Main</span>
-             <div id="top-artists" >
-                <i class="star icon"></i>
-                <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="topArtists">Top Artists</span>
-              </div>
+          </div>
+          <div id="main">
+            <span>Main</span>
+           <div id="top-artists" >
+              <i class="star icon"></i>
+              <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="topArtists">Top Artists</span>
             </div>
+          </div>
             
 
           <div id ="playlists">
@@ -128,6 +128,8 @@
       </div>
   <script type="text/javascript" src="/underscore/underscore.js"></script>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
-  <script type="text/javascript" src="/js/music/music.js"></script>
+  <script type="text/javascript" src="/js/music/music.js">
+  </script>
+
   </body>
 </html>
