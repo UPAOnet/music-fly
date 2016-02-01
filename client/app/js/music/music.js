@@ -11,7 +11,8 @@ angular.module('musicApp', [])
     vm.playerArtist = 'Artist';
     vm.playerInfo = 'album';
     vm.playStateButton = 'play icon';
-    vm.searchDisplay = searchType.searchState;      
+    vm.searchDisplay = searchType.searchState; 
+    vm.brandDisplay =      
     $scope.spotifyQuery;
     $scope.scQuery; 
     $scope.newPlaylist; 

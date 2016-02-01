@@ -1,23 +1,21 @@
 angular.module('home', ['ngRoute'])
 
-.config(['$routeProvider', function ($routeProvider) {
-  $routeProvider. 
-    when('/music', {
-      template: 'music.html'
-    }).
-    otherwise({redirectTo: '/'})
-}])
+// .config(['$routeProvider', function ($routeProvider) {
+//   $routeProvider. 
+//     when('/music', {
+//       template: 'music.html'
+//     }).
+//     otherwise({redirectTo: '/'})
+// }])
 
 .controller('hero', ['$scope', function ($scope) {
-  $scope.poster = "/assets/images/home/poster.jpg";
+  
 }])
 
-.directive('heroVideo', function () {
+.directive('music-player', function () {
   return {
-    restrict: 'E', 
-    replace: false,
-    template: '<video loop muted poster={{poster}} autoplay=true>' +
-                '<source type=video/mp4 src= {{video}}>' +
-              '</video>'
-  }
+    scope: false,
+    restrict: 'E',
+    replace: true,
+    template:'music.html'
 })

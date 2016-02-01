@@ -4,30 +4,32 @@
   /*width: 1000px;*/
 }
 
-.home-video {
+/*#navigation {
+  background-color: rgba(0 0 0)
+}*/
 
-  height: 100%;
+#logo {
+  margin-right: 80px;
+  margin-left:80px;
+  
+}
+
+#logo-picture {
+  width:100px;
+  position:absolute;
+  left:-80px;
+  top:-7px;
+}
+
+#hero-img {
   width: 100%;
+  height: 700px;
+  position: absolute;
+  top: 30px;
+  z-index: -1;
 }
 
-video {
-  height: 100%;
-  width: 100%;
-}
 
-@media (min-aspect-ratio: 16/9) {
-  video {
-    width: 100%;
-    height: 50%;
-  }
-}
-
-@media (max-aspect-ratio: 16/9) {
-  video {
-    width: auto;
-    height: 50%;
-  }
-}
 
 
 /*http://slicejack.com/creating-a-fullscreen-html5-video-background-with-css/*/

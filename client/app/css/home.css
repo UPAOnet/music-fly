@@ -2,22 +2,24 @@
   height: 500px;
   /*width: 1000px;*/ }
 
-.home-video {
-  height: 100%;
-  width: 100%; }
+/*#navigation {
+  background-color: rgba(0 0 0)
+}*/
+#logo {
+  margin-right: 80px;
+  margin-left: 80px; }
 
-video {
-  height: 100%;
-  width: 100%; }
+#logo-picture {
+  width: 100px;
+  position: absolute;
+  left: -80px;
+  top: -7px; }
 
-@media (min-aspect-ratio: 16 / 9) {
-  video {
-    width: 100%;
-    height: 50%; } }
-
-@media (max-aspect-ratio: 16 / 9) {
-  video {
-    width: auto;
-    height: 50%; } }
+#hero-img {
+  width: 100%;
+  height: 700px;
+  position: absolute;
+  top: 30px;
+  z-index: -1; }
 
 /*http://slicejack.com/creating-a-fullscreen-html5-video-background-with-css/*/

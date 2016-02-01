@@ -4,21 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" type="text/css" href="/dist/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.css">      
     <script type="text/javascript" src="/angular/angular.js"></script>
+    <script type="text/javascript" src="/jquery/dist/jquery.js"></script>
+    <script src="/dist/semantic.js"></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
     <title>Music Fly</title>
   </head>
   <body>
-    <a href= "http://localhost:3000/music"><input type="button" value="Go to Music Section"></a>
-    <div ng-app="nav">
-      <div>
-        {{test}}
+    <div id="navigation" class="ui inverted segment">
+      <div class="ui inverted secondary pointing menu">
+        <a id="logo" class="item">
+         <span id="logo-title">Music Fly</span> <img id="logo-picture" src="assets/images/home/logo.png">
+        </a>
+        <a class="item" href= "http://localhost:3000/music">Music Player</a>
+        </a>
+        <a class="item">
+
+        </a>
       </div>
     </div>
-    <div ng-controller="hero" id="hero">
-      <hero-video/>
+      
+    <img id="hero-img" src="assets/images/home/hero2.jpg">
     </div>    
-    <div ng-view></div> 
+    <music-player/>
   </body>
   <script type="text/javascript" src="/js/navigation/nav.js"></script>
   <script type="text/javascript" src="/js/home/home.js"></script> 

@@ -10,7 +10,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
   </head>
   <body>
-    <div id="user-bar">
+    <div id="navigation">
+       <div id="navigation" class="ui inverted segment">
+      <div class="ui inverted secondary pointing menu">
+        <a id="logo" class="item" href= "http://localhost:3000">
+         <span id="logo-title">Music Fly</span> <img id="logo-picture" src="assets/images/home/logo.png">
+        </a>
+        <a class="item active" href= "http://localhost:3000/music">Music Player</a>
+        </a>
+        <a class="item">
+
+        </a>
+      </div>
+    </div>
     </div>
     <div class = "ui fluid sixteen wide column grid" ng-controller= "musicPlayer as player">  
       <div id="music-app" class="row">

@@ -8,6 +8,18 @@ $spotify: #2ebd59;
   height: 2000px;
 }
 
+#logo {
+  margin-right: 80px;
+  margin-left:80px;
+  
+}
+
+#logo-picture {
+  width:100px;
+  position:absolute;
+  left:-80px;
+  top:-7px;
+}
 
 /*Search Fields */
 #search-type {
@@ -48,7 +60,7 @@ $spotify: #2ebd59;
 /* Music Player*/
 
 #music-player {
-  margin-top: 120px;
+  margin-top: 80px;
 }
 
 #player-track-title {
