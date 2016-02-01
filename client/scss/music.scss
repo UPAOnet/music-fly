@@ -116,12 +116,18 @@ $logo: #FF8300;
 
 /*player Tabs*/
 
+#menu-tools{
+  overflow-x: hidden !important;
+  height: 270px;
+  overflow: scroll;
+}
+
+ 
 #player-menu {
  /* color: white;*/
   width: 220px !important;
   position: fixed;
   /*background-color: black;*/
-  height: 1000px;
 }
 
 #main {
@@ -183,7 +189,7 @@ $logo: #FF8300;
 /* Music Player*/
 
 #music-player {
-  margin-top: 40px;
+  margin-top: 5px;
 }
 
 #player-track-title {

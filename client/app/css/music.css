@@ -91,12 +91,16 @@
   color: black; }
 
 /*player Tabs*/
+#menu-tools {
+  overflow-x: hidden !important;
+  height: 270px;
+  overflow: scroll; }
+
 #player-menu {
   /* color: white;*/
   width: 220px !important;
   position: fixed;
-  /*background-color: black;*/
-  height: 1000px; }
+  /*background-color: black;*/ }
 
 #main {
   margin-top: 10px;
@@ -143,7 +147,7 @@
 
 /* Music Player*/
 #music-player {
-  margin-top: 40px; }
+  margin-top: 5px; }
 
 #player-track-title {
   margin-bottom: 0px; }

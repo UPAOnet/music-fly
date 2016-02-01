@@ -52,7 +52,7 @@ angular.module('musicApp', [])
       if(event.keyCode === 13) {
         if ($scope.newPlaylist === "" || $scope.newPlaylist === undefined) {
           alert('please enter playlist name')
-          return 
+          return;
         }
         playlists.createNewPlaylist($scope.newPlaylist);
         $scope.newPlaylist= "";
