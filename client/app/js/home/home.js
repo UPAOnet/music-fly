@@ -1,6 +1,13 @@
 angular.module('home', ['ngRoute'])
   .controller('formController', ['$scope', function ($scope) {
-    
+    vm = this;
+    vm.submitForm = function (isValid) {
+      if(isValid) {
+        console.log('works')
+      }
+    }
+    $scope.username;
+    $scope.password;
   }])
   .directive('navigation', function () {
     return {
@@ -10,8 +17,10 @@ angular.module('home', ['ngRoute'])
       templateUrl: 'templates/navigation.html',
       link: function (scope, elem, attrs) {
         $('#sign-up-btn').click(function () {
-          console.log('clicked')
           $('.ui.modal').modal('show')
+        })
+        $('#form-submit-btn').click(function () {
+          console.log('clicked')
         })
       }
     }

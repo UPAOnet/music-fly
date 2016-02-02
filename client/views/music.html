@@ -16,19 +16,19 @@
         <div id="player-menu" class = "ui three wide column">
           <div id="menu-tools">
             <div id="search-type">
-              <span id="search-header">Search</span>
+              <span id="search-header">Search By</span>
               <div id="icon-box">
                 <i id="sc-icon" class="fa fa-soundcloud fa-2x soundcloud sc-active" ng-click= "player.changeSearch($event)" data-search="sc"></i>
                 <i id="spotify-icon" class="fa fa-spotify fa-2x spotify" ng-click= "player.changeSearch($event)" data-search="spotify"></i> 
               </div>           
             </div>
-            <div id="search-spotify" class="ui input small" ng-show='player.searchDisplay.spotify' data-search="spotify">
+            <div id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
               <!-- <span>Spotify</span> -->
-              <input id="spotify-box" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()" data-tab="search" placeholder="Spotify...">
+              <input id="spotify-box" type="text" ng-model="spotifyQuery" ng-keypress="player.spotifySearchEnter()" data-tab="search" placeholder="Spotify...">
             </div>
-            <div id="search-sc" class="ui input small" ng-show='player.searchDisplay.sc'>
+            <div id="search-sc" ng-show='player.searchDisplay.sc'>
               <input id="sc-box" type="text" ng-model="scQuery"
-              ng-keypress="scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
+              ng-keypress="player.scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
             </div>
 
             <div id="search">
@@ -116,6 +116,7 @@
 
       </div>
   <script type="text/javascript" src="/underscore/underscore.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.2.1/annyang.min.js"></script>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
   <script type="text/javascript" src="/js/music/music.js">
   </script>

@@ -1,7 +1,7 @@
 angular.module('musicApp', [])
 
-.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType',
-  function ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType) {
+.controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'voice',
+  function ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, voice) {
     vm = this;
     vm.topArtists;
     vm.tracks = [];
@@ -13,7 +13,7 @@ angular.module('musicApp', [])
     vm.playStateButton = 'play icon';
     vm.searchDisplay = searchType.searchState; 
     vm.addPlaylistState = playlists.state.addField;
-    vm.addPlaylistButton = playlists.state.addButton;    
+    vm.addPlaylistButton = playlists.state.addButton;     
     $scope.spotifyQuery;
     $scope.scQuery; 
     $scope.newPlaylist; 
@@ -26,6 +26,15 @@ angular.module('musicApp', [])
     vm.togglePlay = function () {
       playerControls.togglePlay();
     } 
+
+    vm.voicePlay = function () {
+      playerControls.voicePlay();
+    }
+
+    vm.voicePause = function () {
+      playerControls.voicePause();
+    }
+     
     vm.changeSearch = function (event) {
       var attribute = event.target.getAttribute('data-search');
       searchType.changeSearch(attribute)
@@ -64,8 +73,13 @@ angular.module('musicApp', [])
       var song = event.target.getAttribute('data-song');     
       playerControls.playMusic(song);
     }    
-    
-    $scope.scSearchEnter = function () {            
+    vm.voiceSearch = function (query) {
+      var attribute = 'search';
+        tabs.switchTabs(attribute);
+        scSearch.allTracks(query);
+        $scope.scQuery = "";
+    }
+    vm.scSearchEnter = function () {            
       if (event.keyCode === 13) {
         var attribute = event.target.getAttribute('data-tab');
         tabs.switchTabs(attribute);
@@ -73,15 +87,42 @@ angular.module('musicApp', [])
         $scope.scQuery = "";
       };
     }   
-    $scope.spotifySearchEnter = function () {
+    vm.spotifySearchEnter = function () {
       if (event.keyCode === 13) {
         var attribute = event.target.getAttribute('data-tab');
         tabs.switchTabs(attribute);
         spotifySearch.makeRequest($scope.spotifyQuery);
         $scope.spotifyQuery = "";
       }
-    }   
+    }
+    vm.annyang = voice.initialize();   
   }])
+
+.factory('voice', [function () {
+  var voice = {};
+  voice.initialize = function () {
+    if (annyang) {
+      var commands = {
+        'search *query': function search (query) {
+          // recognized('search' + query);
+          vm.voiceSearch(query);
+        },
+        'start': function start () {
+          vm.togglePlay();
+        },
+        'play': function play () {
+          vm.voicePlay();
+        },
+        'stop': function pause() {
+          vm.voicePause();
+        }
+      };
+      annyang.addCommands(commands);
+      annyang.start();
+    }  
+  }
+  return voice
+}])
 
 .factory('searchType', [function () {
   var search = {};
@@ -262,6 +303,24 @@ angular.module('musicApp', [])
       }
     }
 
+    masterPlayer.voicePlay = function () {
+      if (masterPlayer.playState.playing === false) {
+        masterPlayer.play();
+        masterPlayer.toggleState();
+        vm.digest();
+      }      
+    }
+
+    masterPlayer.voicePause = function () {
+      console.log(masterPlayer.playState.playing)
+      if (masterPlayer.playState.playing === true) {
+        console.log('success')
+        masterPlayer.pause();
+        masterPlayer.toggleState();
+        vm.digest();
+      }      
+    }
+
     masterPlayer.togglePlay = function () {
       var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
       if (vm.tracks.length > 1 && masterPlayer.src === '') {
@@ -276,6 +335,7 @@ angular.module('musicApp', [])
       };      
       (masterPlayer.playState.playing === false) ? masterPlayer.play() : masterPlayer.pause();
       masterPlayer.toggleState();
+      vm.digest();
     }
 
     masterPlayer.playMusic = function (song) {

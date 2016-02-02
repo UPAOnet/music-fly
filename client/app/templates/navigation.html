@@ -20,21 +20,23 @@
   <div id="modal-background" class="description">
     <div class="header">
       <h2 id="sign-up-modal-title">Sign Up </h2>
-    <form id="sign-up-fields" novalidate>
-      <label for="username">Username</label>
-        <input id="username"type="text">     
-      <label for="password">Password</label>
-        <input id="password" type="text">      
-    </form>
+
+      <form name="userForm" ng-submit="submitForm(userForm.$valid)" id="sign-up-fields" novalidate>
+        <label for="username" ng-model="username" ng-minlength="2" ng-maxlength="10" required>Username</label>
+          <input id="username"type="text">     
+        <label for="password" ng-model="password" ng-minlength="2" ng-maxlength="10" required>Password</label>
+          <input id="password" type="text">      
+      </form>
+
     </div>
   </div>
   <div class="actions">
     <div class="ui black deny button">
       Cancel
     </div>
-    <div class="ui positive right labeled icon button">
-      Sign Up
-      <i class="checkmark icon"></i>
+    <div class="ui">
+      <button id="form-submit-btn" type="submit" ng-disabled="userForm.$invalid" >"Sign Up"</button>
+      <!-- <i class="checkmark icon"></i> -->
     </div>
   </div>
 </div>
