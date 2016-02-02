@@ -361,9 +361,10 @@ angular.module('musicApp', [])
       replace: false,
       templateUrl: 'templates/track-list.html',
       link: function (scope, elem, attrs) {
-        elem.bind('dblclick', function (event) {
-          var song = event.target.getAttribute('data-song');
-          scope.playMusic(song);
+        elem.bind('click', function (event) {   
+          $('.ui.dropdown')
+          .dropdown('restore defaults')
+            
         })
       }
     }
@@ -376,7 +377,6 @@ angular.module('musicApp', [])
     templateUrl: 'templates/navigation.html',
     link: function (scope, elem, attrs) {
       $('#sign-up-btn').click(function () {
-        console.log('clicked')
         $('.ui.modal').modal('show')
       })
     }
