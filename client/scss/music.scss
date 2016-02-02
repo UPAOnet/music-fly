@@ -196,8 +196,8 @@ li {
 /* Home Page */
 
 #jumbotron {
-  position: relative;
-  top: -800;
+  position: absolute;
+  top: 200px;
   left: 60px;
   p {
     color: white;
