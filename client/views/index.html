@@ -1,25 +1,122 @@
-<!DOCTYPE html>
-<html ng-app="home">
+<html ng-app= "musicApp">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">
-    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.css">  
-    <link rel="stylesheet" type="text/css" href="/css/navigation.css"> 
-    <link rel="stylesheet" type="text/css" href="/css/home.css">    
+    <title>Music Fly</title>    
+    <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">    
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.css">      
     <script type="text/javascript" src="/angular/angular.js"></script>
     <script type="text/javascript" src="/jquery/dist/jquery.js"></script>
     <script src="/semantic/dist/semantic.js"></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
-    <title>Music Fly</title>
-
-
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
+    <link rel="stylesheet" type="text/css" href="/css/music.css">
   </head>
   <body>
-    <div navigation></div>    
-    <img id="hero-img" src="assets/images/home/hero2.jpg">
-    </div>   
+    <div navigation></div>
+    <div class = "ui fluid sixteen wide column grid" ng-controller= "musicPlayer as player">  
+      <div id="music-app" class="row">
+        <div id="player-menu" class = "ui three wide column">
+          <div id="menu-tools">
+            <div class="ui search" id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
+              <div class="ui icon input">
+                <input id="spotify-box" class="prompt" type="text" ng-model="spotifyQuery" ng-keypress="player.spotifySearchEnter()" data-tab="search" placeholder="Spotify...">
+                <i class="search icon"></i>
+              </div>
+            </div>
+
+            <div class="ui search" id="search-sc" ng-show='player.searchDisplay.sc'>
+              <div class="ui icon input">
+                <input id="sc-box" class="prompt" type="text" ng-model="scQuery"
+                ng-keypress="player.scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
+                <i class="search icon"></i>
+              </div>
+            </div>
+
+
+            <div id="search-type">
+              <div id="icon-box">
+                <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked>               
+                SoundCloud
+                </input>
+                <i class="fa fa-soundcloud fa-2x soundcloud sc-active"></i><br>
+
+                <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="spotify">            
+                Spotify
+                <i id="spotify-icon" class="fa fa-spotify fa-2x spotify"></i><br>
+                </input> 
+              </div>           
+            </div>
+            
+            <div id="search">
+              <div>
+                <span class="music-tab" data-tab="search"></span>
+              </div>
+            </div>
+            <div id="main">
+              <span>Main</span>
+             <div id="main-home" >
+                <i class="star icon"></i>
+                <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="home">Home</span>
+              </div>
+            </div>
+              
+
+            <div id ="playlists">
+              <div id="playlist-header">Playlists</div>
+              <div>
+                <li ng-repeat = "playlist in player.playlistTabs" class="music-tab playlist-tab" data-tab='{{playlist.name}}' data-playlist = "playlist.name" ng-click="player.switchTabs($event, playlist.name)">
+                  <i class="music icon"></i>
+                  {{playlist.name}}
+                </li>
+                <input id="playlist-field" type="text" ng-model="newPlaylist" ng-show="player.addPlaylistState" ng-keypress="player.createNewPlaylist($event)"/>
+                <span id="playlist-add" ng-click="player.revealNewPlaylist()" ng-show="player.addPlaylistButton"><i class="ui plus icon"></i>Add new</span> 
+              </div>       
+            </div>
+          </div>
+
+          <div class="ui row">
+            <div id="music-player" class="ui">
+              <div  class="ui">       
+                <img ng-src= "{{player.playerImage}}" id="player-img" class="ui image centered">
+              </div>
+              <div id="player-track-info" class="">
+                <div id="track-info">
+                  <h4 id="player-track-title">{{player.playerTitle}}</h4>
+                  <p id="player-track-artist">{{player.playerArtist}}</p>
+                </div>
+                <div id="player-controls" ng-click="player.togglePlay()">
+                  <i id="play-btn"  class="large circular {{player.playStateButton}}"></i>
+                </div>       
+              </div>                        
+             </div> 
+            </div>
+        </div>
+        <div id="pages-section" class="ui thirteen wide column">
+          <div id="home-page" class="music-page" data-page="home">
+            <img id="hero-img" src="assets/images/home/hero2.jpg">
+          </div>
+          <div id="song-interface" class="music-page hidden" data-page="search">
+            <div id="search-page">                    
+              <div id="search-list" >
+                <h4>Search Results</h4>
+                <div class= "ui grid sixteen wide column" song-list></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <li ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page hidden">
+              <div>
+                <h3>{{playlistPage.name}}</h3>
+                <div class= "ui grid sixteen wide column" song-list></div>
+              </div>
+            </li>
+          </div>
+        </div> 
+      </div>
+  <script type="text/javascript" src="/underscore/underscore.js"></script>
+  <script src="/annyang.min.js"></script>
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+  <script type="text/javascript" src="/js/music/music.js">
+  </script>
+  <script type="text/javascript" src="/js/music/default.js"></script>
   </body>
-  <script type="text/javascript" src="/js/home/home.js"></script> 
 </html>

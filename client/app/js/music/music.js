@@ -362,9 +362,7 @@ angular.module('musicApp', [])
       templateUrl: 'templates/track-list.html',
       link: function (scope, elem, attrs) {
         elem.bind('click', function (event) {   
-          $('.ui.dropdown')
-          .dropdown('restore defaults')
-            
+          $('.ui.dropdown').dropdown('restore defaults');            
         })
       }
     }
