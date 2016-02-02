@@ -309,6 +309,20 @@ angular.module('musicApp', [])
       }
     }
   })
+.directive('navigation', function () {
+  return {
+    scope: true,
+    restrict: 'A',
+    replace: false,
+    templateUrl: 'templates/navigation.html',
+    link: function (scope, elem, attrs) {
+      $('#sign-up-btn').click(function () {
+        console.log('clicked')
+        $('.ui.modal').modal('show')
+      })
+    }
+  }
+})
 
 SC.initialize({
   client_id: 'b10a9e77003de676a40bcd4ce7346f03'

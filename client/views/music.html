@@ -10,19 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
   </head>
   <body>
-    <div id="navigation" class="ui inverted segment">
-      <div class="ui inverted secondary pointing menu">
-        <a id="logo" class="item" href= "http://localhost:3000">
-         <span id="logo-title-m">M</span><span id="logo-title">usic Fly</span><img src="assets/images/home/headphone.png" id="logo-picture"></img>
-        </a>
-        <a class="item">Music Player</a>
-        </a>
-        <a class="item">
-
-        </a>
-      </div>
-    </div>
-
+    <div navigation></div>
     <div class = "ui fluid sixteen wide column grid" ng-controller= "musicPlayer as player">  
       <div id="music-app" class="row">
         <div id="player-menu" class = "ui three wide column">
@@ -34,11 +22,11 @@
                 <i id="spotify-icon" class="fa fa-spotify fa-2x spotify" ng-click= "player.changeSearch($event)" data-search="spotify"></i> 
               </div>           
             </div>
-            <div id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
+            <div id="search-spotify" class="ui input small" ng-show='player.searchDisplay.spotify' data-search="spotify">
               <!-- <span>Spotify</span> -->
               <input id="spotify-box" type="text" ng-model="spotifyQuery" ng-keypress="spotifySearchEnter()" data-tab="search" placeholder="Spotify...">
             </div>
-            <div id="search-sc" ng-show='player.searchDisplay.sc'>
+            <div id="search-sc" class="ui input small" ng-show='player.searchDisplay.sc'>
               <input id="sc-box" type="text" ng-model="scQuery"
               ng-keypress="scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
             </div>
