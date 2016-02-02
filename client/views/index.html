@@ -12,8 +12,8 @@
   </head>
   <body>
     <div navigation></div>
-    <div class = "ui fluid sixteen wide column grid" ng-controller= "musicPlayer as player">  
-      <div id="music-app" class="row">
+    <div class = "ui fluid sixteen wide column grid" ng-controller="musicPlayer as player">  
+      <div id="music-app" >
         <div id="player-menu" class = "ui three wide column">
           <div id="menu-tools">
             <div class="ui search" id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
@@ -22,7 +22,6 @@
                 <i class="search icon"></i>
               </div>
             </div>
-
             <div class="ui search" id="search-sc" ng-show='player.searchDisplay.sc'>
               <div class="ui icon input">
                 <input id="sc-box" class="prompt" type="text" ng-model="scQuery"
@@ -30,11 +29,9 @@
                 <i class="search icon"></i>
               </div>
             </div>
-
-
             <div id="search-type">
               <div id="icon-box">
-                <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked>               
+                <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked>           
                 SoundCloud
                 </input>
                 <i class="fa fa-soundcloud fa-2x soundcloud sc-active"></i><br>
@@ -44,8 +41,7 @@
                 <i id="spotify-icon" class="fa fa-spotify fa-2x spotify"></i><br>
                 </input> 
               </div>           
-            </div>
-            
+            </div>          
             <div id="search">
               <div>
                 <span class="music-tab" data-tab="search"></span>
@@ -54,12 +50,12 @@
             <div id="main">
               <span>Main</span>
              <div id="main-home" >
-                <i class="star icon"></i>
-                <span class="music-tab" ng-click="player.switchTabs($event)" data-tab="home">Home</span>
+                <li class="music-tab" ng-click="player.switchTabs($event)" data-tab="home">
+                  <i class="star icon"></i>
+                  <span ng-click="player.switchTabs($event)" data-tab="home">Home</span>
+                </li>
               </div>
             </div>
-              
-
             <div id ="playlists">
               <div id="playlist-header">Playlists</div>
               <div>
@@ -72,7 +68,6 @@
               </div>       
             </div>
           </div>
-
           <div class="ui row">
             <div id="music-player" class="ui">
               <div  class="ui">       
@@ -91,8 +86,22 @@
             </div>
         </div>
         <div id="pages-section" class="ui thirteen wide column">
-          <div id="home-page" class="music-page" data-page="home">
+          <div id="home-page" class="music-page" data-page="home">         
             <img id="hero-img" src="assets/images/home/hero2.jpg">
+            <div id="jumbotron">
+              <h1 id="jumbotron-title">All Your Music In One</h1>
+              <p>Music Fly brings the songs from Soundcloud and Spotify to combine the music you love</p>
+              <p>All songs belong to either Spoify or Soundcloud, and any of their affiliates</p>
+              <!-- div id="jumbotron-search">
+                <P>Start Listening</p>
+                <div>
+                  <div class="ui icon input">
+                    <input class="prompt" id="home-search" type="text" ng-model="scQuery"
+                    ng-keypress="player.scSearchEnter()" data-tab="search"/>
+                  </div>
+                </div>
+              </div> -->
+            </div>           
           </div>
           <div id="song-interface" class="music-page hidden" data-page="search">
             <div id="search-page">                    
@@ -102,16 +111,18 @@
               </div>
             </div>
           </div>
-          <div>
-            <li ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page hidden">
-              <div>
-                <h3>{{playlistPage.name}}</h3>
-                <div class= "ui grid sixteen wide column" song-list></div>
+          <div ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page hidden">
+            <div id="playlist-page">
+              <div id="playlist-list">
+                <h4>{{playlistPage.name}}</h4>
+                <div class= "ui grid sixteen wide column" song-list>
+                </div>
               </div>
-            </li>
+            </div>
           </div>
         </div> 
       </div>
+    </div>
   <script type="text/javascript" src="/underscore/underscore.js"></script>
   <script src="/annyang.min.js"></script>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
