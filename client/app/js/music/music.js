@@ -104,7 +104,6 @@ angular.module('musicApp', [])
     if (annyang) {
       var commands = {
         'search *query': function search (query) {
-          // recognized('search' + query);
           vm.voiceSearch(query);
         },
         'start': function start () {

@@ -4,7 +4,7 @@ var spotify = require('./server/spotify.js');
 
 
 app.use(express.static('./client/app'));
-app.use(express.static('./client/semantic'));
+app.use(express.static('./client/vendor'));
 app.use(express.static('./client/bower_components'));
 
 app.use('/spotify', spotify);
