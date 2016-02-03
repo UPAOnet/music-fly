@@ -64,7 +64,8 @@ li {
   overflow-x: hidden !important;
   padding-top: 30px;
   height: 300px;
-  overflow: scroll; }
+  overflow: scroll;
+  /*scrollbar-face-color: blue*/ }
 
 #player-menu {
   margin-top: 7px;
@@ -151,7 +152,7 @@ li {
   list-style-type: none; }
 
 #playlist-list {
-  width: 300%; }
+  width: 200%; }
 
 /* Home Page */
 #jumbotron {
@@ -166,7 +167,7 @@ li {
   color: #FF8300; }
 
 #hero-img {
-  -webkit-filter: contrast(80%);
+  -webkit-filter: contrast(70%);
   position: relative;
   left: -55; }
 

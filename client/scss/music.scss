@@ -84,9 +84,9 @@ li {
   padding-top: 30px;
   height: 300px;
   overflow: scroll;
+  /*scrollbar-face-color: blue*/
 }
 
- 
 #player-menu {
   margin-top: 7px;
   width: 220px !important;
@@ -190,7 +190,7 @@ li {
 }
 
 #playlist-list {
-  width: 300%;
+  width: 200%;
 }
 
 /* Home Page */
@@ -210,7 +210,7 @@ li {
 }
 
 #hero-img {
-  -webkit-filter: contrast(80%);
+  -webkit-filter: contrast(70%);
   position: relative;
   left: -55;
 }

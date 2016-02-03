@@ -111,11 +111,20 @@ angular.module('musicApp', [])
         },
         'play': function play () {
           vm.voicePlay();
-        },
+        },        
         'stop': function pause() {
           vm.voicePause();
+        },
+        ':nomatch': function none (message) {
+          console.log('no recognized command')
+          return
         }
       };
+
+      // annyang.addCallback('resultNoMatch', function () {
+      //   console.log('no command match');
+      //   return
+      // })
       annyang.addCommands(commands);
       annyang.start();
     }  

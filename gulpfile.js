@@ -2,12 +2,19 @@ var gulp = require('gulp');
 var sass = require ('gulp-sass');
 var concat = require('gulp-concat');
 var nodemon = require('gulp-nodemon');
+var mocha = require('gulp-mocha');
+var request = require('request');
 
 gulp.task('start', () => {
   nodemon({
     script: 'app.js',
     env: { 'NODE_ENV': 'development' }
-  })
+  }).on('start', ['test'])
+})
+
+gulp.task('test', () => {
+  gulp.src('server/**/*.spec.js')
+    .pipe(mocha())
 })
 
 gulp.task('sass', () => {
