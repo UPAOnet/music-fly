@@ -176,6 +176,9 @@ angular.module('musicApp', [])
     _.map(vm.tracks, function findTrack (eachTrack) {
       if (eachTrack.name === track) {
         currentPlaylist.tracks.push(eachTrack);
+        var removedDuplicates = _.uniq(currentPlaylist.tracks);
+        currentPlaylist.tracks = removedDuplicates;
+        console.log(currentPlaylist.tracks);
       }
     })
   }
