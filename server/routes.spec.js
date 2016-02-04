@@ -1,5 +1,6 @@
 var expect = require('Chai').expect;
 var request = require('request');
+var SC = require('node-soundcloud');
 
 describe('Check if Spotify API track search works', function () {
   it('should return a track', function (done) {
@@ -9,5 +10,14 @@ describe('Check if Spotify API track search works', function () {
         done();
       }
     )
+  })
+})
+
+describe('Check if Soundcloud API track search works', function () {
+  it('should return a track', function (done) {
+    SC.get('/tracks/164497989', function(err, track) {
+      expect(track);
+      done();
+    })       
   })
 })

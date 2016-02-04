@@ -9,11 +9,11 @@ li {
 }
 
 #music-app {
-  /*background-image:url(../assets/images/music-player/mosaic.jpg);*/
+  padding-top: 0px; 
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 0px;
-/*  height: 2000px;*/
+
   font-size: 1.1em;
 }
 
@@ -185,8 +185,18 @@ li {
   list-style-type: none;
 }
 
-#playlist-list {
-  width: 200%;
+#song-interface {
+  padding-top: 30px;
+  padding-left:80px;
+}
+
+#playlist-page {
+  padding-top: 30px;
+  padding-left:80px;
+}
+
+#track-list {
+  margin-top:30px;
 }
 
 /* Home Page */
@@ -278,8 +288,8 @@ li {
 }
 
 .song-img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 }
 
 .song-option-icon {
@@ -312,12 +322,42 @@ li {
     margin-right: auto;
     width: 1700px;
   }
+  #pages-section {
+    width: 1600px;
+  }
   #navigation {
     width: 1700px;
   }
+  #song-interface {
+    padding-left: 150px;
+  }
+  #playlist-page {
+    padding-left: 150px;
+  }
 }
 
+@media (max-width: 1000px) {
+  .song-img {
+    width: 100px;
+    height: 100px;
+  }
+  .song-description {
+    padding-left: 50px;
+    font-size: 14px;
+  }
+  .playlist-add-button {
+    font-size: 10px;
+  }
+}
 
+@media (max-width: 770px) {
+  #song-interface {
+    padding-left: 10px;
+  }
+  #playlist-page {
+    padding-left: 10px;
+  }
+}
 
 
 
