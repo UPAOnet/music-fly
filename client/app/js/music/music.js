@@ -13,11 +13,12 @@ angular.module('musicApp', [])
     vm.playStateButton = 'play icon';
     vm.searchDisplay = searchType.searchState; 
     vm.addPlaylistState = playlists.state.addField;
-    vm.addPlaylistButton = playlists.state.addButton;     
+    vm.addPlaylistButton = playlists.state.addButton; 
+    vm.annyang = voice.initialize();    
     $scope.spotifyQuery;
     $scope.scQuery; 
     $scope.newPlaylist; 
-    
+
     vm.digest = function () {
       _.defer(function() {
         $scope.$digest();
@@ -39,11 +40,6 @@ angular.module('musicApp', [])
       var attribute = event.target.getAttribute('data-search');
       searchType.changeSearch(attribute)
     }
-
-    vm.addTrack = function (trackKey, playlist) {
-      playlists.addTrack(trackKey, playlist);
-    } 
-
     vm.switchTabs = function (event, playlist) {
       var attribute = event.target.getAttribute('data-tab');
       var isPlaylist = event.target.getAttribute('data-playlist');
@@ -68,11 +64,10 @@ angular.module('musicApp', [])
         vm.addPlaylistState = playlists.state.addField;
         vm.addPlaylistButton = playlists.state.addButton;
       }
-    }         
-    $scope.playMusic = function (event) { 
-      var song = event.target.getAttribute('data-song');     
-      playerControls.playMusic(song);
-    }    
+    }  
+    vm.addTrack = function (trackKey, playlist) {
+      playlists.addTrack(trackKey, playlist);
+    }             
     vm.voiceSearch = function (query) {
       var attribute = 'search';
         tabs.switchTabs(attribute);
@@ -95,7 +90,10 @@ angular.module('musicApp', [])
         $scope.spotifyQuery = "";
       }
     }
-    vm.annyang = voice.initialize();   
+   $scope.playMusic = function (event) { 
+      var song = event.target.getAttribute('data-song');     
+      playerControls.playMusic(song);
+    }    
   }])
 
 .factory('voice', [function () {
@@ -120,11 +118,6 @@ angular.module('musicApp', [])
           return
         }
       };
-
-      // annyang.addCallback('resultNoMatch', function () {
-      //   console.log('no command match');
-      //   return
-      // })
       annyang.addCommands(commands);
       annyang.start();
     }  
@@ -178,7 +171,6 @@ angular.module('musicApp', [])
         currentPlaylist.tracks.push(eachTrack);
         var removedDuplicates = _.uniq(currentPlaylist.tracks);
         currentPlaylist.tracks = removedDuplicates;
-        console.log(currentPlaylist.tracks);
       }
     })
   }
