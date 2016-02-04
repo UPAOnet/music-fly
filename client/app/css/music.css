@@ -54,10 +54,12 @@ li {
   margin-top: 7px; }
 
 #sc-box {
-  width: 180px; }
+  width: 180px;
+  border-radius: 0px; }
 
 #spotify-box {
-  width: 180px; }
+  width: 180px;
+  border-radius: 0px; }
 
 /*player Tabs*/
 #menu-tools {

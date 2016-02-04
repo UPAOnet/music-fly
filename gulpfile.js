@@ -12,6 +12,12 @@ gulp.task('start', () => {
   }).on('start', ['test'])
 })
 
+gulp.task('scripts', () => {
+  gulp.src('client/app/js/**/*.js')
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('client/app/js'))
+})
+
 gulp.task('test', () => {
   gulp.src('server/**/*.spec.js')
     .pipe(mocha())
@@ -27,4 +33,4 @@ gulp.task('watch', () => {
   gulp.watch('client/scss/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['start', 'sass', 'watch']);
+gulp.task('default', ['scripts', 'start', 'sass', 'watch']);

@@ -1,11 +1,4 @@
 angular.module('musicApp')
-  .service('playlistConstructor', [function () {
-    function playlist (name) {
-      this.name = name;
-      this.tracks = [];
-    }
-    return playlist
-  }])
   .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
     var playlist = {};
     var samplePlaylist = new playlistConstructor('My Playlist');

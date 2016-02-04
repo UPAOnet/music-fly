@@ -9,7 +9,6 @@ angular.module('musicApp')
         return song.urlSource;
       }
     };
-
     masterPlayer.playState = {
       playing: false
     }
