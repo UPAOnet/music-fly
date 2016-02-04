@@ -68,26 +68,24 @@
               </div>       
             </div>
           </div>
-          <div class="ui row">
-            <div id="music-player" class="ui">
-              <div  class="ui">       
-                <img ng-src= "{{player.playerImage}}" id="player-img" class="ui image centered">
-              </div>
-              <div id="player-track-info" class="">
-                <div id="track-info">
-                  <h4 id="player-track-title">{{player.playerTitle}}</h4>
-                  <p id="player-track-artist">{{player.playerArtist}}</p>
-                </div>
-                <div id="player-controls" ng-click="player.togglePlay()">
-                  <i id="play-btn"  class="large circular {{player.playStateButton}}"></i>
-                </div>       
-              </div>                        
-             </div> 
+          <div id="music-player" class="ui">
+            <div  class="ui">       
+              <img ng-src= "{{player.playerImage}}" id="player-img" class="ui image centered">
             </div>
+            <div id="player-track-info" class="">
+              <div id="track-info">
+                <h4 id="player-track-title">{{player.playerTitle}}</h4>
+                <p id="player-track-artist">{{player.playerArtist}}</p>
+              </div>
+              <div id="player-controls" ng-click="player.togglePlay()">
+                <i id="play-btn"  class="large circular {{player.playStateButton}}"></i>
+              </div>       
+            </div>                        
+           </div> 
         </div>
         <div id="pages-section" class="ui thirteen wide column">
           <div id="home-page" class="music-page" data-page="home">         
-            <img id="hero-img" src="assets/images/home/hero2.jpg">
+            <img class="ui image" id="hero-img" src="assets/images/home/hero2.jpg">
             <div id="jumbotron">
               <h1 id="jumbotron-title">All Your Music In One</h1>
               <p>Music Fly brings songs from Soundcloud and Spotify to combine the music you love</p>
@@ -98,7 +96,7 @@
             <div id="search-page">                    
               <div id="search-list" >
                 <h4>Search Results</h4>
-                <div class= "ui grid sixteen wide column" song-list></div>
+                <div song-list></div>
               </div>
             </div>
           </div>
@@ -106,8 +104,7 @@
             <div id="playlist-page">
               <div id="playlist-list">
                 <h4>{{playlistPage.name}}</h4>
-                <div class= "ui grid sixteen wide column" song-list>
-                </div>
+                <div song-list></div>
               </div>
             </div>
           </div>

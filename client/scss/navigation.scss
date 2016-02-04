@@ -1,5 +1,9 @@
 $logo: #FF8300;
 
+#navigation {
+  border-radius: 0px !important;
+}
+
 #logo {
   margin-right: 60px;
   margin-left: 80px;
@@ -70,6 +74,13 @@ $logo: #FF8300;
   }
 }
 
+/*media queries*/
+
+@media(min-width: 1700px) {
+  #navigation {
+    width: 1700px;
+  }
+}
 
 
 

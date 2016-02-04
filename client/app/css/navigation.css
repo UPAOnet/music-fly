@@ -1,3 +1,6 @@
+#navigation {
+  border-radius: 0px !important; }
+
 #logo {
   margin-right: 60px;
   margin-left: 80px;
@@ -52,3 +55,8 @@
   #sign-up-fields label {
     font-size: 1.2em;
     color: #FF8300; }
+
+/*media queries*/
+@media (min-width: 1700px) {
+  #navigation {
+    width: 1700px; } }
