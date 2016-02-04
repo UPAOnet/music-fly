@@ -8,4 +8,5 @@ A website for people to play, save, and merge music files across different media
 - Underscore.js
 - Semantic UI
 - SASS
+- Gulp
 - Spotify and SoundCloud API
