@@ -229,7 +229,8 @@ li {
   height: 150px; }
 
 .song-option-icon {
-  margin-left: 10px; }
+  margin-left: 10px;
+  margin-right: 3px; }
 
 .song-play {
   color: #FF8300;
