@@ -140,8 +140,17 @@ angular.module('musicApp')
     }
 
     masterPlayer.nextSong = function () {
-      if(masterPlayer.playState.playing === true && vm.tracks.length) {
-        
+      var current = masterPlayer.playState.currentSong;
+      var next = current + 1
+      if(masterPlayer.playState.playing === true && vm.tracks[current + 1]) {
+        masterPlayer.src = getSong(vm.tracks[next]);
+        masterPlayer.play();
+        vm.playerImage = vm.tracks[next].image;
+        vm.playerTitle = vm.tracks[next].name;
+        vm.playerArtist = vm.tracks[next].artist;
+        vm.playerInfo = vm.tracks[next].album; 
+        setCurrent(vm.tracks[next]);
+        masterPlayer.play();
       }
     }
 
@@ -194,13 +203,15 @@ angular.module('musicApp')
 
     masterPlayer.playMusic = function (song) {
       var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
+      // console.log(setCurrent)
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
+          setCurrent(eachSong);   
           vm.playerImage = eachSong.image;
           vm.playerTitle = eachSong.name;
           vm.playerArtist = eachSong.artist;
           vm.playerInfo = eachSong.album;
-          masterPlayer.src = getSong(eachSong, scClient);          
+          masterPlayer.src = getSong(eachSong, scClient);
           (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
           vm.digest();
         }
