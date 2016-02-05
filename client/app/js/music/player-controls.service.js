@@ -14,7 +14,6 @@ angular.module('musicApp')
       var songKey = currentSong.key;
       masterPlayer.playState.currentSong = songKey;
       console.log(masterPlayer.playState.currentSong);
-      // console.log(songKey)
     }
 
     masterPlayer.playState = {
@@ -86,7 +85,6 @@ angular.module('musicApp')
 
     masterPlayer.playMusic = function (song) {
       var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
-      // console.log(setCurrent)
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
           setCurrent(eachSong);   
