@@ -31,6 +31,7 @@ gulp.task('sass', () => {
 
 gulp.task('watch', () => {
   gulp.watch('client/scss/**/*.scss', ['sass']);
+  gulp.watch('client/app/js/**/*.js', ['scripts']);
 });
 
 gulp.task('default', ['scripts', 'sass', 'test', 'start', 'watch']);

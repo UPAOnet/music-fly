@@ -27,7 +27,9 @@ angular.module('musicApp')
       vm.togglePlay = function () {
         playerControls.togglePlay();
       } 
-
+      vm.playNext = function () {
+        playerControls.nextSong();
+      }
       vm.voicePlay = function () {
         playerControls.voicePlay();
       }
@@ -94,7 +96,7 @@ angular.module('musicApp')
           $scope.spotifyQuery = "";
         }
       }
-     $scope.playMusic = function (event) { 
+      $scope.playMusic = function (event) { 
         var song = event.target.getAttribute('data-song');     
         playerControls.playMusic(song);
       }    
@@ -116,6 +118,7 @@ angular.module('musicApp')
 angular.module('musicApp')
   .factory('playerControls', [function () { 
     var masterPlayer = new Audio();
+
     function getSong (song, client) {
       if (song.company === 'SoundCloud') {
         return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + client;
@@ -124,8 +127,22 @@ angular.module('musicApp')
         return song.urlSource;
       }
     };
+    function setCurrent (currentSong) {
+      var songKey = currentSong.key;
+      masterPlayer.playState.currentSong = songKey;
+      console.log(masterPlayer.playState.currentSong);
+      // console.log(songKey)
+    }
+
     masterPlayer.playState = {
-      playing: false
+      playing: false,
+      currentSong: null
+    }
+
+    masterPlayer.nextSong = function () {
+      if(masterPlayer.playState.playing === true && vm.tracks.length) {
+        
+      }
     }
 
     masterPlayer.toggleState = function () {
@@ -151,7 +168,6 @@ angular.module('musicApp')
     masterPlayer.voicePause = function () {
       console.log(masterPlayer.playState.playing)
       if (masterPlayer.playState.playing === true) {
-        console.log('success')
         masterPlayer.pause();
         masterPlayer.toggleState();
         vm.digest();
@@ -165,7 +181,8 @@ angular.module('musicApp')
         vm.playerImage = vm.tracks[0].image;
         vm.playerTitle = vm.tracks[0].name;
         vm.playerArtist = vm.tracks[0].artist;
-        vm.playerInfo = vm.tracks[0].album;        
+        vm.playerInfo = vm.tracks[0].album; 
+        setCurrent(vm.tracks[0]);
       }
       else if (masterPlayer.src === '') {
         return
@@ -331,7 +348,6 @@ angular.module('musicApp')
           method: 'POST',
         }).then(function success (response) {       
           trackResults = response.data.tracks.items;
-          console.log(response);
           _.map(trackResults, function (each, i) {
             vm.tracks.push(
               new songConstructor(i, each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'Spotify', null, each.preview_url, each.external_urls.spotify)

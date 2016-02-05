@@ -26,7 +26,9 @@ angular.module('musicApp')
       vm.togglePlay = function () {
         playerControls.togglePlay();
       } 
-
+      vm.playNext = function () {
+        playerControls.nextSong();
+      }
       vm.voicePlay = function () {
         playerControls.voicePlay();
       }
@@ -93,7 +95,7 @@ angular.module('musicApp')
           $scope.spotifyQuery = "";
         }
       }
-     $scope.playMusic = function (event) { 
+      $scope.playMusic = function (event) { 
         var song = event.target.getAttribute('data-song');     
         playerControls.playMusic(song);
       }    
