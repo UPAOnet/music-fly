@@ -15,6 +15,12 @@ angular.module('musicApp')
       masterPlayer.playState.currentSong = songKey;
       console.log(masterPlayer.playState.currentSong);
     }
+    function setPlayerInfo(currentSong) {
+      vm.playerImage = currentSong.image;
+      vm.playerTitle = currentSong.name;
+      vm.playerArtist = currentSong.artist;
+      vm.playerInfo = currentSong.album; 
+    }
 
     masterPlayer.playState = {
       playing: false,
@@ -23,18 +29,25 @@ angular.module('musicApp')
 
     masterPlayer.nextSong = function () {
       var current = masterPlayer.playState.currentSong;
-      var next = current + 1
-      if(masterPlayer.playState.playing === true && vm.tracks[current + 1]) {
+      var next = current + 1;
+      if (masterPlayer.playState.playing === true && vm.tracks[current + 1]) {
         masterPlayer.src = getSong(vm.tracks[next]);
+        setPlayerInfo(vm.tracks[next]);
+        setCurrent(vm.tracks[next])
         masterPlayer.play();
-        vm.playerImage = vm.tracks[next].image;
-        vm.playerTitle = vm.tracks[next].name;
-        vm.playerArtist = vm.tracks[next].artist;
-        vm.playerInfo = vm.tracks[next].album; 
-        setCurrent(vm.tracks[next]);
+      }
+      else if (!(vm.tracks[current + 1])) {
+        masterPlayer.src = getSong(vm.tracks[0]);
+        setPlayerInfo(vm.tracks[0]);
+        setCurrent(vm.tracks[0]);
         masterPlayer.play();
       }
     }
+
+    // masterPlayer.previousSong = function () {
+    //   var current = masterPlayer.playState.currentSong;
+    //   var next = current + 1
+    // }
 
     masterPlayer.toggleState = function () {
       if (masterPlayer.playState.playing === false) {
@@ -69,10 +82,7 @@ angular.module('musicApp')
       var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
       if (vm.tracks.length > 1 && masterPlayer.src === '') {
         masterPlayer.src = getSong(vm.tracks[0], scClient);
-        vm.playerImage = vm.tracks[0].image;
-        vm.playerTitle = vm.tracks[0].name;
-        vm.playerArtist = vm.tracks[0].artist;
-        vm.playerInfo = vm.tracks[0].album; 
+        setPlayerInfo(vm.tracks[0]); 
         setCurrent(vm.tracks[0]);
       }
       else if (masterPlayer.src === '') {
@@ -88,10 +98,7 @@ angular.module('musicApp')
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
           setCurrent(eachSong);   
-          vm.playerImage = eachSong.image;
-          vm.playerTitle = eachSong.name;
-          vm.playerArtist = eachSong.artist;
-          vm.playerInfo = eachSong.album;
+          setPlayerInfo(eachSong);
           masterPlayer.src = getSong(eachSong, scClient);
           (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
           vm.digest();

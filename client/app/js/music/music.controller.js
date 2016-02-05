@@ -29,6 +29,12 @@ angular.module('musicApp')
       vm.playNext = function () {
         playerControls.nextSong();
       }
+      vm.playPrevious = function () {
+        playerControls.previousSong();
+      }
+      vm.playPrevious = function () {
+        console.log('previous')
+      }
       vm.voicePlay = function () {
         playerControls.voicePlay();
       }

@@ -41,4 +41,4 @@ angular.module('musicApp')
       playlist.state.addButton = true;
     }
     return playlist;
-}])
+  }])

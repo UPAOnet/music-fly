@@ -34,7 +34,7 @@
                 <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked>           
                 SoundCloud
                 </input>
-                <i class="fa fa-soundcloud fa-2x soundcloud sc-active"></i><br>
+                <i id="sc-icon" class="fa fa-soundcloud fa-2x soundcloud sc-active"></i><br>
 
                 <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="spotify">            
                 Spotify
@@ -78,8 +78,8 @@
                 <p id="player-track-artist">{{player.playerArtist}}</p>
               </div>
               <div id="player-controls">
-                <i id="previous-btn" class="backward icon circular"></i>
-                <i id="play-btn"  class="large circular {{player.playStateButton}}" ng-click="player.togglePlay()"></i>
+                <i id="previous-btn" class="backward icon circular" ng-click="player.playPrevious()"></i>
+                <i id="play-btn" class="large circular {{player.playStateButton}}" ng-click="player.togglePlay()"></i>
                 <i id="next-btn" class="forward icon circular" ng-click="player.playNext()"></i>
               </div>       
             </div>                        
