@@ -97,7 +97,7 @@
           <div id="song-interface" class="music-page hidden" data-page="search">
             <div id="search-page">                    
               <div id="search-list" >
-                <h4>Search Results</h4>
+                <h4 class="search-title">Search Results</h4>
                 <div song-list></div>
               </div>
             </div>
@@ -105,7 +105,7 @@
           <div ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page hidden">
             <div id="playlist-page">
               <div id="playlist-list">
-                <h4>{{playlistPage.name}}</h4>
+                <h4 class="playlist-title">{{playlistPage.name}}</h4>
                 <div song-list></div>
               </div>
             </div>
