@@ -64,6 +64,14 @@ li {
   color: $spotify;  
 }
 
+#spotify-icon {
+  margin-left: 4%;
+}
+
+#sc-icon {
+  margin-left: 4%;
+}
+
 #icon-box {
   margin-left: 2px;
   cursor: pointer;
@@ -86,6 +94,7 @@ li {
 }
 
 #player-menu {
+  color: #828282;
   margin-top: 7px;
   width: 220px !important;
   position: absolute;
@@ -174,6 +183,8 @@ li {
 /*Player Pages */
 
 #pages-section {
+  color: #828282;
+  cursor: default;
   width: 1480px;
   position: relative;
   left: 220px;
@@ -260,10 +271,12 @@ li {
 }
 
 #player-controls {
+  text-shadow:#fff 0 0 10px;
   text-align: center;
   margin-top: 10px;
   color: $logo;
 }
+
 
 /* Track List */
 

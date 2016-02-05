@@ -48,6 +48,12 @@ li {
 .spotify {
   color: #2ebd59; }
 
+#spotify-icon {
+  margin-left: 4%; }
+
+#sc-icon {
+  margin-left: 4%; }
+
 #icon-box {
   margin-left: 2px;
   cursor: pointer;
@@ -66,6 +72,7 @@ li {
   padding-top: 30px; }
 
 #player-menu {
+  color: #828282;
   margin-top: 7px;
   width: 220px !important;
   position: absolute; }
@@ -139,6 +146,8 @@ li {
 
 /*Player Pages */
 #pages-section {
+  color: #828282;
+  cursor: default;
   width: 1480px;
   position: relative;
   left: 220px; }
@@ -205,6 +214,7 @@ li {
   height: 150px; }
 
 #player-controls {
+  text-shadow: #fff 0 0 10px;
   text-align: center;
   margin-top: 10px;
   color: #FF8300; }
