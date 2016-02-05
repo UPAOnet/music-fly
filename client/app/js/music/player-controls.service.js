@@ -2,9 +2,10 @@ angular.module('musicApp')
   .factory('playerControls', [function () { 
     var masterPlayer = new Audio();
 
-    function getSong (song, client) {
+    function getSong (song) {
+      scClient = 'b10a9e77003de676a40bcd4ce7346f03'
       if (song.company === 'SoundCloud') {
-        return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + client;
+        return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + scClient;
       }
       else if (song.company === 'Spotify') {
         return song.urlSource;
@@ -13,7 +14,6 @@ angular.module('musicApp')
     function setCurrent (currentSong) {
       var songKey = currentSong.key;
       masterPlayer.playState.currentSong = songKey;
-      console.log(masterPlayer.playState.currentSong);
     }
     function setPlayerInfo(currentSong) {
       vm.playerImage = currentSong.image;
@@ -30,13 +30,13 @@ angular.module('musicApp')
     masterPlayer.nextSong = function () {
       var current = masterPlayer.playState.currentSong;
       var next = current + 1;
-      if (masterPlayer.playState.playing === true && vm.tracks[current + 1]) {
+      if (masterPlayer.playState.playing === true && vm.tracks[next]) {
         masterPlayer.src = getSong(vm.tracks[next]);
         setPlayerInfo(vm.tracks[next]);
-        setCurrent(vm.tracks[next])
+        setCurrent(vm.tracks[next]);
         masterPlayer.play();
       }
-      else if (!(vm.tracks[current + 1])) {
+      else if (!(vm.tracks[next])) {
         masterPlayer.src = getSong(vm.tracks[0]);
         setPlayerInfo(vm.tracks[0]);
         setCurrent(vm.tracks[0]);
@@ -44,11 +44,23 @@ angular.module('musicApp')
       }
     }
 
-    // masterPlayer.previousSong = function () {
-    //   var current = masterPlayer.playState.currentSong;
-    //   var next = current + 1
-    // }
-
+    masterPlayer.previousSong = function () {
+      var current = masterPlayer.playState.currentSong;
+      var previous = current - 1;
+      if (masterPlayer.playState.playing === true && vm.tracks[previous]) {
+        masterPlayer.src = getSong(vm.tracks[previous]);
+        setPlayerInfo(vm.tracks[previous]);
+        setCurrent(vm.tracks[previous]);
+        masterPlayer.play();
+      }
+      else if (!(vm.tracks[previous])) {
+        var lastTrack = vm.tracks[((0 - vm.tracks.length)*-1) - 1];
+        masterPlayer.src = getSong(lastTrack);
+        setPlayerInfo(lastTrack);
+        setCurrent(lastTrack);
+        masterPlayer.play();
+      }
+    }
     masterPlayer.toggleState = function () {
       if (masterPlayer.playState.playing === false) {
         masterPlayer.playState.playing = true;
@@ -70,7 +82,6 @@ angular.module('musicApp')
     }
 
     masterPlayer.voicePause = function () {
-      console.log(masterPlayer.playState.playing)
       if (masterPlayer.playState.playing === true) {
         masterPlayer.pause();
         masterPlayer.toggleState();
@@ -79,9 +90,8 @@ angular.module('musicApp')
     }
 
     masterPlayer.togglePlay = function () {
-      var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
       if (vm.tracks.length > 1 && masterPlayer.src === '') {
-        masterPlayer.src = getSong(vm.tracks[0], scClient);
+        masterPlayer.src = getSong(vm.tracks[0]);
         setPlayerInfo(vm.tracks[0]); 
         setCurrent(vm.tracks[0]);
       }
@@ -94,12 +104,11 @@ angular.module('musicApp')
     }
 
     masterPlayer.playMusic = function (song) {
-      var scClient = 'b10a9e77003de676a40bcd4ce7346f03';
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
           setCurrent(eachSong);   
           setPlayerInfo(eachSong);
-          masterPlayer.src = getSong(eachSong, scClient);
+          masterPlayer.src = getSong(eachSong);
           (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
           vm.digest();
         }

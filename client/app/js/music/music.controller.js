@@ -32,17 +32,12 @@ angular.module('musicApp')
       vm.playPrevious = function () {
         playerControls.previousSong();
       }
-      vm.playPrevious = function () {
-        console.log('previous')
-      }
       vm.voicePlay = function () {
         playerControls.voicePlay();
       }
-
       vm.voicePause = function () {
         playerControls.voicePause();
-      }
-       
+      }      
       vm.changeSearch = function (event) {
         var attribute = event.target.getAttribute('data-search');
         searchType.changeSearch(attribute)
