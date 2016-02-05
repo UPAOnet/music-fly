@@ -17,3 +17,8 @@ Music Fly is an application that aims to bring music streaming from different pl
 
 ###Home###
 ![alt text](client/app/assets/images/demo-images/home.png "Logo Title Text 1")
+
+###Player Menu###
+![alt text](client/app/assets/images/demo-images/list1.png "Menu")
+![alt text](client/app/assets/images/demo-images/list2.png "Menu2")
+
