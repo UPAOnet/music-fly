@@ -1,5 +1,4 @@
 angular.module('musicApp', []);
-
 angular.module('musicApp')
   .controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'voice',
     function ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, voice) {
@@ -100,7 +99,6 @@ angular.module('musicApp')
         playerControls.playMusic(song);
       }    
   }])
-
 angular.module('musicApp')
   .directive('navigation', function () {
     return {

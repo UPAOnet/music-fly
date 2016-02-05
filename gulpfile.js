@@ -9,13 +9,13 @@ gulp.task('start', () => {
   nodemon({
     script: 'app.js',
     env: { 'NODE_ENV': 'development' }
-  }).on('start', ['test'])
+  })
 })
 
 gulp.task('scripts', () => {
   gulp.src('client/app/js/**/*.js')
     .pipe(concat('all.js'))
-    .pipe(gulp.dest('client/app/js'))
+    .pipe(gulp.dest('client/app'))
 })
 
 gulp.task('test', () => {
@@ -33,4 +33,4 @@ gulp.task('watch', () => {
   gulp.watch('client/scss/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['scripts', 'start', 'sass', 'watch']);
+gulp.task('default', ['scripts', 'sass', 'test', 'start', 'watch']);

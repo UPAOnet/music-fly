@@ -78,8 +78,9 @@
                 <p id="player-track-artist">{{player.playerArtist}}</p>
               </div>
               <div id="player-controls" ng-click="player.togglePlay()">
-                <i id=""></i>
+                <i id="previous-btn" class="backward icon circular"></i>
                 <i id="play-btn"  class="large circular {{player.playStateButton}}"></i>
+                <i id="next-btn" class="forward icon circular"></i>
               </div>       
             </div>                        
            </div> 
@@ -115,6 +116,6 @@
   <script type="text/javascript" src="/underscore/underscore.js"></script>
   <script src="/annyang.min.js"></script>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
-  <script type="text/javascript" src="/js/all.js"></script>
+  <script type="text/javascript" src="/all.js"></script>
   </body>
 </html>
