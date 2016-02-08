@@ -1,5 +1,5 @@
 # music-fly
-An application for people to play, save, and merge music files across different media applications.
+An application for people to play, save, and merge music files from  across different media applications.
 
 ## Built Upon
 - Javascript
