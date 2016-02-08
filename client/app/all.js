@@ -370,8 +370,8 @@ angular.module('musicApp')
         vm.tracks = [];
         $http({
           data: query,
-          url: 'http://localhost:3000/spotify',
-          method: 'POST',
+          url: '/spotify',
+          method: 'POST'
         }).then(function success (response) {       
           trackResults = response.data.tracks.items;
           _.map(trackResults, function (each, i) {
