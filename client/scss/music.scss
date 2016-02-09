@@ -336,7 +336,12 @@ li {
   margin-top:10px;
 }
 
+.dropdown-text {
+  display: inline;
+}
+
 .playlist-add-button {
+  width: 100px !important;
   padding: 8px !important;
 }
 
@@ -371,9 +376,6 @@ li {
     padding-left: 50px;
     font-size: 14px;
   }
-  .playlist-add-button {
-    font-size: 10px;
-  }
 }
 
 @media (max-width: 770px) {
@@ -382,6 +384,10 @@ li {
   }
   #playlist-page {
     padding-left: 10px;
+  }
+  .playlist-add-button {
+    font-size: 10px;
+    width: 70px;
   }
 }
 

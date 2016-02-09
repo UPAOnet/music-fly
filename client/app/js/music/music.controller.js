@@ -68,15 +68,16 @@ angular.module('musicApp')
           $scope.newPlaylist= "";
           vm.addPlaylistState = playlists.state.addField;
           vm.addPlaylistButton = playlists.state.addButton;
+          vm.digest();
         }
       }
       vm.openDropDown = function () {
-        console.log('drop it')
         $('.ui.dropdown').dropdown('restore defaults'); 
-        vm.diest();
+        vm.digest();
       } 
       vm.addTrack = function (trackKey, playlist) {
         playlists.addTrack(trackKey, playlist);
+        vm.digest();
       }             
       vm.voiceSearch = function (query) {
         var attribute = 'search';
