@@ -37,7 +37,10 @@ angular.module('musicApp')
       }
       vm.voicePause = function () {
         playerControls.voicePause();
-      }      
+      } 
+      vm.voiceStart = function () {
+        playerControls.voiceStart();
+      }     
       vm.changeSearch = function (event) {
         var attribute = event.target.getAttribute('data-search');
         searchType.changeSearch(attribute)

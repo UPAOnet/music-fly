@@ -8,7 +8,7 @@ angular.module('musicApp')
             vm.voiceSearch(query);
           },
           'start': function start () {
-            vm.togglePlay();
+            vm.voiceStart();
           },
           'play': function play () {
             vm.voicePlay();
