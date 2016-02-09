@@ -73,6 +73,7 @@ angular.module('musicApp')
       vm.openDropDown = function () {
         console.log('drop it')
         $('.ui.dropdown').dropdown('restore defaults'); 
+        vm.diest();
       } 
       vm.addTrack = function (trackKey, playlist) {
         playlists.addTrack(trackKey, playlist);
