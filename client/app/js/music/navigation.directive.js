@@ -9,6 +9,9 @@ angular.module('musicApp')
         $('#sign-up-btn').click(function () {
           $('.ui.modal').modal('show')
         })
+        $('#player-toggle').click(function () {
+          $('#player-menu').toggle('slide');
+        })
       }
     }
   })

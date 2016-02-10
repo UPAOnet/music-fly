@@ -291,6 +291,8 @@ li {
     font-size: 14px; } }
 
 @media (max-width: 870px) {
+  #music-app {
+    margin-left: 0px; }
   #song-interface {
     padding-left: 30px;
     width: 100% !important; }
@@ -298,4 +300,12 @@ li {
     width: 100% !important;
     padding-left: 0px; }
   #logo-title {
-    visibility: hidden; } }
+    visibility: hidden; }
+  #player-menu {
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+    margin-top: 0px;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 0px; } }
