@@ -1,20 +1,21 @@
 $(document).ready(function () {
   if ($(window).width() < 870) {
       $('#player-menu').hide();
-      $('#player-toggle').show();
     }
-  if ($(window).width() > 870) {
-    $('#player-menu').show(); 
-    $('#player-toggle').hide();                       
+ else if ($(window).width() > 870) {
+    $('#player-menu').show();                     
   }
+ 
   $(window).resize(function () {
     if ($(window).width() < 870) {
       $('#player-menu').hide();
-      $('#player-toggle').show()
     }
-    if ($(window).width() > 870) {
+    else if ($(window).width() > 870) {
       $('#player-menu').show();       
-      $('#player-toggle').hide();  
     }
   })
+  $('#player-toggle').on('click', function () {
+      console.log('allo');
+  }) 
 })
+

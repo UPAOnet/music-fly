@@ -34,8 +34,11 @@ $logo: #FF8300;
 }
 
 #player-toggle {
+  visibility: hidden;
   position: relative;
-  left: -180px;
+  left: -200px;
+  padding-bottom: 0px;
+  cursor: default;
 }
 /* Modal */
 #sign-up-modal {
@@ -86,6 +89,11 @@ $logo: #FF8300;
   }
 }
 
+@media (max-width: 870px) {
+  #player-toggle {
+    visibility: visible;
+  }
+}
 
 
 
