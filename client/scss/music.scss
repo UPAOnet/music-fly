@@ -99,7 +99,6 @@ li {
   color: #828282;
   margin-top: 7px;
   width: 220px !important;
-  position: absolute;
 }
 
 #main {
@@ -189,7 +188,7 @@ li {
   cursor: default;
   width: 1480px;
   position: relative;
-  left: 220px;
+  /*left: 220px;*/
 }
 
 .hidden {
@@ -347,7 +346,7 @@ li {
 
 /*media queries*/
 
-@media(min-width: 1700px) {
+@media (min-width: 1700px) {
   body {
     margin-left: auto;
     margin-right: auto;
@@ -378,18 +377,20 @@ li {
   }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 870px) {
   #song-interface {
-    padding-left: 10px;
+    padding-left: 30px;
+    width: 100% !important;
   }
-  #playlist-page {
-    padding-left: 10px;
+  #pages-section {
+    width: 100% !important;
+    padding-left: 0px;
   }
-  .playlist-add-button {
-    font-size: 10px;
-    width: 70px;
+  #logo-title {
+    visibility: hidden;
   }
 }
+
 
 
 

@@ -14,7 +14,7 @@
     <div navigation></div>
     <div class = "ui fluid sixteen wide column grid" ng-controller="musicPlayer as player">  
       <div id="music-app" class="ui row">
-        <div id="player-menu" class = "ui three wide column">
+        <div id="player-menu" class = "ui two wide column">
           <div id="menu-tools">
             <div class="ui search" id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
               <div class="ui icon input">
@@ -31,11 +31,10 @@
             </div>
             <div id="search-type">
               <div id="icon-box">
-                <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked>           
+                <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked> 
                 SoundCloud
                 </input>
                 <i id="sc-icon" class="fa fa-soundcloud fa-2x soundcloud sc-active"></i><br>
-
                 <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="spotify">            
                 Spotify
                 <i id="spotify-icon" class="fa fa-spotify fa-2x spotify"></i><br>
@@ -85,8 +84,8 @@
             </div>                        
            </div> 
         </div>
-        <div id="pages-section" class="ui thirteen wide column">
-          <div id="home-page" class="music-page" data-page="home">         
+        <div id="pages-section" class="ui twelve wide column">
+          <div id="home-page" class="music-page" data-page="home">
             <img id="hero-img" src="assets/images/home/hero2.jpg">
             <div id="jumbotron">
               <h1 id="jumbotron-title">All Your Music In One</h1>

@@ -1,10 +1,11 @@
-
 <div id="navigation" class="ui inverted segment">
-  <div class="ui inverted secondary pointing menu stackable">
+  <div class="ui inverted secondary pointing menu">
     <a id="logo" class="item" href= "http://localhost:3000">
      <span id="logo-title-m">M</span><span id="logo-title">usic Fly</span><img src="assets/images/home/headphone.png" id="logo-picture"></img>
     </a>
-    <a class="item"></a>
+    <a id="player-toggle"  class="item">
+      <i class="sidebar icon big"></i>
+    </a>
     <a id="sign-up-btn" class="item right aligned">
       Sign Up
     </a>
@@ -13,13 +14,11 @@
     </a>
   </div>
 </div>
-
 <div id="sign-up-modal" class="ui modal">
   <i class="close icon"></i>      
   <div id="modal-background" class="description">
     <div class="header">
       <h2 id="sign-up-modal-title">Sign Up </h2>
-
       <form class="ui form" name="userForm" ng-submit="submitForm(userForm.$valid)" id="sign-up-fields" novalidate>
         <div class="field">
           <label for="username" ng-model="username" ng-minlength="2" ng-maxlength="10" required>Username</label>
@@ -30,7 +29,6 @@
           <input id="password" type="text">  
         </div>    
       </form>
-
     </div>
   </div>
   <div class="actions actions-bar">

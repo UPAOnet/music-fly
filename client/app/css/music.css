@@ -75,8 +75,7 @@ li {
 #player-menu {
   color: #828282;
   margin-top: 7px;
-  width: 220px !important;
-  position: absolute; }
+  width: 220px !important; }
 
 #main {
   margin-top: 30px;
@@ -151,7 +150,7 @@ li {
   cursor: default;
   width: 1480px;
   position: relative;
-  left: 220px; }
+  /*left: 220px;*/ }
 
 .hidden {
   display: none; }
@@ -291,11 +290,12 @@ li {
     padding-left: 50px;
     font-size: 14px; } }
 
-@media (max-width: 770px) {
+@media (max-width: 870px) {
   #song-interface {
-    padding-left: 10px; }
-  #playlist-page {
-    padding-left: 10px; }
-  .playlist-add-button {
-    font-size: 10px;
-    width: 70px; } }
+    padding-left: 30px;
+    width: 100% !important; }
+  #pages-section {
+    width: 100% !important;
+    padding-left: 0px; }
+  #logo-title {
+    visibility: hidden; } }
