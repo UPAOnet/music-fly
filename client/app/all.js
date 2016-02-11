@@ -149,6 +149,11 @@ angular.module('musicApp')
 angular.module('musicApp')
   .factory('playerControls', [function () { 
     var masterPlayer = new Audio();
+    masterPlayer.playState = {
+      playing: false,
+      currentSong: null
+    }
+
     function getSong (song) {
       scClient = 'b10a9e77003de676a40bcd4ce7346f03'
       if (song.company === 'SoundCloud') {
@@ -158,23 +163,23 @@ angular.module('musicApp')
         return song.urlSource;
       }
     };
+
     function setCurrent (currentSong) {
       var songKey = currentSong.key;
       masterPlayer.playState.currentSong = songKey;
     }
+
     function setPlayerInfo(currentSong) {
       vm.playerImage = currentSong.image;
       vm.playerTitle = currentSong.name;
       vm.playerArtist = currentSong.artist;
       vm.playerInfo = currentSong.album; 
     }
-    masterPlayer.playState = {
-      playing: false,
-      currentSong: null
-    }
+    
     masterPlayer.nextSong = function () {
       var current = masterPlayer.playState.currentSong;
       var next = current + 1;
+
       if (masterPlayer.playState.playing === true && vm.tracks[next]) {
         masterPlayer.src = getSong(vm.tracks[next]);
         setPlayerInfo(vm.tracks[next]);
@@ -188,9 +193,11 @@ angular.module('musicApp')
         masterPlayer.play();
       }
     }
+
     masterPlayer.previousSong = function () {
       var current = masterPlayer.playState.currentSong;
       var previous = current - 1;
+      
       if (masterPlayer.playState.playing === true && vm.tracks[previous]) {
         masterPlayer.src = getSong(vm.tracks[previous]);
         setPlayerInfo(vm.tracks[previous]);
@@ -205,6 +212,7 @@ angular.module('musicApp')
         masterPlayer.play();
       }
     }
+
     masterPlayer.toggleState = function () {
       if (masterPlayer.playState.playing === false) {
         masterPlayer.playState.playing = true;
@@ -223,6 +231,7 @@ angular.module('musicApp')
         vm.digest();
       }      
     }
+
     masterPlayer.voicePause = function () {
       if (masterPlayer.playState.playing === true) {
         masterPlayer.pause();
@@ -230,6 +239,7 @@ angular.module('musicApp')
         vm.digest();
       }      
     }
+
     masterPlayer.voiceStart = function () {
       if (vm.tracks.length > 1 && masterPlayer.playState.playing === false) {
         masterPlayer.src = getSong(vm.tracks[0]);
@@ -240,6 +250,7 @@ angular.module('musicApp')
         vm.digest();
       }
     }
+
     masterPlayer.togglePlay = function () {
       if (vm.tracks.length > 1 && masterPlayer.src === '') {
         masterPlayer.src = getSong(vm.tracks[0]);
@@ -253,6 +264,7 @@ angular.module('musicApp')
       masterPlayer.toggleState();
       vm.digest();
     }
+
     masterPlayer.playMusic = function (song) {
       _.each(vm.tracks, function (eachSong) {
         if (eachSong.name === song) {
@@ -279,21 +291,26 @@ angular.module('musicApp')
     var playlist = {};
     var samplePlaylist = new playlistConstructor('My Playlist');
     playlist.currentPlaylists = [samplePlaylist];
+
     playlist.state = {
       addField: false,
       addButton: true
     }
+
     playlist.revealAddField = function () {
         playlist.state.addField = true;
         playlist.state.addButton = false;
       }
+
     playlist.addTrack = function (trackKey, playlist) {
       var currentPlaylist;
+
       _.map(vm.playlistTabs, function findPlaylist (eachPlaylist) {
         if (eachPlaylist.name === playlist) {
           currentPlaylist = eachPlaylist;        
         }
       })
+
       _.map(vm.tracks, function findTrack (eachTrack) {
         if (eachTrack.key === trackKey) {
           currentPlaylist.tracks.push(eachTrack);
@@ -302,16 +319,20 @@ angular.module('musicApp')
         }
       })
     }
+
     playlist.displayTracks = function (playlist) {
       vm.tracks = [];
+
       _.map(vm.playlistTabs, function findTrackList (eachPlaylist) {
         if (eachPlaylist.name === playlist) {
           vm.tracks = eachPlaylist.tracks;
         }
       })
     }
+
     playlist.createNewPlaylist = function (name) {
       var newPlaylist = new playlistConstructor (name);
+      
       playlist.currentPlaylists.push(newPlaylist);
       playlist.state.addField = false;
       playlist.state.addButton = true;
@@ -321,6 +342,7 @@ angular.module('musicApp')
 angular.module('musicApp')
   .factory('scSearch', ['songConstructor', function (songConstructor) {
     var search = {}; 
+
     search.allTracks = function (input) {
       var query = input;
       function getUrl (urlStream) {
@@ -331,6 +353,7 @@ angular.module('musicApp')
           return urlStream.slice(-15, -7)
         }
       }
+      
       SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) { 
         vm.tracks = [];    
         var trackResults = tracks;      
@@ -346,12 +369,14 @@ angular.module('musicApp')
   }])
 angular.module('musicApp')
   .factory('searchType', [function () {
-    var search = {};
+    var search = {};    
     search.searchState = {
       sc: true,
       spotify: false
     };
+
     search.changeSearch = function (attribute) {
+      
       if (attribute === 'sc' && search.searchState.sc === false) {
         search.searchState.sc = true;
         search.searchState.spotify = false;
@@ -397,9 +422,11 @@ angular.module('musicApp')
 angular.module('musicApp')
   .factory('spotifySearch', ['$http', 'songConstructor', function ($http, songConstructor) {
       var search = {};
+
       search.makeRequest = function (input) {
         var query = JSON.stringify({queryInput: input})
         vm.tracks = [];
+
         $http({
           data: query,
           url: '/spotify',
@@ -418,6 +445,7 @@ angular.module('musicApp')
 angular.module('musicApp')
   .factory('tabs', [function () {
     var tabSwitcher = {};
+    
     tabSwitcher.switchTabs = function (tabAttribute) {
       var allPages = document.getElementsByClassName('music-page');
       var allTabs = document.getElementsByClassName('music-tab');    
@@ -433,6 +461,7 @@ angular.module('musicApp')
 angular.module('musicApp')
   .factory('voice', [function () {
     var voice = {};
+    
     voice.initialize = function () {
       if (annyang) {
         var commands = {

@@ -1,6 +1,7 @@
 angular.module('musicApp')
   .factory('voice', [function () {
     var voice = {};
+    
     voice.initialize = function () {
       if (annyang) {
         var commands = {

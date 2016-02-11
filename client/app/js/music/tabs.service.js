@@ -1,6 +1,7 @@
 angular.module('musicApp')
   .factory('tabs', [function () {
     var tabSwitcher = {};
+    
     tabSwitcher.switchTabs = function (tabAttribute) {
       var allPages = document.getElementsByClassName('music-page');
       var allTabs = document.getElementsByClassName('music-tab');    

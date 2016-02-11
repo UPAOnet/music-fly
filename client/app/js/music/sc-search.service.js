@@ -1,6 +1,7 @@
 angular.module('musicApp')
   .factory('scSearch', ['songConstructor', function (songConstructor) {
     var search = {}; 
+
     search.allTracks = function (input) {
       var query = input;
       function getUrl (urlStream) {
@@ -11,6 +12,7 @@ angular.module('musicApp')
           return urlStream.slice(-15, -7)
         }
       }
+      
       SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) { 
         vm.tracks = [];    
         var trackResults = tracks;      

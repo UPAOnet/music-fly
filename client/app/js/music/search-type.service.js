@@ -1,11 +1,13 @@
 angular.module('musicApp')
   .factory('searchType', [function () {
-    var search = {};
+    var search = {};    
     search.searchState = {
       sc: true,
       spotify: false
     };
+
     search.changeSearch = function (attribute) {
+      
       if (attribute === 'sc' && search.searchState.sc === false) {
         search.searchState.sc = true;
         search.searchState.spotify = false;

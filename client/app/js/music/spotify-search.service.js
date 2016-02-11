@@ -1,9 +1,11 @@
 angular.module('musicApp')
   .factory('spotifySearch', ['$http', 'songConstructor', function ($http, songConstructor) {
       var search = {};
+
       search.makeRequest = function (input) {
         var query = JSON.stringify({queryInput: input})
         vm.tracks = [];
+
         $http({
           data: query,
           url: '/spotify',
