@@ -5,7 +5,7 @@
   background-size: cover;
   margin-left: 0px;
   margin-right: 0px;
-  height: 600px;
+  height: 700px;
   background-attachment: fixed;
 }
 
@@ -22,7 +22,7 @@
 
 #jumbotron-title {
   font-family: helvetica;
-  font-size: 4em;
+  font-size: 3em;
   color: orange;
 }
 
@@ -110,6 +110,13 @@
   background-size: cover;
 }
 
+/* Music Section */
+
+#music-section {
+  margin-left: 0 !important;
+}
+
+
 /*Media Query */
 
 @media (max-width: 1000px) {
@@ -171,6 +178,7 @@
   }
 
   #section-title {
+  width: 300px;
   margin-left: 30%;
   margin-top: 30px;
     h2 {

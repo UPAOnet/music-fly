@@ -9,24 +9,21 @@ li {
   list-style-type: none;
 }
 
-/* Main */
-
-#music-section {
-  display: inline-block;
+.grid-space {
+  margin-top: 0rem !important;
 }
+
+/* Main */
 
 #music-app {
   padding-top: 0px; 
   padding-bottom: 0px;
-  margin-left: 20px;
-  margin-right: 20px;
   margin-top: 0px;
   font-size: 1.1em;
 }
 
-#logo {
+/*#logo {
   margin-right: 60px;
-  margin-left:80px;
   font-family: helvetica;
 }
 
@@ -51,7 +48,7 @@ li {
   position:absolute;
   left:-82px;
   top:-18px;
-}
+}*/
 
 /*Search Fields */
 
@@ -102,8 +99,8 @@ li {
 
 #player-menu {
   color: #828282;
-  margin-top: 7px;
-  width: 220px !important;
+  background-color: #212223;
+  padding-left: 30px;
 }
 
 #main {
