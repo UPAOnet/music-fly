@@ -10,6 +10,10 @@ li {
 
 /* Main */
 
+#music-section {
+  display: inline-block;
+}
+
 #music-app {
   padding-top: 0px; 
   padding-bottom: 0px;
@@ -223,33 +227,7 @@ li {
 
 /* Home Page */
 
-#jumbotron {
-  position: absolute;
-  top: 200px;
-  left: 60px;
-  p {
-    color: white;
-  }
-}
 
-#jumbotron-title {
-  font-size: 3em;
-  color: $logo;
-}
-
-#hero-img {
-  width: 1460px;
-  -webkit-filter: contrast(70%);
-}
-
-#jumbotron-search {
-  margin-top: 60px;
-  margin-left: 100px;
-   p{
-    color: $logo;
-    margin-left: 100px;
-  }
-}
 
 
 /* Music Player*/

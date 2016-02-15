@@ -1,0 +1,100 @@
+#landing {
+  background-image: url(../assets/images/home/hero2.jpg);
+  background-size: cover;
+  margin-left: 0px;
+  margin-right: 0px;
+  height: 600px;
+  background-attachment: fixed; }
+
+#jumbotron {
+  padding-top: 10%;
+  padding-left: 5%;
+  /*height: 500px;*/
+  top: 200px;
+  left: 60px; }
+  #jumbotron p {
+    color: black; }
+
+#jumbotron-title {
+  font-family: helvetica;
+  font-size: 4em;
+  color: orange; }
+
+#jumbotron-text {
+  font-size: 1.4em;
+  width: 600px; }
+  #jumbotron-text p {
+    color: white; }
+
+.hero-overlay {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  width: 100%; }
+
+#hero-img {
+  width: 1460px;
+  -webkit-filter: contrast(70%); }
+
+#start-button {
+  margin-top: 30px; }
+  #start-button button {
+    width: 300px;
+    font-family: lato;
+    padding-top: 20;
+    padding-bottom: 20px;
+    font-size: 1.1em; }
+
+/*Information Section */
+#information-section {
+  height: 500px; }
+
+#section-text h2 {
+  display: inline-block; }
+
+#section-title {
+  margin-top: 110;
+  margin-left: 100;
+  width: 200px; }
+  #section-title h2 {
+    font-size: 3em;
+    font-family: helvetica; }
+  #section-title p {
+    font-size: 1.1em;
+    font-family: lato; }
+
+#first-section {
+  float: left;
+  display: inline-block;
+  background-color: black;
+  width: 30%;
+  height: 100%;
+  background-color: #f1e767;
+  background: #f1e767;
+  background: -moz-linear-gradient(top, #f1e767 0%, #ff8300 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #f1e767), color-stop(100%, #ff8300));
+  background: -webkit-linear-gradient(top, #f1e767 0%, #ff8300 100%);
+  background: -o-linear-gradient(top, #f1e767 0%, #ff8300 100%);
+  background: -ms-linear-gradient(top, #f1e767 0%, #ff8300 100%);
+  background: linear-gradient(to bottom, #f1e767 0%, #ff8300 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#ff8300', GradientType=0 ); }
+
+#second-section {
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+  background-image: url(../assets/images/album/mosaic.png); }
+
+/*Media Query */
+@media (max-width: 760px) {
+  #jumbotron-title {
+    font-family: helvetica;
+    font-size: 2em;
+    color: orange; }
+  #jumbotron-text {
+    font-size: 1em;
+    width: 600px; }
+    #jumbotron-text p {
+      color: white; }
+  #start-button button {
+    font-size: 1em; } }
