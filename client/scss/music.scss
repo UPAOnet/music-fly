@@ -1,6 +1,7 @@
 $soundcloud: #ff8800;
 $spotify: #2ebd59;
 $logo: #FF8300;
+$textGrey: #828282;
 
 /* Global */
 
@@ -325,16 +326,13 @@ li {
 /*media queries*/
 
 @media (min-width: 1700px) {
-  body {
+  /*body {
     margin-left: auto;
     margin-right: auto;
     width: 1700px;
-  }
+  }*/
   #pages-section {
     width: 1600px;
-  }
-  #navigation {
-    width: 1700px;
   }
   #song-interface {
     padding-left: 150px;

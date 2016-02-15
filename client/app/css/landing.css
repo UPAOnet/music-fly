@@ -47,14 +47,14 @@
 
 /*Information Section */
 #information-section {
-  height: 500px; }
+  height: 600px; }
 
 #section-text h2 {
   display: inline-block; }
 
 #section-title {
-  margin-top: 110;
-  margin-left: 100;
+  margin-top: 110px;
+  margin-left: 20%;
   width: 200px; }
   #section-title h2 {
     font-size: 3em;
@@ -64,10 +64,9 @@
     font-family: lato; }
 
 #first-section {
-  float: left;
   display: inline-block;
   background-color: black;
-  width: 30%;
+  /* width: 30%;*/
   height: 100%;
   background-color: #f1e767;
   background: #f1e767;
@@ -81,12 +80,32 @@
 
 #second-section {
   display: inline-block;
-  width: 70%;
+  /*width: 70%;*/
   height: 100%;
-  background-image: url(../assets/images/album/mosaic.png); }
+  background-image: url(../assets/images/album/mosaic.jpg);
+  background-size: cover; }
 
 /*Media Query */
+@media (max-width: 1000px) {
+  #section-title h2 {
+    font-size: 2em;
+    font-family: helvetica; }
+  #section-title p {
+    font-size: 1em;
+    font-family: lato; } }
+
 @media (max-width: 760px) {
+  #start-button button {
+    width: 200px; }
+  #landing {
+    height: 400px;
+    margin-left: 0px !important;
+    margin-right: 0px !important; }
+  #information-section {
+    margin-left: 0px !important;
+    margin-right: 0px !important; }
+  #jumbotron {
+    padding-top: 20%; }
   #jumbotron-title {
     font-family: helvetica;
     font-size: 2em;
@@ -97,4 +116,15 @@
     #jumbotron-text p {
       color: white; }
   #start-button button {
-    font-size: 1em; } }
+    font-size: 1em; }
+  #first-section {
+    height: 300px; }
+  #section-title {
+    margin-left: 30%;
+    margin-top: 30px; }
+    #section-title h2 {
+      font-size: 3em; }
+    #section-title p {
+      font-size: 1.1em; }
+  #second-section {
+    height: 300px; } }

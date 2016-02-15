@@ -65,10 +65,6 @@
     color: #FF8300; }
 
 /*media queries*/
-@media (min-width: 1700px) {
-  #navigation {
-    width: 1700px; } }
-
 @media (max-width: 870px) {
   #player-toggle {
     visibility: visible; } }
