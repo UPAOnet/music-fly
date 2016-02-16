@@ -159,6 +159,7 @@ $playerBlack: #212223;
 @media (max-width: 760px) {
    #landing {
     height: 600px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -180,7 +181,7 @@ $playerBlack: #212223;
   }
 
   #jumbotron {
-    padding-top: 20%
+    padding-top: 20%;
   }
 
   #jumbotron-title {
@@ -196,6 +197,7 @@ $playerBlack: #212223;
       color: white;
     }
   }
+}
 
   #start-button {
     button {
@@ -203,20 +205,19 @@ $playerBlack: #212223;
     }
   }
 
-  
-}
-
 @media (max-width: 760px) {
   #first-section {
     height: 300px;
   }
+
    #second-section {
     height: 300px;
   }
+
   #section-title {
-  width: 300px;
-  margin-left: 30%;
-  margin-top: 30px;
+    width: 400px;
+    margin-left: 30%;
+    margin-top: 30px;
     h2 {
       font-size: 3em;
     }
@@ -224,7 +225,6 @@ $playerBlack: #212223;
       font-size: 1.1em;
     }
   }
- 
 }
 
 
