@@ -48,9 +48,11 @@
     </div>
 
     <!--Music Player -->
+    <div id="music-player-header"></div>
     <div id="music-section" class="ui fluid container">
       <div class = "grid-space ui grid sixteen wide column" ng-controller="musicPlayer as player">      
         <!--Player Menu -->
+
         <div id="player-menu" class = "ui three wide column">
           <div id="menu-tools">
             <div class="ui search" id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
@@ -122,10 +124,17 @@
            </div> 
         </div>
         <!--Page Section -->
-        <div id="pages-section" class="ui thirteen wide column">
-          <div id="home-page" class="music-page page-structure" data-page="home">
-            <div id="home-content">
-              <h4 class="list-title">Top Artists</h4>
+        <div id="pages-section" class="ui eleven wide column">
+          <div id="home-page" class="music-page" data-page="home">
+            <div id="home-content" class="ui equal width grid sixteen wide column">
+              <div class="ui home-row row">
+                <div class="ui four wide column artist-box">
+                  <img src="../assets/images/artists/calvin-harris.jpg" class="ui image">
+                </div>
+                <div class="ui four wide column artist-box"></div>
+                <div class="ui four wide column artist-box"></div>
+                <div class="ui four wide column artist-box"></div>
+              </div>
             </div>                     
           </div>
           <div id="song-interface" class="music-page page-structure hidden" data-page="search">

@@ -6,6 +6,12 @@ li {
   margin-top: 0rem !important; }
 
 /* Main */
+#music-player-header {
+  width: 100%;
+  height: 70px;
+  background-color: #212223;
+  border-bottom: solid 1px; }
+
 #music-app {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -46,7 +52,7 @@ li {
 
 /*player Tabs*/
 #player-menu {
-  width: 300px;
+  width: 272px !important;
   display: inline-block;
   color: #828282;
   background-color: #212223;
@@ -128,7 +134,7 @@ li {
   cursor: default;
   width: 500;
   height: 500;
-  background-color: beige; }
+  /*background-color: beige;*/ }
 
 .hidden {
   display: none; }
@@ -147,6 +153,11 @@ li {
   color: black; }
 
 /* Home Page */
+.artist-box {
+  height: 200px;
+  background-color: black;
+  background-size: cover; }
+
 /* Music Player*/
 #music-player {
   margin-top: 50px;
@@ -188,8 +199,8 @@ li {
 .songs {
   list-style: none; }
 
-.highlight {
-  color: blue; }
+.song-description {
+  padding-left: 70px !important; }
 
 .song-img {
   width: 150px;
@@ -252,7 +263,6 @@ li {
   #player-menu {
     position: absolute;
     z-index: 1;
-    background-color: black;
     margin-top: 0px;
     margin-left: 10px;
     padding-left: 10px;

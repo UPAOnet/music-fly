@@ -4,7 +4,7 @@
   margin-left: 0px;
   margin-right: 0px;
   height: 700px;
-  background-attachment: fixed; }
+  /*background-attachment: fixed;*/ }
 
 #jumbotron {
   padding-top: 10%;
@@ -50,12 +50,11 @@
   height: 700px;
   background-size: cover;
   background-image: url(../assets/images/music-player/mosaic.jpg);
-  background-attachment: fixed; }
+  background-attachment: fixed;
+  padding-top: 6.5% !important; }
 
 .both-sections {
-  height: 85%;
-  padding-top: 5.5% !important;
-  background-attachment: fixed; }
+  height: 85%; }
 
 #section-text h2 {
   display: inline-block; }
