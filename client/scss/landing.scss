@@ -15,7 +15,7 @@ $playerBlack: #212223;
 
 #jumbotron {
   padding-top: 10%;
-  padding-left: 5%;
+  padding-left: 8%;
   /*height: 500px;*/
   top: 200px;
   left: 60px;
@@ -145,15 +145,20 @@ $playerBlack: #212223;
 
 @media (max-width: 1000px) {
   #section-title {
-  h2 {
-    font-size: 2em;
-    font-family: helvetica;
-  }
-  p {
-    font-size: 1em;
-    font-family: lato;
+    h2 {
+      font-size: 2em;
+      font-family: helvetica;
+    }
+    p {
+      font-size: 1em;
+      font-family: lato;
+    }
   }
 }
+
+@media (max-width: 760px) {
+   #landing {
+    height: 600px;
 }
 
 @media (max-width: 760px) {
