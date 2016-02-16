@@ -1,23 +1,23 @@
-$(document).ready(function () {
-  if ($(window).width() < 870) {
-      $('#player-menu').hide();
-    }
- else if ($(window).width() > 870) {
-    $('#player-menu').show();                     
-  }
+// $(document).ready(function () {
+//   if ($(window).width() < 870) {
+//       $('#player-menu').hide();
+//     }
+//  else if ($(window).width() > 870) {
+//     $('#player-menu').show();                     
+//   }
  
-  $(window).resize(function () {
-    if ($(window).width() < 870) {
-      $('#player-menu').hide();
-    }
-    else if ($(window).width() > 870) {
-      $('#player-menu').show();       
-    }
-  })
-  $('#player-toggle').on('click', function () {
-      console.log('allo');
-  }) 
-})
+//   $(window).resize(function () {
+//     if ($(window).width() < 870) {
+//       $('#player-menu').hide();
+//     }
+//     else if ($(window).width() > 870) {
+//       $('#player-menu').show();       
+//     }
+//   })
+//   $('#player-toggle').on('click', function () {
+//       console.log('allo');
+//   }) 
+// })
 
 
 angular.module('musicApp', []);
@@ -483,7 +483,7 @@ angular.module('musicApp')
           }
         };
         annyang.addCommands(commands);
-        annyang.start();
+        // annyang.start();
       }  
     }
   return voice

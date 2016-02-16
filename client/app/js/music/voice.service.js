@@ -23,7 +23,7 @@ angular.module('musicApp')
           }
         };
         annyang.addCommands(commands);
-        annyang.start();
+        // annyang.start();
       }  
     }
   return voice

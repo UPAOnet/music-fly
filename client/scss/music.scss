@@ -22,33 +22,6 @@ li {
   font-size: 1.1em;
 }
 
-/*#logo {
-  margin-right: 60px;
-  font-family: helvetica;
-}
-
-#logo-title-m {
-  color: $logo;
-  position:absolute;
-  left: -66px;
-  font-size: 45px;
-}
-
-#logo-title {
-  position: relative;
-  top: 10px;
-  font-size: 25px;
-  left: -20px;
-  color:white;
-  letter-spacing: 1px
-}
-
-#logo-picture {
-  width:70px;
-  position:absolute;
-  left:-82px;
-  top:-18px;
-}*/
 
 /*Search Fields */
 
@@ -94,13 +67,17 @@ li {
 /*player Tabs*/
 
 #menu-tools{
-  padding-top: 30px;
+  
 }
 
 #player-menu {
+  width: 300px;
+  display: inline-block;
   color: #828282;
   background-color: #212223;
-  padding-left: 30px;
+  padding-left: 35px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 #main {
@@ -160,7 +137,7 @@ li {
 }
 
 .music-tab {
-  width: 100%;
+  /*width: 100%;*/
   cursor:pointer;
   list-style-type: none;
   -webkit-transform: translateZ(0);
@@ -186,11 +163,12 @@ li {
 /*Player Pages */
 
 #pages-section {
+  display: inline-block;
   color: #828282;
   cursor: default;
-  width: 1480px;
-  position: relative;
-  /*left: 220px;*/
+  width: 500;
+  height: 500;
+  background-color: beige;
 }
 
 .hidden {
@@ -201,25 +179,24 @@ li {
   list-style-type: none;
 }
 
-#song-interface {
+.page-structure {
   padding-top: 30px;
   padding-left:80px;
 }
 
+#song-interface {
+  
+}
+
 #playlist-page {
-  padding-top: 30px;
-  padding-left:80px;
+  
 }
 
 #track-list {
   margin-top:30px;
 }
 
-.search-title {
-  color: black;
-}
-
-.playlist-title {
+.list-title {
   color: black;
 }
 
