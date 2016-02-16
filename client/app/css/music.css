@@ -126,7 +126,6 @@ li {
   font-weight: 300; }
 
 .music-tab {
-  /*width: 100%;*/
   cursor: pointer;
   list-style-type: none;
   -webkit-transform: translateZ(0);
@@ -151,8 +150,7 @@ li {
   color: #828282;
   cursor: default;
   width: 500;
-  height: 500;
-  /*background-color: beige;*/ }
+  height: 500; }
 
 .hidden {
   display: none; }
@@ -258,11 +256,6 @@ li {
 
 /*media queries*/
 @media (min-width: 1700px) {
-  /*body {
-    margin-left: auto;
-    margin-right: auto;
-    width: 1700px;
-  }*/
   #pages-section {
     width: 1600px; }
   #song-interface {

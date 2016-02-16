@@ -16,8 +16,6 @@ li {
 
 /* Main */
 
-
-
 #music-app {
   padding-top: 0px; 
   padding-bottom: 0px;
@@ -95,6 +93,7 @@ li {
   width: 180px;
   border-radius: 0px;
 }
+
 /*player Tabs*/
 
 #menu-tools{
@@ -117,7 +116,6 @@ li {
 }
 
 #main-home {
-
   margin-top: 8px;
   margin-left: 7px;
   font-weight: 300;
@@ -168,7 +166,6 @@ li {
 }
 
 .music-tab {
-  /*width: 100%;*/
   cursor:pointer;
   list-style-type: none;
   -webkit-transform: translateZ(0);
@@ -189,8 +186,6 @@ li {
   color: white;
 }
 
-
-
 /*Player Pages */
 
 #pages-section {
@@ -199,7 +194,6 @@ li {
   cursor: default;
   width: 500;
   height: 500;
-  /*background-color: beige;*/
 }
 
 .hidden {
@@ -234,11 +228,6 @@ li {
   }
 }
 
-
-.home-row {
-
-}
-
 .artist-box {
   height: 150px !important;
   width: 150px !important;
@@ -249,10 +238,6 @@ li {
     height: 100%;
     width: 100%;
   }
-}
-
-.artist-description {
-
 }
 
 /* Music Player*/
@@ -301,9 +286,9 @@ li {
 
 #playlist-list {
   margin-top: 20px;
-    h4{
-      font-size: 1.8em;
-    }
+  h4 {
+    font-size: 1.8em;
+  }
 }
 
 .songs {
@@ -331,7 +316,6 @@ li {
 
 .song-play-btn {
   cursor: pointer;
-  ;
 }
 
 .song-list-info {
@@ -348,15 +332,9 @@ li {
 }
 
 
-
 /*media queries*/
 
 @media (min-width: 1700px) {
-  /*body {
-    margin-left: auto;
-    margin-right: auto;
-    width: 1700px;
-  }*/
   #pages-section {
     width: 1600px;
   }

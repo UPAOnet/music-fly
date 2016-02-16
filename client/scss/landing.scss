@@ -16,7 +16,6 @@ $playerBlack: #212223;
 #jumbotron {
   padding-top: 10%;
   padding-left: 8%;
-  /*height: 500px;*/
   top: 200px;
   left: 60px;
   p {
@@ -33,6 +32,7 @@ $playerBlack: #212223;
 #jumbotron-text {
   font-size: 1.4em;
   width: 600px;
+  
   p {
     color: white;
   }
@@ -66,14 +66,11 @@ $playerBlack: #212223;
 /*Information Section */
 
 #information-section {
-  height: 800px;
-  background-size: cover;
-  background-image: url(../assets/images/music-player/mosaic.jpg);
-  background-attachment: fixed;
+  height: 650px;
 }
 
 .both-sections {
-  height: 65%;
+  height: 100%;
   -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
@@ -102,7 +99,6 @@ $playerBlack: #212223;
 #first-section {
   display: inline-block;
   background-color: black;
- /* width: 30%;*/
   height: 100%;
   background-color: rgba(241,231,103,1);
   background: rgba(241,231,103,1);
@@ -117,10 +113,12 @@ $playerBlack: #212223;
 
 #second-section {
   display: inline-block;
-  /*width: 70%;*/
   height: 100%;
   background-image: url(../assets/images/album/mosaic.jpg);
+  
+  background-attachment: fixed;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 
@@ -145,6 +143,7 @@ $playerBlack: #212223;
 
 @media (max-width: 1000px) {
   #section-title {
+    
     h2 {
       font-size: 2em;
       font-family: helvetica;
@@ -190,28 +189,31 @@ $playerBlack: #212223;
   color: orange;
   }
 
-  #jumbotron-text {
-    font-size: 1em;
-    width: 600px;
-    p {
-      color: white;
-    }
-  }
-}
-
   #start-button {
     button {
       font-size: 1em;
     }
   }
 
+  #jumbotron-text {
+    font-size: 1em;
+    width: 600px;
+    
+    p {
+      color: white;
+    }
+  }
+}
+
+  
+
 @media (max-width: 760px) {
   #first-section {
-    height: 300px;
+    height: 50%;
   }
 
    #second-section {
-    height: 300px;
+    height: 50%;
   }
 
   #section-title {

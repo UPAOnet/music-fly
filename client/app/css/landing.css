@@ -9,7 +9,6 @@
 #jumbotron {
   padding-top: 10%;
   padding-left: 8%;
-  /*height: 500px;*/
   top: 200px;
   left: 60px; }
   #jumbotron p {
@@ -47,13 +46,10 @@
 
 /*Information Section */
 #information-section {
-  height: 800px;
-  background-size: cover;
-  background-image: url(../assets/images/music-player/mosaic.jpg);
-  background-attachment: fixed; }
+  height: 650px; }
 
 .both-sections {
-  height: 65%;
+  height: 100%;
   -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75); }
@@ -75,7 +71,6 @@
 #first-section {
   display: inline-block;
   background-color: black;
-  /* width: 30%;*/
   height: 100%;
   background-color: #f1e767;
   background: #f1e767;
@@ -89,10 +84,11 @@
 
 #second-section {
   display: inline-block;
-  /*width: 70%;*/
   height: 100%;
   background-image: url(../assets/images/album/mosaic.jpg);
-  background-size: cover; }
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /* Music Section */
 #music-section {
@@ -136,20 +132,19 @@
     font-family: helvetica;
     font-size: 2em;
     color: orange; }
+  #start-button button {
+    font-size: 1em; }
   #jumbotron-text {
     font-size: 1em;
     width: 600px; }
     #jumbotron-text p {
       color: white; } }
 
-#start-button button {
-  font-size: 1em; }
-
 @media (max-width: 760px) {
   #first-section {
-    height: 300px; }
+    height: 50%; }
   #second-section {
-    height: 300px; }
+    height: 50%; }
   #section-title {
     width: 400px;
     margin-left: 30%;
