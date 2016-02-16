@@ -18,7 +18,7 @@ li {
 
 #music-player-header {
   width: 100%;
-  height: 70px;
+  height: 81px;
   background-color: $playerBlack;
   border-bottom: solid 1px;
 }
@@ -30,6 +30,33 @@ li {
   font-size: 1.1em;
 }
 
+#player-logo {
+  color: $logo;
+  font-size: 45px;
+  font-family: helvetica;
+  position: relative;
+  left: -53.5px;
+  cursor: default;
+}
+
+#player-logo-img {
+  width: 70px;
+  margin-left: 10px;
+}
+
+#player-toggle {
+  color: $textGrey;
+  display: inline-block;
+  font-size: 20px;
+  top: -15;
+  position: relative;
+  left: -30px;
+  visibility: hidden;
+}
+
+#player-toggle:hover {
+  color: white;
+}
 
 /*Search Fields */
 
@@ -62,6 +89,7 @@ li {
   cursor: pointer;
   margin-top: 7px;
 }
+
 
 #sc-box {
   width: 180px;
@@ -192,14 +220,6 @@ li {
   padding-left:80px;
 }
 
-#song-interface {
-  
-}
-
-#playlist-page {
-  
-}
-
 #track-list {
   margin-top:30px;
 }
@@ -210,10 +230,30 @@ li {
 
 /* Home Page */
 
+#home-content {
+  padding-top: 100px;
+  padding-left: 100px;
+
+  h4 {
+    font-size: 1.8em;
+  }
+}
+
+
+.home-row {
+
+}
+
 .artist-box {
-  height: 200px;
-  background-color: black;
+  height: 150px !important;
+  width: 150px !important;
   background-size: cover;
+  margin-right: 60px;
+  margin-bottom: 60px;
+  img {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .artist-description {
@@ -345,6 +385,10 @@ li {
 }
 
 @media (max-width: 870px) {
+  #player-toggle {
+    visibility: visible;
+  }
+
   #music-app {
     margin-left: 0px;
   }
@@ -369,8 +413,6 @@ li {
     padding-right: 0px;
   }
 }
-
-
 
 
 

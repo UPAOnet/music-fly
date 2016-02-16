@@ -91,6 +91,9 @@ angular.module('musicApp')
           tabs.switchTabs(attribute);
           scSearch.allTracks($scope.scQuery);
           $scope.scQuery = "";
+          if ($(window).width() < 870) {
+            $('#player-menu').hide();
+          }
         };
       }   
       vm.spotifySearchEnter = function () {
@@ -99,6 +102,9 @@ angular.module('musicApp')
           tabs.switchTabs(attribute);
           spotifySearch.makeRequest($scope.spotifyQuery);
           $scope.spotifyQuery = "";
+          if ($(window).width() < 870) {
+            $('#player-menu').hide();
+          }
         }
       }
       $scope.playMusic = function (event) { 

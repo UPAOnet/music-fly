@@ -8,7 +8,7 @@ li {
 /* Main */
 #music-player-header {
   width: 100%;
-  height: 70px;
+  height: 81px;
   background-color: #212223;
   border-bottom: solid 1px; }
 
@@ -17,6 +17,30 @@ li {
   padding-bottom: 0px;
   margin-top: 0px;
   font-size: 1.1em; }
+
+#player-logo {
+  color: #FF8300;
+  font-size: 45px;
+  font-family: helvetica;
+  position: relative;
+  left: -53.5px;
+  cursor: default; }
+
+#player-logo-img {
+  width: 70px;
+  margin-left: 10px; }
+
+#player-toggle {
+  color: #828282;
+  display: inline-block;
+  font-size: 20px;
+  top: -15;
+  position: relative;
+  left: -30px;
+  visibility: hidden; }
+
+#player-toggle:hover {
+  color: white; }
 
 /*Search Fields */
 #search-header {
@@ -153,10 +177,21 @@ li {
   color: black; }
 
 /* Home Page */
+#home-content {
+  padding-top: 100px;
+  padding-left: 100px; }
+  #home-content h4 {
+    font-size: 1.8em; }
+
 .artist-box {
-  height: 200px;
-  background-color: black;
-  background-size: cover; }
+  height: 150px !important;
+  width: 150px !important;
+  background-size: cover;
+  margin-right: 60px;
+  margin-bottom: 60px; }
+  .artist-box img {
+    height: 100%;
+    width: 100%; }
 
 /* Music Player*/
 #music-player {
@@ -250,6 +285,8 @@ li {
     font-size: 14px; } }
 
 @media (max-width: 870px) {
+  #player-toggle {
+    visibility: visible; }
   #music-app {
     margin-left: 0px; }
   #song-interface {

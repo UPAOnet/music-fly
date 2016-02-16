@@ -13,12 +13,10 @@ $(document).ready(function () {
     else if ($(window).width() > 870) {
       $('#player-menu').show();       
     }
-  })
-  $('#player-toggle').on('click', function () {
-      console.log('allo');
-  }) 
+  })  
 })
 
 $('.artist-box').dimmer({
     on: 'hover'
   })
+

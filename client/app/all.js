@@ -13,15 +13,14 @@ $(document).ready(function () {
     else if ($(window).width() > 870) {
       $('#player-menu').show();       
     }
-  })
-  $('#player-toggle').on('click', function () {
-      console.log('allo');
-  }) 
+  })  
 })
 
 $('.artist-box').dimmer({
     on: 'hover'
   })
+
+
 angular.module('musicApp', []);
 angular.module('musicApp')
   .controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'voice',
@@ -116,6 +115,9 @@ angular.module('musicApp')
           tabs.switchTabs(attribute);
           scSearch.allTracks($scope.scQuery);
           $scope.scQuery = "";
+          if ($(window).width() < 870) {
+            $('#player-menu').hide();
+          }
         };
       }   
       vm.spotifySearchEnter = function () {
@@ -124,6 +126,9 @@ angular.module('musicApp')
           tabs.switchTabs(attribute);
           spotifySearch.makeRequest($scope.spotifyQuery);
           $scope.spotifyQuery = "";
+          if ($(window).width() < 870) {
+            $('#player-menu').hide();
+          }
         }
       }
       $scope.playMusic = function (event) { 
