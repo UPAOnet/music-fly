@@ -20,9 +20,9 @@ In the near future I am planning on adding features for users to create an accou
 **_All songs belong to either Spotify or Soundcloud and any of their affiliates_**
 
 ###Home###
-![alt text](client/app/assets/images/demo-images/home.png "Logo Title Text 1")
+![alt text](client/app/assets/images/demo-images/home.png "Landing")
 
 ###Player Menu###
-![alt text](client/app/assets/images/demo-images/list1.png "Menu")
-![alt text](client/app/assets/images/demo-images/list2.png "Menu2")
+![alt text](client/app/assets/images/demo-images/info.png "info")
+![alt text](client/app/assets/images/demo-images/list.png "player")
 
