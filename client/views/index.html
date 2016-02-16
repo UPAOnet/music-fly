@@ -9,13 +9,57 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/navigation.css">
   <link rel="stylesheet" type="text/css" href="/css/music.css">
+  <link rel="stylesheet" type="text/css" href="/css/landing.css">
 </head>
   <body>
     <div navigation></div>
-    <div class = "ui fluid sixteen wide column grid" ng-controller="musicPlayer as player">  
-      <div id="music-app" class="ui row">
+
+    <!--Landing -->
+    <div id="landing" class="ui fluid container">
+      <div class="hero-overlay">
+      <div id="jumbotron">
+        <h1 id="jumbotron-title">Your Music In One</h1>
+        <div id="jumbotron-text">
+          <p>Music Fly combines the music you love from Soundcloud and Spotify</p>
+          <p></p>
+          <div id="start-button">
+            <a href="#music-section"><button class="ui inverted white button">Start Listening</button></a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  <!--information Section-->
+    <div id="information-section" class="ui fluid container">
+      <div class="both-sections ui stackable sixteen column grid">
+        <!-- first -->
+        <div id="first-section" class="ui five wide column">
+          <div id="section-title">
+            <h2>
+              Music Anywhere
+            </h2>
+            <p>Music Fly is a MEAN Stack Application that utilizes the Spotify and Soundcloud APIs to bring music from both services. Search for different songs, create playlists, and play music all in one application</p>
+          </div>
+        </div>
+        <!-- Second -->
+        <div id="second-section" class="ui eleven wide column"></div>
+      </div>
+    </div>
+
+    <!--Music Player -->
+    <div id="music-player-header">
+     <img src="assets/images/home/headphone.png" id="player-logo-img"><span id="player-logo">M</span></img>
+     <div id="player-toggle">
+       <i class="sidebar icon big"></i>
+    </div>
+    </span>
+    </div>
+    <div id="music-section" class="ui fluid container">
+      <div class = "grid-space ui grid sixteen wide column" ng-controller="musicPlayer as player">      
         <!--Player Menu -->
-        <div id="player-menu" class = "ui two wide column">
+
+        <div id="player-menu" class = "ui three wide column">
           <div id="menu-tools">
             <div class="ui search" id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
               <div class="ui icon input">
@@ -86,36 +130,131 @@
            </div> 
         </div>
         <!--Page Section -->
-        <div id="pages-section" class="ui twelve wide column">
+        <div id="pages-section" class="ui eleven wide column">
           <div id="home-page" class="music-page" data-page="home">
-            <img id="hero-img" src="assets/images/home/hero2.jpg">
-            <div id="jumbotron">
-              <h1 id="jumbotron-title">All Your Music In One</h1>
-              <p>Music Fly brings songs from Soundcloud and Spotify to combine the music you love</p>
-              <p>All songs belong to either Spotify or Sound Cloud, and any of their affiliates</p>
-            </div>           
+            <div id="home-content" class="ui container grid sixteen wide column">
+              <h4 class="list-title">Top Artists</h4>
+              <div class="ui home-row row">
+                <div class="artist-box">
+                  <img src="../assets/images/artists/calvin-harris.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Calvin Harris
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/kendrick.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Kendrick Lamar
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/coldplay.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Coldplay
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/adele.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Adele
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/drake.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Drake
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/twenty-one.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Twenty One Pilots
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/chainsmokers.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          The Chainsmokers
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/selena.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Selena Gomez
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>                     
           </div>
-          <div id="song-interface" class="music-page hidden" data-page="search">
+          <div id="song-interface" class="music-page page-structure hidden" data-page="search">
             <div id="search-page">                    
               <div id="search-list" >
-                <h4 class="search-title">Search Results</h4>
+                <h4 class="list-title">Search Results</h4>
                 <div song-list></div>
               </div>
             </div>
           </div>
-          <div ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page hidden">
+          <div ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page page-structure hidden">
             <div id="playlist-page">
               <div id="playlist-list">
-                <h4 class="playlist-title">{{playlistPage.name}}</h4>
+                <h4 class="list-title">{{playlistPage.name}}</h4>
                 <div song-list></div>
               </div>
             </div>
-          </div>
-        </div> 
+          </div>  
+        </div>      
       </div>
     </div>
   <script type="text/javascript" src="/underscore/underscore.js"></script>
-  <script src="/annyang.min.js"></script>
+ <script src="/annyang.min.js"></script>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
   <script type="text/javascript" src="/all.js"></script>
   </body>

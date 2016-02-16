@@ -2,6 +2,7 @@ $logo: #FF8300;
 
 #navigation {
   border-radius: 0px !important;
+  margin-bottom: 0px;
 }
 
 #logo {
@@ -33,13 +34,7 @@ $logo: #FF8300;
   top: -18px; 
 }
 
-#player-toggle {
-  visibility: hidden;
-  position: relative;
-  left: -200px;
-  padding-bottom: 0px;
-  cursor: default;
-}
+
 /* Modal */
 #sign-up-modal {
   width: 600px;
@@ -83,17 +78,8 @@ $logo: #FF8300;
 
 /*media queries*/
 
-@media(min-width: 1700px) {
-  #navigation {
-    width: 1700px;
-  }
-}
 
-@media (max-width: 870px) {
-  #player-toggle {
-    visibility: visible;
-  }
-}
+
 
 
 

@@ -1,23 +1,10 @@
-$(document).ready(function () {
-  if ($(window).width() < 870) {
-      $('#player-menu').hide();
-    }
- else if ($(window).width() > 870) {
-    $('#player-menu').show();                     
-  }
- 
-  $(window).resize(function () {
-    if ($(window).width() < 870) {
-      $('#player-menu').hide();
-    }
-    else if ($(window).width() > 870) {
-      $('#player-menu').show();       
-    }
+$(document).ready(function () {  
+  $('.artist-box').dimmer({
+    on: 'hover'
   })
-  $('#player-toggle').on('click', function () {
-      console.log('allo');
-  }) 
 })
+
+
 
 
 angular.module('musicApp', []);
@@ -114,6 +101,9 @@ angular.module('musicApp')
           tabs.switchTabs(attribute);
           scSearch.allTracks($scope.scQuery);
           $scope.scQuery = "";
+          if ($(window).width() < 870) {
+            $('#player-menu').hide();
+          }
         };
       }   
       vm.spotifySearchEnter = function () {
@@ -122,6 +112,9 @@ angular.module('musicApp')
           tabs.switchTabs(attribute);
           spotifySearch.makeRequest($scope.spotifyQuery);
           $scope.spotifyQuery = "";
+          if ($(window).width() < 870) {
+            $('#player-menu').hide();
+          }
         }
       }
       $scope.playMusic = function (event) { 
@@ -483,7 +476,7 @@ angular.module('musicApp')
           }
         };
         annyang.addCommands(commands);
-        annyang.start();
+        // annyang.start();
       }  
     }
   return voice

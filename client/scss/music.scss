@@ -1,6 +1,8 @@
 $soundcloud: #ff8800;
 $spotify: #2ebd59;
 $logo: #FF8300;
+$textGrey: #828282;
+$playerBlack: #212223;
 
 /* Global */
 
@@ -8,44 +10,47 @@ li {
   list-style-type: none;
 }
 
+.grid-space {
+  margin-top: 0rem !important;
+}
+
 /* Main */
+
+
 
 #music-app {
   padding-top: 0px; 
   padding-bottom: 0px;
-  margin-left: 20px;
-  margin-right: 20px;
   margin-top: 0px;
   font-size: 1.1em;
 }
 
-#logo {
-  margin-right: 60px;
-  margin-left:80px;
-  font-family: helvetica;
-}
-
-#logo-title-m {
+#player-logo {
   color: $logo;
-  position:absolute;
-  left: -66px;
   font-size: 45px;
-}
-
-#logo-title {
+  font-family: helvetica;
   position: relative;
-  top: 10px;
-  font-size: 25px;
-  left: -20px;
-  color:white;
-  letter-spacing: 1px
+  left: -53.5px;
+  cursor: default;
 }
 
-#logo-picture {
-  width:70px;
-  position:absolute;
-  left:-82px;
-  top:-18px;
+#player-logo-img {
+  width: 70px;
+  margin-left: 10px;
+}
+
+#player-toggle {
+  color: $textGrey;
+  display: inline-block;
+  font-size: 20px;
+  top: -15;
+  position: relative;
+  left: -30px;
+  visibility: hidden;
+}
+
+#player-toggle:hover {
+  color: white;
 }
 
 /*Search Fields */
@@ -80,6 +85,7 @@ li {
   margin-top: 7px;
 }
 
+
 #sc-box {
   width: 180px;
   border-radius: 0px;
@@ -92,13 +98,17 @@ li {
 /*player Tabs*/
 
 #menu-tools{
-  padding-top: 30px;
+  
 }
 
 #player-menu {
+  width: 272px !important;
+  display: inline-block;
   color: #828282;
-  margin-top: 7px;
-  width: 220px !important;
+  background-color: $playerBlack;
+  padding-left: 35px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 #main {
@@ -158,7 +168,7 @@ li {
 }
 
 .music-tab {
-  width: 100%;
+  /*width: 100%;*/
   cursor:pointer;
   list-style-type: none;
   -webkit-transform: translateZ(0);
@@ -184,11 +194,12 @@ li {
 /*Player Pages */
 
 #pages-section {
+  display: inline-block;
   color: #828282;
   cursor: default;
-  width: 1480px;
-  position: relative;
-  /*left: 220px;*/
+  width: 500;
+  height: 500;
+  /*background-color: beige;*/
 }
 
 .hidden {
@@ -199,12 +210,7 @@ li {
   list-style-type: none;
 }
 
-#song-interface {
-  padding-top: 30px;
-  padding-left:80px;
-}
-
-#playlist-page {
+.page-structure {
   padding-top: 30px;
   padding-left:80px;
 }
@@ -213,44 +219,41 @@ li {
   margin-top:30px;
 }
 
-.search-title {
-  color: black;
-}
-
-.playlist-title {
+.list-title {
   color: black;
 }
 
 /* Home Page */
 
-#jumbotron {
-  position: absolute;
-  top: 200px;
-  left: 60px;
-  p {
-    color: white;
+#home-content {
+  padding-top: 100px;
+  padding-left: 100px;
+
+  h4 {
+    font-size: 1.8em;
   }
 }
 
-#jumbotron-title {
-  font-size: 3em;
-  color: $logo;
+
+.home-row {
+
 }
 
-#hero-img {
-  width: 1460px;
-  -webkit-filter: contrast(70%);
-}
-
-#jumbotron-search {
-  margin-top: 60px;
-  margin-left: 100px;
-   p{
-    color: $logo;
-    margin-left: 100px;
+.artist-box {
+  height: 150px !important;
+  width: 150px !important;
+  background-size: cover;
+  margin-right: 60px;
+  margin-bottom: 60px;
+  img {
+    height: 100%;
+    width: 100%;
   }
 }
 
+.artist-description {
+
+}
 
 /* Music Player*/
 
@@ -307,8 +310,8 @@ li {
   list-style: none;
 }
 
-.highlight {
-  color: blue;
+.song-description {
+  padding-left: 70px !important;
 }
 
 .song-img {
@@ -344,19 +347,18 @@ li {
   padding: 8px !important;
 }
 
+
+
 /*media queries*/
 
 @media (min-width: 1700px) {
-  body {
+  /*body {
     margin-left: auto;
     margin-right: auto;
     width: 1700px;
-  }
+  }*/
   #pages-section {
     width: 1600px;
-  }
-  #navigation {
-    width: 1700px;
   }
   #song-interface {
     padding-left: 150px;
@@ -378,6 +380,10 @@ li {
 }
 
 @media (max-width: 870px) {
+  #player-toggle {
+    visibility: visible;
+  }
+
   #music-app {
     margin-left: 0px;
   }
@@ -396,17 +402,19 @@ li {
   #player-menu {
     position: absolute;
     z-index: 1;
-    background-color: black;
     margin-top: 0px;
     margin-left: 10px;
     padding-left: 10px;
     padding-right: 0px;
+    display: none;
   }
 }
 
-
-
-
+@media (min-width: 870px) {
+  #player-menu {
+    display: initial;
+  }
+}
 
 
 
