@@ -16,12 +16,7 @@ li {
 
 /* Main */
 
-#music-player-header {
-  width: 100%;
-  height: 81px;
-  background-color: $playerBlack;
-  border-bottom: solid 1px;
-}
+
 
 #music-app {
   padding-top: 0px; 
@@ -411,10 +406,15 @@ li {
     margin-left: 10px;
     padding-left: 10px;
     padding-right: 0px;
+    display: none;
   }
 }
 
-
+@media (min-width: 870px) {
+  #player-menu {
+    display: initial;
+  }
+}
 
 
 

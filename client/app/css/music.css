@@ -6,12 +6,6 @@ li {
   margin-top: 0rem !important; }
 
 /* Main */
-#music-player-header {
-  width: 100%;
-  height: 81px;
-  background-color: #212223;
-  border-bottom: solid 1px; }
-
 #music-app {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -303,4 +297,9 @@ li {
     margin-top: 0px;
     margin-left: 10px;
     padding-left: 10px;
-    padding-right: 0px; } }
+    padding-right: 0px;
+    display: none; } }
+
+@media (min-width: 870px) {
+  #player-menu {
+    display: initial; } }
