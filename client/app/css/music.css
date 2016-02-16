@@ -295,4 +295,4 @@ li {
 
 @media (min-width: 870px) {
   #player-menu {
-    display: initial; } }
+    display: inline-block !important; } }
