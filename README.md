@@ -21,8 +21,8 @@ In the near future I am planning on adding features for users to create an accou
 
 ###Home###
 ![alt text](client/app/assets/images/demo-images/home.png "Landing")
+![alt text](client/app/assets/images/demo-images/info.png "info")
 
 ###Player Menu###
-![alt text](client/app/assets/images/demo-images/info.png "info")
 ![alt text](client/app/assets/images/demo-images/list.png "player")
 
