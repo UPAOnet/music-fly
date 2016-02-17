@@ -70,8 +70,9 @@ li {
 
 /*player Tabs*/
 #player-menu {
-  width: 272px !important;
-  display: inline-block;
+  float: left;
+  width: 270px !important;
+  display: inline;
   color: #828282;
   background-color: #212223;
   padding-left: 35px;
@@ -149,8 +150,7 @@ li {
   display: inline-block;
   color: #828282;
   cursor: default;
-  width: 500;
-  height: 500; }
+  width: 80%; }
 
 .hidden {
   display: none; }
@@ -170,8 +170,7 @@ li {
 
 /* Home Page */
 #home-content {
-  padding-top: 100px;
-  padding-left: 100px; }
+  padding-top: 100px; }
   #home-content h4 {
     font-size: 1.8em; }
 
@@ -256,8 +255,6 @@ li {
 
 /*media queries*/
 @media (min-width: 1700px) {
-  #pages-section {
-    width: 1600px; }
   #song-interface {
     padding-left: 150px; }
   #playlist-page {

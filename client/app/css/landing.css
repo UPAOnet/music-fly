@@ -86,7 +86,6 @@
   display: inline-block;
   height: 100%;
   background-image: url(../assets/images/album/mosaic.jpg);
-  background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat; }
 
@@ -153,3 +152,15 @@
       font-size: 3em; }
     #section-title p {
       font-size: 1.1em; } }
+
+@media (min-height: 800px) {
+  #landing {
+    height: 800px; } }
+
+@media (min-height: 900px) {
+  #landing {
+    height: 900px; } }
+
+@media (min-height: 900px) {
+  #landing {
+    height: 980px; } }

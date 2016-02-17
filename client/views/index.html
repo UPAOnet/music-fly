@@ -56,205 +56,203 @@
     </div>
     </span>
     </div>
-    <div id="music-section" class="ui fluid container">
-      <div class = "grid-space ui grid sixteen wide column" ng-controller="musicPlayer as player">   
-
-        <!--Player Menu -->
-        <div id="player-menu" class = "ui three wide column">
-          <div id="menu-tools">
-            <div class="ui search" id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
-              <div class="ui icon input">
-                <input id="spotify-box" class="prompt" type="text" ng-model="spotifyQuery" ng-keypress="player.spotifySearchEnter()" data-tab="search" placeholder="Spotify...">
-                <i class="search icon"></i>
-              </div>
-            </div>
-            <div class="ui search" id="search-sc" ng-show='player.searchDisplay.sc'>
-              <div class="ui icon input">
-                <input id="sc-box" class="prompt" type="text" ng-model="scQuery"
-                ng-keypress="player.scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
-                <i class="search icon"></i>
-              </div>
-            </div>
-            <div id="search-type">
-              <div id="icon-box">
-                <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked> 
-                SoundCloud
-                </input>
-                <i id="sc-icon" class="fa fa-soundcloud fa-2x soundcloud sc-active"></i><br>
-                <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="spotify">            
-                Spotify
-                <i id="spotify-icon" class="fa fa-spotify fa-2x spotify"></i><br>
-                </input> 
-              </div>           
-            </div>          
-            <div id="search">
-              <div>
-                <span class="music-tab" data-tab="search"></span>
-              </div>
-            </div>
-            <div id="main">
-              <span>Main</span>
-             <div id="main-home" >
-                <li class="music-tab" ng-click="player.switchTabs($event)" data-tab="home">
-                  <i class="home icon"></i>
-                  <span ng-click="player.switchTabs($event)" data-tab="home">Home</span>
-                </li>
-              </div>
-            </div>
-            <div id ="playlists">
-              <div id="playlist-header">Playlists</div>
-              <div>
-                <li ng-repeat = "playlist in player.playlistTabs" class="music-tab playlist-tab" data-tab='{{playlist.name}}' data-playlist = "playlist.name" ng-click="player.switchTabs($event, playlist.name)">
-                  <i class="music icon"></i>
-                  {{playlist.name}}
-                </li>
-                <input id="playlist-field" type="text" ng-model="newPlaylist" ng-show="player.addPlaylistState" ng-keypress="player.createNewPlaylist($event)"/>
-                <li id="playlist-add" ng-click="player.revealNewPlaylist()" ng-show="player.addPlaylistButton"><i class="ui plus icon"></i>Add new</li> 
-              </div>       
+    <div id="music-section" ng-controller="musicPlayer as player">
+      <!--Player Menu -->
+      <div id="player-menu" class = >
+        <div id="menu-tools">
+          <div class="ui search" id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
+            <div class="ui icon input">
+              <input id="spotify-box" class="prompt" type="text" ng-model="spotifyQuery" ng-keypress="player.spotifySearchEnter()" data-tab="search" placeholder="Spotify...">
+              <i class="search icon"></i>
             </div>
           </div>
-          <div id="music-player" class="ui">
-            <div  class="ui">       
-              <img ng-src= "{{player.playerImage}}" id="player-img" class="ui image centered">
+          <div class="ui search" id="search-sc" ng-show='player.searchDisplay.sc'>
+            <div class="ui icon input">
+              <input id="sc-box" class="prompt" type="text" ng-model="scQuery"
+              ng-keypress="player.scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
+              <i class="search icon"></i>
             </div>
-            <div id="player-track-info" class="">
-              <div id="track-info">
-                <h4 id="player-track-title">{{player.playerTitle}}</h4>
-                <p id="player-track-artist">{{player.playerArtist}}</p>
+          </div>
+          <div id="search-type">
+            <div id="icon-box">
+              <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked> 
+              SoundCloud
+              </input>
+              <i id="sc-icon" class="fa fa-soundcloud fa-2x soundcloud sc-active"></i><br>
+              <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="spotify">            
+              Spotify
+              <i id="spotify-icon" class="fa fa-spotify fa-2x spotify"></i><br>
+              </input> 
+            </div>           
+          </div>          
+          <div id="search">
+            <div>
+              <span class="music-tab" data-tab="search"></span>
+            </div>
+          </div>
+          <div id="main">
+            <span>Main</span>
+           <div id="main-home" >
+              <li class="music-tab" ng-click="player.switchTabs($event)" data-tab="home">
+                <i class="home icon"></i>
+                <span ng-click="player.switchTabs($event)" data-tab="home">Home</span>
+              </li>
+            </div>
+          </div>
+          <div id ="playlists">
+            <div id="playlist-header">Playlists</div>
+            <div>
+              <li ng-repeat = "playlist in player.playlistTabs" class="music-tab playlist-tab" data-tab='{{playlist.name}}' data-playlist = "playlist.name" ng-click="player.switchTabs($event, playlist.name)">
+                <i class="music icon"></i>
+                {{playlist.name}}
+              </li>
+              <input id="playlist-field" type="text" ng-model="newPlaylist" ng-show="player.addPlaylistState" ng-keypress="player.createNewPlaylist($event)"/>
+              <li id="playlist-add" ng-click="player.revealNewPlaylist()" ng-show="player.addPlaylistButton"><i class="ui plus icon"></i>Add new</li> 
+            </div>       
+          </div>
+        </div>
+        <div id="music-player" class="ui">
+          <div  class="ui">       
+            <img ng-src= "{{player.playerImage}}" id="player-img" class="ui image centered">
+          </div>
+          <div id="player-track-info" class="">
+            <div id="track-info">
+              <h4 id="player-track-title">{{player.playerTitle}}</h4>
+              <p id="player-track-artist">{{player.playerArtist}}</p>
+            </div>
+            <div id="player-controls">
+              <i id="previous-btn" class="backward icon circular" ng-click="player.playPrevious()"></i>
+              <i id="play-btn" class="large circular {{player.playStateButton}}" ng-click="player.togglePlay()"></i>
+              <i id="next-btn" class="forward icon circular" ng-click="player.playNext()"></i>
+            </div>       
+          </div>                        
+         </div> 
+      </div>
+
+      <!--Page Section -->
+      <!-- <div id="pages-section" class=""> -->
+        <div id="home-page" class="music-page" data-page="home">
+          <div id="home-content" class="">
+            <h4 class="list-title">Top Artists</h4>
+            <div class="home-row ui row">
+              <div class="artist-box">
+                <img src="../assets/images/artists/calvin-harris.jpg" class="">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="center">
+                      <h5 class="ui inverted icon header">
+                        Calvin Harris
+                      </h5>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div id="player-controls">
-                <i id="previous-btn" class="backward icon circular" ng-click="player.playPrevious()"></i>
-                <i id="play-btn" class="large circular {{player.playStateButton}}" ng-click="player.togglePlay()"></i>
-                <i id="next-btn" class="forward icon circular" ng-click="player.playNext()"></i>
-              </div>       
-            </div>                        
-           </div> 
+              <div class="artist-box">
+                <img src="../assets/images/artists/kendrick.jpg" class="">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="center">
+                      <h5 class="ui inverted icon header">
+                        Kendrick Lamar
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="artist-box">
+                <img src="../assets/images/artists/coldplay.jpg" class="">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="center">
+                      <h5 class="ui inverted icon header">
+                        Coldplay
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="artist-box">
+                <img src="../assets/images/artists/adele.jpg" class="">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="center">
+                      <h5 class="ui inverted icon header">
+                        Adele
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="artist-box">
+                <img src="../assets/images/artists/drake.jpg" class="">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="center">
+                      <h5 class="ui inverted icon header">
+                        Drake
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="artist-box">
+                <img src="../assets/images/artists/twenty-one.jpg" class="">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="center">
+                      <h5 class="ui inverted icon header">
+                        Twenty One Pilots
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="artist-box">
+                <img src="../assets/images/artists/chainsmokers.jpg" class="">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="center">
+                      <h5 class="ui inverted icon header">
+                        The Chainsmokers
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="artist-box">
+                <img src="../assets/images/artists/selena.jpg" class="">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="center">
+                      <h5 class="ui inverted icon header">
+                        Selena Gomez
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>                     
         </div>
 
-        <!--Page Section -->
-        <div id="pages-section" class="ui eleven wide column">
-          <div id="home-page" class="music-page" data-page="home">
-            <div id="home-content" class="ui container grid sixteen wide column">
-              <h4 class="list-title">Top Artists</h4>
-              <div class="ui home-row row">
-                <div class="artist-box">
-                  <img src="../assets/images/artists/calvin-harris.jpg" class="">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <h5 class="ui inverted icon header">
-                          Calvin Harris
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="artist-box">
-                  <img src="../assets/images/artists/kendrick.jpg" class="">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <h5 class="ui inverted icon header">
-                          Kendrick Lamar
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="artist-box">
-                  <img src="../assets/images/artists/coldplay.jpg" class="">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <h5 class="ui inverted icon header">
-                          Coldplay
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="artist-box">
-                  <img src="../assets/images/artists/adele.jpg" class="">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <h5 class="ui inverted icon header">
-                          Adele
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="artist-box">
-                  <img src="../assets/images/artists/drake.jpg" class="">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <h5 class="ui inverted icon header">
-                          Drake
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="artist-box">
-                  <img src="../assets/images/artists/twenty-one.jpg" class="">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <h5 class="ui inverted icon header">
-                          Twenty One Pilots
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="artist-box">
-                  <img src="../assets/images/artists/chainsmokers.jpg" class="">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <h5 class="ui inverted icon header">
-                          The Chainsmokers
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="artist-box">
-                  <img src="../assets/images/artists/selena.jpg" class="">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <h5 class="ui inverted icon header">
-                          Selena Gomez
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>                     
-          </div>
-          <div id="song-interface" class="music-page page-structure hidden" data-page="search">
-            <div id="search-page">                    
-              <div id="search-list" >
-                <h4 class="list-title">Search Results</h4>
-                <div song-list></div>
-              </div>
+        <div id="song-interface" class="music-page page-structure hidden" data-page="search">
+          <div id="search-page">                    
+            <div id="search-list" >
+              <h4 class="list-title">Search Results</h4>
+              <div song-list></div>
             </div>
           </div>
-          <div ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page page-structure hidden">
-            <div id="playlist-page">
-              <div id="playlist-list">
-                <h4 class="list-title">{{playlistPage.name}}</h4>
-                <div song-list></div>
-              </div>
+        </div>
+        <div ng-repeat= "playlistPage in player.playlistTabs" data-page="{{playlistPage.name}}" class="music-page page-structure hidden">
+          <div id="playlist-page">
+            <div id="playlist-list">
+              <h4 class="list-title">{{playlistPage.name}}</h4>
+              <div song-list></div>
             </div>
-          </div>  
-        </div>      
-      </div>
-    </div>
+          </div>
+        </div> 
+      <!-- </div> -->
+    </div>      
   <script type="text/javascript" src="/underscore/underscore.js"></script>
  <script src="/annyang.min.js"></script>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
