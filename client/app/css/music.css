@@ -5,6 +5,9 @@ li {
 .grid-space {
   margin-top: 0rem !important; }
 
+.hidden {
+  display: none !important; }
+
 /* Main */
 #music-app {
   padding-top: 0px;
@@ -173,7 +176,8 @@ li {
 #home-content {
   padding-top: 100px; }
   #home-content h4 {
-    font-size: 1.8em; }
+    font-size: 1.8em;
+    padding-bottom: 40px; }
 
 .artist-box {
   display: inline-block;
@@ -181,7 +185,8 @@ li {
   width: 200px !important;
   background-size: cover;
   /*margin-right: 60px;*/
-  margin-bottom: 60px; }
+  margin-bottom: 60px;
+  padding: 0px; }
   .artist-box img {
     height: 100%;
     width: 100%; }
