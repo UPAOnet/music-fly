@@ -75,6 +75,7 @@ li {
   display: inline;
   color: #828282;
   background-color: #212223;
+  margin-right: 80px;
   padding-left: 35px;
   padding-top: 60px;
   padding-bottom: 60px; }
@@ -175,10 +176,11 @@ li {
     font-size: 1.8em; }
 
 .artist-box {
-  height: 150px !important;
-  width: 150px !important;
+  display: inline-block;
+  height: 200px !important;
+  width: 200px !important;
   background-size: cover;
-  margin-right: 60px;
+  /*margin-right: 60px;*/
   margin-bottom: 60px; }
   .artist-box img {
     height: 100%;
@@ -279,6 +281,8 @@ li {
   #pages-section {
     width: 100% !important;
     padding-left: 0px; }
+  #home-page {
+    padding-left: 15px; }
   #logo-title {
     visibility: hidden; }
   #player-menu {

@@ -15,6 +15,7 @@
     <div navigation></div>
 
     <!--Landing -->
+
     <div id="landing" class="ui fluid container">
       <div class="hero-overlay">
       <div id="jumbotron">
@@ -51,10 +52,9 @@
     <!--Music Player -->
     <div id="music-player-header">
      <img src="assets/images/home/headphone.png" id="player-logo-img"><span id="player-logo">M</span></img>
-     <div id="player-toggle">
-       <i class="sidebar icon big"></i>
-    </div>
-    </span>
+       <div id="player-toggle">
+         <i class="sidebar icon big"></i>
+      </div>
     </div>
     <div id="music-section" ng-controller="musicPlayer as player">
       <!--Player Menu -->
@@ -130,103 +130,105 @@
       </div>
 
       <!--Page Section -->
-      <!-- <div id="pages-section" class=""> -->
-        <div id="home-page" class="music-page" data-page="home">
-          <div id="home-content" class="">
-            <h4 class="list-title">Top Artists</h4>
+      <div id="pages-section" class="">
+        <div id="home-page" class="music-page ui grid" data-page="home">
+          <div id="home-content" class="ui sixteen wide column">
+            <h4 class="list-title">Top Artists</h4>         
             <div class="home-row ui row">
-              <div class="artist-box">
-                <img src="../assets/images/artists/calvin-harris.jpg" class="">
-                <div class="ui dimmer">
-                  <div class="content">
-                    <div class="center">
-                      <h5 class="ui inverted icon header">
-                        Calvin Harris
-                      </h5>
+              <div class="ui grid eight wide column">
+                <div class="artist-box">
+                  <img src="../assets/images/artists/calvin-harris.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Calvin Harris
+                        </h5>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="artist-box">
-                <img src="../assets/images/artists/kendrick.jpg" class="">
-                <div class="ui dimmer">
-                  <div class="content">
-                    <div class="center">
-                      <h5 class="ui inverted icon header">
-                        Kendrick Lamar
-                      </h5>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/kendrick.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Kendrick Lamar
+                        </h5>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="artist-box">
-                <img src="../assets/images/artists/coldplay.jpg" class="">
-                <div class="ui dimmer">
-                  <div class="content">
-                    <div class="center">
-                      <h5 class="ui inverted icon header">
-                        Coldplay
-                      </h5>
+                <div class="artist-box ">
+                  <img src="../assets/images/artists/coldplay.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Coldplay
+                        </h5>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="artist-box">
-                <img src="../assets/images/artists/adele.jpg" class="">
-                <div class="ui dimmer">
-                  <div class="content">
-                    <div class="center">
-                      <h5 class="ui inverted icon header">
-                        Adele
-                      </h5>
+                <div class="artist-box ">
+                  <img src="../assets/images/artists/adele.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Adele
+                        </h5>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="artist-box">
-                <img src="../assets/images/artists/drake.jpg" class="">
-                <div class="ui dimmer">
-                  <div class="content">
-                    <div class="center">
-                      <h5 class="ui inverted icon header">
-                        Drake
-                      </h5>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/drake.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Drake
+                        </h5>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="artist-box">
-                <img src="../assets/images/artists/twenty-one.jpg" class="">
-                <div class="ui dimmer">
-                  <div class="content">
-                    <div class="center">
-                      <h5 class="ui inverted icon header">
-                        Twenty One Pilots
-                      </h5>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/twenty-one.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Twenty One Pilots
+                        </h5>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="artist-box">
-                <img src="../assets/images/artists/chainsmokers.jpg" class="">
-                <div class="ui dimmer">
-                  <div class="content">
-                    <div class="center">
-                      <h5 class="ui inverted icon header">
-                        The Chainsmokers
-                      </h5>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/chainsmokers.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          The Chainsmokers
+                        </h5>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="artist-box">
-                <img src="../assets/images/artists/selena.jpg" class="">
-                <div class="ui dimmer">
-                  <div class="content">
-                    <div class="center">
-                      <h5 class="ui inverted icon header">
-                        Selena Gomez
-                      </h5>
+                <div class="artist-box">
+                  <img src="../assets/images/artists/selena.jpg" class="">
+                  <div class="ui dimmer">
+                    <div class="content">
+                      <div class="center">
+                        <h5 class="ui inverted icon header">
+                          Selena Gomez
+                        </h5>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -234,7 +236,6 @@
             </div>
           </div>                     
         </div>
-
         <div id="song-interface" class="music-page page-structure hidden" data-page="search">
           <div id="search-page">                    
             <div id="search-list" >
@@ -251,6 +252,7 @@
             </div>
           </div>
         </div> 
+      </div>
       <!-- </div> -->
     </div>      
   <script type="text/javascript" src="/underscore/underscore.js"></script>
