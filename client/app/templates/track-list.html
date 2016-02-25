@@ -10,9 +10,9 @@
             <i class="play icon song-play-btn" ng-click="playMusic($event)" data-song="{{track.name}}"></i><span class="song-play-btn" data-song="{{track.name}}" ng-click="playMusic($event)">Play</span>
           </div>
           <div>
-            <span data-song ='{{track.key}}'>{{track.name}}</span>
-            <p data-song = '{{track.key}}'>{{track.artist}}</p>
-            <p data-song = '{{track.key}}'>{{track.album}}</p>
+            <span data-song='{{track.key}}'>{{track.name}}</span>
+            <p data-song= '{{track.key}}'>{{track.artist}}</p>
+            <p data-song= '{{track.key}}'>{{track.album}}</p>
             <div class="song-options">
               <a href="{{track.pageSource}}">Listen on <i class="fa fa-{{track.company}} song-option-icon {{track.company}}"></i><span class="{{track.company}}">{{track.company}}</span>
               </a>
@@ -20,8 +20,8 @@
           </div>
         </div>
         <div class="ui three wide column">
-          <div>
-            <button class="delete-button ui button"><span><i class="trash outline icon"></i>Delete</span></button>
+          <div ng-show="{{track.deleteAble.currentState()}}">
+            <button class="delete-button ui button"><i class="trash outline icon"></i>Delete</button>
           </div>  
           <div class="ui dropdown segment playlist-add-button" ng-click="openDropDown()">
             <div class="default dropdown-text">Add To</div>

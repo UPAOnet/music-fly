@@ -19,7 +19,7 @@ angular.module('musicApp')
         _.map(trackResults, function (each, i) {
           var stream = each.stream_url;
           var url = getUrl(stream);       
-          vm.tracks.push(new songConstructor(i, each.title, each.artwork_url, each.album, each.user.username, each.duration, 'SoundCloud', each.stream_url, url, each.permalink_url))       
+          vm.tracks.push(new songConstructor(i, each.title, each.artwork_url, each.album, each.user.username, each.duration, 'soundcloud', each.stream_url, url, each.permalink_url))       
         });
         vm.digest()
       })    

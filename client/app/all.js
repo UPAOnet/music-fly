@@ -157,10 +157,10 @@ angular.module('musicApp')
 
     function getSong (song) {
       scClient = 'b10a9e77003de676a40bcd4ce7346f03'
-      if (song.company === 'SoundCloud') {
+      if (song.company === 'soundcloud') {
         return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + scClient;
       }
-      else if (song.company === 'Spotify') {
+      else if (song.company === 'spotify') {
         return song.urlSource;
       }
     };
@@ -295,7 +295,7 @@ angular.module('musicApp')
 
     playlist.state = {
       addField: false,
-      addButton: true
+      addButton: true,
     }
 
     playlist.revealAddField = function () {
@@ -315,6 +315,8 @@ angular.module('musicApp')
       _.map(vm.tracks, function findTrack (eachTrack) {
         if (eachTrack.key === trackKey) {
           currentPlaylist.tracks.push(eachTrack);
+          // eachTrack.deleteAble.changeState();
+          // console.log(eachTrack.deleteAble.state)
           var removedDuplicates = _.uniq(currentPlaylist.tracks);
           currentPlaylist.tracks = removedDuplicates;
         }
@@ -361,7 +363,7 @@ angular.module('musicApp')
         _.map(trackResults, function (each, i) {
           var stream = each.stream_url;
           var url = getUrl(stream);       
-          vm.tracks.push(new songConstructor(i, each.title, each.artwork_url, each.album, each.user.username, each.duration, 'SoundCloud', each.stream_url, url, each.permalink_url))       
+          vm.tracks.push(new songConstructor(i, each.title, each.artwork_url, each.album, each.user.username, each.duration, 'soundcloud', each.stream_url, url, each.permalink_url))       
         });
         vm.digest()
       })    
@@ -404,6 +406,22 @@ angular.module('musicApp')
       this.urlSource = urlSource;
       this.pageSource = pageSource;
     }
+
+    (song.prototype.deleteAble = function () {
+      var state = {
+        deleteAble: false
+      }
+      function changeState () {
+        if(state.deleteAble === false) {
+          console.log('test')
+        }
+      }
+
+      return {
+        changeState: changeState
+      }
+    }())
+
     return song; 
   }])
 angular.module('musicApp')
@@ -436,10 +454,11 @@ angular.module('musicApp')
           trackResults = response.data.tracks.items;
           _.map(trackResults, function (each, i) {
             vm.tracks.push(
-              new songConstructor(i, each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'Spotify', null, each.preview_url, each.external_urls.spotify)
+              new songConstructor(i, each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
             );
-          }) 
-        }) 
+          })
+          console.log(vm.tracks[1])
+        })
       } 
       return search;
     }])

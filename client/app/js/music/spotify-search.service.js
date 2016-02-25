@@ -14,10 +14,11 @@ angular.module('musicApp')
           trackResults = response.data.tracks.items;
           _.map(trackResults, function (each, i) {
             vm.tracks.push(
-              new songConstructor(i, each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'Spotify', null, each.preview_url, each.external_urls.spotify)
+              new songConstructor(i, each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
             );
-          }) 
-        }) 
+          })
+          console.log(vm.tracks[1])
+        })
       } 
       return search;
     }])

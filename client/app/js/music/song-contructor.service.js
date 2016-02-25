@@ -12,5 +12,21 @@ angular.module('musicApp')
       this.urlSource = urlSource;
       this.pageSource = pageSource;
     }
+
+    (song.prototype.deleteAble = function () {
+      var state = {
+        deleteAble: false
+      }
+      function changeState () {
+        if(state.deleteAble === false) {
+          console.log('test')
+        }
+      }
+
+      return {
+        changeState: changeState
+      }
+    }())
+
     return song; 
   }])

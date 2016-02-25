@@ -8,10 +8,10 @@ angular.module('musicApp')
 
     function getSong (song) {
       scClient = 'b10a9e77003de676a40bcd4ce7346f03'
-      if (song.company === 'SoundCloud') {
+      if (song.company === 'soundcloud') {
         return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + scClient;
       }
-      else if (song.company === 'Spotify') {
+      else if (song.company === 'spotify') {
         return song.urlSource;
       }
     };

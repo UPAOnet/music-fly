@@ -6,7 +6,7 @@ angular.module('musicApp')
 
     playlist.state = {
       addField: false,
-      addButton: true
+      addButton: true,
     }
 
     playlist.revealAddField = function () {
@@ -26,6 +26,8 @@ angular.module('musicApp')
       _.map(vm.tracks, function findTrack (eachTrack) {
         if (eachTrack.key === trackKey) {
           currentPlaylist.tracks.push(eachTrack);
+          // eachTrack.deleteAble.changeState();
+          // console.log(eachTrack.deleteAble.state)
           var removedDuplicates = _.uniq(currentPlaylist.tracks);
           currentPlaylist.tracks = removedDuplicates;
         }
