@@ -20,8 +20,8 @@
           </div>
         </div>
         <div class="ui three wide column">
-          <div ng-show="{{track.deleteAble.currentState()}}">
-            <button class="delete-button ui button"><i class="trash outline icon"></i>Delete</button>
+          <div ng-show="track.deleteAble.state">
+            <button class="delete-button ui button" ng-click="player.deleteSong()"><i class="trash outline icon"></i>Delete</button>
           </div>  
           <div class="ui dropdown segment playlist-add-button" ng-click="openDropDown()">
             <div class="default dropdown-text">Add To</div>

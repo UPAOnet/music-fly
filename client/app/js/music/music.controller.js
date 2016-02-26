@@ -53,6 +53,9 @@ angular.module('musicApp')
         }
         tabs.switchTabs(attribute);
       }
+      vm.deleteSong = function () {
+        console.log('delete');
+      }
       vm.revealNewPlaylist = function () {
         playlists.revealAddField();
         vm.addPlaylistState = playlists.state.addField;

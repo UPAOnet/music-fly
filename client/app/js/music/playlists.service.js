@@ -24,12 +24,10 @@ angular.module('musicApp')
       })
 
       _.map(vm.tracks, function findTrack (eachTrack) {
-        if (eachTrack.key === trackKey) {
+        if (eachTrack.key === trackKey) {          
           currentPlaylist.tracks.push(eachTrack);
-          // eachTrack.deleteAble.changeState();
-          // console.log(eachTrack.deleteAble.state)
           var removedDuplicates = _.uniq(currentPlaylist.tracks);
-          currentPlaylist.tracks = removedDuplicates;
+          currentPlaylist.tracks = removedDuplicates;        
         }
       })
     }
@@ -41,6 +39,11 @@ angular.module('musicApp')
         if (eachPlaylist.name === playlist) {
           vm.tracks = eachPlaylist.tracks;
         }
+      })
+
+      _.map(vm.tracks, function revealDelete (eachTrack) {
+        eachTrack.deleteAble.changeState();
+        console.log(eachTrack.deleteAble);
       })
     }
 

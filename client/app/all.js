@@ -71,6 +71,9 @@ angular.module('musicApp')
         }
         tabs.switchTabs(attribute);
       }
+      vm.deleteSong = function () {
+        console.log('delete');
+      }
       vm.revealNewPlaylist = function () {
         playlists.revealAddField();
         vm.addPlaylistState = playlists.state.addField;
@@ -313,12 +316,10 @@ angular.module('musicApp')
       })
 
       _.map(vm.tracks, function findTrack (eachTrack) {
-        if (eachTrack.key === trackKey) {
+        if (eachTrack.key === trackKey) {          
           currentPlaylist.tracks.push(eachTrack);
-          // eachTrack.deleteAble.changeState();
-          // console.log(eachTrack.deleteAble.state)
           var removedDuplicates = _.uniq(currentPlaylist.tracks);
-          currentPlaylist.tracks = removedDuplicates;
+          currentPlaylist.tracks = removedDuplicates;        
         }
       })
     }
@@ -330,6 +331,11 @@ angular.module('musicApp')
         if (eachPlaylist.name === playlist) {
           vm.tracks = eachPlaylist.tracks;
         }
+      })
+
+      _.map(vm.tracks, function revealDelete (eachTrack) {
+        eachTrack.deleteAble.changeState();
+        console.log(eachTrack.deleteAble);
       })
     }
 
@@ -405,23 +411,13 @@ angular.module('musicApp')
       this.fetchSource = fetchSource;
       this.urlSource = urlSource;
       this.pageSource = pageSource;
-    }
-
-    (song.prototype.deleteAble = function () {
-      var state = {
-        deleteAble: false
-      }
-      function changeState () {
-        if(state.deleteAble === false) {
-          console.log('test')
+      this.deleteAble = {
+        state: false,
+        changeState: function () {
+          this.state = true;
         }
       }
-
-      return {
-        changeState: changeState
-      }
-    }())
-
+    }
     return song; 
   }])
 angular.module('musicApp')
@@ -457,7 +453,6 @@ angular.module('musicApp')
               new songConstructor(i, each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
             );
           })
-          console.log(vm.tracks[1])
         })
       } 
       return search;
