@@ -41,6 +41,7 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "mocha": "^2.4.5",
+    "mongoose": "^4.4.5",
     "node-sass": "^3.4.2",
     "node-soundcloud": "0.0.4",
     "request": "^2.69.0",
