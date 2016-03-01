@@ -8,6 +8,9 @@ li {
 .hidden {
   display: none !important; }
 
+.ui .grid {
+  margin-right: 0 !important; }
+
 /* Main */
 #music-app {
   padding-top: 0px;
@@ -306,3 +309,7 @@ li {
 @media (min-width: 870px) {
   #player-menu {
     display: inline-block !important; } }
+
+@media handheld {
+  #landing {
+    height: 700px; } }

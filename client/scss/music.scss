@@ -18,6 +18,10 @@ li {
   display: none !important;
 }
 
+.ui .grid {
+  margin-right: 0 !important;
+}
+
 /* Main */
 
 #music-app {
@@ -228,6 +232,8 @@ li {
   }
 }
 
+
+
 .artist-box {
   display:inline-block;
   height: 200px !important;
@@ -401,6 +407,11 @@ li {
   }
 }
 
+@media handheld {
+  #landing {
+    height: 700px;
+  }
+}
 
 
 

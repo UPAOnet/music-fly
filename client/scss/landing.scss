@@ -245,6 +245,11 @@ $playerBlack: #212223;
   }
 }
 
+@media handheld {
+  body {
+    width: 180vw;
+  }
+}
 
 
 

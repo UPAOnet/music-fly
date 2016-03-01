@@ -164,3 +164,7 @@
 @media (min-height: 900px) {
   #landing {
     height: 980px; } }
+
+@media handheld {
+  body {
+    width: 180vw; } }
