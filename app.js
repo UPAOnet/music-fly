@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var spotify = require('./server/spotify.js');
 var users = require('./server/routes/users.route.js')
 
-mongoose.connect('mongodb://localhost/musicUsers')
+// mongoose.connect('mongodb://localhost/musicUsers')
 
 app.use(express.static('./client/app'));
 app.use(express.static('./client/vendor'));
