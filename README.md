@@ -7,6 +7,7 @@ __viewable__: https://music-fly.herokuapp.com/
 - Javascript
 - Angular.js
 - Node.js with Express
+- MongoDB
 - Underscore.js
 - Semantic UI
 - SASS
