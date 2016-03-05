@@ -99,8 +99,8 @@ angular.module('musicApp')
         playlists.addTrack(trackKey, playlist);
         vm.digest();
       } 
-      vm.removeTrack = function (track) {
-        playlists.removeTrack(track);
+      vm.removeTrack = function (trackId) {
+        playlists.removeTrack(trackId);
       }          
       vm.voiceSearch = function (query) {
         var attribute = 'search';
@@ -327,8 +327,12 @@ angular.module('musicApp')
       })
     }
 
-    playlist.removeTrack = function (track) {
-      console.log(track);
+    playlist.removeTrack = function (trackId) {
+      vm.tracks.forEach(function (track, i) {
+        if (track.key === trackId) {
+          vm.tracks.splice(i, 1);
+        }
+      }) 
     }
 
     playlist.displayTracks = function (playlist) {

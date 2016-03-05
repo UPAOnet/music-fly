@@ -81,8 +81,8 @@ angular.module('musicApp')
         playlists.addTrack(trackKey, playlist);
         vm.digest();
       } 
-      vm.removeTrack = function (track) {
-        playlists.removeTrack(track);
+      vm.removeTrack = function (trackId) {
+        playlists.removeTrack(trackId);
       }          
       vm.voiceSearch = function (query) {
         var attribute = 'search';

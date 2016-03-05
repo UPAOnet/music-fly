@@ -32,8 +32,12 @@ angular.module('musicApp')
       })
     }
 
-    playlist.removeTrack = function (track) {
-      console.log(track);
+    playlist.removeTrack = function (trackId) {
+      vm.tracks.forEach(function (track, i) {
+        if (track.key === trackId) {
+          vm.tracks.splice(i, 1);
+        }
+      }) 
     }
 
     playlist.displayTracks = function (playlist) {

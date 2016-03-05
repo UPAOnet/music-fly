@@ -21,7 +21,7 @@
         </div>
         <div class="ui three wide column">
           <div ng-show="track.deleteAble.state">
-            <button class="delete-button ui button" ng-click="player.removeTrack(track)"><i class="trash outline icon"></i>Delete</button>
+            <button class="delete-button ui button" ng-click="player.removeTrack(track.key)"><i class="trash outline icon"></i>Delete</button>
           </div>  
           <div class="ui dropdown segment playlist-add-button" ng-click="openDropDown()">
             <div class="default dropdown-text">Add To</div>
