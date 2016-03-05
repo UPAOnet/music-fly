@@ -6,7 +6,7 @@ angular.module('musicApp')
 
     playlist.state = {
       addField: false,
-      addButton: true,
+      addButton: true
     }
 
     playlist.revealAddField = function () {
@@ -32,18 +32,22 @@ angular.module('musicApp')
       })
     }
 
+    playlist.removeTrack = function (track) {
+      console.log(track);
+    }
+
     playlist.displayTracks = function (playlist) {
       vm.tracks = [];
 
-      _.map(vm.playlistTabs, function findTrackList (eachPlaylist) {
+      _.map(vm.playlistTabs, function (eachPlaylist, i) {
         if (eachPlaylist.name === playlist) {
           vm.tracks = eachPlaylist.tracks;
         }
       })
 
-      _.map(vm.tracks, function revealDelete (eachTrack) {
+      _.map(vm.tracks, function (eachTrack, i) {
         eachTrack.deleteAble.changeState();
-        console.log(eachTrack.deleteAble);
+        eachTrack.key = i;
       })
     }
 

@@ -33,9 +33,11 @@ angular.module('musicApp')
       vm.addPlaylistButton = playlists.state.addButton; 
       vm.annyang = voice.initialize();  
       vm.SC = SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})  
+      
       $scope.spotifyQuery;
       $scope.scQuery; 
       $scope.newPlaylist; 
+
       vm.digest = function () {
         _.defer(function() {
           $scope.$digest();
@@ -70,10 +72,7 @@ angular.module('musicApp')
           playlists.displayTracks(playlist);     
         }
         tabs.switchTabs(attribute);
-      }
-      vm.deleteSong = function () {
-        console.log('delete');
-      }
+      }    
       vm.revealNewPlaylist = function () {
         playlists.revealAddField();
         vm.addPlaylistState = playlists.state.addField;
@@ -99,7 +98,10 @@ angular.module('musicApp')
       vm.addTrack = function (trackKey, playlist) {
         playlists.addTrack(trackKey, playlist);
         vm.digest();
-      }             
+      } 
+      vm.removeTrack = function (track) {
+        playlists.removeTrack(track);
+      }          
       vm.voiceSearch = function (query) {
         var attribute = 'search';
           tabs.switchTabs(attribute);
@@ -128,6 +130,7 @@ angular.module('musicApp')
           }
         }
       }
+
       $scope.playMusic = function (event) { 
         var song = event.target.getAttribute('data-song');     
         playerControls.playMusic(song);
@@ -298,7 +301,7 @@ angular.module('musicApp')
 
     playlist.state = {
       addField: false,
-      addButton: true,
+      addButton: true
     }
 
     playlist.revealAddField = function () {
@@ -324,18 +327,22 @@ angular.module('musicApp')
       })
     }
 
+    playlist.removeTrack = function (track) {
+      console.log(track);
+    }
+
     playlist.displayTracks = function (playlist) {
       vm.tracks = [];
 
-      _.map(vm.playlistTabs, function findTrackList (eachPlaylist) {
+      _.map(vm.playlistTabs, function (eachPlaylist, i) {
         if (eachPlaylist.name === playlist) {
           vm.tracks = eachPlaylist.tracks;
         }
       })
 
-      _.map(vm.tracks, function revealDelete (eachTrack) {
+      _.map(vm.tracks, function (eachTrack, i) {
         eachTrack.deleteAble.changeState();
-        console.log(eachTrack.deleteAble);
+        eachTrack.key = i;
       })
     }
 
