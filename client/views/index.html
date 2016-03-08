@@ -15,8 +15,9 @@
   <link rel="stylesheet" type="text/css" href="/css/landing.css">
 </head>
   <body>
-    <div navigation></div>
-
+    <div ng-controller="navController as nav">
+      <div nav-bar></div>
+    </div>
     <!--Landing -->
 
     <div id="landing" class="ui fluid container">
@@ -61,7 +62,7 @@
     </div>
     <div id="music-section" ng-controller="musicPlayer as player">
       <!--Player Menu -->
-      <div id="player-menu" class = >
+      <div id="player-menu">
         <div id="menu-tools">
           <div class="ui search" id="search-spotify" ng-show='player.searchDisplay.spotify' data-search="spotify">
             <div class="ui icon input">

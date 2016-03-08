@@ -1,3 +1,4 @@
+angular.module('musicApp', []);
 $(document).ready(function () {  
   $('.artist-box').dimmer({
     on: 'hover'
@@ -15,38 +16,6 @@ $(document).ready(function () {
 
 
 
-angular.module('musicApp', []);
-angular.module('musicApp')
-  .directive('navigation', function () {
-    return {
-      scope: true,
-      restrict: 'A',
-      replace: false,
-      templateUrl: 'templates/navigation.html',
-      link: function (scope, elem, attrs) {
-        $('#sign-up-btn').click(function () {
-          $('.ui.modal').modal('show')
-        })
-        $('#player-toggle').click(function () {
-          $('#player-menu').toggle('slide');
-        })
-      }
-    }
-  })
-angular.module('musicApp')
-  .directive('songList', function () {
-    return {
-      scope: true,
-      restrict: 'A',
-      replace: false,
-      templateUrl: 'templates/track-list.html',
-      link: function (scope, elem, attrs) {
-        elem.bind('click', function (event) {   
-          $('.ui.dropdown').dropdown('restore defaults');            
-        })
-      }
-    }
-  })
 angular.module('musicApp')
   .controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'voice',
     function ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, voice) {
@@ -167,6 +136,20 @@ angular.module('musicApp')
         playerControls.playMusic(song);
       }    
   }])
+angular.module('musicApp')
+  .directive('songList', function () {
+    return {
+      scope: true,
+      restrict: 'A',
+      replace: false,
+      templateUrl: 'templates/track-list.html',
+      link: function (scope, elem, attrs) {
+        elem.bind('click', function (event) {   
+          $('.ui.dropdown').dropdown('restore defaults');            
+        })
+      }
+    }
+  })
 angular.module('musicApp')
   .factory('playerControls', [function () { 
     var masterPlayer = new Audio();
@@ -513,3 +496,57 @@ angular.module('musicApp')
     }
   return voice
 }])
+angular.module('musicApp')
+  .controller('navController', navController); 
+
+  navController.$inject = ['$scope', 'userLogin'];
+
+  function navController ($scope, userLogin) {
+    var vm = this;
+    vm.loginName;
+
+    vm.login = function () {
+      userLogin.login(vm.loginName)
+    }
+  } 
+angular.module('musicApp')
+  .directive('navBar', function () {
+    return {
+      scope: true,
+      restrict: 'A',
+      replace: false,
+      templateUrl: 'templates/navigation.html',
+      link: function (scope, elem, attrs) {
+
+        $('.ui.modal').modal({
+          allowMultiple: false
+        })
+
+        $('#sign-up-btn').click(function () {
+          $('#sign-up-modal').modal('show')
+        })
+
+        $('#log-in-btn').click(function () {
+          $('#log-in-modal').modal('show')
+        })
+
+        $('#player-toggle').click(function () {
+          $('#player-menu').toggle('slide');
+        })
+      }
+    }
+  })
+angular.module('musicApp')
+  .factory('userLogin', [function () {
+
+    // var userName = vm.createUserName;
+
+    function login (userName) {
+      console.log(userName);
+    }
+
+    return {
+      login: login
+    }
+
+  }])

@@ -1,14 +1,24 @@
 angular.module('musicApp')
-  .directive('navigation', function () {
+  .directive('navBar', function () {
     return {
       scope: true,
       restrict: 'A',
       replace: false,
       templateUrl: 'templates/navigation.html',
       link: function (scope, elem, attrs) {
-        $('#sign-up-btn').click(function () {
-          $('.ui.modal').modal('show')
+
+        $('.ui.modal').modal({
+          allowMultiple: false
         })
+
+        $('#sign-up-btn').click(function () {
+          $('#sign-up-modal').modal('show')
+        })
+
+        $('#log-in-btn').click(function () {
+          $('#log-in-modal').modal('show')
+        })
+
         $('#player-toggle').click(function () {
           $('#player-menu').toggle('slide');
         })
