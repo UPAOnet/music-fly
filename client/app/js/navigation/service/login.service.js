@@ -1,10 +1,22 @@
 angular.module('musicApp')
-  .factory('userLogin', [function () {
+  .factory('userLogin', ['$http', function ($http) {
 
-    // var userName = vm.createUserName;
+    function login (userName, password) {
 
-    function login (userName) {
-      console.log(userName);
+      var query = JSON.stringify({
+        userName: userName,
+        password: password
+      })
+      
+      // console.log(query)
+
+      $http({
+        data: query,
+        url: '/users/login',
+        method: 'POST'
+      }).then (function (response) {
+        console.log(response)
+      })
     }
 
     return {
