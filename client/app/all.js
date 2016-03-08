@@ -17,6 +17,37 @@ $(document).ready(function () {
 
 angular.module('musicApp', []);
 angular.module('musicApp')
+  .directive('navigation', function () {
+    return {
+      scope: true,
+      restrict: 'A',
+      replace: false,
+      templateUrl: 'templates/navigation.html',
+      link: function (scope, elem, attrs) {
+        $('#sign-up-btn').click(function () {
+          $('.ui.modal').modal('show')
+        })
+        $('#player-toggle').click(function () {
+          $('#player-menu').toggle('slide');
+        })
+      }
+    }
+  })
+angular.module('musicApp')
+  .directive('songList', function () {
+    return {
+      scope: true,
+      restrict: 'A',
+      replace: false,
+      templateUrl: 'templates/track-list.html',
+      link: function (scope, elem, attrs) {
+        elem.bind('click', function (event) {   
+          $('.ui.dropdown').dropdown('restore defaults');            
+        })
+      }
+    }
+  })
+angular.module('musicApp')
   .controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'voice',
     function ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, voice) {
       vm = this;
@@ -136,23 +167,6 @@ angular.module('musicApp')
         playerControls.playMusic(song);
       }    
   }])
-angular.module('musicApp')
-  .directive('navigation', function () {
-    return {
-      scope: true,
-      restrict: 'A',
-      replace: false,
-      templateUrl: 'templates/navigation.html',
-      link: function (scope, elem, attrs) {
-        $('#sign-up-btn').click(function () {
-          $('.ui.modal').modal('show')
-        })
-        $('#player-toggle').click(function () {
-          $('#player-menu').toggle('slide');
-        })
-      }
-    }
-  })
 angular.module('musicApp')
   .factory('playerControls', [function () { 
     var masterPlayer = new Audio();
@@ -431,20 +445,6 @@ angular.module('musicApp')
     }
     return song; 
   }])
-angular.module('musicApp')
-  .directive('songList', function () {
-    return {
-      scope: true,
-      restrict: 'A',
-      replace: false,
-      templateUrl: 'templates/track-list.html',
-      link: function (scope, elem, attrs) {
-        elem.bind('click', function (event) {   
-          $('.ui.dropdown').dropdown('restore defaults');            
-        })
-      }
-    }
-  })
 angular.module('musicApp')
   .factory('spotifySearch', ['$http', 'songConstructor', function ($http, songConstructor) {
       var search = {};
