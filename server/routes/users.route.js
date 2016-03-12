@@ -17,7 +17,7 @@ app.post('/login', parseJSON, function (req, res) {
   userModel.findOne({
     name: user,
     password: password
-  }).exec(function (err, currentUser){
+  }).exec(function (err, currentUser) {
     console.log(currentUser)
     
     if (!currentUser) {
@@ -28,14 +28,10 @@ app.post('/login', parseJSON, function (req, res) {
       res.status(401)
       return res.send();
     }
-    // res.send(user)
+    
     res.cookie('login', user);
     res.json({result: true});
 
-    // if (err) {
-    //   return res.send(err)
-    // }
-    // res.json(users)
   });
 });
 

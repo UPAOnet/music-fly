@@ -4,7 +4,7 @@ angular.module('musicApp')
 
       search.makeRequest = function (input) {
         var query = JSON.stringify({queryInput: input})
-        vm.tracks = [];
+        this.tracks = [];
 
         $http({
           data: query,

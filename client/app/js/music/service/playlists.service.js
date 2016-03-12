@@ -1,5 +1,6 @@
 angular.module('musicApp')
   .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
+    
     var playlist = {};
     var samplePlaylist = new playlistConstructor('My Playlist');
     playlist.currentPlaylists = [samplePlaylist];

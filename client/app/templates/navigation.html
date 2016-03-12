@@ -9,6 +9,7 @@
     <a id="log-in-btn" class="item">
       Log In
     </a>
+    <!-- <a id="log-in-welcome" class="item">Welcome {{nav.currentUser}}</span></a> -->
   </div>
 </div>
 
@@ -20,7 +21,7 @@
       <h2 id="sign-up-modal-title">Sign Up</h2>
       <form class="ui form" name="userForm" id="sign-up-fields">
         <div class="field">
-          <label for="username" ng-model="username">Username</label>
+          <label for="username" >Username</label>
           <input id="username"type="text" ng-model="nav.createUserName"/>     
         </div>
         <div class="field">
@@ -47,7 +48,7 @@
       <form class="ui form" name="userForm" id="log-in-fields">
         <div class="field">
           <label for="username" ng-model="username">Username</label>
-          <input id="username"type="text" ng-model="nav.loginName"/>     
+          <input id="username" type="text" ng-model="nav.loginName"/>     
         </div>
         <div class="field">
           <label for="password" ng-model="password">Password</label>

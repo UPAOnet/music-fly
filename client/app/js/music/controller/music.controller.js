@@ -1,6 +1,9 @@
 angular.module('musicApp')
-  .controller('musicPlayer', ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'voice',
-    function ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, voice) {
+  .controller('musicPlayer', musicPlayer)
+    
+  musicPlayer.$inject = ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'voice'];
+
+  function musicPlayer ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, voice) {
       vm = this;
       vm.topArtists;
       vm.tracks = [];
@@ -117,4 +120,4 @@ angular.module('musicApp')
         var song = event.target.getAttribute('data-song');     
         playerControls.playMusic(song);
       }    
-  }])
+  }

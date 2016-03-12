@@ -1,6 +1,8 @@
 angular.module('musicApp')
   .factory('playerControls', [function () { 
+    
     var masterPlayer = new Audio();
+    
     masterPlayer.playState = {
       playing: false,
       currentSong: null
