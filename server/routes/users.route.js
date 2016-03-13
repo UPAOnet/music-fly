@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 app.post('/login', parseJSON, function (req, res) {
-
+  console.log(req.header)
   var req = req.body;
   var user = req.userName;
   var password = req.password;
