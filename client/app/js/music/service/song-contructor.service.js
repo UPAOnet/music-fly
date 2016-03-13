@@ -1,5 +1,5 @@
 angular.module('musicApp')
-  .service('songConstructor', [function () {
+  .factory('songConstructor', [function () {
     function song (key, name, image, album, artist, duration, company, fetchSource, urlSource, pageSource) {
       this.key = key;
       this.name = name;

@@ -1,5 +1,5 @@
 angular.module('musicApp')
-  .service('playlistConstructor', [function () {
+  .factory('playlistConstructor', [function () {
     function playlist (name) {
       this.name = name;
       this.tracks = [];

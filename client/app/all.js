@@ -288,7 +288,7 @@ angular.module('musicApp')
     return masterPlayer
   }])
 angular.module('musicApp')
-  .service('playlistConstructor', [function () {
+  .factory('playlistConstructor', [function () {
     function playlist (name) {
       this.name = name;
       this.tracks = [];
@@ -413,7 +413,7 @@ angular.module('musicApp')
   }])
   
 angular.module('musicApp')
-  .service('songConstructor', [function () {
+  .factory('songConstructor', [function () {
     function song (key, name, image, album, artist, duration, company, fetchSource, urlSource, pageSource) {
       this.key = key;
       this.name = name;
