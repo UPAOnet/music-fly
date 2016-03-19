@@ -1,8 +1,13 @@
 angular.module('musicApp')
   .factory('voice', [function () {
-    var voice = {};
     
-    voice.initialize = function () {
+    var voice = {
+      initialize: initialize
+    };
+
+    return voice
+    
+    function initialize () {
       if (annyang) {
         var commands = {
           'search *query': function search (query) {
@@ -26,5 +31,5 @@ angular.module('musicApp')
         // annyang.start();
       }  
     }
-  return voice
+  
 }])

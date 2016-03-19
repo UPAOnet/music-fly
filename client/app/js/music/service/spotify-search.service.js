@@ -1,8 +1,13 @@
 angular.module('musicApp')
   .factory('spotifySearch', ['$http', 'songConstructor', function ($http, songConstructor) {
-      var search = {};
+      
+      var search = {
+        makeRequest: makeRequest
+      };
 
-      search.makeRequest = function (input) {
+      return search;
+
+      function makeRequest (input) {
         var query = JSON.stringify({queryInput: input})
         this.tracks = [];
 
@@ -19,5 +24,5 @@ angular.module('musicApp')
           })
         })
       } 
-      return search;
+      
     }])

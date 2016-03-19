@@ -293,30 +293,43 @@ angular.module('musicApp')
   }])
 angular.module('musicApp')
   .factory('playlistConstructor', [function () {
+
+    return playlist
+
     function playlist (name) {
       this.name = name;
       this.tracks = [];
     }
-    return playlist
+    
   }])
 angular.module('musicApp')
   .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
     
-    var playlist = {};
+
     var samplePlaylist = new playlistConstructor('My Playlist');
+
+    var playlist = {
+      addTrack: addTrack,
+      createNewPlaylist: createNewPlaylist,
+      displayTracks: displayTracks,
+      removeTrack: removeTrack,
+      revealAddField: revealAddField,    
+      state: {
+        addField: false,
+        addButton: true
+      }
+    };
+
     playlist.currentPlaylists = [samplePlaylist];
 
-    playlist.state = {
-      addField: false,
-      addButton: true
-    }
+    return playlist;
 
-    playlist.revealAddField = function () {
+    function revealAddField () {
         playlist.state.addField = true;
         playlist.state.addButton = false;
       }
 
-    playlist.addTrack = function (trackKey, playlist) {
+    function addTrack (trackKey, playlist) {
       var currentPlaylist;
 
       _.map(vm.playlistTabs, function findPlaylist (eachPlaylist) {
@@ -334,7 +347,7 @@ angular.module('musicApp')
       })
     }
 
-    playlist.removeTrack = function (trackId) {
+    function removeTrack (trackId) {
       vm.tracks.forEach(function (track, i) {
         if (track.key === trackId) {
           vm.tracks.splice(i, 1);
@@ -342,7 +355,7 @@ angular.module('musicApp')
       }) 
     }
 
-    playlist.displayTracks = function (playlist) {
+    function displayTracks (playlist) {
       vm.tracks = [];
 
       _.map(vm.playlistTabs, function (eachPlaylist, i) {
@@ -357,20 +370,25 @@ angular.module('musicApp')
       })
     }
 
-    playlist.createNewPlaylist = function (name) {
+    function createNewPlaylist (name) {
       var newPlaylist = new playlistConstructor (name);
       
       playlist.currentPlaylists.push(newPlaylist);
       playlist.state.addField = false;
       playlist.state.addButton = true;
     }
-    return playlist;
+    
   }])
 angular.module('musicApp')
   .factory('scSearch', ['songConstructor', function (songConstructor) {
-    var search = {}; 
+    
+    var search = {
+      allTracks: allTracks
+    }; 
 
-    search.allTracks = function (input) {
+    return search
+
+    function allTracks (input) {
       var query = input;
       function getUrl (urlStream) {
         if (urlStream.length === 50) {
@@ -392,17 +410,22 @@ angular.module('musicApp')
         vm.digest()
       })    
     };
-    return search
+    
   }])
 angular.module('musicApp')
   .factory('searchType', [function () {
-    var search = {};    
-    search.searchState = {
-      sc: true,
-      spotify: false
-    };
 
-    search.changeSearch = function (attribute) {
+    var search = {
+      changeSearch: changeSearch,
+      searchState: {
+        sc: true,
+        spotify: false
+      }
+    };  
+
+    return search  
+    
+    function changeSearch (attribute) {
       
       if (attribute === 'sc' && search.searchState.sc === false) {
         search.searchState.sc = true;
@@ -413,11 +436,14 @@ angular.module('musicApp')
         search.searchState.sc = false;
       }
     }
-    return search
+    
   }])
   
 angular.module('musicApp')
   .factory('songConstructor', [function () {
+
+    return song; 
+
     function song (key, name, image, album, artist, duration, company, fetchSource, urlSource, pageSource) {
       this.key = key;
       this.name = name;
@@ -436,13 +462,18 @@ angular.module('musicApp')
         }
       }
     }
-    return song; 
+    
   }])
 angular.module('musicApp')
   .factory('spotifySearch', ['$http', 'songConstructor', function ($http, songConstructor) {
-      var search = {};
+      
+      var search = {
+        makeRequest: makeRequest
+      };
 
-      search.makeRequest = function (input) {
+      return search;
+
+      function makeRequest (input) {
         var query = JSON.stringify({queryInput: input})
         this.tracks = [];
 
@@ -459,28 +490,41 @@ angular.module('musicApp')
           })
         })
       } 
-      return search;
+      
     }])
 angular.module('musicApp')
   .factory('tabs', [function () {
-    var tabSwitcher = {};   
-    tabSwitcher.switchTabs = function (tabAttribute) {
+
+    var tabSwitcher = {
+      switchTabs: switchTabs
+    };   
+
+    return tabSwitcher;
+
+    function switchTabs (tabAttribute) {
       var allPages = document.getElementsByClassName('music-page');
-      var allTabs = document.getElementsByClassName('music-tab');    
+      var allTabs = document.getElementsByClassName('music-tab');
+
       for (var i =0; i<allPages.length; i++) {
         allPages[i].classList.add('hidden');
+        
         if (allPages[i].getAttribute('data-page') === tabAttribute) {
           allPages[i].classList.remove('hidden');
         }
       }
     }
-  return tabSwitcher;
+  
 }])
 angular.module('musicApp')
   .factory('voice', [function () {
-    var voice = {};
     
-    voice.initialize = function () {
+    var voice = {
+      initialize: initialize
+    };
+
+    return voice
+    
+    function initialize () {
       if (annyang) {
         var commands = {
           'search *query': function search (query) {
@@ -504,7 +548,7 @@ angular.module('musicApp')
         // annyang.start();
       }  
     }
-  return voice
+  
 }])
 angular.module('musicApp')
   .controller('navController', navController); 
@@ -558,7 +602,10 @@ angular.module('musicApp')
 angular.module('musicApp')
   .factory('userLogin', ['$http', function ($http) {
 
-    
+    return {
+      login: login
+    }
+
     function login (userName, password) {
 
       var query = JSON.stringify({
@@ -572,10 +619,6 @@ angular.module('musicApp')
         method: 'POST'
       })
 
-    }
-
-    return {
-      login: login
     }
 
   }])

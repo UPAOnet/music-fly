@@ -1,5 +1,8 @@
 angular.module('musicApp')
   .factory('songConstructor', [function () {
+
+    return song; 
+
     function song (key, name, image, album, artist, duration, company, fetchSource, urlSource, pageSource) {
       this.key = key;
       this.name = name;
@@ -18,5 +21,5 @@ angular.module('musicApp')
         }
       }
     }
-    return song; 
+    
   }])

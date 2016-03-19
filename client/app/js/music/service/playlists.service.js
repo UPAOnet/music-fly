@@ -1,21 +1,31 @@
 angular.module('musicApp')
   .factory('playlists', ['playlistConstructor', function (playlistConstructor) {
     
-    var playlist = {};
+
     var samplePlaylist = new playlistConstructor('My Playlist');
+
+    var playlist = {
+      addTrack: addTrack,
+      createNewPlaylist: createNewPlaylist,
+      displayTracks: displayTracks,
+      removeTrack: removeTrack,
+      revealAddField: revealAddField,    
+      state: {
+        addField: false,
+        addButton: true
+      }
+    };
+
     playlist.currentPlaylists = [samplePlaylist];
 
-    playlist.state = {
-      addField: false,
-      addButton: true
-    }
+    return playlist;
 
-    playlist.revealAddField = function () {
+    function revealAddField () {
         playlist.state.addField = true;
         playlist.state.addButton = false;
       }
 
-    playlist.addTrack = function (trackKey, playlist) {
+    function addTrack (trackKey, playlist) {
       var currentPlaylist;
 
       _.map(vm.playlistTabs, function findPlaylist (eachPlaylist) {
@@ -33,7 +43,7 @@ angular.module('musicApp')
       })
     }
 
-    playlist.removeTrack = function (trackId) {
+    function removeTrack (trackId) {
       vm.tracks.forEach(function (track, i) {
         if (track.key === trackId) {
           vm.tracks.splice(i, 1);
@@ -41,7 +51,7 @@ angular.module('musicApp')
       }) 
     }
 
-    playlist.displayTracks = function (playlist) {
+    function displayTracks (playlist) {
       vm.tracks = [];
 
       _.map(vm.playlistTabs, function (eachPlaylist, i) {
@@ -56,12 +66,12 @@ angular.module('musicApp')
       })
     }
 
-    playlist.createNewPlaylist = function (name) {
+    function createNewPlaylist (name) {
       var newPlaylist = new playlistConstructor (name);
       
       playlist.currentPlaylists.push(newPlaylist);
       playlist.state.addField = false;
       playlist.state.addButton = true;
     }
-    return playlist;
+    
   }])

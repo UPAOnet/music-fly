@@ -1,7 +1,10 @@
 angular.module('musicApp')
   .factory('userLogin', ['$http', function ($http) {
 
-    
+    return {
+      login: login
+    }
+
     function login (userName, password) {
 
       var query = JSON.stringify({
@@ -15,10 +18,6 @@ angular.module('musicApp')
         method: 'POST'
       })
 
-    }
-
-    return {
-      login: login
     }
 
   }])

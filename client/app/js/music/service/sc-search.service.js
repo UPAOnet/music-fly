@@ -1,8 +1,13 @@
 angular.module('musicApp')
   .factory('scSearch', ['songConstructor', function (songConstructor) {
-    var search = {}; 
+    
+    var search = {
+      allTracks: allTracks
+    }; 
 
-    search.allTracks = function (input) {
+    return search
+
+    function allTracks (input) {
       var query = input;
       function getUrl (urlStream) {
         if (urlStream.length === 50) {
@@ -24,5 +29,5 @@ angular.module('musicApp')
         vm.digest()
       })    
     };
-    return search
+    
   }])
