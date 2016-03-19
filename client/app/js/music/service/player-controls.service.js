@@ -2,7 +2,7 @@ angular.module('musicApp')
   .factory('playerControls', [function () { 
     
     var masterPlayer = new Audio();
-    
+
     masterPlayer.playState = {
       playing: false,
       currentSong: null
@@ -130,5 +130,7 @@ angular.module('musicApp')
         }
       })
     }
-    return masterPlayer
+
+  return masterPlayer
+    
   }])

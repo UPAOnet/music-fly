@@ -17,7 +17,8 @@ angular.module('musicApp')
       vm.addPlaylistState = playlists.state.addField;
       vm.addPlaylistButton = playlists.state.addButton; 
       vm.annyang = voice.initialize();  
-      vm.SC = SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})  
+      
+      SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})  
       
       $scope.spotifyQuery;
       $scope.scQuery; 
