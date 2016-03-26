@@ -1,8 +1,6 @@
 # music-fly
 An application for people to play, save, and merge music files from  across different media applications.
 
-__viewable__: https://music-fly.herokuapp.com/
-
 ## Built Upon
 - Javascript
 - Angular.js
