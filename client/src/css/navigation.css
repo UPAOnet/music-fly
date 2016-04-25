@@ -1,0 +1,60 @@
+#navigation {
+  border-radius: 0px !important;
+  margin-bottom: 0px; }
+
+#logo {
+  margin-right: 60px;
+  margin-left: 80px;
+  font-family: helvetica; }
+
+#logo-title-m {
+  color: #FF8300;
+  position: absolute;
+  left: -66px;
+  font-size: 45px; }
+
+#logo-title {
+  position: relative;
+  top: 10px;
+  font-size: 25px;
+  left: -20px;
+  color: white;
+  letter-spacing: 1px; }
+
+#logo-picture {
+  width: 70px;
+  position: absolute;
+  left: -82px;
+  top: -18px; }
+
+/* Modal */
+#sign-up-modal {
+  width: 600px; }
+
+#modal-background {
+  height: 500px;
+  background-image: url(../assets/images/modal/sign-up.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.header {
+  padding-top: 80px;
+  text-align: center; }
+
+.actions-bar {
+  text-align: center !important; }
+
+#sign-up-modal-title {
+  font-size: 2em !important; }
+
+#sign-up-fields {
+  text-align: left;
+  width: 60%;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto; }
+  #sign-up-fields label {
+    font-size: 1.2em;
+    color: #FF8300; }
+
+/*media queries*/

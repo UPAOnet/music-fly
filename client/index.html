@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=2.0"> -->
-  <title>Music Fly</title>    
-  <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">    
-  <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.css">      
+  <title>Music Fly</title>
+  <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">
+  <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.css">
   <script type="text/javascript" src="/angular/angular.js"></script>
   <script type="text/javascript" src="/jquery/dist/jquery.js"></script>
-  <script src="/semantic/dist/semantic.js"></script>    
+  <script src="/semantic/dist/semantic.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/navigation.css">
   <link rel="stylesheet" type="text/css" href="/css/music.css">
@@ -36,7 +36,7 @@
     </div>
 
   <!--information Section-->
-  
+
     <div id="information-section" class="ui fluid container">
       <div class="both-sections ui stackable sixteen column grid">
         <!-- first -->
@@ -79,16 +79,16 @@
           </div>
           <div id="search-type">
             <div id="icon-box">
-              <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked> 
+              <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked>
               SoundCloud
               </input>
               <i id="sc-icon" class="fa fa-soundcloud fa-2x soundcloud sc-active"></i><br>
-              <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="spotify">            
+              <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="spotify">
               Spotify
               <i id="spotify-icon" class="fa fa-spotify fa-2x spotify"></i><br>
-              </input> 
-            </div>           
-          </div>          
+              </input>
+            </div>
+          </div>
           <div id="search">
             <div>
               <span class="music-tab" data-tab="search"></span>
@@ -111,12 +111,12 @@
                 {{playlist.name}}
               </li>
               <input id="playlist-field" type="text" ng-model="newPlaylist" ng-show="player.addPlaylistState" ng-keypress="player.createNewPlaylist($event)"/>
-              <li id="playlist-add" ng-click="player.revealNewPlaylist()" ng-show="player.addPlaylistButton"><i class="ui plus icon"></i>Add new</li> 
-            </div>       
+              <li id="playlist-add" ng-click="player.revealNewPlaylist()" ng-show="player.addPlaylistButton"><i class="ui plus icon"></i>Add new</li>
+            </div>
           </div>
         </div>
         <div id="music-player" class="ui">
-          <div  class="ui">       
+          <div  class="ui">
             <img ng-src= "{{player.playerImage}}" id="player-img" class="ui image centered">
           </div>
           <div id="player-track-info" class="">
@@ -128,20 +128,20 @@
               <i id="previous-btn" class="backward icon circular" ng-click="player.playPrevious()"></i>
               <i id="play-btn" class="large circular {{player.playStateButton}}" ng-click="player.togglePlay()"></i>
               <i id="next-btn" class="forward icon circular" ng-click="player.playNext()"></i>
-            </div>       
-          </div>                        
-         </div> 
+            </div>
+          </div>
+         </div>
       </div>
 
       <!--Page Section -->
       <!-- <div id="pages-section" class=""> -->
         <div id="home-page" class="music-page ui grid eight wide column" data-page="home">
           <div id="home-content">
-            <h4 class="list-title">Top Artists</h4>         
+            <h4 class="list-title">Top Artists</h4>
               <div class="home-row ui row">
                 <div class="ui grid eight wide column">
                   <div class="artist-box">
-                    <img src="../assets/images/artists/calvin-harris.jpg">
+                    <img src="/assets/images/artists/calvin-harris.jpg">
                     <div class="ui dimmer">
                       <div class="content">
                         <div class="center">
@@ -153,7 +153,7 @@
                     </div>
                   </div>
                   <div class="artist-box">
-                    <img src="../assets/images/artists/kendrick.jpg" class="">
+                    <img src="/assets/images/artists/kendrick.jpg" class="">
                     <div class="ui dimmer">
                       <div class="content">
                         <div class="center">
@@ -165,7 +165,7 @@
                     </div>
                   </div>
                   <div class="artist-box ">
-                    <img src="../assets/images/artists/coldplay.jpg" class="">
+                    <img src="/assets/images/artists/coldplay.jpg" class="">
                     <div class="ui dimmer">
                       <div class="content">
                         <div class="center">
@@ -177,7 +177,7 @@
                     </div>
                   </div>
                   <div class="artist-box ">
-                    <img src="../assets/images/artists/adele.jpg" class="">
+                    <img src="/assets/images/artists/adele.jpg" class="">
                     <div class="ui dimmer">
                       <div class="content">
                         <div class="center">
@@ -189,7 +189,7 @@
                     </div>
                   </div>
                   <div class="artist-box">
-                    <img src="../assets/images/artists/drake.jpg" class="">
+                    <img src="/assets/images/artists/drake.jpg" class="">
                     <div class="ui dimmer">
                       <div class="content">
                         <div class="center">
@@ -201,7 +201,7 @@
                     </div>
                   </div>
                   <div class="artist-box">
-                    <img src="../assets/images/artists/twenty-one.jpg" class="">
+                    <img src="/assets/images/artists/twenty-one.jpg" class="">
                     <div class="ui dimmer">
                       <div class="content">
                         <div class="center">
@@ -213,7 +213,7 @@
                     </div>
                   </div>
                   <div class="artist-box">
-                    <img src="../assets/images/artists/chainsmokers.jpg" class="">
+                    <img src="/assets/images/artists/chainsmokers.jpg" class="">
                     <div class="ui dimmer">
                       <div class="content">
                         <div class="center">
@@ -225,7 +225,7 @@
                     </div>
                   </div>
                   <div class="artist-box">
-                    <img src="../assets/images/artists/selena.jpg" class="">
+                    <img src="/assets/images/artists/selena.jpg" class="">
                     <div class="ui dimmer">
                       <div class="content">
                         <div class="center">
@@ -238,10 +238,10 @@
                   </div>
                 </div>
               </div>
-          </div>                     
+          </div>
         </div>
         <div id="song-interface" class="music-page page-structure hidden" data-page="search">
-          <div id="search-page">                    
+          <div id="search-page">
             <div id="search-list" >
               <h4 class="list-title">Search Results</h4>
               <div song-list></div>
@@ -255,12 +255,12 @@
               <div song-list></div>
             </div>
           </div>
-        </div> 
+        </div>
       <!-- </div> -->
-    </div>      
+    </div>
   <script type="text/javascript" src="/underscore/underscore.js"></script>
  <script src="/annyang.min.js"></script>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
-  <script type="text/javascript" src="/all.js"></script>
+  <script type="text/javascript" src="/js/scripts.min.js"></script>
   </body>
 </html>

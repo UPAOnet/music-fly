@@ -8,15 +8,14 @@ var request = require('request');
 gulp.task('start', () => {
   nodemon({
     script: 'app.js',
-    env: { 'NODE_ENV': 'development' }
   })
 })
 
-gulp.task('scripts', () => {
-  gulp.src('client/app/js/**/*.js')
-    .pipe(concat('all.js'))
-    .pipe(gulp.dest('client/app'))
-})
+// gulp.task('scripts', () => {
+//   gulp.src('client/app/js/**/*.js')
+//     .pipe(concat('all.js'))
+//     .pipe(gulp.dest('client/app'))
+// })
 
 gulp.task('test', () => {
   gulp.src('server/**/*.spec.js')
