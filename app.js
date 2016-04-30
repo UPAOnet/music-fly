@@ -6,7 +6,7 @@ var users = require('./server/routes/users.route.js')
 
 // mongoose.connect('mongodb://localhost/musicUsers');
 
-app.use(express.static('./client/dev'));
+app.use(express.static('./client/dev/public'));
 app.use(express.static('./client/vendor'));
 app.use(express.static('./client/bower_components'));
 

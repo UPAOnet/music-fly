@@ -5,7 +5,7 @@ $textGrey: #828282;
 $playerBlack: #212223;
 
 #landing {
-  background-image: url(../assets/images/home/hero2.jpg);
+  // background-image: url('~../assets/images/home/hero2.jpg');
   background-size: cover;
   margin-left: 0px;
   margin-right: 0px;
@@ -32,7 +32,7 @@ $playerBlack: #212223;
 #jumbotron-text {
   font-size: 1.4em;
   width: 600px;
-  
+
   p {
     color: white;
   }
@@ -114,7 +114,7 @@ $playerBlack: #212223;
 #second-section {
   display: inline-block;
   height: 100%;
-  background-image: url(../assets/images/album/mosaic.jpg);
+  // background-image: url('~../assets/images/album/mosaic.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -125,7 +125,7 @@ $playerBlack: #212223;
 #music-section {
   margin-left: 0 !important;
 }
-  
+
 #music-player-header {
   width: 100%;
   height: 81px;
@@ -141,7 +141,7 @@ $playerBlack: #212223;
 
 @media (max-width: 1000px) {
   #section-title {
-    
+
     h2 {
       font-size: 2em;
       font-family: helvetica;
@@ -196,14 +196,14 @@ $playerBlack: #212223;
   #jumbotron-text {
     font-size: 1em;
     width: 600px;
-    
+
     p {
       color: white;
     }
   }
 }
 
-  
+
 
 @media (max-width: 760px) {
   #first-section {
@@ -250,16 +250,3 @@ $playerBlack: #212223;
     width: 180vw;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
