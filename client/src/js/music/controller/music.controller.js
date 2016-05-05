@@ -1,10 +1,10 @@
 angular.module('musicApp')
   .controller('musicPlayer', musicPlayer)
-    
-  musicPlayer.$inject = ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'voice'];
 
-  function musicPlayer ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, voice) {
-      vm = this;
+  musicPlayer.$inject = ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType'];
+
+  function musicPlayer ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType) {
+      var vm = this;
       vm.topArtists;
       vm.tracks = [];
       vm.playlistTabs = playlists.currentPlaylists;
@@ -13,16 +13,15 @@ angular.module('musicApp')
       vm.playerArtist = 'Artist';
       vm.playerInfo = 'album';
       vm.playStateButton = 'play icon';
-      vm.searchDisplay = searchType.searchState; 
+      vm.searchDisplay = searchType.searchState;
       vm.addPlaylistState = playlists.state.addField;
-      vm.addPlaylistButton = playlists.state.addButton; 
-      vm.annyang = voice.initialize();  
-      
-      SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})  
-      
+      vm.addPlaylistButton = playlists.state.addButton;
+
+      SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})
+
       $scope.spotifyQuery;
-      $scope.scQuery; 
-      $scope.newPlaylist; 
+      $scope.scQuery;
+      $scope.newPlaylist;
 
       vm.digest = function () {
         _.defer(function() {
@@ -31,7 +30,7 @@ angular.module('musicApp')
       }
       vm.togglePlay = function () {
         playerControls.togglePlay();
-      } 
+      }
       vm.playNext = function () {
         playerControls.nextSong();
       }
@@ -43,10 +42,10 @@ angular.module('musicApp')
       }
       vm.voicePause = function () {
         playerControls.voicePause();
-      } 
+      }
       vm.voiceStart = function () {
         playerControls.voiceStart();
-      }     
+      }
       vm.changeSearch = function (event) {
         var attribute = event.target.getAttribute('data-search');
         searchType.changeSearch(attribute)
@@ -55,10 +54,10 @@ angular.module('musicApp')
         var attribute = event.target.getAttribute('data-tab');
         var isPlaylist = event.target.getAttribute('data-playlist');
         if (isPlaylist) {
-          playlists.displayTracks(playlist);     
+          playlists.displayTracks(playlist);
         }
         tabs.switchTabs(attribute);
-      }    
+      }
       vm.revealNewPlaylist = function () {
         playlists.revealAddField();
         vm.addPlaylistState = playlists.state.addField;
@@ -78,23 +77,23 @@ angular.module('musicApp')
         }
       }
       vm.openDropDown = function () {
-        $('.ui.dropdown').dropdown('restore defaults'); 
+        $('.ui.dropdown').dropdown('restore defaults');
         vm.digest();
-      } 
+      }
       vm.addTrack = function (trackKey, playlist) {
         playlists.addTrack(trackKey, playlist);
         vm.digest();
-      } 
+      }
       vm.removeTrack = function (trackId) {
         playlists.removeTrack(trackId);
-      }          
+      }
       vm.voiceSearch = function (query) {
         var attribute = 'search';
           tabs.switchTabs(attribute);
           scSearch.allTracks(query);
           $scope.scQuery = "";
       }
-      vm.scSearchEnter = function () {            
+      vm.scSearchEnter = function () {
         if (event.keyCode === 13) {
           var attribute = event.target.getAttribute('data-tab');
           tabs.switchTabs(attribute);
@@ -104,7 +103,7 @@ angular.module('musicApp')
             $('#player-menu').hide();
           }
         };
-      }   
+      }
       vm.spotifySearchEnter = function () {
         if (event.keyCode === 13) {
           var attribute = event.target.getAttribute('data-tab');
@@ -117,8 +116,8 @@ angular.module('musicApp')
         }
       }
 
-      $scope.playMusic = function (event) { 
-        var song = event.target.getAttribute('data-song');     
+      $scope.playMusic = function (event) {
+        var song = event.target.getAttribute('data-song');
         playerControls.playMusic(song);
-      }    
+      }
   }

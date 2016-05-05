@@ -7,4 +7,4 @@ require('./song-constructor.service.js');
 require('./spotify-search.service.js');
 require('./spotify-search.service.js');
 require('./tabs.service.js');
-require('./voice.service.js');
+require('./newPlayerControl.ts');

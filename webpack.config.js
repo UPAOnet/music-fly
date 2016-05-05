@@ -12,11 +12,23 @@ module.exports = {
     path: __dirname + "/client/dev/public/js",
     filename: "scripts.min.js"
   },
+  // resolve: {
+  //   extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+  // },
   module: {
    loaders: [
     { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader' },
     { test: /\.css$/, loader: 'style-loader!css-loader'},
-    { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
+    { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
+    { test: /\.tsx?$/, loader: 'ts-loader' },
+    {
+        test: /\.js?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015'],
+        }
+    }
    ]
   },
   plugins: debug ? [] : [
