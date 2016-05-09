@@ -1,2 +1,2 @@
-require('./song-list.directive.js');
+require('./songList.component.js');
 require('./musicPlayerComponent.js');
