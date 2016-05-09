@@ -21,6 +21,7 @@ module.exports = {
     { test: /\.css$/, loader: 'style-loader!css-loader'},
     { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
     { test: /\.tsx?$/, loader: 'ts-loader' },
+    { test: /\.js?$/, loader: 'ng-annotate' },
     {
         test: /\.js?$/,
         exclude: /(node_modules|bower_components)/,

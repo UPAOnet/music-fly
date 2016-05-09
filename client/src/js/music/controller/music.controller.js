@@ -1,12 +1,12 @@
 angular.module('musicApp')
   .controller('musicPlayer', musicPlayer)
 
-  musicPlayer.$inject = ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType'];
+  musicPlayer.$inject = ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'trackList'];
 
-  function musicPlayer ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType) {
+  function musicPlayer ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, trackList) {
       var vm = this;
-      vm.topArtists;
       vm.tracks = [];
+      vm.topArtists;
       vm.playlistTabs = playlists.currentPlaylists;
       vm.playerImage = 'assets/images/music-player/default-album.png';
       vm.playerTitle = 'Title';
@@ -104,11 +104,19 @@ angular.module('musicApp')
           }
         };
       }
+
       vm.spotifySearchEnter = function () {
         if (event.keyCode === 13) {
           var attribute = event.target.getAttribute('data-tab');
           tabs.switchTabs(attribute);
-          spotifySearch.makeRequest($scope.spotifyQuery);
+          let currentTracks = spotifySearch.makeRequest($scope.spotifyQuery);
+
+          currentTracks.then(function success (response) {
+            let trackResults = response.data.tracks.items;
+            vm.tracks = trackList.getTracks(trackResults);
+            console.log( vm.tracks );
+           })
+
           $scope.spotifyQuery = "";
           if ($(window).width() < 870) {
             $('#player-menu').hide();
