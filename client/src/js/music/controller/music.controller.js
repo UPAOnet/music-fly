@@ -37,15 +37,7 @@ angular.module('musicApp')
       vm.playPrevious = function () {
         playerControls.previousSong();
       }
-      vm.voicePlay = function () {
-        playerControls.voicePlay();
-      }
-      vm.voicePause = function () {
-        playerControls.voicePause();
-      }
-      vm.voiceStart = function () {
-        playerControls.voiceStart();
-      }
+
       vm.changeSearch = function (event) {
         var attribute = event.target.getAttribute('data-search');
         searchType.changeSearch(attribute)
@@ -87,12 +79,7 @@ angular.module('musicApp')
       vm.removeTrack = function (trackId) {
         playlists.removeTrack(trackId);
       }
-      vm.voiceSearch = function (query) {
-        var attribute = 'search';
-          tabs.switchTabs(attribute);
-          scSearch.allTracks(query);
-          $scope.scQuery = "";
-      }
+
       vm.scSearchEnter = function () {
         if (event.keyCode === 13) {
           var attribute = event.target.getAttribute('data-tab');
@@ -109,14 +96,16 @@ angular.module('musicApp')
         if (event.keyCode === 13) {
           var attribute = event.target.getAttribute('data-tab');
           tabs.switchTabs(attribute);
-          let currentTracks = spotifySearch.makeRequest($scope.spotifyQuery);
 
-          currentTracks.then(function success (response) {
+          let spotifyTracks = spotifySearch.makeRequest($scope.spotifyQuery);
+
+          spotifyTracks.then(function success (response) {
             let trackResults = response.data.tracks.items;
-            vm.tracks = trackList.getTracks(trackResults);
+            trackList.getTracks(trackResults);
+            vm.tracks = trackList.currentTracks();
             console.log( vm.tracks );
            })
-
+           
           $scope.spotifyQuery = "";
           if ($(window).width() < 870) {
             $('#player-menu').hide();
