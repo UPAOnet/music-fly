@@ -1,8 +1,11 @@
+'use strict';
+
+// const angular = require('angular');
+
 angular.module('musicApp')
-  .directive('songList', function () {
+  .component('songList', function () {
     return {
-      scope: true,
-      restrict: 'A',
+      restrict: 'E',
       replace: false,
       templateUrl: 'templates/track-list.html',
       link: function (scope, elem, attrs) {
