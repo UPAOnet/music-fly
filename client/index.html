@@ -58,7 +58,7 @@
          <i class="sidebar icon big"></i>
       </div>
     </div>
-    <div id="music-section" ng-controller="musicPlayer as player">
+    <div id="music-section" ng-controller="musicSearch as player">
       <!--Player Menu -->
       <div id="player-menu">
         <div id="menu-tools">
@@ -238,9 +238,9 @@
               </div>
           </div>
         </div>
-        <div id="song-interface" class="music-page page-structure hidden" data-page="search">
+        <div ng-if="player.tracks" id="song-interface" class="music-page page-structure hidden" data-page="search">
           <div id="search-page">
-            <div id="search-list" >
+            <div id="search-list">
               <h4 class="list-title">Search Results</h4>
               <song-list></song-list>
             </div>

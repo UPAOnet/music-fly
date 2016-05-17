@@ -1,2 +1,2 @@
 require('./songList.component.js');
-require('./musicPlayerComponent.js');
+require('./playButton.component.js');

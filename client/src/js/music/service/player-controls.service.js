@@ -1,6 +1,6 @@
 angular.module('musicApp')
-  .factory('playerControls', [function () { 
-    
+  .factory('playerControls', [function () {
+
     var masterPlayer = new Audio();
 
     masterPlayer.playState = {
@@ -9,7 +9,7 @@ angular.module('musicApp')
     }
 
     function getSong (song) {
-      scClient = 'b10a9e77003de676a40bcd4ce7346f03'
+      // scClient = 'b10a9e77003de676a40bcd4ce7346f03'
       if (song.company === 'soundcloud') {
         return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + scClient;
       }
@@ -27,9 +27,9 @@ angular.module('musicApp')
       vm.playerImage = currentSong.image;
       vm.playerTitle = currentSong.name;
       vm.playerArtist = currentSong.artist;
-      vm.playerInfo = currentSong.album; 
+      vm.playerInfo = currentSong.album;
     }
-    
+
     masterPlayer.nextSong = function () {
       var current = masterPlayer.playState.currentSong;
       var next = current + 1;
@@ -51,7 +51,7 @@ angular.module('musicApp')
     masterPlayer.previousSong = function () {
       var current = masterPlayer.playState.currentSong;
       var previous = current - 1;
-      
+
       if (masterPlayer.playState.playing === true && vm.tracks[previous]) {
         masterPlayer.src = getSong(vm.tracks[previous]);
         setPlayerInfo(vm.tracks[previous]);
@@ -75,62 +75,40 @@ angular.module('musicApp')
       else if (masterPlayer.playState.playing === true) {
         masterPlayer.playState.playing = false;
         vm.playStateButton = 'play icon';
-        
-      }
-    }
-    masterPlayer.voicePlay = function () {
-      if (masterPlayer.playState.playing === false) {
-        masterPlayer.play();
-        masterPlayer.toggleState();
-        vm.digest();
-      }      
-    }
 
-    masterPlayer.voicePause = function () {
-      if (masterPlayer.playState.playing === true) {
-        masterPlayer.pause();
-        masterPlayer.toggleState();
-        vm.digest();
-      }      
-    }
-
-    masterPlayer.voiceStart = function () {
-      if (vm.tracks.length > 1 && masterPlayer.playState.playing === false) {
-        masterPlayer.src = getSong(vm.tracks[0]);
-        setPlayerInfo(vm.tracks[0]); 
-        setCurrent(vm.tracks[0]);
-        masterPlayer.play();
-        masterPlayer.toggleState();
-        vm.digest();
       }
     }
 
     masterPlayer.togglePlay = function () {
       if (vm.tracks.length > 1 && masterPlayer.src === '') {
         masterPlayer.src = getSong(vm.tracks[0]);
-        setPlayerInfo(vm.tracks[0]); 
+        setPlayerInfo(vm.tracks[0]);
         setCurrent(vm.tracks[0]);
       }
       else if (masterPlayer.src === '') {
         return
-      };      
+      };
       (masterPlayer.playState.playing === false) ? masterPlayer.play() : masterPlayer.pause();
       masterPlayer.toggleState();
       vm.digest();
     }
 
     masterPlayer.playMusic = function (song) {
-      _.each(vm.tracks, function (eachSong) {
-        if (eachSong.name === song) {
-          setCurrent(eachSong);   
-          setPlayerInfo(eachSong);
-          masterPlayer.src = getSong(eachSong);
-          (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
-          vm.digest();
-        }
-      })
+      // _.each(vm.tracks, function (eachSong) {
+      //   if (eachSong.name === song) {
+      //     setCurrent(eachSong);
+      //     setPlayerInfo(eachSong);
+      //     masterPlayer.src = getSong(eachSong);
+      //     (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
+      //     vm.digest();
+      //   }
+      // })
+      setCurrent(song);
+      // setPlayerInfo(song);
+      masterPlayer.src = getSong(song);
+      masterPlayer.play();
     }
 
   return masterPlayer
-    
+
   }])

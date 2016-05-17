@@ -13,7 +13,7 @@ angular.module('musicApp')
 
   let trackList = [];
 
-  this.getTracks = function (list) {
+  this.getSpotifyTracks = function (list) {
 
    _.map(list, function (each, i) {
      trackList.push(
