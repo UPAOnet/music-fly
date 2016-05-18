@@ -1,27 +1,15 @@
 'use strict';
-//  /*ngInject*/ function player (
-//  TrackList,
-//  $scope,
-//  playerControls
-// ) {
-//   const vm = this;
-//
-//   vm.tracks = TrackList.currentTracks();
-//
-//   vm.playMusic = function () {
-//
-//     playerControls.playMusic(vm.song.urlSource);
-//   };
-//
-// }
-//
-// export default player
 var Player = (function () {
     function Player(TrackList, $scope, playerControls) {
+        'ngInject';
         this.TrackList = TrackList;
         this.$scope = $scope;
         this.playerControls = playerControls;
+        this.tracks = this.TrackList.currentTracks();
     }
+    Player.prototype.playMusic = function () {
+        this.playerControls.playMusic(this.song.urlSource);
+    };
     return Player;
 }());
 Object.defineProperty(exports, "__esModule", { value: true });

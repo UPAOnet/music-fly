@@ -1,33 +1,22 @@
 'use strict';
 
-//  /*ngInject*/ function player (
-//  TrackList,
-//  $scope,
-//  playerControls
-// ) {
-//   const vm = this;
-//
-//   vm.tracks = TrackList.currentTracks();
-//
-//   vm.playMusic = function () {
-//
-//     playerControls.playMusic(vm.song.urlSource);
-//   };
-//
-// }
-//
-// export default player
-
 class Player {
   private tracks: any;
-  public TrackList: any;
-  public $scope: any;
-  public playerControls: any;
+  private song: any;
 
-  constructor (TrackList, $scope, playerControls) {
-    this.TrackList = TrackList;
-    this.$scope = $scope;
-    this.playerControls = playerControls;
+  constructor (
+    private TrackList,
+    private $scope,
+    private playerControls
+  ) {
+    'ngInject';
+
+    this.tracks = this.TrackList.currentTracks();
+
+  }
+
+  playMusic () {
+    this.playerControls.playMusic(this.song.urlSource)
   }
 
 }
