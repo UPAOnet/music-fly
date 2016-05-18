@@ -3,7 +3,7 @@ angular.module('musicApp')
   .factory('spotifySearch', /*@ngIneject*/ function (
    $http,
    songConstructor,
-   trackList
+   TrackList
   ) {
       var search = {
         makeRequest: makeRequest

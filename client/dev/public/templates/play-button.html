@@ -1,1 +1,9 @@
-<i class="play icon song-play-btn" ng-click="$ctrl.playMusic($event)" data-song="{{track.name}}"></i><span class="song-play-btn" data-song="{{track.name}}" ng-click="$ctrl.playMusic($event)">Play</span>
+<div ng-click="$ctrl.playMusic()">
+
+ <!-- track list button -->
+ <div ng-if="$ctrl.roleType === 'trackList'">
+  <i class="play icon song-play-btn" ></i>
+  <span class="song-play-btn">Play</span>
+ </div>
+
+</div>

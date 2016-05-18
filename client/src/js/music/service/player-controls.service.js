@@ -8,15 +8,15 @@ angular.module('musicApp')
       currentSong: null
     }
 
-    function getSong (song) {
-      // scClient = 'b10a9e77003de676a40bcd4ce7346f03'
-      if (song.company === 'soundcloud') {
-        return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + scClient;
-      }
-      else if (song.company === 'spotify') {
-        return song.urlSource;
-      }
-    };
+    // function getSong (song) {
+    //   // scClient = 'b10a9e77003de676a40bcd4ce7346f03'
+    //   if (song.company === 'soundcloud') {
+    //     return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + scClient;
+    //   }
+    //   if (song.company === 'spotify') {
+    //     return song.urlSource;
+    //   }
+    // };
 
     function setCurrent (currentSong) {
       var songKey = currentSong.key;
@@ -80,33 +80,25 @@ angular.module('musicApp')
     }
 
     masterPlayer.togglePlay = function () {
-      if (vm.tracks.length > 1 && masterPlayer.src === '') {
-        masterPlayer.src = getSong(vm.tracks[0]);
-        setPlayerInfo(vm.tracks[0]);
-        setCurrent(vm.tracks[0]);
-      }
-      else if (masterPlayer.src === '') {
-        return
-      };
-      (masterPlayer.playState.playing === false) ? masterPlayer.play() : masterPlayer.pause();
-      masterPlayer.toggleState();
-      vm.digest();
+     console.log('toggle play');
+      // if (vm.tracks.length > 1 && masterPlayer.src === '') {
+      //   masterPlayer.src = getSong(vm.tracks[0]);
+      //   setPlayerInfo(vm.tracks[0]);
+      //   setCurrent(vm.tracks[0]);
+      // }
+      // else if (masterPlayer.src === '') {
+      //   return
+      // };
+      // (masterPlayer.playState.playing === false) ? masterPlayer.play() : masterPlayer.pause();
+      // masterPlayer.toggleState();
+      // vm.digest();
     }
 
     masterPlayer.playMusic = function (song) {
-      // _.each(vm.tracks, function (eachSong) {
-      //   if (eachSong.name === song) {
-      //     setCurrent(eachSong);
-      //     setPlayerInfo(eachSong);
-      //     masterPlayer.src = getSong(eachSong);
-      //     (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
-      //     vm.digest();
-      //   }
-      // })
       setCurrent(song);
-      // setPlayerInfo(song);
-      masterPlayer.src = getSong(song);
-      masterPlayer.play();
+
+      masterPlayer.src = song;
+      (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
     }
 
   return masterPlayer

@@ -1,10 +1,12 @@
 'use strict';
-
-angular.module('musicApp')
-  .component('playButton', {
-   templateUrl: './templates/play-button.html',
-   controller: 'playerController',
-   bindings: {
-    song:'<'
-   }
-})
+var playButton = {
+    templateUrl: './templates/play-button.html',
+    controller: 'playerController',
+    bindings: {
+        song: '<',
+        roleType: '@'
+    }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = playButton;
+//# sourceMappingURL=playButton.component.js.map

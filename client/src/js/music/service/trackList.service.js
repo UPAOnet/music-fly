@@ -4,27 +4,27 @@
 const _ = require('lodash');
 
 angular.module('musicApp')
- .factory('trackList', trackList)
+ .factory('TrackList', TrackList)
 
-/*@ngInject*/ function trackList (
+/*@ngInject*/ function TrackList (
  songConstructor
  ) {
   var self = this;
 
-  let trackList = [];
+  let TrackList = [];
 
   this.getSpotifyTracks = function (list) {
 
    _.map(list, function (each, i) {
-     trackList.push(
+     TrackList.push(
        new songConstructor(i, each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
      );
    })
-   // return trackList;
+   // return TrackList;
   }
 
   this.currentTracks = function () {
-   return trackList;
+   return TrackList;
   }
 
   return self;

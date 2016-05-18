@@ -1,9 +1,9 @@
 angular.module('musicApp')
   .controller('musicSearch', musicSearch)
 
-  musicSearch.$inject = ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'trackList'];
+  musicSearch.$inject = ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'TrackList'];
 
-  function musicSearch ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, trackList) {
+  function musicSearch ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, TrackList) {
       var vm = this;
       vm.tracks = [];
       vm.topArtists;
@@ -101,8 +101,8 @@ angular.module('musicApp')
 
           spotifyTracks.then(function success (response) {
             let trackResults = response.data.tracks.items;
-            trackList.getSpotifyTracks(trackResults);
-            vm.tracks = trackList.currentTracks();
+            TrackList.getSpotifyTracks(trackResults);
+            vm.tracks = TrackList.currentTracks();
             console.log( vm.tracks );
            })
 

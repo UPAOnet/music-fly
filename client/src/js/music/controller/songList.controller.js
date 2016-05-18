@@ -4,15 +4,15 @@ angular.module('musicApp')
   .controller('songListController', songListController)
 
  /*ngInject*/ function songListController (
- trackList
+ TrackList
 ) {
   const vm = this;
 
-  vm.tracks = trackList.currentTracks();
+  vm.tracks = TrackList.currentTracks();
 
   vm.addTrack = function (trackKey, playlist) {
     playlists.addTrack(trackKey, playlist);
-    // vm.digest();
+
   }
 
 }

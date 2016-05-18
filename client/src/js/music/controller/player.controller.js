@@ -1,20 +1,33 @@
 'use strict';
 
-angular.module('musicApp')
-  .controller('playerController', player)
 
- /*ngInject*/ function player (
- trackList,
- $scope,
- playerControls
-) {
-  const vm = this;
+class
 
-  vm.tracks = trackList.currentTracks();
+//  /*ngInject*/ function player (
+//  TrackList,
+//  $scope,
+//  playerControls
+// ) {
+//   const vm = this;
+//
+//   vm.tracks = TrackList.currentTracks();
+//
+//   vm.playMusic = function () {
+//
+//     playerControls.playMusic(vm.song.urlSource);
+//   };
+//
+// }
+//
+// export default player
 
-  vm.playMusic = function () {
-    // var song = event.target.getAttribute('data-song');
-    // console.log(vm.song);
-    playerControls.playMusic(vm.song);
+class Player {
+  private tracks;
+
+  constructor (TrackList, $scope, playerControls) {
+    this.TrackList = TrackList;
+    this.$scope = $scope;
+    this.playerControls = playerControls;
   }
+
 }
