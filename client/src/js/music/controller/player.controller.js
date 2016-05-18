@@ -1,8 +1,4 @@
 'use strict';
-
-
-class
-
 //  /*ngInject*/ function player (
 //  TrackList,
 //  $scope,
@@ -20,14 +16,14 @@ class
 // }
 //
 // export default player
-
-class Player {
-  private tracks;
-
-  constructor (TrackList, $scope, playerControls) {
-    this.TrackList = TrackList;
-    this.$scope = $scope;
-    this.playerControls = playerControls;
-  }
-
-}
+var Player = (function () {
+    function Player(TrackList, $scope, playerControls) {
+        this.TrackList = TrackList;
+        this.$scope = $scope;
+        this.playerControls = playerControls;
+    }
+    return Player;
+}());
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Player;
+//# sourceMappingURL=player.controller.js.map
