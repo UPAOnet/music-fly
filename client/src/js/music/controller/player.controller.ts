@@ -12,10 +12,9 @@ class Player {
     'ngInject';
 
     this.tracks = this.TrackList.currentTracks();
-
   }
 
-  playMusic () {
+  public playMusic () {
     this.playerControls.playMusic(this.song.urlSource)
   }
 
