@@ -1,8 +1,14 @@
 'use strict';
 
+/**
+ * The buttons on the Player
+ * @module playerInterfaceComponent
+ */
+
 class Player {
   private tracks: any;
   private song: any;
+  private index: number;
 
   constructor (
     private TrackList,
@@ -15,7 +21,8 @@ class Player {
   }
 
   public playMusic () {
-    this.playerControls.playMusic(this.song.urlSource)
+    this.playerControls.playMusic(this.song.urlSource);
+    // this.TrackList.setActive(this.index);
   }
 
 }

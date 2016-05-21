@@ -2,10 +2,13 @@
 
   const playButton = {
    templateUrl: './templates/play-button.html',
-   controller: 'playerController',
+   controller: 'PlayerButtonsController',
    bindings: {
     song:'<',
-    roleType: '@'
+    // Why role type again?
+    roleType: '@',
+    //Index position of song for playing state
+    index: '<'
    }
 }
 

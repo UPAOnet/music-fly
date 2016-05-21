@@ -1,6 +1,7 @@
 require('./songList.component.js');
-// require('./playButton.component.js');
-
 
 angular.module('musicApp')
-  .component('playButton', require('./playButton.component.js').default);
+  .component('playButton', require('./playButton.component.ts').default);
+
+angular.module('musicApp')
+  .component('playerInterface', require('./playerInterface/playerInterface.component.ts').default);

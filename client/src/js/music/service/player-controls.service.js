@@ -1,7 +1,25 @@
+'use strict';
+
+/**
+ * Handles playing, pausing, & skipping logic.
+ * Contains the state for what should be playing
+ * @module playerControls
+ */
+
 angular.module('musicApp')
-  .factory('playerControls', [function () {
+  .factory('playerControls', [function (
+    TrackList
+  ) {
 
     var masterPlayer = new Audio();
+
+    let currentSongInfo = {
+      name: null,
+      artist: null,
+      album: null,
+      image: null,
+      company: null
+    }
 
     masterPlayer.playState = {
       playing: false,
@@ -24,10 +42,10 @@ angular.module('musicApp')
     }
 
     function setPlayerInfo(currentSong) {
-      vm.playerImage = currentSong.image;
-      vm.playerTitle = currentSong.name;
-      vm.playerArtist = currentSong.artist;
-      vm.playerInfo = currentSong.album;
+      currentSongInfo.playerImage = currentSong.image;
+      currentSongInfo.playerTitle = currentSong.name;
+      currentSongInfo.playerArtist = currentSong.artist;
+      currentSongInfo.playerInfo = currentSong.album;
     }
 
     masterPlayer.nextSong = function () {
@@ -79,7 +97,8 @@ angular.module('musicApp')
       }
     }
 
-    masterPlayer.togglePlay = function () {
+    masterPlayer.togglePlay = function (songUrl, songIndex) {
+    TrackList.setActive(index);
      console.log('toggle play');
       // if (vm.tracks.length > 1 && masterPlayer.src === '') {
       //   masterPlayer.src = getSong(vm.tracks[0]);
@@ -96,7 +115,8 @@ angular.module('musicApp')
 
     masterPlayer.playMusic = function (song) {
       setCurrent(song);
-
+      setPlayerInfo (song);
+  
       masterPlayer.src = song;
       (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
     }

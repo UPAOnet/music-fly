@@ -17,18 +17,32 @@ module.exports = {
   // },
   module: {
    loaders: [
-    { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader' },
-    { test: /\.css$/, loader: 'style-loader!css-loader'},
-    { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
-    { test: /\.tsx?$/, loader: 'ts-loader' },
-    { test: /\.js?$/, loader: 'ng-annotate' },
+    {
+      test: /\.scss$/,
+      loader: 'style-loader!css-loader!sass-loader'
+    },
+
+    {
+      test: /\.(png|jpg)$/,
+      loader: 'url-loader?limit=8192'
+    },
+    {
+      test: /\.ts$/,
+      loader: 'ts'
+    },
+
+    {
+      test: /\.js?$/,
+      loader: 'ng-annotate'
+    },
+
     {
         test: /\.js?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
           presets: ['es2015'],
-        }
+      }
     }
    ]
   },

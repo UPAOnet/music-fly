@@ -1,22 +1,7 @@
 'use strict';
-//  /*ngInject*/ function SongListController (
-//  TrackList
-// ) {
-//   const vm = this;
-//
-//   vm.tracks = TrackList.currentTracks();
-//
-//   vm.addTrack = function (trackKey, playlist) {
-//     playlists.addTrack(trackKey, playlist);
-//
-//   }
-//
-// }
-//
 var SongListController = (function () {
-    // private trackKey: any;
-    // private playList: any;
     function SongListController(TrackList) {
+        'ngInject';
         this.TrackList = TrackList;
         this.tracks = TrackList.currentTracks();
     }

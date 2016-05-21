@@ -1,10 +1,11 @@
 'use strict';
 var playButton = {
     templateUrl: './templates/play-button.html',
-    controller: 'playerController',
+    controller: 'PlayerButtonsController',
     bindings: {
         song: '<',
-        roleType: '@'
+        roleType: '@',
+        index: '<'
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });

@@ -9,23 +9,29 @@ angular.module('musicApp')
 /*@ngInject*/ function TrackList (
  songConstructor
  ) {
-  var self = this;
+  var factory = {};
+  let list = [];
 
-  let TrackList = [];
+  let trackState = {
+    current: null,
+    previous: null,
+    next: null
+  }
 
-  this.getSpotifyTracks = function (list) {
+  factory.currentTracks = () => list;
 
-   _.map(list, function (each, i) {
-     TrackList.push(
+  factory.setActive = function (songIndex) {
+    trackState.current = songIndex;
+  }
+
+  factory.getSpotifyTracks = function (spotifyList) {
+
+   _.forEach(spotifyList, function (each, i) {
+     list.push(
        new songConstructor(i, each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
      );
    })
-   // return TrackList;
   }
 
-  this.currentTracks = function () {
-   return TrackList;
-  }
-
-  return self;
+  return factory;
  }
