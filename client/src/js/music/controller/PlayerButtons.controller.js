@@ -8,7 +8,7 @@ var Player = (function () {
         this.tracks = this.TrackList.currentTracks();
     }
     Player.prototype.playMusic = function () {
-        this.playerControls.playMusic(this.song.urlSource);
+        this.playerControls.playMusic(this.song);
     };
     return Player;
 }());

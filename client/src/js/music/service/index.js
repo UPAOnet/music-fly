@@ -8,4 +8,3 @@ require('./spotify-search.service.js');
 require('./spotify-search.service.js');
 require('./tabs.service.js');
 require('./TrackList.service.js');
-require('./newPlayerControl.ts');

@@ -20,8 +20,9 @@ class Player {
     this.tracks = this.TrackList.currentTracks();
   }
 
+  // Passses clicked song to the main player
   public playMusic () {
-    this.playerControls.playMusic(this.song.urlSource);
+    this.playerControls.playMusic(this.song);
     // this.TrackList.setActive(this.index);
   }
 

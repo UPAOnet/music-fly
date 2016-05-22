@@ -1,33 +1,42 @@
 'use strict'
 
 /**
- * The Track Info display on the Player.
+ * Displays information regarding current track.
  * @module playerInterfaceComponent
  */
 
 class playerInterfaceController {
   private $scope: any;
   private TrackList: any;
+  private playerControls: any;
+
   private currentTrack: any;
-  private title: string;
-  private artist: string;
-  private album: string;
-  private company: string;
 
   constructor (
     TrackList,
     playerControls,
     $scope
   ) {
-    this.TrackList = TrackList
+    'ngInject';
 
-    let currentTrack = null;
-    this.getInfo();
+    const self = this;
+
+    this.playerControls = playerControls;
+    this.$scope = $scope;
+    this.TrackList = TrackList;
+    this.currentTrack = null;
+
+    // Gets updated track information
+    this.$scope.$watchCollection (
+      () => this.playerControls.currentSongInfo,
+      function (newData, oldData) {
+        self.currentTrack = self.playerControls.currentSongInfo;
+      })
+
   }
 
-//     getInfo () {
-//
-// }
+}
+
 
 const playerInterfaceComponent = {
   templateUrl: '../templates/player-interface.html',

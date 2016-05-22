@@ -7,13 +7,13 @@
  */
 
 angular.module('musicApp')
-  .factory('playerControls', [function (
+  .factory('playerControls', /*@ngInject*/ function (
     TrackList
   ) {
 
     var masterPlayer = new Audio();
 
-    let currentSongInfo = {
+    masterPlayer.currentSongInfo = {
       name: null,
       artist: null,
       album: null,
@@ -24,7 +24,7 @@ angular.module('musicApp')
     masterPlayer.playState = {
       playing: false,
       currentSong: null
-    }
+    };
 
     // function getSong (song) {
     //   // scClient = 'b10a9e77003de676a40bcd4ce7346f03'
@@ -42,10 +42,11 @@ angular.module('musicApp')
     }
 
     function setPlayerInfo(currentSong) {
-      currentSongInfo.playerImage = currentSong.image;
-      currentSongInfo.playerTitle = currentSong.name;
-      currentSongInfo.playerArtist = currentSong.artist;
-      currentSongInfo.playerInfo = currentSong.album;
+      masterPlayer.currentSongInfo.image = currentSong.image;
+      masterPlayer.currentSongInfo.name = currentSong.name;
+      masterPlayer.currentSongInfo.artist = currentSong.artist;
+      masterPlayer.currentSongInfo.album = currentSong.album;
+      masterPlayer.currentSongInfo.company = currentSong.company;
     }
 
     masterPlayer.nextSong = function () {
@@ -97,9 +98,12 @@ angular.module('musicApp')
       }
     }
 
+    masterPlayer.getInfo = () => currentSongInfo;
+
     masterPlayer.togglePlay = function (songUrl, songIndex) {
-    TrackList.setActive(index);
-     console.log('toggle play');
+
+
+    //  console.log('toggle play');
       // if (vm.tracks.length > 1 && masterPlayer.src === '') {
       //   masterPlayer.src = getSong(vm.tracks[0]);
       //   setPlayerInfo(vm.tracks[0]);
@@ -114,13 +118,21 @@ angular.module('musicApp')
     }
 
     masterPlayer.playMusic = function (song) {
-      setCurrent(song);
+      TrackList.setActive(song);
+
+
+      setCurrent (song);
       setPlayerInfo (song);
-  
-      masterPlayer.src = song;
-      (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
+
+      // console.log(masterPlayer.currentSongInfo);
+      // console.log(currentSongInfo);
+      //
+      // console.log('playing');
+
+      // masterPlayer.src = song;
+      // (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
     }
 
   return masterPlayer
 
-  }])
+  })
