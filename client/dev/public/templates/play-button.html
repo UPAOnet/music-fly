@@ -6,4 +6,9 @@
   <span class="song-play-btn">Play</span>
  </div>
 
+ <!-- Music player button -->
+ <div ng-if="$ctrl.roleType === 'musicPlayer'">
+   <i id="play-btn" class="icon large circular" ng-click="player.togglePlay()"> </i>
+ </div>
+
 </div>

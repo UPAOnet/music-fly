@@ -1,10 +1,12 @@
+var templateUrl = require('./navigation.html');
+
 angular.module('musicApp')
   .directive('navBar', function () {
     return {
       scope: true,
       restrict: 'A',
       replace: false,
-      templateUrl: 'templates/navigation.html',
+      template: templateUrl,
       link: function (scope, elem, attrs) {
 
         $('.ui.modal').modal({

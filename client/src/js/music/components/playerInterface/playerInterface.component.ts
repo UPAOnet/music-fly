@@ -10,6 +10,7 @@ class playerInterfaceController {
   private TrackList: any;
   private playerControls: any;
 
+
   private currentTrack: any;
 
   constructor (
@@ -29,7 +30,7 @@ class playerInterfaceController {
     // Gets updated track information
     this.$scope.$watchCollection (
       () => this.playerControls.currentSongInfo,
-      function (newData, oldData) {
+      function (newData: any, oldData: any) {
         self.currentTrack = self.playerControls.currentSongInfo;
       })
 

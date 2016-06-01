@@ -36,11 +36,14 @@ angular.module('musicApp')
     //   }
     // };
 
+    // Saves state of the current Song
+    // Need to change to a different key value pair
     function setCurrent (currentSong) {
       var songKey = currentSong.key;
       masterPlayer.playState.currentSong = songKey;
     }
 
+    // Come back and change this function to return the actual object
     function setPlayerInfo(currentSong) {
       masterPlayer.currentSongInfo.image = currentSong.image;
       masterPlayer.currentSongInfo.name = currentSong.name;
@@ -125,12 +128,12 @@ angular.module('musicApp')
       setPlayerInfo (song);
 
       // console.log(masterPlayer.currentSongInfo);
-      // console.log(currentSongInfo);
+      // console.log(song);
       //
       // console.log('playing');
 
-      // masterPlayer.src = song;
-      // (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
+      masterPlayer.src = song.urlSource;
+      masterPlayer.play();
     }
 
   return masterPlayer

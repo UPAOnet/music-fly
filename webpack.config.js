@@ -5,11 +5,11 @@ var path = require('path');
 
 
 module.exports = {
-  context: __dirname + '/client',
+  context: __dirname + '/client/src',
   devtool: debug ? "inline-sourcemap" : null,
-  entry: "./src/entry.js",
+  entry: "./entry.js",
   output: {
-    path: __dirname + "/client/dev/public/js",
+    path: __dirname + "/client/dev/public",
     filename: "scripts.min.js"
   },
   // resolve: {
@@ -21,10 +21,9 @@ module.exports = {
       test: /\.scss$/,
       loader: 'style-loader!css-loader!sass-loader'
     },
-
     {
-      test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=8192'
+      test: /\.(png|jpg|gif|svg)$/,
+      loader: 'file-loader?name=[path][name].[ext]'
     },
     {
       test: /\.ts$/,
@@ -35,7 +34,15 @@ module.exports = {
       test: /\.js?$/,
       loader: 'ng-annotate'
     },
-
+    {
+      test: /\.html$/,
+      loader: 'html-loader'
+    },
+    // {
+    //   test: /\.html$/,
+    //   loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './client/src')) + '/!html'
+    //   // loader: 'ngtemplate?relativeTo=/templates/!html'
+    // },
     {
         test: /\.js?$/,
         exclude: /(node_modules|bower_components)/,

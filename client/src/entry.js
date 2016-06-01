@@ -4,7 +4,9 @@ function addIndex (directory) {
  return require('./js/' + directory + '/index.js');
 };
 
-// require('./assets/images');
+
+require('./assets/index.js');
+require('./templates/index.js');
 require('./scss/styles.scss');
 require('./js/music-app.module.js');
 

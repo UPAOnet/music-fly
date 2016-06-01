@@ -1,8 +1,5 @@
 require('./musicSearch.controller.js');
 
-
-
-
 angular.module('musicApp')
   .controller('PlayerButtonsController', require('./PlayerButtons.controller.ts').default)
 

@@ -1,11 +1,11 @@
 <div id="music-player" class="ui">
   <div  class="ui">
-    <img ng-src= "{{player.playerImage}}" id="player-img" class="ui image centered">
+    <img ng-src= "{{$ctrl.currentTrack.image}}" id="player-img" class="ui image centered">
   </div>
   <div id="player-track-info" class="">
     <div id="track-info">
-      <h4 id="player-track-title">{{player.playerTitle}}</h4>
-      <p id="player-track-artist">{{player.playerArtist}}</p>
+      <h4 id="player-track-title">$ctrl.currentTrack.test</h4>
+      <p id="player-track-artist">$ctrl.currentTrack.artist</p>
     </div>
     <div id="player-controls">
       <i id="previous-btn" class="backward icon circular" ng-click="player.playPrevious()"></i>
