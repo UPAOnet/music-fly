@@ -1,4 +1,5 @@
 'use strict';
+var templateUrl = require('./player-interface.html');
 var playerInterfaceController = (function () {
     function playerInterfaceController(TrackList, playerControls, $scope) {
         'ngInject';
@@ -14,10 +15,8 @@ var playerInterfaceController = (function () {
     }
     return playerInterfaceController;
 }());
-var playerInterfaceComponent = {
-    templateUrl: '../templates/player-interface.html',
+exports.playerInterfaceComponent = {
+    template: templateUrl,
     controller: playerInterfaceController
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = playerInterfaceComponent;
 //# sourceMappingURL=playerInterface.component.js.map

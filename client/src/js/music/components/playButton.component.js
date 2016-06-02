@@ -1,6 +1,7 @@
 'use strict';
-var playButton = {
-    templateUrl: './templates/play-button.html',
+var templateUrl = require('./play-button.html');
+exports.playButton = {
+    template: templateUrl,
     controller: 'PlayerButtonsController',
     bindings: {
         song: '<',
@@ -8,6 +9,4 @@ var playButton = {
         index: '<'
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = playButton;
 //# sourceMappingURL=playButton.component.js.map

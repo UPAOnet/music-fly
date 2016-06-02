@@ -1,7 +1,11 @@
 'use strict';
 
-  const playButton = {
-   templateUrl: './templates/play-button.html',
+declare const require: any;
+
+const templateUrl = require('./play-button.html');
+
+export const playButton = {
+   template: templateUrl,
    controller: 'PlayerButtonsController',
    bindings: {
     song:'<',
@@ -11,5 +15,3 @@
     index: '<'
    }
 }
-
-export default playButton

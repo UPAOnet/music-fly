@@ -5,13 +5,23 @@
  * @module playerInterfaceComponent
  */
 
+declare const require: any;
+
+const templateUrl = require('./player-interface.html');
+
+interface TrackProps {
+  name: string;
+  artist: string;
+  album: string;
+  image: string;
+  company: string;
+}
+
 class playerInterfaceController {
   private $scope: any;
   private TrackList: any;
   private playerControls: any;
-
-
-  private currentTrack: any;
+  private currentTrack: TrackProps;
 
   constructor (
     TrackList,
@@ -38,10 +48,7 @@ class playerInterfaceController {
 
 }
 
-
-const playerInterfaceComponent = {
-  templateUrl: '../templates/player-interface.html',
+export const playerInterfaceComponent = {
+  template: templateUrl,
   controller: playerInterfaceController
 }
-
-export default playerInterfaceComponent;
