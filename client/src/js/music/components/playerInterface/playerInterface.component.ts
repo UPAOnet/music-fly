@@ -18,9 +18,15 @@ interface TrackProps {
 }
 
 class playerInterfaceController {
+
+  // Services
   private $scope: any;
   private TrackList: any;
   private playerControls: any;
+
+  private title: string;
+  private artist: string;
+  private album: string;
   private currentTrack: TrackProps;
 
   constructor (
@@ -30,7 +36,9 @@ class playerInterfaceController {
   ) {
     'ngInject';
 
-    const self = this;
+    this.title = 'Title';
+    this.artist = 'Artist';
+    this.album = 'Album';
 
     this.playerControls = playerControls;
     this.$scope = $scope;
@@ -40,10 +48,21 @@ class playerInterfaceController {
     // Gets updated track information
     this.$scope.$watchCollection (
       () => this.playerControls.currentSongInfo,
-      function (newData: any, oldData: any) {
-        self.currentTrack = self.playerControls.currentSongInfo;
-      })
+      (newValue: any, oldValue: any) => {
 
+        if (newValue === oldValue) {
+          return
+        }
+        this.currentTrack = this.playerControls.currentSongInfo;
+        this.updateInfo();
+      }
+    )
+  }
+
+  updateInfo () {
+    this.title = this.currentTrack.name;
+    this.artist = this.currentTrack.artist;
+    this.album = this.currentTrack.album;
   }
 
 }

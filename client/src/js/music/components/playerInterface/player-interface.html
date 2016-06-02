@@ -4,8 +4,9 @@
   </div>
   <div id="player-track-info" class="">
     <div id="track-info">
-      <h4 id="player-track-title">{{$ctrl.currentTrack.name}}</h4>
-      <p id="player-track-artist">{{$ctrl.currentTrack.artist}}</p>
+      <h4 id="player-track-title">{{$ctrl.title}}</h4>
+      <p id="player-track-artist">{{$ctrl.artist}}</p>
+      <p id="player-track-artist">{{$ctrl.album}}</p>
     </div>
     <div id="player-controls">
       <i id="previous-btn" class="backward icon circular" ng-click="player.playPrevious()"></i>
