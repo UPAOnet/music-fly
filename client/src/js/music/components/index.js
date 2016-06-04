@@ -1,7 +1,7 @@
 
-import {songList} from './songList.component.js';
-import {playButton} from './playButton.component.ts';
-import {playerInterfaceComponent} from './playerInterface/playerInterface.component.ts'
+import {songList} from './songList/songList.component.ts';
+import {playButton} from './musicButtons/playButton.component.ts';
+import {playerInterfaceComponent} from './playerInterface/playerInterface.component.ts';
 
 angular.module('musicApp')
   .component('playButton', playButton)

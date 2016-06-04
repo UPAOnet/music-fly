@@ -2,10 +2,11 @@
 
 /**
  * The buttons on the Player
+ * All Button components use this controller
  * @module playerInterfaceComponent
  */
 
-class Player {
+export class ButtonsController {
   private tracks: any;
   private song: any;
   private index: number;
@@ -25,7 +26,4 @@ class Player {
     this.playerControls.playMusic(this.song);
     // this.TrackList.setActive(this.index);
   }
-
 }
-
-export default Player;

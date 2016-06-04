@@ -1,5 +1,7 @@
 'use strict';
 
+declare const require: any;
+
 class SongListController {
  private tracks: any;
  // private trackKey: any;
@@ -19,4 +21,7 @@ class SongListController {
 
 }
 
-export default SongListController;
+export const songList = {
+   template: require('./track-list.html'),
+   controller: SongListController
+}

@@ -7,8 +7,6 @@
 
 declare const require: any;
 
-const templateUrl = require('./player-interface.html');
-
 interface TrackProps {
   name: string;
   artist: string;
@@ -68,6 +66,6 @@ class playerInterfaceController {
 }
 
 export const playerInterfaceComponent = {
-  template: templateUrl,
+  template: require('./player-interface.html'),
   controller: playerInterfaceController
 }

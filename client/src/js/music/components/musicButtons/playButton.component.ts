@@ -1,12 +1,12 @@
 'use strict';
 
+import {ButtonsController} from './PlayerButtons.controller.ts';
+
 declare const require: any;
 
-const templateUrl = require('./play-button.html');
-
 export const playButton = {
-   template: templateUrl,
-   controller: 'PlayerButtonsController',
+   template: require('./play-button.html'),
+   controller: ButtonsController,
    bindings: {
     song:'<',
     // changes look depending on where it is
