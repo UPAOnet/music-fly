@@ -22,9 +22,18 @@ module.exports = {
       loader: 'style-loader!css-loader!sass-loader'
     },
     {
-      test: /\.(png|jpg|gif|svg)$/,
-      loader: 'file-loader?name=[path][name].[ext]'
+     test: /\.woff$/,
+     loader: "url-loader?limit=10000&åimetype=application/font-woff&name=[path][name].[ext]"
     },
+    {
+     test: /\.woff2$/,
+     loader: "url-loader?limit=10000&mimetype=application/font-woff2&name=[path][name].[ext]"
+    },
+    {
+     test: /\.(eot|ttf|svg|gif|png|jpg)$/,
+     loader: 'file-loader?name=[path][name].[ext]'
+   },
+
     {
       test: /\.ts$/,
       loader: 'ts'
@@ -38,11 +47,6 @@ module.exports = {
       test: /\.html$/,
       loader: 'html-loader'
     },
-    // {
-    //   test: /\.html$/,
-    //   loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './client/src')) + '/!html'
-    //   // loader: 'ngtemplate?relativeTo=/templates/!html'
-    // },
     {
         test: /\.js?$/,
         exclude: /(node_modules|bower_components)/,

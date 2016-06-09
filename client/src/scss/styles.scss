@@ -1,3 +1,7 @@
+@charset "UTF-8";
+
+@import '/mixins/module';
+@import '/vars/module';
+@import '/components/module';
 @import 'landing';
 @import 'music';
-@import 'navigation';

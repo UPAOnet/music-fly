@@ -6,9 +6,12 @@ function addIndex (directory) {
 
 angular.module('musicApp', []);
 
+require('bootstrap-loader');
 require('./assets/index.js');
 require('./scss/styles.scss');
 
 addIndex('music');
 addIndex('navigation');
 addIndex('animations');
+
+// Vendors

@@ -3,6 +3,7 @@
 require("./images/home/headphone.png");
 require("./images/home/hero2.jpg");
 require("./images/home/running.jpg");
+require("./images/album/mosaic.jpg");
 
 // Modal
 require("./images/modal/sign-up.jpg");

@@ -1,0 +1,14 @@
+
+.mf-btn {
+  @include transition(color);
+  @include transition(background-color);
+}
+
+.btn:hover {
+  color: $white;
+  background-color: $dark-orange;
+}
+
+.dark-orange-fill {
+  
+}
