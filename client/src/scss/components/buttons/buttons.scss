@@ -1,14 +1,34 @@
+/*
+ * Button Type Mixins
+ */
 
-.mf-btn {
-  @include transition(color);
-  @include transition(background-color);
-}
+ @mixin outline-none ( $text-color, $no-hover: false) {
+   vertical-align: middle;
+   background-color: transparent;
+   border: none;
 
-.btn:hover {
-  color: $white;
-  background-color: $dark-orange;
-}
+   @if $no-hover != false {
 
-.dark-orange-fill {
-  
-}
+    &:hover {
+     color: $text-color;
+    }
+  }
+ }
+
+ /*
+  * Button classes
+  */
+
+ .btn.mf-btn {
+   color: #ffffff;
+   @include transition(all, 0.25s);
+
+   &:focus {
+     outline: none;
+   }
+
+   // Text only modifications
+   &.orange-text {
+     @include outline-none($dark-orange, true);
+   }
+ }
