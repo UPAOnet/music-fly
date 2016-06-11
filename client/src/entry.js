@@ -2,11 +2,14 @@
   * entry point for webpack
   */
 
+
+import module from './app-config.ts';
+
+// path for all main JS directories
 function addIndex (directory) {
  return require('./js/' + directory + '/index.js');
 };
 
-angular.module('musicApp', []);
 
 require('bootstrap-loader');
 require('./assets/index.js');
