@@ -1,8 +1,9 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-var spotify = require('./server/spotify.js');
-var users = require('./server/routes/users.route.js')
+var spotify = require('./server/searchApi/spotify.js');
+var users = require('./server/routes/users.route.js');
+
 
 // mongoose.connect('mongodb://localhost/musicUsers');
 

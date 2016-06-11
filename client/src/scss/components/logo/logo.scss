@@ -1,0 +1,44 @@
+
+logo {
+
+  .main-logo {
+    color: $light-orange;
+
+    font-family: helvetica;
+
+    // left: -53.5px;
+    cursor: default;
+  }
+
+  .first-letter {
+    display: inline-block;
+    font-size: 45px;
+    position: relative;
+
+    img {
+      position: relative;
+      left: -67px;
+      top: -20px;
+      width: 70px;
+    }
+
+  }
+
+
+
+}
+
+//
+// #player-logo {
+//   color: $light-orange;
+//   font-size: 45px;
+//   font-family: helvetica;
+//   position: relative;
+//   left: -53.5px;
+//   cursor: default;
+// }
+//
+// #player-logo-img {
+//   width: 70px;
+//   margin-left: 10px;
+// }

@@ -5,3 +5,7 @@
 #node modules
 
 /node_modules
+
+#dev folder
+
+/client/dev

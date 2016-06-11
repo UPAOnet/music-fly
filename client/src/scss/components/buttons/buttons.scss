@@ -1,0 +1,36 @@
+/*
+ * Button Type Mixins
+ */
+
+ @mixin outline-none ( $text-color, $no-hover: false) {
+   vertical-align: middle;
+   background-color: transparent;
+   border: none;
+
+   @if $no-hover != false {
+
+    &:hover {
+     color: $text-color;
+     background-color: none;
+    }
+  }
+ }
+
+ /*
+  * Button classes
+  */
+
+ .btn.mf-btn {
+   font-size: to-rem(21px);
+   color: #ffffff;
+   @include transition(all, 0.25s);
+
+   &:focus {
+     outline: none;
+   }
+
+   // Text only modifications
+   &.orange-text {
+     @include outline-none($dark-orange, true);
+   }
+ }

@@ -1,0 +1,17 @@
+/*
+ * Converters from px to relative sizes. Generally, we're using rem,
+ * and using em for specialy situations where elements should scale to their
+ * surroundings.
+ */
+
+@function to-relative($size, $type) {
+  @return ($size / $font-size-body) * $type;
+}
+
+@function to-rem($size) {
+  @return to-relative($size, 1rem);
+}
+
+@function to-em($size) {
+  @return to-relative($size, 1em);
+}

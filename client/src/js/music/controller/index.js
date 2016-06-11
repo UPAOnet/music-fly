@@ -1,1 +1,1 @@
-require('./music.controller.js');
+require('./musicSearch.controller.js');

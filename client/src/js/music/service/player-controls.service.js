@@ -1,35 +1,57 @@
+'use strict';
+
+/**
+ * Handles playing, pausing, & skipping logic.
+ * Contains the state for what should be playing
+ * @module playerControls
+ */
+
 angular.module('musicApp')
-  .factory('playerControls', [function () { 
-    
+  .factory('playerControls', /*@ngInject*/ function (
+    TrackList
+  ) {
+
     var masterPlayer = new Audio();
+
+    masterPlayer.currentSongInfo = {
+      name: null,
+      artist: null,
+      album: null,
+      image: null,
+      company: null
+    }
 
     masterPlayer.playState = {
       playing: false,
       currentSong: null
-    }
-
-    function getSong (song) {
-      scClient = 'b10a9e77003de676a40bcd4ce7346f03'
-      if (song.company === 'soundcloud') {
-        return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + scClient;
-      }
-      else if (song.company === 'spotify') {
-        return song.urlSource;
-      }
     };
 
+    // function getSong (song) {
+    //   // scClient = 'b10a9e77003de676a40bcd4ce7346f03'
+    //   if (song.company === 'soundcloud') {
+    //     return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + scClient;
+    //   }
+    //   if (song.company === 'spotify') {
+    //     return song.urlSource;
+    //   }
+    // };
+
+    // Saves state of the current Song
+    // Need to change to a different key value pair
     function setCurrent (currentSong) {
       var songKey = currentSong.key;
       masterPlayer.playState.currentSong = songKey;
     }
 
+    // Come back and change this function to return the actual object
     function setPlayerInfo(currentSong) {
-      vm.playerImage = currentSong.image;
-      vm.playerTitle = currentSong.name;
-      vm.playerArtist = currentSong.artist;
-      vm.playerInfo = currentSong.album; 
+      masterPlayer.currentSongInfo.image = currentSong.image;
+      masterPlayer.currentSongInfo.name = currentSong.name;
+      masterPlayer.currentSongInfo.artist = currentSong.artist;
+      masterPlayer.currentSongInfo.album = currentSong.album;
+      masterPlayer.currentSongInfo.company = currentSong.company;
     }
-    
+
     masterPlayer.nextSong = function () {
       var current = masterPlayer.playState.currentSong;
       var next = current + 1;
@@ -51,7 +73,7 @@ angular.module('musicApp')
     masterPlayer.previousSong = function () {
       var current = masterPlayer.playState.currentSong;
       var previous = current - 1;
-      
+
       if (masterPlayer.playState.playing === true && vm.tracks[previous]) {
         masterPlayer.src = getSong(vm.tracks[previous]);
         setPlayerInfo(vm.tracks[previous]);
@@ -75,62 +97,45 @@ angular.module('musicApp')
       else if (masterPlayer.playState.playing === true) {
         masterPlayer.playState.playing = false;
         vm.playStateButton = 'play icon';
-        
-      }
-    }
-    masterPlayer.voicePlay = function () {
-      if (masterPlayer.playState.playing === false) {
-        masterPlayer.play();
-        masterPlayer.toggleState();
-        vm.digest();
-      }      
-    }
 
-    masterPlayer.voicePause = function () {
-      if (masterPlayer.playState.playing === true) {
-        masterPlayer.pause();
-        masterPlayer.toggleState();
-        vm.digest();
-      }      
-    }
-
-    masterPlayer.voiceStart = function () {
-      if (vm.tracks.length > 1 && masterPlayer.playState.playing === false) {
-        masterPlayer.src = getSong(vm.tracks[0]);
-        setPlayerInfo(vm.tracks[0]); 
-        setCurrent(vm.tracks[0]);
-        masterPlayer.play();
-        masterPlayer.toggleState();
-        vm.digest();
       }
     }
 
-    masterPlayer.togglePlay = function () {
-      if (vm.tracks.length > 1 && masterPlayer.src === '') {
-        masterPlayer.src = getSong(vm.tracks[0]);
-        setPlayerInfo(vm.tracks[0]); 
-        setCurrent(vm.tracks[0]);
-      }
-      else if (masterPlayer.src === '') {
-        return
-      };      
-      (masterPlayer.playState.playing === false) ? masterPlayer.play() : masterPlayer.pause();
-      masterPlayer.toggleState();
-      vm.digest();
+    masterPlayer.getInfo = () => currentSongInfo;
+
+    masterPlayer.togglePlay = function (songUrl, songIndex) {
+
+
+    //  console.log('toggle play');
+      // if (vm.tracks.length > 1 && masterPlayer.src === '') {
+      //   masterPlayer.src = getSong(vm.tracks[0]);
+      //   setPlayerInfo(vm.tracks[0]);
+      //   setCurrent(vm.tracks[0]);
+      // }
+      // else if (masterPlayer.src === '') {
+      //   return
+      // };
+      // (masterPlayer.playState.playing === false) ? masterPlayer.play() : masterPlayer.pause();
+      // masterPlayer.toggleState();
+      // vm.digest();
     }
 
     masterPlayer.playMusic = function (song) {
-      _.each(vm.tracks, function (eachSong) {
-        if (eachSong.name === song) {
-          setCurrent(eachSong);   
-          setPlayerInfo(eachSong);
-          masterPlayer.src = getSong(eachSong);
-          (masterPlayer.playState.playing === false) ? masterPlayer.togglePlay() : masterPlayer.play();
-          vm.digest();
-        }
-      })
+      TrackList.setActive(song);
+
+
+      setCurrent (song);
+      setPlayerInfo (song);
+
+      // console.log(masterPlayer.currentSongInfo);
+      // console.log(song);
+      //
+      // console.log('playing');
+
+      masterPlayer.src = song.urlSource;
+      masterPlayer.play();
     }
 
   return masterPlayer
-    
-  }])
+
+  })

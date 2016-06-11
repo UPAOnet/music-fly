@@ -1,8 +1,3 @@
-$soundcloud: #ff8800;
-$spotify: #2ebd59;
-$logo: #FF8300;
-$textGrey: #828282;
-$playerBlack: #212223;
 
 /* Global */
 
@@ -25,14 +20,14 @@ li {
 /* Main */
 
 #music-app {
-  padding-top: 0px; 
+  padding-top: 0px;
   padding-bottom: 0px;
   margin-top: 0px;
   font-size: 1.1em;
 }
 
 #player-logo {
-  color: $logo;
+  color: $light-orange;
   font-size: 45px;
   font-family: helvetica;
   position: relative;
@@ -46,7 +41,7 @@ li {
 }
 
 #player-toggle {
-  color: $textGrey;
+  color: $grey;
   display: inline-block;
   font-size: 20px;
   top: -15;
@@ -74,7 +69,7 @@ li {
 }
 
 .spotify {
-  color: $spotify;  
+  color: $spotify;
 }
 
 #spotify-icon {
@@ -145,7 +140,7 @@ li {
 }
 
 #playlist-add:hover {
-  background-color: $logo;
+  background-color: $light-orange;
   color: white;
 }
 
@@ -188,7 +183,7 @@ li {
 }
 
 .music-tab:hover {
-  background-color: $logo;
+  background-color: $light-orange;
   color: white;
 }
 
@@ -279,7 +274,7 @@ li {
   text-shadow:#fff 0 0 10px;
   text-align: center;
   margin-top: 10px;
-  color: $logo;
+  color: $light-orange;
 }
 
 
@@ -314,11 +309,11 @@ li {
 
 .song-option-icon {
   margin-left: 10px;
-  margin-right: 3px; 
+  margin-right: 3px;
 }
 
 .song-play {
-  color: $logo;
+  color: $light-orange;
   margin-bottom: 15px;
 }
 
@@ -412,20 +407,3 @@ li {
     height: 700px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

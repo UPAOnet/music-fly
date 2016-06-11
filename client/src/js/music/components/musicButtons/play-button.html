@@ -1,0 +1,14 @@
+<div ng-click="$ctrl.playMusic()">
+
+ <!-- track list button -->
+ <div ng-if="$ctrl.roleType === 'trackList'">
+  <i class="play icon song-play-btn" ></i>
+  <span class="song-play-btn">Play</span>
+ </div>
+
+ <!-- Music player button -->
+ <div ng-if="$ctrl.roleType === 'music-player'">
+   <i id="play-btn" class="icon large circular" ng-click="player.togglePlay()"> </i>
+ </div>
+
+</div>

@@ -1,11 +1,6 @@
-$soundcloud: #ff8800;
-$spotify: #2ebd59;
-$logo: #FF8300;
-$textGrey: #828282;
-$playerBlack: #212223;
 
 #landing {
-  // background-image: url('~../assets/images/home/hero2.jpg');
+  background-image: url('/assets/images/home/hero2.jpg');
   background-size: cover;
   margin-left: 0px;
   margin-right: 0px;
@@ -24,7 +19,7 @@ $playerBlack: #212223;
 }
 
 #jumbotron-title {
-  font-family: helvetica;
+  // font-family: helvetica;
   font-size: 3em;
   color: orange;
 }
@@ -114,11 +109,10 @@ $playerBlack: #212223;
 #second-section {
   display: inline-block;
   height: 100%;
-  // background-image: url('~../assets/images/album/mosaic.jpg');
+  background-image: url('/assets/images/album/mosaic.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 
 /* Music Section */
 
@@ -182,7 +176,7 @@ $playerBlack: #212223;
   }
 
   #jumbotron-title {
-  font-family: helvetica;
+  // font-family: helvetica;
   font-size: 2em;
   color: orange;
   }
