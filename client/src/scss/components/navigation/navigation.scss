@@ -1,9 +1,36 @@
 nav-bar {
+
   .mf-navbar {
     color: black;
-    // background:transparent;
+    background:transparent;
     margin-top: 40px;
   }
+
+
+  // Logo Styling
+  logo {
+    .main-logo {
+      .first-letter {
+        top: 5px;
+        left: 67px;
+      }
+
+    }
+  }
+
+  // Bootstrap override for navbar
+  .nav > li > a:hover {
+      background-color: transparent;
+  }
+
+  .navbar-collapse[aria-expanded="true"] li > a {
+      background-color: black;
+  }
+
+  .navbar-toggle > span {
+      background-color: $playerBlack;
+  }
+
 }
 
 // #navigation {

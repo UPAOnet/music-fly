@@ -11,6 +11,7 @@
 
     &:hover {
      color: $text-color;
+     background-color: none;
     }
   }
  }
@@ -20,6 +21,7 @@
   */
 
  .btn.mf-btn {
+   font-size: to-rem(22px);
    color: #ffffff;
    @include transition(all, 0.25s);
 

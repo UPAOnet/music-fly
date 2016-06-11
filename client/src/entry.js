@@ -1,4 +1,6 @@
-//Concatenates all main index files from each directory.
+/**
+  * entry point for webpack
+  */
 
 function addIndex (directory) {
  return require('./js/' + directory + '/index.js');
@@ -10,8 +12,8 @@ require('bootstrap-loader');
 require('./assets/index.js');
 require('./scss/styles.scss');
 
+
 addIndex('music');
 addIndex('navigation');
 addIndex('animations');
-
-// Vendors
+addIndex('static');
