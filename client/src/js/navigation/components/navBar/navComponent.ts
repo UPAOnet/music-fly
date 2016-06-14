@@ -1,12 +1,37 @@
 declare const require: any;
 
 class Controller {
+  private showSideNav: boolean;
+  private isOpen;
   constructor(
     private $scope,
-    private userLogin
+    private userLogin,
+    private $mdSidenav
   ) {
     'ngInject';
-    console.log("works");
+    this.showSideNav = false;
+    // this.showSideNav = $mdSidenav('left').isOpen;
+    this.$mdSidenav = $mdSidenav;
+    if (!this.$mdSidenav.isOpen) {
+      this.showSideNav = false;
+    }
+    // if (!this.$mdSidenav('left').isOpen) {
+    //   this.showSideNav = false;
+    // }
+
+
+    // if ($mdSidenav('left').isOpen) {
+    //   this.showSideNav = !this.showSideNav;
+    // }
+  }
+
+  openLeftMenu () {
+    if (this.$mdSidenav('left').isOpen) {
+      this.showSideNav = !this.showSideNav;
+    }
+
+    this.$mdSidenav('left').toggle();
+    console.log(this.$mdSidenav('left'));
   }
 }
 

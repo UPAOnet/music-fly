@@ -6,10 +6,9 @@ nav-bar {
     margin-top: 40px;
   }
 
-  .mf-nav-list {
-    
-  }
-
+  // .mf-nav-list {
+  //
+  // }
 
   // Logo Styling
   logo {
@@ -22,13 +21,19 @@ nav-bar {
     }
   }
 
+  md-sidenav {
+    // z-index: 10000;
+    background-color: $playerBlack;
+    position: fixed;
+  }
+
   // Bootstrap override for navbar
+
+  // Removes color hover effect
   .nav > li > a:hover {
       background-color: transparent;
   }
-  .navbar-collapse[aria-expanded="true"] li > a {
-      background-color: black;
-  }
+  // Colors hamburger
   .navbar-toggle > span {
       background-color: $playerBlack;
   }
