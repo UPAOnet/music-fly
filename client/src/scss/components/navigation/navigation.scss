@@ -6,6 +6,10 @@ nav-bar {
     margin-top: 40px;
   }
 
+  .mf-nav-list {
+    
+  }
+
 
   // Logo Styling
   logo {
@@ -22,11 +26,9 @@ nav-bar {
   .nav > li > a:hover {
       background-color: transparent;
   }
-
   .navbar-collapse[aria-expanded="true"] li > a {
       background-color: black;
   }
-
   .navbar-toggle > span {
       background-color: $playerBlack;
   }

@@ -1,14 +1,9 @@
 
 logo {
 
-  .main-logo {
-    color: $light-orange;
-
-    font-family: helvetica;
-
-    // left: -53.5px;
-    cursor: default;
-  }
+  color: $light-orange;
+  font-family: helvetica;
+  cursor: pointer;
 
   .first-letter {
     display: inline-block;
@@ -21,24 +16,5 @@ logo {
       top: -20px;
       width: 70px;
     }
-
   }
-
-
-
 }
-
-//
-// #player-logo {
-//   color: $light-orange;
-//   font-size: 45px;
-//   font-family: helvetica;
-//   position: relative;
-//   left: -53.5px;
-//   cursor: default;
-// }
-//
-// #player-logo-img {
-//   width: 70px;
-//   margin-left: 10px;
-// }
