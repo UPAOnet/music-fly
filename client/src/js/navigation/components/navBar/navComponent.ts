@@ -9,29 +9,18 @@ class Controller {
     private $mdSidenav
   ) {
     'ngInject';
-    this.showSideNav = false;
-    // this.showSideNav = $mdSidenav('left').isOpen;
+
     this.$mdSidenav = $mdSidenav;
-    if (!this.$mdSidenav.isOpen) {
-      this.showSideNav = false;
-    }
-    // if (!this.$mdSidenav('left').isOpen) {
-    //   this.showSideNav = false;
-    // }
+    this.$scope = $scope;
 
-
-    // if ($mdSidenav('left').isOpen) {
-    //   this.showSideNav = !this.showSideNav;
-    // }
   }
 
   openLeftMenu () {
-    if (this.$mdSidenav('left').isOpen) {
+    if (this.$mdSidenav('left')) {
       this.showSideNav = !this.showSideNav;
     }
 
     this.$mdSidenav('left').toggle();
-    console.log(this.$mdSidenav('left'));
   }
 }
 
