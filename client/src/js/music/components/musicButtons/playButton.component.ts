@@ -5,7 +5,7 @@ import {ButtonsController} from './PlayerButtons.controller.ts';
 declare const require: any;
 
 export const playButton = {
-   template: require('./play-button.html'),
+   templateUrl: require('./play-button.html'),
    controller: ButtonsController,
    bindings: {
     song:'<',

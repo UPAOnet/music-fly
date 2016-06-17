@@ -66,6 +66,6 @@ class playerInterfaceController {
 }
 
 export const playerInterfaceComponent = {
-  template: require('./player-interface.html'),
+  templateUrl: require('./player-interface.html'),
   controller: playerInterfaceController
 }
