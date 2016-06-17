@@ -8,19 +8,20 @@
             <button type="button"
                     class="navbar-toggle"
                     data-toggle="collapse"
-                    ng-click="$ctrl.openLeftMenu()">
+                    ng-click="$ctrl.openLeftMenu()"
+                    >
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <logo></logo>
+            <logo ui-sref="home"></logo>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-right text-center">
             <ul class="nav navbar-nav">
-              <li><a><button class="btn mf-btn orange-text">Listen</button></li></a>
+              <li><a ui-sref="player"><button class="btn mf-btn orange-text">Listen</button></li></a>
               <li><a><button class="btn mf-btn orange-text">Log In </button></a></li>
               <li><a><button class="btn mf-btn orange-text">Create Account</button></a></li>
             </ul>
@@ -31,23 +32,11 @@
 
 <!-- Content for mobile Nav -->
 <md-sidenav md-component-id="left" class="md-sidenav-left">
-  <ul>
-    <li><a><button class="btn mf-btn orange-text">Listen</button></li></a>
-    <li><a><button class="btn mf-btn orange-text">Log In </button></a></li>
-    <li><a><button class="btn mf-btn orange-text">Create Account</button></a></li>
+  <ul class="mf-l-content">
+    <li class="btn mf-btn orange-fill btn-stretch">Listen</li>
+    <li><a><button class="btn mf-btn orange-fill btn-stretch">Log In </button></a></li>
+    <li><a><button class="btn mf-btn orange-fill btn-stretch">Create Account</button></a></li>
   </ul>
 </md-sidenav>
-<!-- <md-content>
-  Center Content
-  <md-button ng-click="$ctrl.openLeftMenu()">
-    Open Left Menu
-  </md-button>
-</md-content>
-<md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
-  <form>
-    <md-input-container>
-      <label for="testInput">Test input</label>
-      <input id="testInput" type="text" ng-model="data" md-autofocus>
-    </md-input-container>
-  </form> -->
+
 </md-sidenav>

@@ -45,7 +45,8 @@ module.exports = {
     },
     {
       test: /\.html$/,
-      loader: 'html-loader'
+      // loader: 'html-loader'
+      loader: 'file-loader?name=[path][name].[ext]'
     },
     {
         test: /\.js?$/,

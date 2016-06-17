@@ -2,18 +2,38 @@
  * Button Type Mixins
  */
 
- @mixin outline-none ( $text-color, $no-hover: false) {
+ %button {
    vertical-align: middle;
    background-color: transparent;
    border: none;
+   border-radius: 0px;
+ }
 
-   @if $no-hover != false {
+ %stretch {
+   width: 100%;
+   text-align: left;
+ }
+
+ @mixin outline-none ($text-color, $hover: false) {
+  @extend %button;
+
+   @if $hover != false {
 
     &:hover {
      color: $text-color;
      background-color: none;
     }
   }
+ }
+
+ @mixin fill-button ( $text-color: $white, $fill: $dark-orange) {
+   @extend %button;
+
+   &:hover {
+     color: $text-color;
+     background-color: $fill;
+   }
+
  }
 
  /*
@@ -33,4 +53,15 @@
    &.orange-text {
      @include outline-none($dark-orange, true);
    }
+
+   // Fill Modifications
+   &.orange-fill {
+     @include fill-button();
+   }
+
+ }
+
+ // Full width buttons
+ .btn-stretch {
+   @extend %stretch;
  }
