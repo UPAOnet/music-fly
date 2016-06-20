@@ -12,9 +12,6 @@ module.exports = {
     path: __dirname + "/client/dev/public",
     filename: "scripts.min.js"
   },
-  // resolve: {
-  //   extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
-  // },
   module: {
    loaders: [
     {
@@ -38,7 +35,6 @@ module.exports = {
       test: /\.ts$/,
       loader: 'ts'
     },
-
     {
       test: /\.js?$/,
       loader: 'ng-annotate'

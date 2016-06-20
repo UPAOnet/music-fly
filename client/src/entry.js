@@ -10,7 +10,6 @@ function addIndex (directory) {
  return require('./js/' + directory + '/index.js');
 };
 
-// require('../../node_modules/angular-material/angular-material.css');
 require('bootstrap-loader');
 require('./assets/index.js');
 require('./scss/styles.scss');
