@@ -1,0 +1,10 @@
+%overlay {
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.darken-overlay {
+  @extend %overlay;
+  background-color: rgba(0,0,0,.3);
+}

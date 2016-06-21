@@ -6,6 +6,10 @@ nav-bar {
     margin-top: 40px;
   }
 
+  navbar-nav > li > a {
+    padding-bottom: 0px;
+  
+  }
   // Logo Styling
   logo {
     .main-logo {
