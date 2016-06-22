@@ -1,0 +1,12 @@
+.home-page {
+
+  .landing {
+    @include background-image ('/assets/images/home/hero2.jpg');
+    height: 700px;
+  }
+
+  .section-one {
+    height: 500px;
+  }
+
+}

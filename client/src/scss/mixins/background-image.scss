@@ -1,0 +1,5 @@
+@mixin background-image ($url) {
+  background-image: url($url);
+  background-attachment: fixed;
+  background-size: cover;
+}
