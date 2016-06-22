@@ -2,7 +2,6 @@
   * entry point for webpack
   */
 
-
 import module from './app-config.ts';
 
 // path for all main JS directories
