@@ -7,17 +7,29 @@ nav-bar {
     margin-top: 40px;
   }
 
+  %nav-transition {
+    @include transition();
+  }
+
   // Home Nav
   .mf-navbar {
     @extend %home-nav;
+    @extend %nav-transition;
   }
 
   // Alt Nav
   .navbar-inverse {
+    @extend %nav-transition;
     height: $alt-nav-height;
 
-    logo {
-      @include move-left(-90px);
+    .main-logo {
+      .first-letter {
+        @include move-left(25px);
+      }
+    }
+
+    .full-title {
+      visibility: hidden;
     }
   }
 

@@ -1,0 +1,18 @@
+/*********************
+TRANSITION
+*********************/
+
+/* .transition(all,2s); */
+@mixin transition($what: all,$time:0.2s,$transition:ease-in-out,$delay:0s) {
+  -webkit-transition: $what $time $transition;
+  -moz-transition:    $what $time $transition;
+  -ms-transition:     $what $time $transition;
+  -o-transition:      $what $time $transition;
+  transition:         $what $time $transition;
+  transition-delay:   $delay;
+  -webkit-transition-delay: $delay; /* Safari */
+}
+
+@mixin anim($what: all, $time: 0.2s, $transition: ease-in-out, $delay: 0s){
+  @include transition($what, $time,$transition, $delay);
+}
