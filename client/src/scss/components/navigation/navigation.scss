@@ -1,15 +1,32 @@
 nav-bar {
-    position: sticky;
-  .mf-navbar {
-    color: black;
+
+  $alt-nav-height: 90px;
+
+  %home-nav {
     background:transparent;
     margin-top: 40px;
   }
 
-  navbar-nav > li > a {
-    padding-bottom: 0px;
-  
+  // Home Nav
+  .mf-navbar {
+    @extend %home-nav;
   }
+
+  // Alt Nav
+  .navbar-inverse {
+    height: $alt-nav-height;
+
+    logo {
+      @include move-left(-90px);
+    }
+  }
+
+  // Side nav
+  md-sidenav {
+    background-color: $playerBlack;
+    position: fixed;
+  }
+
   // Logo Styling
   logo {
     .main-logo {
@@ -21,13 +38,13 @@ nav-bar {
     }
   }
 
-  md-sidenav {
-    background-color: $playerBlack;
-    position: fixed;
+  // Bootstrap Overrides
+  navbar-nav > li > a {
+    padding-bottom: 0px;
   }
 
-  .navbar-toggle > span {
-      background-color: $playerBlack;
+  .navbar-toggle {
+    margin-top: 30px;
   }
 
 }

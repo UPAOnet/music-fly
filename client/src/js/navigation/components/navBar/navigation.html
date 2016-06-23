@@ -1,7 +1,11 @@
 <!-- Navigation -->
-<nav class="mf-navbar navbar navbar-fixed-top"
+<nav class="navbar navbar-fixed-top"
      role="navigation"
-     ng-if="!$ctrl.showAltNav">
+     ng-class="{
+       'mf-navbar': !$ctrl.showAltNav,
+       'navbar-inverse': $ctrl.showAltNav
+     }"
+     >
     <div class="container">
       <div class="row">
 
@@ -36,12 +40,15 @@
 </nav>
 
 <!-- Content for mobile Nav -->
-<md-sidenav md-component-id="left" class="md-sidenav-left">
-  <ul class="mf-l-content">
-    <li ui-sref="player" class="btn mf-btn orange-fill btn-stretch">Listen</li>
-    <li><a><button class="btn mf-btn orange-fill btn-stretch">Log In </button></a></li>
-    <li><a><button class="btn mf-btn orange-fill btn-stretch">Create Account</button></a></li>
-  </ul>
-</md-sidenav>
+<nav>
+  <md-sidenav md-component-id="left" class="md-sidenav-left">
+    <ul class="mf-l-content">
+      <li ui-sref="player" class="btn mf-btn orange-fill btn-stretch">Listen</li>
+      <li><a><button class="btn mf-btn orange-fill btn-stretch">Log In </button></a></li>
+      <li><a><button class="btn mf-btn orange-fill btn-stretch">Create Account</button></a></li>
+    </ul>
+  </md-sidenav>
+</nav>
+
 
 </md-sidenav>

@@ -6,13 +6,14 @@ class Controller {
   private showSideNav: boolean;
   private navChangePoint: number;
   private showAltNav: boolean;
-  private isOpen;
   private userScroll: number;
   private Angular;
+  private isOpen;
 
   constructor(
     private $scope,
     private $window,
+    private $timeout,
     private userLogin,
     private $mdSidenav
   ) {
@@ -23,9 +24,9 @@ class Controller {
     this.$scope = $scope;
     this.$window = $window;
     this.Angular = angular;
-    // this.userScroll = $window.pageYOffset;
-    this.navChangePoint = 170;
-    this.showAltNav = true;
+
+    // Controller props
+    this.showAltNav = null;
     this.checkUserScroll();
   }
 
@@ -33,25 +34,18 @@ class Controller {
     if (this.$mdSidenav('left')) {
       this.showSideNav = !this.showSideNav;
     }
-
     this.$mdSidenav('left').toggle();
   }
 
+/**
+  * Binds scroll event to determine which main nav to show
+  */
   private checkUserScroll () {
-    // this.$scope.$watch(() => this.$window.pageYOffset, (newValue, oldValue) => {
-    //   console.log(this.$window.pageYOffset);
-    // })
-    this.Angular.element(window).bind('scroll', function () {
-      // if(window.pageYOffset > 170 && !this.showAltNav) {
-      //   console.log('change');
-      // } else if(){
-      //   this.showAltNav = false;
-      //   console.log('revert');
-      // }
+    const navChangePoint = 170
+    this.Angular.element(window).bind('scroll', () => {
 
-      this.showAltnav = window.pageYOffset > this.navChangePoint;
-      console.log(window.pageYOffset);
-      console.log(this.showAltnav);
+      // Timeout set to make sure digest is called
+      this.$timeout(() => this.showAltNav = window.pageYOffset > navChangePoint);
     });
   }
 
