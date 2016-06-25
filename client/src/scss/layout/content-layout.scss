@@ -1,3 +1,8 @@
+// Offsets fixed navbar for all pages besides home
+.mf-l-page {
+  $nav-height: 90px;
+  margin-top: $nav-height;
+}
 
 // Fully stretches a section
 .mf-l-full-stretch {
