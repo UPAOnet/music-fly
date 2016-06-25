@@ -1,10 +1,45 @@
 <!-- Navigation -->
-<nav class="navbar navbar-fixed-top"
+<nav class="navbar navbar-fixed-top mf-navbar"
      role="navigation"
-     ng-class="{
-       'mf-navbar': !$ctrl.showAltNav,
-       'navbar-inverse': $ctrl.showAltNav
-     }"
+     ng-show= "!$ctrl.showAltNav"
+     >
+    <div class="container">
+      <div class="row">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle"
+                    data-toggle="collapse"
+                    ng-click="$ctrl.openLeftMenu()"
+                    >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <logo ui-sref="home" class="pull-left"></logo>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-right text-center col-sm-5">
+          <div class="row">
+            <ul class="nav navbar-nav">
+              <li><a class="mf-u-padtop-35" ui-sref="player"><button class="btn mf-btn orange-text">Listen</button></li></a>
+              <li><a class="mf-u-padtop-35"><button class="btn mf-btn orange-text">Log In </button></a></li>
+              <li><a class="mf-u-padtop-35"><button class="btn mf-btn orange-text">Create Account</button></a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</nav>
+
+<!-- Alt  Nav -->
+<nav class="navbar navbar-fixed-top navbar-inverse"
+     role="navigation"
+     ng-show= "$ctrl.showAltNav"
      >
     <div class="container">
       <div class="row">

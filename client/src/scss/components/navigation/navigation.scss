@@ -8,13 +8,23 @@ nav-bar {
   }
 
   %nav-transition {
-    @include transition();
+    @include transition(all, .2s);
+    &.ng-hide {
+      opacity: 0;
+    }
   }
 
   // Home Nav
   .mf-navbar {
     @extend %home-nav;
     @extend %nav-transition;
+
+    .navbar-toggle  {
+      border: 1px solid $playerBlack;
+      span{
+        background-color: $playerBlack
+      }
+    }
   }
 
   // Alt Nav
