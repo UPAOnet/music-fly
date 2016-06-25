@@ -5,10 +5,8 @@ export const RouteConfig = function (
   $urlRouterProvider
   ) {
   'ngInject';
-  console.log('routes are hooked up');
 
   $urlRouterProvider.otherwise('/');
-
   $stateProvider
 
     .state('home', {

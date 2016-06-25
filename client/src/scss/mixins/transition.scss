@@ -1,6 +1,6 @@
-/**************
+/*=============
 Default Transition
-***************/
+==============*/
 
 @mixin transition ($what: all, $duration: .4s, $timing: linear, $delay: null ) {
   -webkit-transition: $what, $duration, $timing, $delay;
