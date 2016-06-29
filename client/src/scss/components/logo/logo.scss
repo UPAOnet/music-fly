@@ -1,7 +1,7 @@
 logo {
   color: $light-orange;
   font-family: helvetica;
-  cursor: pointer;
+
 
   .first-letter {
     display: inline-block;
@@ -9,6 +9,7 @@ logo {
     position: relative;
 
     img {
+      cursor: pointer;
       position: relative;
       left: -67px;
       top: -20px;

@@ -1,0 +1,32 @@
+<section class="music-panel mf-l-content">
+  
+  <div>
+
+     <div id="search">
+       <div>
+         <span class="music-tab" data-tab="search"></span>
+       </div>
+     </div>
+     <div id="main">
+      <span>Main</span>
+      <div id="main-home" >
+         <li class="music-tab" ng-click="player.switchTabs($event)" data-tab="home">
+           <i class="home icon"></i>
+           <span ng-click="player.switchTabs($event)" data-tab="home">Home</span>
+         </li>
+       </div>
+     </div>
+     <div id ="playlists">
+       <div id="playlist-header">Playlists</div>
+       <div>
+         <li ng-repeat = "playlist in player.playlistTabs" class="music-tab playlist-tab" data-tab='{{playlist.name}}' data-playlist = "playlist.name" ng-click="player.switchTabs($event, playlist.name)">
+           <i class="music icon"></i>
+           {{playlist.name}}
+         </li>
+         <input id="playlist-field" type="text" ng-model="newPlaylist" ng-show="player.addPlaylistState" ng-keypress="player.createNewPlaylist($event)"/>
+         <li id="playlist-add" ng-click="player.revealNewPlaylist()" ng-show="player.addPlaylistButton"><i class="ui plus icon"></i>Add new</li>
+       </div>
+     </div>
+   <!-- <player-interface></player-interface> -->
+ </div>
+</section>

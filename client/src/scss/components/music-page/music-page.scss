@@ -1,0 +1,9 @@
+music-page{
+  .music-page {
+    margin-left: $music-panel-width;
+  }
+
+  .row {
+    @include music-panel-color ();
+  }
+}

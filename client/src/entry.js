@@ -18,4 +18,4 @@ addIndex('music');
 addIndex('navigation');
 addIndex('routes');
 addIndex('animations');
-addIndex('static');
+addIndex('static-components');

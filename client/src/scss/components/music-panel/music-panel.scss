@@ -1,6 +1,9 @@
+$music-panel-width: 170px;
+
 music-panel {
   .music-panel {
     position: fixed;
+    width: $music-panel-width;
     height: 100%;
     @include music-panel-color ();
   }
