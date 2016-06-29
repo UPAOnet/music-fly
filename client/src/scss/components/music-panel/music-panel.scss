@@ -1,0 +1,7 @@
+music-panel {
+  .music-panel {
+    position: fixed;
+    height: 100%;
+    @include music-panel-color ();
+  }
+}

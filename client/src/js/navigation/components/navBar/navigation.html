@@ -62,7 +62,7 @@
         <div class="collapse navbar-collapse pull-right text-center col-sm-5">
           <div class="row">
             <ul class="nav navbar-nav">
-              <li><a class="mf-u-padtop-35" ui-sref="player"><button class="btn mf-btn orange-text">Listen</button></li></a>
+              <li ng-if="$ctrl.isHomePage"><a class="mf-u-padtop-35" ui-sref="player"><button class="btn mf-btn orange-text">Listen</button></li></a>
               <li><a class="mf-u-padtop-35"><button class="btn mf-btn orange-text">Log In </button></a></li>
               <li><a class="mf-u-padtop-35"><button class="btn mf-btn orange-text">Create Account</button></a></li>
             </ul>
@@ -77,7 +77,7 @@
 <nav>
   <md-sidenav md-component-id="left" class="md-sidenav-left">
     <ul class="mf-l-content">
-      <li ui-sref="player" class="btn mf-btn orange-fill btn-stretch">Listen</li>
+      <li ng-if="$ctrl.isHomePage" ui-sref="player" class="btn mf-btn orange-fill btn-stretch">Listen</li>
       <li><a><button class="btn mf-btn orange-fill btn-stretch">Log In </button></a></li>
       <li><a><button class="btn mf-btn orange-fill btn-stretch">Create Account</button></a></li>
     </ul>

@@ -12,6 +12,11 @@ $grey: #828282;
 
 // Black
 $playerBlack: #212223;
+$panelBlack: #191919;
 
 // white
 $white: #ffffff;
+
+@mixin music-panel-color {
+  background-color: $panelBlack;
+}
