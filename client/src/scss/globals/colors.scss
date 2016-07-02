@@ -9,6 +9,7 @@ $light-orange: #FF8300;
 
 // Grey
 $grey: #828282;
+$dark-grey: #232323;
 
 // Black
 $playerBlack: #191919;
@@ -16,7 +17,3 @@ $panelBlack: #212223;
 
 // white
 $white: #ffffff;
-
-@mixin music-panel-color {
-  background-color: $panelBlack;
-}

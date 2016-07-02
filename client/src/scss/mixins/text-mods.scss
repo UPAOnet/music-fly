@@ -1,0 +1,9 @@
+// Text Modifications
+
+@mixin text-ellipsis($width: 100px) {
+  // Text overflow requires a pixel width
+  width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

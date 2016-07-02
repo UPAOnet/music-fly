@@ -1,0 +1,50 @@
+// Breakpoint Mixins
+
+// Small Phones and Portrait Mode (480px and under)
+@mixin phone-sm {
+  @media (max-width: #{$screen-xs-min}) {
+    @content;
+  }
+}
+
+// Phones: Bootstrap 'XS' (767px and under)
+@mixin phone {
+  @media (max-width: #{$screen-sm-min - 1px}) {
+    @content;
+  }
+}
+
+// Phones and Tablets: (991px and under)
+@mixin mobile-devices {
+  @media (max-width: #{$screen-md-min - 1px}) {
+    @content;
+  }
+}
+
+// Tablets Only: Bootstrap 'SM' (768px to 991px)
+@mixin tablet-only {
+  @media (min-width: #{$screen-sm-min}) and (max-width: #{$screen-md-min - 1px}) {
+    @content;
+  }
+}
+
+// Tablets and up: 768px+
+@mixin tablet {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+// Desktops and up: 992px+
+@mixin desktop {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large Desktops and up: 1200px+
+@mixin desktop-lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}

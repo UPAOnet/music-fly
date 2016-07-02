@@ -1,4 +1,10 @@
-<div class="row">
-  <h3>{{header}}</h3>
-  <ng-transclude></ng-transclude>
-</div>
+<section class="row">
+  <div class="row-header">
+    <div class="mf-l-content">
+      <h4>{{$ctrl.header}}</h4>
+    </div>    
+  </div>
+  <div>
+    <ng-transclude></ng-transclude>
+  </div>
+</section>

@@ -5,6 +5,6 @@ music-panel {
     position: fixed;
     width: $music-panel-width;
     height: 100%;
-    @include music-panel-color ();
+    background-color: $panelBlack;
   }
 }

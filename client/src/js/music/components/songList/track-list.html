@@ -1,19 +1,48 @@
-<div id="track-list" class="ui grid sixteen wide column">
-  <div class="songs ui row" ng-repeat= "track in $ctrl.tracks track by $index">
-    <div class = "ui grid sixteen wide column">
-      <div class="ui three wide column">
+<section class="song-list">
+  <section class="mf-l-content-sides prevent-wrapping song" ng-repeat= "track in $ctrl.tracks track by $index">
+
+    <div>
+      <img class="song-img" ng-src="{{track.image}}"/>
+    </div>
+
+    <!-- Description -->
+    <div class="mf-l-content-sides">
+      <span class="song-name">{{track.name}}</span>
+    </div>
+    <div>
+      <span class="song-artist">{{track.artist}}</span>
+    </div>
+
+    <div>
+      <span class="song-duration">{{track.duration}}</span>
+    </div>
+    <!-- <div>
+      <a class="song-company" href="{{track.pageSource}}">Listen on<i class="fa fa-{{track.company}} song-option-icon {{track.company}}"></i><span class="{{track.company}}">{{track.company}}</span>
+      </a>
+    </div> -->
+
+  </section>
+
+</section>
+
+
+
+<!-- <div ng-repeat= "track in $ctrl.tracks track by $index">
+  <div>
+    <div >
+      <div>
         <img class=" song-img" ng-src="{{track.image}}"/>
       </div>
       <div class="ui grid thirteen wide column">
-        <div class="ui ten wide column song-description">
+        <div class="ui ten wide column song-description"> -->
 
           <!-- play button -->
-          <div class="song-play">
+          <!-- <div class="song-play">
             <play-button song="track" index="$index" role-type="trackList"></play-button>
-          </div>
+          </div> -->
 
           <!-- Track Info -->
-          <div>
+          <!-- <div>
             <span>{{track.name}}</span>
             <p>{{track.artist}}</p>
             <p>{{track.album}}</p>
@@ -25,10 +54,10 @@
 
         </div>
 
-        <div class="ui three wide column">
+        <div class="ui three wide column"> -->
 
          <!-- dropdown -->
-          <div ng-show="track.deleteAble.state">
+          <!-- <div ng-show="track.deleteAble.state">
             <button class="delete-button ui button" ng-click="$ctrl.removeTrack(track.key)"><i class="trash outline icon"></i>Delete</button>
           </div>
           <div class="ui dropdown segment playlist-add-button" ng-click="openDropDown()">
@@ -45,4 +74,4 @@
       <div class="ui section divider"></div>
     </div>
   </div>
-</div>
+</div> -->

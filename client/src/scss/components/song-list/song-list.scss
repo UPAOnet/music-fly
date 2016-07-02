@@ -1,0 +1,28 @@
+song-list {
+  .song-list {
+
+    div {
+      display: inline;
+    }
+
+    span {
+      display:inline-block;
+    }
+
+    .song {
+      border-bottom: 1px solid $white;
+    }
+
+    .song-img {
+      width: 70px;
+    }
+
+    .song-name {
+      @include text-ellipsis(200px);
+    }
+
+    .song-artist {
+      @include text-ellipsis(100px);
+    }
+  }
+}

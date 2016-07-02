@@ -3,3 +3,9 @@
 .mf-l-content {
   @include content-space();
 }
+
+.mf-l-content-sides {
+  @include content-space();
+  padding-top: 0;
+  padding-bottom: 0;
+}
