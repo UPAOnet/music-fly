@@ -1,9 +1,8 @@
-<div ng-click="$ctrl.playMusic()">
+<div class="play-button" ng-click="$ctrl.playMusic()">
 
  <!-- track list button -->
  <div ng-if="$ctrl.roleType === 'trackList'">
-  <i class="play icon song-play-btn" ></i>
-  <span class="song-play-btn">Play</span>
+  <span class="glyphicon glyphicon-play-circle mf-l-absolute-center" aria-hidden="true"></span>
  </div>
 
  <!-- Music player button -->

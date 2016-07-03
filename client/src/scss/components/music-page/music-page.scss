@@ -1,5 +1,8 @@
-music-page{
+music-page {
   .music-page {
+    // Overflow hidden for phone stretching issue
+    overflow-x: hidden;
+
     @include tablet() {
       margin-left: $music-panel-width;
     }

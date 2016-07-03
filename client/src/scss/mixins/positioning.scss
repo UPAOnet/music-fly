@@ -4,3 +4,20 @@
   position: relative;
   left: $space-remaining;
 }
+
+// Absolute centering
+@mixin absolute-center () {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mf-l-absolute-center {
+  @include absolute-center();
+}
+
+// Enables Relative parent
+.mf-l-relative-parent {
+  position: relative;
+}

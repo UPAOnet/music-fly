@@ -1,8 +1,9 @@
 <section class="song-list">
-  <section class="mf-l-content-sides prevent-wrapping song" ng-repeat= "track in $ctrl.tracks track by $index">
+  <section class="prevent-wrapping default-cursor song" ng-repeat= "track in $ctrl.tracks track by $index">
 
-    <div>
+    <div class="hidden-xs mf-l-relative-parent">
       <img class="song-img" ng-src="{{track.image}}"/>
+      <play-button song="track" role-type="trackList"></play-button>
     </div>
 
     <!-- Description -->
