@@ -1,3 +1,11 @@
+%flexible-cells {
+  flex-grow: 1;
+
+  &:first-child {
+    flex-grow: 0
+  }
+}
+
 song-list {
   .song-list {
 
@@ -9,10 +17,34 @@ song-list {
       display:inline-block;
     }
 
+    table {
+      width: 100%;
+
+      tr {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      // Gives all cells except first a flex grow
+      td {
+        @extend %flexible-cells;
+      }
+
+      tr {
+        @extend %flexible-cells;
+      }
+    }
+
+    .active-song td span {
+      color: $light-orange;
+    }
+
     .song {
       border-bottom: 1px solid $panelBlack;
 
       .song-img {
+        flex-grow: 0;
         width: 70px;
       }
 

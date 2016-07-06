@@ -3,7 +3,6 @@
 /**
  * Handles playing, pausing, & skipping logic.
  * Contains the state for what should be playing
- * @module playerControls
  */
 
 angular.module('musicApp')

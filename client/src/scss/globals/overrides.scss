@@ -9,3 +9,8 @@ nav.navbar-fixed-top {
 .nav > li > a:hover {
     background-color: transparent;
 }
+
+// Removes default blue outlines
+:focus {
+  outline: none !important;
+}

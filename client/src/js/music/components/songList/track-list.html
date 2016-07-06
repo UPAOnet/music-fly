@@ -1,28 +1,43 @@
 <section class="song-list">
-  <section class="prevent-wrapping default-cursor song" ng-repeat= "track in $ctrl.tracks track by $index">
+  <music-page-row header="Search Results" ng-if="$ctrl.showTable">
+    <table>
+      <tr>
+        <th class="hidden-xs"></th>
+        <th class="mf-l-content-sides">Title</th>
+        <th>Artist</th>
+        <th>Duration</th>
+      </tr>
 
-    <div class="hidden-xs mf-l-relative-parent">
-      <img class="song-img" ng-src="{{track.image}}"/>
-      <play-button song="track" role-type="trackList"></play-button>
-    </div>
+      <!-- Description -->
+      <tr class="prevent-wrapping default-cursor song"
+          ng-repeat= "track in $ctrl.tracks track by $index"
+          ng-click="$ctrl.playMusic(track)"
+          ng-class="{'active-song': $ctrl.selectedSong.name === track.name}">
 
-    <!-- Description -->
-    <div class="mf-l-content-sides">
-      <span class="song-name">{{track.name}}</span>
-    </div>
-    <div>
-      <span class="song-artist">{{track.artist}}</span>
-    </div>
+        <td class="hidden-xs mf-l-relative-parent">
+          <img class="song-img" ng-src="{{track.image}}"/>
+          <play-button role-type="trackList"></play-button>
+        </td>
+        <td class="mf-l-content-sides">
+          <span class="song-name">{{track.name}}</span>
+        </td>
+        <td>
+          <span class="song-artist">{{track.artist}}</span>
+        </td>
+        <td>
+          <span class="song-duration">{{track.duration}}</span>
+        </td>
 
-    <div>
-      <span class="song-duration">{{track.duration}}</span>
-    </div>
-    <!-- <div>
-      <a class="song-company" href="{{track.pageSource}}">Listen on<i class="fa fa-{{track.company}} song-option-icon {{track.company}}"></i><span class="{{track.company}}">{{track.company}}</span>
-      </a>
-    </div> -->
+      </tr>
 
-  </section>
+      <!-- <div>
+        <a class="song-company" href="{{track.pageSource}}">Listen on<i class="fa fa-{{track.company}} song-option-icon {{track.company}}"></i><span class="{{track.company}}">{{track.company}}</span>
+        </a>
+      </div> -->
+
+    </table>
+  </music-page-row>
+
 
 </section>
 
