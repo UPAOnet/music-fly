@@ -1,0 +1,22 @@
+player-interface {
+  .player-interface {
+    width: 100%;
+    background-color: black;
+    @include fixed-bottom();
+
+    h4 {
+      text-transform: none;
+    }
+
+    div {
+      display: inline-block;
+    }
+
+    .player-image {
+      img {
+        width: 90px;
+      }
+    }
+
+  }
+}

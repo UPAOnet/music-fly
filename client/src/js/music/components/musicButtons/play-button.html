@@ -7,7 +7,10 @@
 
  <!-- Music player button -->
  <div ng-click="$ctrl.playMusic()" ng-if="$ctrl.roleType === 'music-player'">
-   <i id="play-btn" class="icon large circular" ng-click="player.togglePlay()"> </i>
+  <span class="glyphicon glyphicon glyphicon-backward" aria-hidden="true"></span>
+  <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+  <!-- <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> -->
+  <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
  </div>
 
 </div>

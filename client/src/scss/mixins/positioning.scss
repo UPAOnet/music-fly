@@ -13,6 +13,13 @@
   transform: translate(-50%, -50%);
 }
 
+// Fixed Bottom
+@mixin fixed-bottom () {
+  position:fixed;
+  bottom: 0px;
+}
+
+
 .mf-l-absolute-center {
   @include absolute-center();
 }

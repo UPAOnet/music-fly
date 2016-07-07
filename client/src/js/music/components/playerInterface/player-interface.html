@@ -1,18 +1,23 @@
-<div id="music-player" class="ui">
-  <div  class="ui">
-    <img ng-src= "{{$ctrl.currentTrack.image}}" id="player-img" class="ui image centered">
+<aside class="player-interface">
+
+  <div class="player-image">
+    <img ng-src= "{{$ctrl.currentTrack.image}}">
   </div>
-  <div id="player-track-info" class="">
-    <div id="track-info">
-      <h4 id="player-track-title">{{$ctrl.title}}</h4>
-      <p id="player-track-artist">{{$ctrl.artist}}</p>
-      <p id="player-track-artist">{{$ctrl.album}}</p>
-    </div>
-    <div id="player-controls">
-      <i id="previous-btn" class="backward icon circular" ng-click="player.playPrevious()"></i>
-      <!-- <i id="play-btn" class="large circular {{player.playStateButton}}" ng-click="player.togglePlay()"></i> -->
-      <play-button role-type="music-player"></play-button>
-      <i id="next-btn" class="forward icon circular" ng-click="player.playNext()"></i>
+
+  <div>
+    <div>
+      <h4>{{$ctrl.title}}</h4>
+      <p>{{$ctrl.artist}}</p>
+      <p>{{$ctrl.album}}</p>
     </div>
   </div>
- </div>
+
+  <div>
+    <play-button role-type="music-player"></play-button>
+  </div>
+
+  <div>
+    <duration-bar></duration-bar>
+  </div>
+
+</aside>
