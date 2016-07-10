@@ -1,24 +1,33 @@
+
+
 %round-corners {
   border-radius: 5px;
 }
 
-
 duration-bar {
+  $entire-width: 500px;
+  $entire-height: 10px;
+  $stubby-width: 30px;
+
   .duration-bar {
+    height: $entire-height;
 
     .entire-bar {
-      width: 500px;
-      height: 10px;
+      width: $entire-width;
       background-color: $grey;
 
       @extend %round-corners;
     }
 
-    .stubby-bar {
-      width: 30px;
-      height: 10px;
+    .time-elapsed-bar {
+      height: $entire-height;
       background-color: $light-orange;
-      position: relative;
+    }
+
+    .stubby-bar {
+      height: $entire-height;
+      background-color: $light-orange;
+      // position: relative;
       @extend %round-corners;
     }
 

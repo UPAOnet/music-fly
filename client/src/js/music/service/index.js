@@ -8,3 +8,8 @@ require('./spotify-search.service.js');
 require('./spotify-search.service.js');
 require('./tabs.service.js');
 require('./TrackList.service.js');
+
+import {NumberConverter} from './numberConverter.service.ts';
+
+angular.module('musicApp')
+ .service('numberConverter', NumberConverter)

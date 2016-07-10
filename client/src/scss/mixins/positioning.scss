@@ -13,6 +13,11 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin absolute-left () {
+  position: absolute;
+  left: 30px;
+}
+
 // Fixed Bottom
 @mixin fixed-bottom () {
   position:fixed;
@@ -22,6 +27,10 @@
 
 .mf-l-absolute-center {
   @include absolute-center();
+}
+
+.mf-l-absolute-left {
+  @include absolute-left();
 }
 
 // Enables Relative parent
