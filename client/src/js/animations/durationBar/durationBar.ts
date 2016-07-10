@@ -1,6 +1,8 @@
 
 import {INumberConverter} from '../../interfaces/serviceInterface.ts';
 
+const angular = require('angular');
+
 const BUTTON_WIDTH: number = 30;
 
 interface ButtonStyle {
@@ -15,12 +17,14 @@ interface elapsedStyle {
 class Controller {
 
   private entireBar: any;
+  private stubbyBar: any;
 
   private songLength: number;
-  private durationLength: number;
+  private progressRate: number;
 
   private entireBarWidth: number;
   private timeElapsedWidth: number;
+  private moveRight: number;
   
 
   public elapsedStyle: elapsedStyle;
@@ -28,24 +32,62 @@ class Controller {
 
   constructor (
     private $element,
+    private $scope,
+    private playerControls,
     private numberConverter: INumberConverter
   ) {
     'ngInject';
     
     // Services
     this.$element = $element;
+    this.playerControls = playerControls;
 
-    this.entireBar = this.$element.firstChild;
-    console.log(this.entireBar);
 
     this.songLength = 15;
-    this.durationLength;
     this.timeElapsedWidth = 20;
     this.render();
+    
+    
   }
 
-  private calculateDuration (songLength: number) {
+ 
+  $postLink() {
+    this.entireBar = $(this.$element);
+    this.entireBarWidth = this.entireBar.outerWidth();
+    
+    
+    this.stubbyBar = this.entireBar.find('.stubby-bar');
+    this.calculatePerSecond(this.songLength);
+    
 
+    this.$scope.$watch(() => this.playerControls.playState.playing,
+    (newValue, oldValue) => {
+      if (newValue === oldValue) {
+        return;
+      }
+
+      if (!newValue) {
+        this.resetProgressBar();
+      }
+      
+      this.startProgressBar();
+    })
+
+  }
+
+  private calculatePerSecond (songLength: number) {
+    let rate;
+    rate = (this.entireBarWidth / this.songLength);
+    this.progressRate = rate;
+    console.log(this.progressRate);
+  }
+
+  private resetProgressBar () {
+    this.stubbyBar.css({left:0});
+  }
+
+  private startProgressBar () {
+    this.stubbyBar.css({left:300});
   }
 
   /**
@@ -55,7 +97,7 @@ class Controller {
     
     this.buttonStyle = {
       width: `${BUTTON_WIDTH}px`,
-      left: `${this.timeElapsedWidth}px`
+      left: `0px`
     }
 
     this.elapsedStyle = {

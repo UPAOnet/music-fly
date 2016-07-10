@@ -2,7 +2,7 @@
 
 /**
  * Handles playing, pausing, & skipping logic.
- * Contains the state for what should be playing
+ * Contains the state of what is playing
  */
 
 angular.module('musicApp')
@@ -21,7 +21,7 @@ angular.module('musicApp')
     }
 
     masterPlayer.playState = {
-      playing: false,
+      playing: null,
       currentSong: null
     };
 
@@ -101,7 +101,6 @@ angular.module('musicApp')
     }
 
     masterPlayer.getInfo = () => currentSongInfo;
-
     masterPlayer.togglePlay = function (songUrl, songIndex) {
 
 
@@ -130,7 +129,7 @@ angular.module('musicApp')
       // console.log(song);
       //
       // console.log('playing');
-
+      masterPlayer.playState.playing = true; 
       masterPlayer.src = song.urlSource;
       masterPlayer.play();
     }

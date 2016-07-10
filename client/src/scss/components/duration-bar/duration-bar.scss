@@ -5,7 +5,7 @@
 }
 
 duration-bar {
-  $entire-width: 500px;
+  $entire-width: 300px;
   $entire-height: 10px;
   $stubby-width: 30px;
 
@@ -27,8 +27,9 @@ duration-bar {
     .stubby-bar {
       height: $entire-height;
       background-color: $light-orange;
-      // position: relative;
+      position: relative;
       @extend %round-corners;
+      @include transition(left, 20s);
     }
 
   }
