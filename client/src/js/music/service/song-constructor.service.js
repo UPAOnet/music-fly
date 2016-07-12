@@ -25,8 +25,7 @@ angular.module('musicApp')
      * @param {length} - Preview length of song in milliseconds
      */
     song.prototype.setPreviewLength = function (length) {
-      let seconds = numberConverter.convertToSeconds(length, 'milliseconds');
-      this.duration = seconds;
+      this.duration = length;
     }
 
     return song;

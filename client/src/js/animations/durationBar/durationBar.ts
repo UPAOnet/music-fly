@@ -20,13 +20,12 @@ class Controller {
   private stubbyBar: any;
 
   private songLength: number;
-  private progressRate: number;
+  private animationTravelRate: number;
 
-  private entireBarWidth: number;
-  private timeElapsedWidth: number;
+  private progressWidth: number;
   private moveRight: number;
   
-
+  // How far the bar will have to travel
   public elapsedStyle: elapsedStyle;
   public buttonStyle: ButtonStyle;
 
@@ -42,24 +41,18 @@ class Controller {
     this.$element = $element;
     this.playerControls = playerControls;
 
-
-    this.songLength = 15;
-    this.timeElapsedWidth = 20;
+    this.animationTravelRate = null;
+    this.songLength = null;
     this.render();
     
     
   }
 
- 
   $postLink() {
     this.entireBar = $(this.$element);
-    this.entireBarWidth = this.entireBar.outerWidth();
-    
-    
+    this.progressWidth = (this.entireBar.outerWidth() - BUTTON_WIDTH);  
     this.stubbyBar = this.entireBar.find('.stubby-bar');
-    this.calculatePerSecond(this.songLength);
     
-
     this.$scope.$watch(() => this.playerControls.playState.playing,
     (newValue, oldValue) => {
       if (newValue === oldValue) {
@@ -71,7 +64,7 @@ class Controller {
         // this.resetProgressBar();
         return
       }
-      
+      this.calculatePerSecond();
       this.startProgressBar();
     })
 
@@ -79,23 +72,27 @@ class Controller {
 
   /**
    * Sets the move rate of the duration bar
-   * {songLength} - Duration in seconds
    */
-  private calculatePerSecond (songLength: number) {
-    let rate;
-    rate = (this.entireBarWidth / this.songLength);
-    this.progressRate = rate;
-    console.log(this.progressRate);
+  private calculatePerSecond () {
+    this.animationTravelRate = this.getSongLength();
+  }
+
+  private getSongLength(): number {
+    return this.playerControls.playState.timerDuration;
   }
 
   private resetProgressBar () {
     this.stubbyBar.css({left:0});
   }
-
+  
+  /**
+   * Starts the animation once all properties are set
+   * Should always call this last 
+   */
   private startProgressBar () {
     this.stubbyBar.animate({
-      left: `+=${this.progressRate}`
-    }, 5000, 
+      left: `${this.progressWidth}`
+    }, this.animationTravelRate, 
        'linear', 
        () => {
         this.resetProgressBar();
@@ -113,7 +110,7 @@ class Controller {
     }
 
     this.elapsedStyle = {
-      width: `${this.timeElapsedWidth}px`
+      width: `${this.songLength}px`
     }
   }
 }

@@ -49,10 +49,10 @@ export class PlayerControls {
 
   }
 
-  private setCurrent (currentSong: any): void {
+  private setCurrentState (currentSong: any): void {
     let songKey = currentSong.key;
     this.playState.currentSong = songKey;
-    this.playState.timerDuration = 3000;
+    this.playState.timerDuration = currentSong.duration;
   }
 
   private setPlayerInfo(currentSong: any): void {
@@ -78,7 +78,7 @@ export class PlayerControls {
 
   public playMusic(song: any): void {
     this.TrackList.setActive(song);
-    this.setCurrent(song);
+    this.setCurrentState(song);
     this.setPlayerInfo(song);
     this.setSongTimer(this.playState.timerDuration);
     this.playState.playing = true;

@@ -9,11 +9,18 @@ duration-bar {
   $entire-height: 10px;
   $stubby-width: 30px;
 
-  .duration-bar {
-    height: $entire-height;
+  line-height: 0;
+  font-size: 0;
 
+  .duration-bar {
+
+    span {
+      display: inline-block;
+    }
+    
     .entire-bar {
       width: $entire-width;
+      height: $entire-height;
       background-color: $grey;
 
       @extend %round-corners;
