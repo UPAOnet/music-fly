@@ -67,8 +67,8 @@ class Controller {
       }
 
       if (!newValue) {
-        console.log('PLAYER NEEDS TO RESET');
-        this.resetProgressBar();
+        console.log('PLAYER NEEDS TO RESET OR PAUSE');
+        // this.resetProgressBar();
         return
       }
       
@@ -77,6 +77,10 @@ class Controller {
 
   }
 
+  /**
+   * Sets the move rate of the duration bar
+   * {songLength} - Duration in seconds
+   */
   private calculatePerSecond (songLength: number) {
     let rate;
     rate = (this.entireBarWidth / this.songLength);

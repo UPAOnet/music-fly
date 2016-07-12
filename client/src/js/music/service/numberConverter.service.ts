@@ -21,6 +21,5 @@ export class NumberConverter implements INumberConverter {
 
         result = (time/convertFrom);
         return result
-
     }
 }

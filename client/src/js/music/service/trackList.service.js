@@ -27,9 +27,21 @@ angular.module('musicApp')
   factory.getSpotifyTracks = function (spotifyList) {
 
    _.forEach(spotifyList, function (each, i) {
-     list.push(
-       new songConstructor(i, each.name, each.album.images[1].url, each.album.name, each.artists[0].name, each.duration_ms, 'spotify', null, each.preview_url, each.external_urls.spotify)
-     );
+     let theSong = new songConstructor(
+        i, 
+        each.name, 
+        each.album.images[1].url, 
+        each.album.name, 
+        each.artists[0].name, 
+        each.duration_ms, 
+        'spotify', 
+        null, 
+        each.preview_url, 
+        each.external_urls.spotify
+      )
+      
+    theSong.setPreviewLength(30000); 
+    list.push(theSong);
    })
   }
 
