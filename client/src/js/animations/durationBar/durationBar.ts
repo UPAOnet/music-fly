@@ -67,7 +67,9 @@ class Controller {
       }
 
       if (!newValue) {
+        console.log('PLAYER NEEDS TO RESET');
         this.resetProgressBar();
+        return
       }
       
       this.startProgressBar();
@@ -87,7 +89,13 @@ class Controller {
   }
 
   private startProgressBar () {
-    this.stubbyBar.css({left:300});
+    this.stubbyBar.animate({
+      left: `+=${this.progressRate}`
+    }, 5000, 
+       'linear', 
+       () => {
+        this.resetProgressBar();
+       })
   }
 
   /**

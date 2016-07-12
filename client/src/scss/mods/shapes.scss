@@ -1,0 +1,7 @@
+%circle {
+  border-radius: 45px;
+}
+
+.mf-m-circlify {
+  @extend %circle;
+}

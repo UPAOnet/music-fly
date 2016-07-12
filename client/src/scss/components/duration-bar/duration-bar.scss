@@ -29,7 +29,7 @@ duration-bar {
       background-color: $light-orange;
       position: relative;
       @extend %round-corners;
-      @include transition(left, 20s);
+      // @include transition(left, 20s);
     }
 
   }

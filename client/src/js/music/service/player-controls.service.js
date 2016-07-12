@@ -7,6 +7,7 @@
 
 angular.module('musicApp')
   .factory('playerControls', /*@ngInject*/ function (
+    $timeout,
     TrackList
   ) {
 

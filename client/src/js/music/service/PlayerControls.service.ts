@@ -9,7 +9,8 @@ interface IPlayerSongInfo {
 
 interface IPlayState {
   playing: boolean,
-  currentSong: any
+  currentSong: any,
+  timerDuration: number
 }
 
 export class PlayerControls {
@@ -42,14 +43,16 @@ export class PlayerControls {
     }
     this.playState = {
       playing: null,
+      timerDuration: null,
       currentSong: null
     };
-    
+
   }
 
   private setCurrent (currentSong: any): void {
     let songKey = currentSong.key;
     this.playState.currentSong = songKey;
+    this.playState.timerDuration = 3000;
   }
 
   private setPlayerInfo(currentSong: any): void {
@@ -60,8 +63,13 @@ export class PlayerControls {
     this.currentSongInfo.company = currentSong.company;
   }
 
-  private setSongTimer(): void {
+  private resetState () {
+    this.playState.playing = false;
+    console.log(this.playState.playing);
+  }
 
+  private setSongTimer(duration): void {
+    this.$timeout(() => this.resetState(), duration);
   }
 
   public getInfo(): any {
@@ -72,6 +80,7 @@ export class PlayerControls {
     this.TrackList.setActive(song);
     this.setCurrent(song);
     this.setPlayerInfo(song);
+    this.setSongTimer(this.playState.timerDuration);
     this.playState.playing = true;
 
     this.Player.src = song.urlSource;
