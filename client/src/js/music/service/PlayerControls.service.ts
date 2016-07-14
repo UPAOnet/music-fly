@@ -4,7 +4,8 @@ interface IPlayerSongInfo {
   artist: string,
   album: string,
   image: string,
-  company: string
+  company: string,
+  duration: number
 }
 
 interface IPlayState {
@@ -25,11 +26,6 @@ export class PlayerControls {
   ) {
     'ngInject';
 
-    // Services 
-    this.$window = $window;
-    this.$timeout = $timeout;
-    this.TrackList = TrackList;
-
     // Audio Object
     this.Player = new $window.Audio();
 
@@ -39,7 +35,8 @@ export class PlayerControls {
       artist: null,
       album: null,
       image: null,
-      company: null
+      company: null,
+      duration: null
     }
     this.playState = {
       playing: null,
@@ -50,6 +47,7 @@ export class PlayerControls {
   }
 
   private setCurrentState (currentSong: any): void {
+    this.setSongTimer(this.playState.timerDuration);
     let songKey = currentSong.key;
     this.playState.currentSong = songKey;
     this.playState.timerDuration = currentSong.duration;
@@ -63,13 +61,17 @@ export class PlayerControls {
     this.currentSongInfo.company = currentSong.company;
   }
 
-  private resetState () {
+  private turnOffTimer () {
     this.playState.playing = false;
-    console.log(this.playState.playing);
   }
 
   private setSongTimer(duration): void {
-    this.$timeout(() => this.resetState(), duration);
+
+    // Resets timer everytime a new song is played
+    this.playState.timerDuration = null;
+
+    // Sets timer to turn off timer once song is finished
+    this.$timeout(() => this.turnOffTimer(), duration);
   }
 
   public getInfo(): any {
@@ -80,7 +82,6 @@ export class PlayerControls {
     this.TrackList.setActive(song);
     this.setCurrentState(song);
     this.setPlayerInfo(song);
-    this.setSongTimer(this.playState.timerDuration);
     this.playState.playing = true;
 
     this.Player.src = song.urlSource;

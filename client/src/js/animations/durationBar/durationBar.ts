@@ -36,15 +36,10 @@ class Controller {
     private numberConverter: INumberConverter
   ) {
     'ngInject';
-    
-    // Services
-    this.$element = $element;
-    this.playerControls = playerControls;
 
-    this.animationTravelRate = null;
-    this.songLength = null;
+    // this.animationTravelRate = null;
+    // this.songLength = null;
     this.render();
-    
     
   }
 
@@ -64,21 +59,22 @@ class Controller {
         // this.resetProgressBar();
         return
       }
-      this.calculatePerSecond();
+      this.getSongLength()
       this.startProgressBar();
     })
+
+    // this.$scope.$watch(() => this.playerControls.playState.timerDuration, 
+    // (newValue, oldValue) => {
+      
+    // })
 
   }
 
   /**
    * Sets the move rate of the duration bar
    */
-  private calculatePerSecond () {
-    this.animationTravelRate = this.getSongLength();
-  }
-
-  private getSongLength(): number {
-    return this.playerControls.playState.timerDuration;
+  private getSongLength(): void {
+    this.animationTravelRate = this.playerControls.playState.timerDuration;
   }
 
   private resetProgressBar () {

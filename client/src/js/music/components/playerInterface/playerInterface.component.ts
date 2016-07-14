@@ -17,20 +17,16 @@ interface TrackProps {
 
 class playerInterfaceController {
 
-  // Services
-  private $scope: any;
-  private TrackList: any;
-  private playerControls: any;
-
   private title: string;
   private artist: string;
   private album: string;
+  private duration: number;
   private currentTrack: TrackProps;
 
   constructor (
-    TrackList,
-    playerControls,
-    $scope
+    private TrackList,
+    private playerControls,
+    private $scope
   ) {
     'ngInject';
 
@@ -39,8 +35,6 @@ class playerInterfaceController {
     this.album = 'Album';
 
     this.playerControls = playerControls;
-    this.$scope = $scope;
-    this.TrackList = TrackList;
     this.currentTrack = null;
 
     // Gets updated track information
