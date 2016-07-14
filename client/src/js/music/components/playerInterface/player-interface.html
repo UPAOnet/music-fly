@@ -1,11 +1,11 @@
-<aside class="player-interface">
+<aside class="player-interface mf-l-content-small">
 
   <div class="player-image">   
     <!--<svg class="middle-circle"></svg>-->
     <img class="mf-m-circlify mf-m-rotating" ng-src= "{{$ctrl.currentTrack.image}}">
   </div>
 
-  <div>
+  <div class="player-info default-cursor mf-l-content-sides">
     <div>
       <h4>{{$ctrl.title}}</h4>
       <p>{{$ctrl.artist}}</p>
@@ -13,12 +13,14 @@
     </div>
   </div>
 
-  <div>
-    <play-button role-type="music-player"></play-button>
+  <div class="player-controls">
+    <div>
+      <duration-bar></duration-bar>
+    </div>
+    <div class="buttons">
+      <play-button role-type="music-player"></play-button>
+    </div>
   </div>
-
-  <div>
-    <duration-bar></duration-bar>
-  </div>
+  
 
 </aside>
