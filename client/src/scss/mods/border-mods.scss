@@ -1,0 +1,10 @@
+%player-border {
+  color: $grey;
+  border-style:  solid;
+  border-width: 0px;
+}
+
+.m-player-border-top {
+  @extend %player-border;
+  border-top-width: 1px;
+}

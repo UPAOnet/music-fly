@@ -13,12 +13,11 @@
 player-interface {
   .player-interface {
     display:flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     // @extend %background;
     @include fixed-bottom();
-    background-color: $playerBlack;
+    background-color: $lowContrastBlack;
 
     h4 {
       text-transform: none;
@@ -35,12 +34,22 @@ player-interface {
     }
 
     .player-info {
-      width: 350px;
-      flex-grow: 1;
+      width: 200px;
+      @include tablet () {
+        width: 350px;
+      }
+      p {
+        color: $light-grey;
+      }
     }
     
-    .player-controls {
-      flex-grow: 2;
+    .player-controls {     
+      flex-grow: 1;
+
+      @include tablet () {
+        margin-right: 150px;
+      }
+
       div {
         display: block;
       }
@@ -48,21 +57,12 @@ player-interface {
       // Play Buttons
       play-button {
         .play-button {
+          margin-top: 20px;
           display: flex;
           justify-content: center;
-          font-size: 30px;
+          font-size: 25px;
         }  
       } 
-
-      duration-bar {
-        .duration-bar {
-          display: flex;
-          justify-content: center;
-          .entire-bar {
-            width: 500px;
-          }
-        }
-      }
     }
 
   }

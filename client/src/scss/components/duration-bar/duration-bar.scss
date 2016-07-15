@@ -5,9 +5,9 @@
 }
 
 duration-bar {
-  $entire-width: 300px;
-  $entire-height: 10px;
-  $stubby-width: 30px;
+  $entire-width: 100%;
+  $entire-height: 3px;
+  $stubby-width: 15px;
 
   line-height: 0;
   font-size: 0;
@@ -19,11 +19,16 @@ duration-bar {
     }
     
     .entire-bar {
-      width: $entire-width;
       height: $entire-height;
       background-color: $grey;
 
       @extend %round-corners;
+
+      &:hover {
+        .stubby-bar{
+          visibility: visible;
+        }
+      }
     }
 
     .time-elapsed-bar {
@@ -32,10 +37,11 @@ duration-bar {
     }
 
     .stubby-bar {
+      width: $stubby-width;
       height: $entire-height;
-      background-color: $light-orange;
+      background-color: $white;
       position: relative;
-      @extend %round-corners;
+      visibility: hidden;
       // @include transition(left, 20s);
     }
 

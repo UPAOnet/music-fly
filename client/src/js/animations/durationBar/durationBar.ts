@@ -18,6 +18,7 @@ class Controller {
 
   private entireBar: any;
   private stubbyBar: any;
+  private elapsedBar: any;
 
   private songLength: number;
   private animationTravelRate: number;
@@ -45,8 +46,9 @@ class Controller {
 
   $postLink() {
     this.entireBar = $(this.$element);
-    this.progressWidth = (this.entireBar.outerWidth() - BUTTON_WIDTH);  
+    this.progressWidth = (this.entireBar.outerWidth());  
     this.stubbyBar = this.entireBar.find('.stubby-bar');
+    this.elapsedBar = this.entireBar.find('.time-elapsed-bar');
     
     this.$scope.$watch(() => this.playerControls.playState.playing,
     (newValue, oldValue) => {
@@ -79,6 +81,7 @@ class Controller {
 
   private resetProgressBar () {
     this.stubbyBar.css({left:0});
+    this.elapsedBar.css({width:0});
   }
   
   /**
@@ -88,6 +91,14 @@ class Controller {
   private startProgressBar () {
     this.stubbyBar.animate({
       left: `${this.progressWidth}`
+    }, this.animationTravelRate, 
+       'linear', 
+       () => {
+        this.resetProgressBar();
+       })
+
+       this.elapsedBar.animate({
+      width: `${this.progressWidth}`
     }, this.animationTravelRate, 
        'linear', 
        () => {
