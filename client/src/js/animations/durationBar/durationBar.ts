@@ -33,62 +33,50 @@ class Controller {
   constructor (
     private $element,
     private $scope,
+    private $rootScope,
     private playerControls,
+    private musicEvents,
     private numberConverter: INumberConverter
   ) {
     'ngInject';
 
-    // this.animationTravelRate = null;
-    // this.songLength = null;
+    /**
+     * Resets bar data based on new song selection
+     * @listens SONG_SELECTED
+     */
+    this.$rootScope.$on(this.musicEvents.songSelected, (event, data) => {
+      if (!data) {
+        return
+      }
+
+      this.getSongLength(data.duration);
+      this.resetProgressBar();
+      this.startProgressBar();
+    })
+
     this.render();
     
   }
+
 
   $postLink() {
     this.entireBar = $(this.$element);
     this.progressWidth = (this.entireBar.outerWidth());  
     this.stubbyBar = this.entireBar.find('.stubby-bar');
     this.elapsedBar = this.entireBar.find('.time-elapsed-bar');
-    
-    // this.$scope.$watch(() => this.playerControls.playState.playing,
-    // (newValue, oldValue) => {
-    //   if (newValue === oldValue) {
-    //     return;
-    //   }
-
-    //   if (!newValue) {
-    //     // console.log('PLAYER NEEDS TO RESET OR PAUSE');
-    //     // this.resetProgressBar();
-    //     return
-    //   }
-    //   this.getSongLength()
-    //   this.startProgressBar();
-
-      
-      
-    // })
-
-    this.$scope.$on('SONG_PLAYING', (event, data) => {
-        console.log(data);
-        this.getSongLength(data.duration);
-        this.resetProgressBar();
-        this.startProgressBar();
-      })
-
-    // this.$scope.$watch(() => this.playerControls.playState.timerDuration, 
-    // (newValue, oldValue) => {
-      
-    // })
-
   }
 
   /**
    * Sets the move rate of the duration bar
+   * songDuration - length of song
    */
   private getSongLength(songDuration: number): void {
     this.animationTravelRate = songDuration;
   }
 
+  /**
+   * Resets the bar animations
+   */
   private resetProgressBar () {
     this.stubbyBar.stop();
     this.elapsedBar.stop();

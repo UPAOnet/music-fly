@@ -31,20 +31,8 @@ class playerInterfaceController {
   ) {
     'ngInject';
 
+    // Handles the state of the track table
     this.shouldShow = this.playerControls.checkPlayingState();
-    this.title = 'Title';
-    this.artist = 'Artist';
-    this.album = 'Album';
-
-    this.playerControls = playerControls;
-    this.currentTrack = null;
-
-    this.$scope.$watch (
-      () => this.playerControls.checkPlayingState(), 
-      () => {
-        this.broadCastSong();
-      }
-    )
 
     // Gets updated track information
     this.$scope.$watchCollection (
@@ -60,10 +48,9 @@ class playerInterfaceController {
     )
   }
 
-  broadCastSong () {
-    this.$scope.$broadcast('SONG_PLAYING', this.currentTrack);
-  }
-
+  /**
+   * Updates the view 
+   */
   updateInfo () {
     this.title = this.currentTrack.name;
     this.artist = this.currentTrack.artist;
