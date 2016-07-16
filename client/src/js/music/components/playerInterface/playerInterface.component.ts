@@ -17,6 +17,7 @@ interface TrackProps {
 
 class playerInterfaceController {
 
+  private shouldShow: boolean;
   private title: string;
   private artist: string;
   private album: string;
@@ -30,12 +31,20 @@ class playerInterfaceController {
   ) {
     'ngInject';
 
+    this.shouldShow = this.playerControls.checkPlayingState();
     this.title = 'Title';
     this.artist = 'Artist';
     this.album = 'Album';
 
     this.playerControls = playerControls;
     this.currentTrack = null;
+
+    this.$scope.$watch (
+      () => this.playerControls.checkPlayingState(), 
+      () => {
+        this.broadCastSong();
+      }
+    )
 
     // Gets updated track information
     this.$scope.$watchCollection (
@@ -51,6 +60,10 @@ class playerInterfaceController {
     )
   }
 
+  broadCastSong () {
+    this.$scope.$broadcast('SONG_PLAYING', this.currentTrack);
+  }
+
   updateInfo () {
     this.title = this.currentTrack.name;
     this.artist = this.currentTrack.artist;
@@ -63,3 +76,14 @@ export const playerInterfaceComponent = {
   templateUrl: require('./player-interface.html'),
   controller: playerInterfaceController
 }
+
+
+// function getSong (song) {
+    //   // scClient = 'b10a9e77003de676a40bcd4ce7346f03'
+    //   if (song.company === 'soundcloud') {
+    //     return 'https://api.soundcloud.com/tracks/' + song.urlSource + '/stream?client_id=' + scClient;
+    //   }
+    //   if (song.company === 'spotify') {
+    //     return song.urlSource;
+    //   }
+    // };

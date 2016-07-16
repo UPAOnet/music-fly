@@ -46,6 +46,10 @@ export class PlayerControls {
 
   }
 
+  private checkPlayingState () {
+    return this.playState.playing;
+  }
+
   private setCurrentState (currentSong: any): void {
     this.setSongTimer(this.playState.timerDuration);
     let songKey = currentSong.key;
@@ -59,6 +63,7 @@ export class PlayerControls {
     this.currentSongInfo.artist = currentSong.artist;
     this.currentSongInfo.album = currentSong.album;
     this.currentSongInfo.company = currentSong.company;
+    this.currentSongInfo.duration = currentSong.duration;
   }
 
   private turnOffTimer () {

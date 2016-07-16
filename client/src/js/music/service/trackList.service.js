@@ -33,7 +33,7 @@ angular.module('musicApp')
         each.album.images[1].url, 
         each.album.name, 
         each.artists[0].name, 
-        each.duration_ms, 
+        each.duration, 
         'spotify', 
         null, 
         each.preview_url, 

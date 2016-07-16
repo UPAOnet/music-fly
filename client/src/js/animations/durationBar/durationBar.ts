@@ -50,20 +50,30 @@ class Controller {
     this.stubbyBar = this.entireBar.find('.stubby-bar');
     this.elapsedBar = this.entireBar.find('.time-elapsed-bar');
     
-    this.$scope.$watch(() => this.playerControls.playState.playing,
-    (newValue, oldValue) => {
-      if (newValue === oldValue) {
-        return;
-      }
+    // this.$scope.$watch(() => this.playerControls.playState.playing,
+    // (newValue, oldValue) => {
+    //   if (newValue === oldValue) {
+    //     return;
+    //   }
 
-      if (!newValue) {
-        console.log('PLAYER NEEDS TO RESET OR PAUSE');
-        // this.resetProgressBar();
-        return
-      }
-      this.getSongLength()
-      this.startProgressBar();
-    })
+    //   if (!newValue) {
+    //     // console.log('PLAYER NEEDS TO RESET OR PAUSE');
+    //     // this.resetProgressBar();
+    //     return
+    //   }
+    //   this.getSongLength()
+    //   this.startProgressBar();
+
+      
+      
+    // })
+
+    this.$scope.$on('SONG_PLAYING', (event, data) => {
+        console.log(data);
+        this.getSongLength(data.duration);
+        this.resetProgressBar();
+        this.startProgressBar();
+      })
 
     // this.$scope.$watch(() => this.playerControls.playState.timerDuration, 
     // (newValue, oldValue) => {
@@ -75,13 +85,16 @@ class Controller {
   /**
    * Sets the move rate of the duration bar
    */
-  private getSongLength(): void {
-    this.animationTravelRate = this.playerControls.playState.timerDuration;
+  private getSongLength(songDuration: number): void {
+    this.animationTravelRate = songDuration;
   }
 
   private resetProgressBar () {
+    this.stubbyBar.stop();
+    this.elapsedBar.stop();
     this.stubbyBar.css({left:0});
     this.elapsedBar.css({width:0});
+    
   }
   
   /**
@@ -97,7 +110,7 @@ class Controller {
         this.resetProgressBar();
        })
 
-       this.elapsedBar.animate({
+    this.elapsedBar.animate({
       width: `${this.progressWidth}`
     }, this.animationTravelRate, 
        'linear', 
