@@ -10,6 +10,8 @@ angular.module('musicApp')
  songConstructor
  ) {
   var factory = {};
+
+  // Contains songs to populate track list
   let list = [];
 
   let trackState = {
@@ -22,6 +24,13 @@ angular.module('musicApp')
 
   factory.setActive = function (songIndex) {
     trackState.current = songIndex;
+  }
+
+  /**
+   * Resets the list
+   */
+  factory.resetTrackList = function () {
+    list = [];
   }
 
   factory.getSpotifyTracks = function (spotifyList) {

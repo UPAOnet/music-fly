@@ -1,23 +1,21 @@
-// %background {
-//   background-color: rgba(241,231,103,1);
-//   background: rgba(241,231,103,1);
-//   background: -moz-linear-gradient(top, rgba(25,25,23,1) 85%, rgba(255,131,0,1) 100%);
-//   background: -webkit-gradient(left top, left bottom, color-stop(100%, rgba(25,25,23,1)), color-stop(100%, rgba(255,131,0,1)));
-//   background: -webkit-linear-gradient(top, rgba(25,25,23,1) 85%, rgba(255,131,0,1) 100%);
-//   background: -o-linear-gradient(top, rgba(25,25,23,1) 85%, rgba(255,131,0,1) 100%);
-//   background: -ms-linear-gradient(top, rgba(25,25,23,1) 85%, rgba(255,131,0,1) 100%);
-//   background: linear-gradient(to bottom, rgba(25,25,23,1) 85%, rgba(255,131,0,1) 100%);
-//   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191717', endColorstr='#ff8300', GradientType=0 );
-// }
+
 
 player-interface {
+  $interface-height-negative: -120px;
+
   .player-interface {
+    background-color: $lowContrastBlack;
     display:flex;
     align-items: center;
     width: 100%;
-    // @extend %background;
+
     @include fixed-bottom();
-    background-color: $lowContrastBlack;
+    @include transition (bottom, 1s);
+    
+    // Enable transition animations
+    &.ng-hide {
+      bottom: $interface-height-negative
+    }
 
     h4 {
       text-transform: none;

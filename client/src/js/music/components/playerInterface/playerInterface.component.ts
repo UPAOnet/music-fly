@@ -1,60 +1,36 @@
-'use strict'
+import {ISongInterface} from '../../../interfaces/songInterface.ts';
+
 
 /**
  * Displays information regarding current track.
  * @module playerInterfaceComponent
  */
-
-declare const require: any;
-
-interface TrackProps {
-  name: string;
-  artist: string;
-  album: string;
-  image: string;
-  company: string;
-}
-
 class playerInterfaceController {
 
   private shouldShow: boolean;
-  private title: string;
-  private artist: string;
-  private album: string;
-  private duration: number;
-  private currentTrack: TrackProps;
+  private currentTrack: ISongInterface
 
   constructor (
     private TrackList,
     private playerControls,
+    private $rootScope,
+    private musicEvents,
     private $scope
   ) {
     'ngInject';
 
-    // Handles the state of the track table
-    this.shouldShow = this.playerControls.checkPlayingState();
+    this.$rootScope.$on(this.musicEvents.songSelected, (event, data: ISongInterface) => {
+      this.updateInfo(data);
+      this.shouldShow = true;   
+    })
 
-    // Gets updated track information
-    this.$scope.$watchCollection (
-      () => this.playerControls.currentSongInfo,
-      (newValue: any, oldValue: any) => {
-
-        if (newValue === oldValue) {
-          return
-        }
-        this.currentTrack = this.playerControls.currentSongInfo;
-        this.updateInfo();
-      }
-    )
   }
 
   /**
-   * Updates the view 
+   * Updates the song Info for interface
    */
-  updateInfo () {
-    this.title = this.currentTrack.name;
-    this.artist = this.currentTrack.artist;
-    this.album = this.currentTrack.album;
+  updateInfo (song: any) {
+    this.currentTrack = song
   }
 
 }

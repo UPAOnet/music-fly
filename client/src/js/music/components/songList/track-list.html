@@ -1,5 +1,5 @@
-<section class="song-list">
-  <music-page-row header="Search Results" ng-if="$ctrl.showTable">
+<section ng-hide="!$ctrl.showTable" class="song-list">
+  <music-page-row header="Search Results">
     <table>
       <tr>
         <th class="hidden-xs"></th>
@@ -9,7 +9,7 @@
       </tr>
 
       <!-- Description -->
-      <tr class="prevent-wrapping default-cursor song"
+      <tr class="prevent-wrapping default-cursor song animate-repeat"
           ng-repeat= "track in $ctrl.tracks track by $index"
           ng-click="$ctrl.playMusic(track)"
           ng-class="{'active-song': $ctrl.selectedSong.name === track.name}">

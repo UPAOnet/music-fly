@@ -11,15 +11,11 @@ class Controller {
     private TrackList
   ) {
     'ngInject';
-
-    this.TrackList = TrackList;
-    this.spotifySearch = spotifySearch;
   }
 
   public spotifySearchEnter (event) {
 
     if (event.keyCode === 13) {
-      console.log('search is hooked up');
       let spotifyTracks = this.spotifySearch.makeRequest(this.$scope.spotifyQuery);
 
       spotifyTracks.then( (response) => {

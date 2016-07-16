@@ -1,4 +1,4 @@
-<aside class="player-interface mf-l-content-small m-player-border-top">
+<aside ng-hide="!$ctrl.shouldShow" class="player-interface mf-l-content-small m-player-border-top">
 
   <div class="player-image">   
     <!--<svg class="middle-circle"></svg>-->
@@ -7,9 +7,9 @@
 
   <div class="player-info default-cursor mf-l-content-sides">
     <div>
-      <h4>{{$ctrl.title}}</h4>
-      <p>{{$ctrl.artist}}</p>
-      <p>{{$ctrl.album}}</p>
+      <h4>{{$ctrl.currentTrack.name}}</h4>
+      <p>{{$ctrl.currentTrack.artist}}</p>
+      <p>{{$ctrl.currentTrack.album}}</p>
     </div>
   </div>
 

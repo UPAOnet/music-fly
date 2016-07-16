@@ -4,12 +4,14 @@ declare const require
 const angular = require('angular');
 const uiRouter = require('angular-ui-router');
 const angularMaterial = require('angular-material');
+const angularAnimate = require('angular-animate');
 const MODULE_NAME = 'musicApp'
 // SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})
 import {RouteConfig} from './js/routes/RouteConfig.ts';
 
 export const module = angular.module(MODULE_NAME, [
   uiRouter,
-  angularMaterial
+  angularMaterial,
+  angularAnimate
 ])
   .config(RouteConfig)

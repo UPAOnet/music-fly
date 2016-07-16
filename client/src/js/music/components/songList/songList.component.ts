@@ -15,15 +15,15 @@ class SongListController {
  ) {
   'ngInject';
 
-  // Checks if the songList model is populated
+  // // Checks if the songList model is populated
   this.tracks = TrackList.currentTracks();
   
   
   // Watcher to check if track list is populated, which
   // will display the song table
-  this.$scope.$watchCollection(() => this.tracks,
+  this.$scope.$watchCollection(() => TrackList.currentTracks(),
     () => {
-      this.showTable = (this.tracks.length > 0);
+      this.showTable = (TrackList.currentTracks().length > 0);
     })
   
   // Broadcasts an event when new song is selected
