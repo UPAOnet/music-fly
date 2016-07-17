@@ -45,9 +45,11 @@ class Controller {
      * @listens SONG_SELECTED
      */
     this.$rootScope.$on(this.musicEvents.songSelected, (event, data) => {
+      console.log('EVENT RECEVED' + data);
       if (!data) {
         return
-      }
+      } 
+
 
       this.getSongLength(data.duration);
       this.resetProgressBar();
@@ -60,8 +62,7 @@ class Controller {
 
 
   $postLink() {
-    this.entireBar = $(this.$element);
-    this.progressWidth = (this.entireBar.outerWidth());  
+    this.entireBar = $(this.$element);  
     this.stubbyBar = this.entireBar.find('.stubby-bar');
     this.elapsedBar = this.entireBar.find('.time-elapsed-bar');
   }
@@ -90,6 +91,8 @@ class Controller {
    * Should always call this last 
    */
   private startProgressBar () {
+    
+    this.progressWidth = (this.entireBar.outerWidth());
     this.stubbyBar.animate({
       left: `${this.progressWidth}`
     }, this.animationTravelRate, 

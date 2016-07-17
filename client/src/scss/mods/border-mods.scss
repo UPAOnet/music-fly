@@ -8,3 +8,8 @@
   @extend %player-border;
   border-top-width: 1px;
 }
+
+.m-border-sandwich {
+  @extend %player-border;
+  border-width: 1px 0px;
+}

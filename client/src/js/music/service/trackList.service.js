@@ -26,14 +26,8 @@ angular.module('musicApp')
     trackState.current = songIndex;
   }
 
-  /**
-   * Resets the list
-   */
-  factory.resetTrackList = function () {
-    list = [];
-  }
-
-  factory.getSpotifyTracks = function (spotifyList) {
+  factory.formatTracks = function (spotifyList) {
+   let searchList = [];
 
    _.forEach(spotifyList, function (each, i) {
      let theSong = new songConstructor(
@@ -48,10 +42,13 @@ angular.module('musicApp')
         each.preview_url, 
         each.external_urls.spotify
       )
-      
+
     theSong.setPreviewLength(30000); 
-    list.push(theSong);
+    searchList.push(theSong);
+    list = searchList;
    })
+
+   return list;
   }
 
   return factory;

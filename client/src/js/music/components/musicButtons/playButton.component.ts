@@ -18,7 +18,6 @@ export class ButtonsController {
   ) {
     'ngInject';
 
-    this.tracks = this.TrackList.currentTracks();
   }
 
   // Passses clicked song to the main player

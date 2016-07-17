@@ -1,8 +1,10 @@
 
 class SongListController {
  private tracks: any;
+ private list: any;
  private showTable: any;
  private selectedSong: any;
+ private header: string;
  // private trackKey: any;
  // private playList: any;
 
@@ -11,38 +13,27 @@ class SongListController {
    private playerControls,
    private $timeout,
    private musicEvents,
+   private $rootScope,
    private $scope
  ) {
   'ngInject';
 
-  // // Checks if the songList model is populated
-  this.tracks = TrackList.currentTracks();
   
-  
-  // Watcher to check if track list is populated, which
-  // will display the song table
-  this.$scope.$watchCollection(() => TrackList.currentTracks(),
-    () => {
-      this.showTable = (TrackList.currentTracks().length > 0);
-    })
-  
-  // Broadcasts an event when new song is selected
-  this.$scope.$watch(() => this.selectedSong, 
-    (oldValue, newValue) => {
-      
-      if (oldValue === newValue) {
-        return
-      }
-      this.broadCastSong(newValue);
-
-    })
+  // Listens for any search events
+  this.$rootScope.$on(this.musicEvents.newSearch, (event, data) => {
+    this.tracks = data;
+    this.showTable = (this.tracks.length > 0);
+    this.header = 'Search Results';
+  });
+    
  }
 
+ 
  /**
   * Broadcasts newly selected songs
   * @event SONG_SELECTED
   */
- private broadCastSong (song: any) {
+ private emitSong (song: any) {
     this.$scope.$emit(this.musicEvents.songSelected, this.selectedSong);
   }
 
@@ -53,6 +44,7 @@ class SongListController {
  public playMusic (song: any) {
    this.playerControls.playMusic(song);
    this.selectedSong = song;
+   this.emitSong(song);
  }
 
 }

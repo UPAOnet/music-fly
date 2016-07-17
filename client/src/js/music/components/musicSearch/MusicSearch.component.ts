@@ -8,11 +8,24 @@ class Controller {
     private spotifySearch,
     private scSearch,
     private searchType,
+    private musicEvents,
     private TrackList
   ) {
     'ngInject';
   }
 
+  /**
+   * Emits search results 
+   * @event NEW_SEARCH
+   */
+  private emitSearchResults (songList) {
+    this.$scope.$emit(this.musicEvents.newSearch, songList);
+  } 
+
+  /**
+   * Search functionality for spotify songs
+   * {event} - Enter keypress
+   */
   public spotifySearchEnter (event) {
 
     if (event.keyCode === 13) {
@@ -20,9 +33,8 @@ class Controller {
 
       spotifyTracks.then( (response) => {
         let trackResults = response.data.tracks.items;
-        this.TrackList.getSpotifyTracks(trackResults);
-        this.tracks = this.TrackList.currentTracks();
-        console.log( this.tracks );
+        this.tracks = this.TrackList.formatTracks(trackResults);
+        this.emitSearchResults(this.tracks);
        })
 
       this.$scope.spotifyQuery = "";

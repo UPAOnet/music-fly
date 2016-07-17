@@ -1,30 +1,24 @@
-<section class="music-panel mf-l-content">
-  <div>
-     <div id="search">
-       <div>
-         <span class="music-tab" data-tab="search"></span>
-       </div>
-     </div>
-     <div id="main">
-      <span>Main</span>
-      <div id="main-home" >
-         <li class="music-tab" ng-click="player.switchTabs($event)" data-tab="home">
-           <i class="home icon"></i>
-           <span ng-click="player.switchTabs($event)" data-tab="home">Home</span>
-         </li>
-       </div>
-     </div>
-     <div id ="playlists">
-       <div id="playlist-header">Playlists</div>
-       <div>
-         <li ng-repeat = "playlist in player.playlistTabs" class="music-tab playlist-tab" data-tab='{{playlist.name}}' data-playlist = "playlist.name" ng-click="player.switchTabs($event, playlist.name)">
-           <i class="music icon"></i>
-           {{playlist.name}}
-         </li>
-         <input id="playlist-field" type="text" ng-model="newPlaylist" ng-show="player.addPlaylistState" ng-keypress="player.createNewPlaylist($event)"/>
-         <li id="playlist-add" ng-click="player.revealNewPlaylist()" ng-show="player.addPlaylistButton"><i class="ui plus icon"></i>Add new</li>
-       </div>
-     </div>
-   <!-- <player-interface></player-interface> -->
- </div>
+<section class="music-panel mf-u-padtop-35">
+  <div class="default-cursor mf-l-content-sides m-player-border-top">
+    <span class="glyphicon glyphicon-star-empty"></span>
+    <h6>Featured</h6>
+   
+  </div>
+  <div class="default-cursor mf-l-content-sides m-player-border-top">
+     <span class="glyphicon glyphicon-th-list"></span>   
+     <h6>Playlists</h6>
+        <ul >
+          <li ng-repeat="playlists in $ctrl.playlists">
+            {{playlists.name}}
+          </li>
+          <!--Add new Button and input-->
+          <li ng-hide="$ctrl.isAddingPlaylist" 
+              ng-click="$ctrl.showNewField()"
+              ><span class="glyphicon glyphicon-plus"></span><p>Add new<p>
+          </li>
+          <li ng-hide="!$ctrl.isAddingPlaylist" ng-keypress="$ctrl.addNewPlaylist($event)">
+            <input ng-model="$ctrl.newListName"></input>
+          </li>
+        </ul>
+  </div>
 </section>

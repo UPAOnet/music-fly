@@ -1,9 +1,4 @@
 
-class Controller {
-
-}
-
 export const MusicPage = {
-  templateUrl: require('./musicPage.html'),
-  controller: Controller
+  templateUrl: require('./musicPage.html')
 }

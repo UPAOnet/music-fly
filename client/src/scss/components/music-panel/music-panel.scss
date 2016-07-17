@@ -1,10 +1,23 @@
 $music-panel-width: 170px;
 
 music-panel {
+
   .music-panel {
     position: fixed;
     width: $music-panel-width;
     height: 100%;
     background-color: $panelBlack;
+
+    h6 {
+      display:inline-block;
+    }
+    
+    p {
+      display: inline-block;
+      color: $grey;
+    }
+
+
+
   }
 }
