@@ -5,8 +5,6 @@ class SongListController {
  private showTable: any;
  private selectedSong: any;
  private header: string;
- // private trackKey: any;
- // private playList: any;
 
  constructor (
    private TrackList,
@@ -20,10 +18,18 @@ class SongListController {
 
   
   // Listens for any search events
-  this.$rootScope.$on(this.musicEvents.newSearch, (event, data) => {
-    this.tracks = data;
-    this.showTable = (this.tracks.length > 0);
+  this.$rootScope.$on(this.musicEvents.newSearch, (event, searchResults) => {
+    this.showTable = (searchResults.length > 0);
+    this.tracks = searchResults;   
     this.header = 'Search Results';
+  });
+
+  // Listen for playlist events
+  this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, playlist) => {
+    console.log('playlist received ' + playlist);
+    this.showTable = (playlist.length > 0);
+    this.tracks = playlist.tracks;
+    this.header = playlist.name;
   });
     
  }
@@ -45,6 +51,17 @@ class SongListController {
    this.playerControls.playMusic(song);
    this.selectedSong = song;
    this.emitSong(song);
+ }
+
+ /**
+  * Adds a song to a playlist
+  * {Song} - The song object
+  */
+ public addSong (event, song, $mdOpenMenu) {
+   event.stopPropagation();
+   console.log('should be opening');
+   $mdOpenMenu(event);
+  //  console.log(event.target);
  }
 
 }

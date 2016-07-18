@@ -7,9 +7,10 @@
   <div class="default-cursor mf-l-content-sides m-player-border-top">
      <span class="glyphicon glyphicon-th-list"></span>   
      <h6>Playlists</h6>
-        <ul >
-          <li ng-repeat="playlists in $ctrl.playlists">
-            {{playlists.name}}
+        <ul>
+          <li ng-repeat="playlist in $ctrl.playlists track by $index"
+              ng-click="$ctrl.switchPlaylist($index)">
+            {{playlist.name}}
           </li>
           <!--Add new Button and input-->
           <li ng-hide="$ctrl.isAddingPlaylist" 

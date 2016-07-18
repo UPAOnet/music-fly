@@ -47,7 +47,7 @@ song-list {
         width: 70px;
       }
 
-      .glyphicon {
+      .glyphicon-play-circle {
         visibility: hidden;
         font-size: 30px;
         color: $light-orange;
@@ -61,7 +61,7 @@ song-list {
         @include text-ellipsis(100px);
       }
 
-      &:hover .glyphicon {
+      &:hover .glyphicon-play-circle {
         visibility: visible;
       }
     }

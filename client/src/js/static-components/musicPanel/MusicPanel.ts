@@ -8,10 +8,17 @@ class Controller {
   private playlists: any;
                                                       
   constructor(
-    private playlistsService
+    private playlistsService,
+    private $scope,
+    private musicEvents
   ) {
     'ngInject';
-    this.playlists = [];
+
+    // My Playlist is a hard coded sample playlist
+    this.playlists = [{
+      name: 'My Playlist',
+      tracks: []
+    }];
   }
 
   /**
@@ -22,6 +29,16 @@ class Controller {
      this.newListName = '';
      this.playlists.push(list);
      this.isAddingPlaylist = false;
+  }
+
+  /**
+   * Switches playlist
+   * {index} - index position of array element in repeater
+   */
+  public switchPlaylist (index) {
+    console.log('switching playlist ' + index);
+    let desiredList = this.playlists[index];
+    this.$scope.$emit(this.musicEvents.switchPlaylist, desiredList);
   }
 
   /**
