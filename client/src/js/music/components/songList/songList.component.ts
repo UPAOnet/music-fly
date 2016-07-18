@@ -4,10 +4,12 @@ class SongListController {
  private list: any;
  private showTable: any;
  private selectedSong: any;
+ private availablePlaylists: any;
  private header: string;
 
  constructor (
    private TrackList,
+   private playlistsService,
    private playerControls,
    private $timeout,
    private musicEvents,
@@ -15,28 +17,32 @@ class SongListController {
    private $scope
  ) {
   'ngInject';
-
   
+  this.availablePlaylists = this.playlistsService.loadSavedLists();
+
   // Listens for any search events
   this.$rootScope.$on(this.musicEvents.newSearch, (event, searchResults) => {
-    this.showTable = (searchResults.length > 0);
     this.tracks = searchResults;   
     this.header = 'Search Results';
+    this.showTable = (searchResults.length > 0);
   });
 
-  // Listen for playlist events
-  this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, playlist) => {
-    console.log('playlist received ' + playlist);
-    this.showTable = (playlist.length > 0);
+  // Listen for playlist switching events
+  this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, playlist) => {   
     this.tracks = playlist.tracks;
     this.header = playlist.name;
+    this.showTable = (playlist.tracks.length > 0);
+  });
+
+  // Listen for playlist creation events
+  this.$scope.$on(this.musicEvents.newPlaylist, (event, newPlaylist) => {
+    this.availablePlaylists = newPlaylist
   });
     
  }
 
- 
  /**
-  * Broadcasts newly selected songs
+  * Emits newly selected songs
   * @event SONG_SELECTED
   */
  private emitSong (song: any) {
@@ -56,12 +62,16 @@ class SongListController {
  /**
   * Adds a song to a playlist
   * {Song} - The song object
+  * {playlist} - Name of the playlist
   */
- public addSong (event, song, $mdOpenMenu) {
+  public addSong (event, song: any, playlist: any): void {
+    // this.emitAddTo(song, playlist);
+    this.playlistsService.addTrack(song, playlist);
+  }
+
+ public openMenu (event, $mdOpenMenu) {
    event.stopPropagation();
-   console.log('should be opening');
    $mdOpenMenu(event);
-  //  console.log(event.target);
  }
 
 }

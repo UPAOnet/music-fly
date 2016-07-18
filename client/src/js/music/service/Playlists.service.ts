@@ -1,20 +1,64 @@
 
 export class PlaylistsService {
+  private currentPlaylists: any;
+  private playlistTabs: any;
 
   constructor(
-
+    private $rootScope,
+    private musicEvents
   ) {
     'ngInject';
 
+    // My Playlist is a hard coded sample playlist
+    this.currentPlaylists = [];
+
+    this.currentPlaylists.push({
+      name: 'My Playlist',
+      tracks: []
+    });
+
+    this.playlistTabs
   }
-  createNewPlaylist (name: string): any {
+
+  /**
+   * Renders already created or saved playlists
+   */
+  public loadSavedLists () {
+    return this.currentPlaylists;
+  }
+
+  public createNewPlaylist (name: string): any {
 
     let playlist = {
       name: name,
       tracks: []
     }
-    return playlist;
+    this.currentPlaylists.push(playlist);
+    this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
   }
+
+  /**
+   * Adds a song to the desired playlist
+   */
+  public addTrack (song: any, playlist: any) {
+      // let addTo;
+
+      // this.playlistTabs.forEach((aList, i) => {
+      //   if (aList.name === playlist) {
+      //     addTo = aList;        
+      //   }
+      // })
+
+      this.currentPlaylists.forEach((aList, i) => {
+        if (aList.name === playlist.name) {
+          this.currentPlaylists[i].tracks.push(song);
+          console.log(this.currentPlaylists);
+          this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
+        }
+      })
+      
+    }
+
 
 }
 

@@ -14,11 +14,11 @@ class Controller {
   ) {
     'ngInject';
 
-    // My Playlist is a hard coded sample playlist
-    this.playlists = [{
-      name: 'My Playlist',
-      tracks: []
-    }];
+    this.playlists = this.playlistsService.loadSavedLists();
+
+    this.$scope.$on(this.musicEvents.newPlaylist, (event, playlists) => {
+      this.playlists = playlists;
+    })
   }
 
   /**
@@ -26,9 +26,7 @@ class Controller {
    * {list} - the list object
    */
   private createTheList (list: any) {
-     this.newListName = '';
-     this.playlists.push(list);
-     this.isAddingPlaylist = false;
+     
   }
 
   /**
@@ -36,7 +34,6 @@ class Controller {
    * {index} - index position of array element in repeater
    */
   public switchPlaylist (index) {
-    console.log('switching playlist ' + index);
     let desiredList = this.playlists[index];
     this.$scope.$emit(this.musicEvents.switchPlaylist, desiredList);
   }
@@ -54,8 +51,9 @@ class Controller {
       if (this.newListName === '') {
         return
       }
-      let newList = this.playlistsService.createNewPlaylist(this.newListName);
-      this.createTheList(newList);     
+      this.playlistsService.createNewPlaylist(this.newListName);
+      this.newListName = '';
+      this.isAddingPlaylist = false;    
     } 
   }
 }
