@@ -45,7 +45,6 @@ class Controller {
      * @listens SONG_SELECTED
      */
     this.$rootScope.$on(this.musicEvents.songSelected, (event, data) => {
-      console.log('EVENT RECEVED' + data);
       if (!data) {
         return
       } 

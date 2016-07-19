@@ -19,14 +19,13 @@ angular.module('musicApp')
       }
       
       SC.get('/tracks', {q: query, limit: 20}).then(function(tracks) { 
-        vm.tracks = [];    
+        let searchResuts = [];    
         var trackResults = tracks;      
-        _.map(trackResults, function (each, i) {
-          var stream = each.stream_url;
-          var url = getUrl(stream);       
-          vm.tracks.push(new songConstructor(i, each.title, each.artwork_url, each.album, each.user.username, each.duration, 'soundcloud', each.stream_url, url, each.permalink_url))       
-        });
-        vm.digest()
+        // _.map(trackResults, function (each, i) {
+        //   var stream = each.stream_url;
+        //   var url = getUrl(stream);       
+        //   searchResults.tracks.push(new songConstructor(i, each.title, each.artwork_url, each.album, each.user.username, each.duration, 'soundcloud', each.stream_url, url, each.permalink_url))       
+        // });
       })    
     };
     

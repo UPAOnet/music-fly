@@ -2,17 +2,23 @@
 
 class Controller {
   private tracks: any;
+  private searchQuery: string;
 
   constructor (
     private $scope,
+    private $q,
     private spotifySearch,
     private scSearch,
     private searchType,
     private musicEvents,
-    private TrackList
+    private TrackList,
+    private $window
   ) {
     'ngInject';
+
+    this.$window.SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})
   }
+
 
   /**
    * Emits search results 
@@ -23,23 +29,46 @@ class Controller {
   } 
 
   /**
-   * Search functionality for spotify songs
-   * {event} - Enter keypress
+   * Search functionality
+   * {event} - Enter keypress event
    */
-  public spotifySearchEnter (event) {
+    public search (event) {
+      let spotifyTracks;
+      let soundcloudTracks;    
 
-    if (event.keyCode === 13) {
-      let spotifyTracks = this.spotifySearch.makeRequest(this.$scope.spotifyQuery);
+      if (event.keyCode === 13) {
+        Promise.all([this.spotifySearchQuery(), this.soundCloudSearchQuery()])
 
-      spotifyTracks.then( (response) => {
-        let trackResults = response.data.tracks.items;
-        this.tracks = this.TrackList.formatTracks(trackResults);
-        this.emitSearchResults(this.tracks);
-       })
-
-      this.$scope.spotifyQuery = "";
+          .then( (results) => {
+            spotifyTracks = this.TrackList.formatTracks(results[0].data.tracks.items);
+            soundcloudTracks = results[1];
+            console.log(results);
+            this.tracks = spotifyTracks;
+            this.searchQuery = ""
+            this.emitSearchResults(this.tracks);
+        })
+      }      
     }
+
+  /**
+   * Search functionality for spotify songs
+   */
+  public spotifySearchQuery () {
+    let spotifyTracks = this.spotifySearch.makeRequest(this.searchQuery);
+
+    return spotifyTracks  
   }
+
+  /**
+   * Search for soundcloud
+   */
+  private soundCloudSearchQuery = function () {
+      this.scSearch.allTracks(this.searchQuery);
+      // $scope.scQuery = "";
+      // if ($(window).width() < 870) {
+      //   $('#player-menu').hide();
+      // }
+  };
 }
 
 export const MusicSearch = {

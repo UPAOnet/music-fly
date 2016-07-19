@@ -41,13 +41,6 @@ export class PlaylistsService {
    * Adds a song to the desired playlist
    */
   public addTrack (song: any, playlist: any) {
-      // let addTo;
-
-      // this.playlistTabs.forEach((aList, i) => {
-      //   if (aList.name === playlist) {
-      //     addTo = aList;        
-      //   }
-      // })
 
       this.currentPlaylists.forEach((aList, i) => {
         if (aList.name === playlist.name) {
@@ -55,8 +48,7 @@ export class PlaylistsService {
           console.log(this.currentPlaylists);
           this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
         }
-      })
-      
+      })      
     }
 
 

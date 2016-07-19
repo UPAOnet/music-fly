@@ -1,8 +1,8 @@
 <div>
   <input class="prompt"
          type="text"
-         ng-model="spotifyQuery"
-         ng-keypress="$ctrl.spotifySearchEnter($event)"
+         ng-model="$ctrl.searchQuery"
+         ng-keypress="$ctrl.search($event)"
          placeholder="Spotify...">
   <i class="search icon"></i>
 </div>

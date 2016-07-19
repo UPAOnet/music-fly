@@ -26,7 +26,7 @@ angular.module('musicApp')
     trackState.current = songIndex;
   }
 
-  factory.formatTracks = function (spotifyList) {
+  factory.formatTracks = function (spotifyList, config) {
    let searchList = [];
 
    _.forEach(spotifyList, function (each, i) {
