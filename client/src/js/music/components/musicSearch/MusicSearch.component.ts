@@ -12,6 +12,7 @@ class Controller {
     private searchType,
     private musicEvents,
     private TrackList,
+    private $timeout,
     private $window
   ) {
     'ngInject';
@@ -37,15 +38,18 @@ class Controller {
       let soundcloudTracks;    
 
       if (event.keyCode === 13) {
-        Promise.all([this.spotifySearchQuery(), this.soundCloudSearchQuery()])
-
+        // Promise.all([this.spotifySearchQuery(), this.soundCloudSearchQuery()])
+        Promise.all([this.soundCloudSearchQuery()])
           .then( (results) => {
-            spotifyTracks = this.TrackList.formatTracks(results[0].data.tracks.items);
-            soundcloudTracks = results[1];
-            console.log(results);
-            this.tracks = spotifyTracks;
-            this.searchQuery = ""
+            console.log('this is the results ' + JSON.stringify(results[0][0], null, 4));
+            // spotifyTracks = this.TrackList.formatTracks(results[0].data.tracks.items, 'spotify');
+            soundcloudTracks = this.TrackList.formatTracks(results[0], 'soundcloud');
+            // this.tracks = spotifyTracks;
+            this.tracks = soundcloudTracks;
+  
+            this.searchQuery = "";
             this.emitSearchResults(this.tracks);
+            this.$scope.$apply();
         })
       }      
     }
@@ -54,6 +58,7 @@ class Controller {
    * Search functionality for spotify songs
    */
   public spotifySearchQuery () {
+    console.log('THIS IS THE SEARCH ' + this.searchQuery);
     let spotifyTracks = this.spotifySearch.makeRequest(this.searchQuery);
 
     return spotifyTracks  
@@ -61,13 +66,11 @@ class Controller {
 
   /**
    * Search for soundcloud
+   * 
    */
   private soundCloudSearchQuery = function () {
-      this.scSearch.allTracks(this.searchQuery);
-      // $scope.scQuery = "";
-      // if ($(window).width() < 870) {
-      //   $('#player-menu').hide();
-      // }
+    
+    return this.scSearch.allTracks(this.searchQuery);
   };
 }
 

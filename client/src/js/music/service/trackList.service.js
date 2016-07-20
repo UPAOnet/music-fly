@@ -20,35 +20,76 @@ angular.module('musicApp')
     next: null
   }
 
+  // Used for fetching soundcloud specifically
+  function getUrl (urlStream) {
+    if (urlStream.length === 50) {
+      return urlStream.slice(-16, -7);
+    }
+    else if (urlStream.length === 49) {
+      return urlStream.slice(-15, -7)
+    }
+  };
+
+
   factory.currentTracks = () => list;
 
   factory.setActive = function (songIndex) {
     trackState.current = songIndex;
   }
 
-  factory.formatTracks = function (spotifyList, config) {
-   let searchList = [];
+  factory.formatTracks = function (trackList, config) {
+    let searchList = [];
+    let configOptions = {
+      spotify: 'spotify',
+      soundcloud: 'soundcloud'
+    }
 
-   _.forEach(spotifyList, function (each, i) {
-     let theSong = new songConstructor(
-        i, 
-        each.name, 
-        each.album.images[1].url, 
-        each.album.name, 
-        each.artists[0].name, 
-        each.duration, 
-        'spotify', 
-        null, 
-        each.preview_url, 
-        each.external_urls.spotify
-      )
+    if (configOptions[config] === 'spotify') {
 
-    theSong.setPreviewLength(30000); 
-    searchList.push(theSong);
-    list = searchList;
-   })
+    _.forEach(trackList, function (each, i) {
+      let theSong = new songConstructor(
+          i, 
+          each.name, 
+          each.album.images[1].url, 
+          each.album.name, 
+          each.artists[0].name, 
+          each.duration, 
+          'spotify', 
+          null, 
+          each.preview_url, 
+          each.external_urls.spotify
+        )
 
-   return list;
+      theSong.setPreviewLength(30000); 
+      searchList.push(theSong);
+    })
+    return searchList;
+    }
+
+    if (configOptions[config] === 'soundcloud') {
+      _.forEach(trackList, function (each, i) {
+       let stream = each.stream_url;
+       let url = getUrl(stream); 
+       let theSong = new songConstructor(
+          i, 
+          each.title, 
+          each.artwork_url, 
+          each.album, 
+          each.user.username, 
+          each.duration, 
+          'soundcloud',        
+          url, 
+          each.stream_url, 
+          each.permalink_url
+        )
+
+      searchList.push(theSong);
+    })
+    console.log(searchList[0]);
+    return searchList;
+    } else {
+      throw 'Formatter needs a valid song origin to know what to format';
+    }
   }
 
   return factory;
