@@ -6,6 +6,7 @@ class SongListController {
  private selectedSong: any;
  private availablePlaylists: any;
  private header: string;
+ private origin: string;
 
  constructor (
    private TrackList,
@@ -17,12 +18,19 @@ class SongListController {
    private $scope
  ) {
   'ngInject';
-  
+
   this.availablePlaylists = this.playlistsService.loadSavedLists();
 
   // Listens for any search events
   this.$rootScope.$on(this.musicEvents.newSearch, (event, searchResults) => {
-    this.tracks = searchResults;   
+    console.log(searchResults);
+
+    if (this.origin === 'soundcloud') {
+      this.tracks = searchResults[0];
+    } else if (this.origin === 'spotify') {
+      this.tracks = searchResults[1];
+    }  
+
     this.header = 'Search Results';
     this.showTable = (searchResults.length > 0);
   });
@@ -79,5 +87,8 @@ class SongListController {
 
 export const songList = {
    templateUrl: require('./track-list.html'),
-   controller: SongListController
+   controller: SongListController,
+   bindings: {
+     origin: '@'
+   }
 }

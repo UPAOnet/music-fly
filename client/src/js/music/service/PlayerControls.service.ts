@@ -56,7 +56,6 @@ export class PlayerControls {
     let SCClient = 'b10a9e77003de676a40bcd4ce7346f03';
 
     if (company === 'soundcloud') {
-      console.log('this is a soundcloud song');
       return 'https://api.soundcloud.com/tracks/' + urlSource + '/stream?client_id=' + SCClient;
     } else {
       return urlSource

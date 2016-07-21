@@ -38,15 +38,13 @@ class Controller {
       let soundcloudTracks;    
 
       if (event.keyCode === 13) {
-        // Promise.all([this.spotifySearchQuery(), this.soundCloudSearchQuery()])
-        Promise.all([this.soundCloudSearchQuery()])
+
+        Promise.all([this.soundCloudSearchQuery(), this.spotifySearchQuery() ])
           .then( (results) => {
-            console.log('this is the results ' + JSON.stringify(results[0][0], null, 4));
-            // spotifyTracks = this.TrackList.formatTracks(results[0].data.tracks.items, 'spotify');
+
+            spotifyTracks = this.TrackList.formatTracks(results[1].data.tracks.items, 'spotify');
             soundcloudTracks = this.TrackList.formatTracks(results[0], 'soundcloud');
-            // this.tracks = spotifyTracks;
-            this.tracks = soundcloudTracks;
-  
+            this.tracks = this.combineResults(soundcloudTracks, spotifyTracks);
             this.searchQuery = "";
             this.emitSearchResults(this.tracks);
             this.$scope.$apply();
@@ -55,10 +53,19 @@ class Controller {
     }
 
   /**
+   * Puts search results in a payload
+   */
+  private combineResults (soundcloud, spotify) {
+    console.log('getting hit');
+    let combined = [];
+    combined[0] = soundcloud;
+    combined[1] = spotify;
+    return combined;
+  }
+  /**
    * Search functionality for spotify songs
    */
   public spotifySearchQuery () {
-    console.log('THIS IS THE SEARCH ' + this.searchQuery);
     let spotifyTracks = this.spotifySearch.makeRequest(this.searchQuery);
 
     return spotifyTracks  
@@ -79,102 +86,3 @@ export const MusicSearch = {
   controller: Controller
 }
 
-
-//   musicSearch.$inject = ['$scope','$http', 'spotifySearch', 'playerControls', 'scSearch', 'tabs', 'playlists', 'searchType', 'TrackList'];
-//
-//   function musicSearch ($scope, $http, spotifySearch, playerControls, scSearch, tabs, playlists, searchType, TrackList) {
-//       var vm = this;
-//       vm.tracks = [];
-//       vm.topArtists;
-//       vm.playlistTabs = playlists.currentPlaylists;
-//       vm.playerImage = 'assets/images/music-player/default-album.png';
-//       vm.playerTitle = 'Title';
-//       vm.playerArtist = 'Artist';
-//       vm.playerInfo = 'album';
-//       vm.playStateButton = 'play icon';
-//       vm.searchDisplay = searchType.searchState;
-//       vm.addPlaylistState = playlists.state.addField;
-//       vm.addPlaylistButton = playlists.state.addButton;
-//
-//
-//
-//       $scope.spotifyQuery;
-//       $scope.scQuery;
-//       $scope.newPlaylist;
-//
-
-//
-//       vm.changeSearch = function (event) {
-//         var attribute = event.target.getAttribute('data-search');
-//         searchType.changeSearch(attribute)
-//       }
-//       vm.switchTabs = function (event, playlist) {
-//         var attribute = event.target.getAttribute('data-tab');
-//         var isPlaylist = event.target.getAttribute('data-playlist');
-//         if (isPlaylist) {
-//           playlists.displayTracks(playlist);
-//         }
-//         tabs.switchTabs(attribute);
-//       }
-//       vm.revealNewPlaylist = function () {
-//         playlists.revealAddField();
-//         vm.addPlaylistState = playlists.state.addField;
-//         vm.addPlaylistButton = playlists.state.addButton;
-//       }
-//       vm.createNewPlaylist = function (event) {
-//         if(event.keyCode === 13) {
-//           if ($scope.newPlaylist === "" || $scope.newPlaylist === undefined) {
-//             alert('please enter playlist name')
-//             return;
-//           }
-//           playlists.createNewPlaylist($scope.newPlaylist);
-//           $scope.newPlaylist= "";
-//           vm.addPlaylistState = playlists.state.addField;
-//           vm.addPlaylistButton = playlists.state.addButton;
-//           vm.digest();
-//         }
-//       }
-//       vm.openDropDown = function () {
-//         $('.ui.dropdown').dropdown('restore defaults');
-//         vm.digest();
-//       }
-//       vm.addTrack = function (trackKey, playlist) {
-//         playlists.addTrack(trackKey, playlist);
-//         vm.digest();
-//       }
-//       vm.removeTrack = function (trackId) {
-//         playlists.removeTrack(trackId);
-//       }
-//
-//       vm.scSearchEnter = function () {
-//         if (event.keyCode === 13) {
-//           var attribute = event.target.getAttribute('data-tab');
-//           tabs.switchTabs(attribute);
-//           scSearch.allTracks($scope.scQuery);
-//           $scope.scQuery = "";
-//           if ($(window).width() < 870) {
-//             $('#player-menu').hide();
-//           }
-//         };
-//       }
-//
-//       vm.spotifySearchEnter = function () {
-//         if (event.keyCode === 13) {
-//           var attribute = event.target.getAttribute('data-tab');
-//           tabs.switchTabs(attribute);
-//
-//           let spotifyTracks = spotifySearch.makeRequest($scope.spotifyQuery);
-//
-//           spotifyTracks.then(function success (response) {
-//             let trackResults = response.data.tracks.items;
-//             TrackList.getSpotifyTracks(trackResults);
-//             vm.tracks = TrackList.currentTracks();
-//             console.log( vm.tracks );
-//            })
-//
-//           $scope.spotifyQuery = "";
-//         }
-//       }
-//
-//
-//   }

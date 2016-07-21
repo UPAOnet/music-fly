@@ -38,38 +38,36 @@ angular.module('musicApp')
   }
 
   factory.formatTracks = function (trackList, config) {
-    let searchList = [];
+    var searchList = [];
     let configOptions = {
       spotify: 'spotify',
       soundcloud: 'soundcloud'
     }
 
     if (configOptions[config] === 'spotify') {
+      _.forEach(trackList, function (each, i) {
+        let theSong = new songConstructor(
+            i, 
+            each.name, 
+            each.album.images[1].url, 
+            each.album.name, 
+            each.artists[0].name, 
+            each.duration, 
+            'spotify', 
+            null, 
+            each.preview_url, 
+            each.external_urls.spotify
+          )
 
-    _.forEach(trackList, function (each, i) {
-      let theSong = new songConstructor(
-          i, 
-          each.name, 
-          each.album.images[1].url, 
-          each.album.name, 
-          each.artists[0].name, 
-          each.duration, 
-          'spotify', 
-          null, 
-          each.preview_url, 
-          each.external_urls.spotify
-        )
-
-      theSong.setPreviewLength(30000); 
-      searchList.push(theSong);
-    })
-    return searchList;
+        theSong.setPreviewLength(30000); 
+        searchList.push(theSong);
+       
+      })
     }
 
     if (configOptions[config] === 'soundcloud') {
       _.forEach(trackList, function (each, i) {
-       let stream = each.stream_url;
-       let url = getUrl(stream); 
+       let url = getUrl(each.stream_url); 
        let theSong = new songConstructor(
           i, 
           each.title, 
@@ -84,12 +82,11 @@ angular.module('musicApp')
         )
 
         searchList.push(theSong);
-        return searchList;
       })
       
-    } else {
-      throw 'Formatter needs a valid song origin to know what to format';
-    }
+    } 
+
+    return searchList;
   }
 
   return factory;
