@@ -77,16 +77,16 @@ angular.module('musicApp')
           each.album, 
           each.user.username, 
           each.duration, 
-          'soundcloud',        
+          'soundcloud', 
+          each.stream_url,       
           url, 
-          each.stream_url, 
           each.permalink_url
         )
 
-      searchList.push(theSong);
-    })
-    console.log(searchList[0]);
-    return searchList;
+        searchList.push(theSong);
+        return searchList;
+      })
+      
     } else {
       throw 'Formatter needs a valid song origin to know what to format';
     }

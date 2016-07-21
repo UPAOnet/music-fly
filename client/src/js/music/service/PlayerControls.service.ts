@@ -46,6 +46,23 @@ export class PlayerControls {
 
   }
 
+  /**
+   * Soundcloud needs a special way of playing song
+   * Uses song ID to hit stream directly to circumvent temporary urls 
+   * {urlSource} - url to use 
+   * {Company} - Origin of the song
+   */
+  private setUrl (urlSource, company) {
+    let SCClient = 'b10a9e77003de676a40bcd4ce7346f03';
+
+    if (company === 'soundcloud') {
+      console.log('this is a soundcloud song');
+      return 'https://api.soundcloud.com/tracks/' + urlSource + '/stream?client_id=' + SCClient;
+    } else {
+      return urlSource
+    }
+  }
+
   private checkPlayingState () {
     return this.playState.playing;
   }
@@ -89,7 +106,7 @@ export class PlayerControls {
     this.setPlayerInfo(song);
     this.playState.playing = true;
 
-    this.Player.src = song.urlSource;
+    this.Player.src = this.setUrl(song.urlSource, song.company);
     this.Player.play();
   } 
 
