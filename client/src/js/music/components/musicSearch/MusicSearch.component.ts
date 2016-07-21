@@ -56,7 +56,6 @@ class Controller {
    * Puts search results in a payload
    */
   private combineResults (soundcloud, spotify) {
-    console.log('getting hit');
     let combined = [];
     combined[0] = soundcloud;
     combined[1] = spotify;

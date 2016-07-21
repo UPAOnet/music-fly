@@ -45,7 +45,6 @@ export class PlaylistsService {
       this.currentPlaylists.forEach((aList, i) => {
         if (aList.name === playlist.name) {
           this.currentPlaylists[i].tracks.push(song);
-          console.log(this.currentPlaylists);
           this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
         }
       })      

@@ -3,5 +3,11 @@
     <music-search></music-search>
   </music-page-row>
   
-  <song-list ></song-list>
+  <!--Playlist component-->
+  <song-list ng-if="$ctrl.hasPlaylist"></song-list>
+
+  <!--Search list components-->
+  <song-list ng-if="!$ctrl.hasPlaylist" origin="soundcloud"></song-list>
+  <song-list ng-if="!$ctrl.hasPlaylist" origin="spotify"></song-list>
+
 </section>

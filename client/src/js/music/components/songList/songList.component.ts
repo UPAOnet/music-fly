@@ -8,6 +8,9 @@ class SongListController {
  private header: string;
  private origin: string;
 
+ // Controller for musicPage
+ private pageCtrl: any;
+
  constructor (
    private TrackList,
    private playlistsService,
@@ -20,10 +23,10 @@ class SongListController {
   'ngInject';
 
   this.availablePlaylists = this.playlistsService.loadSavedLists();
-
+  
   // Listens for any search events
   this.$rootScope.$on(this.musicEvents.newSearch, (event, searchResults) => {
-    console.log(searchResults);
+    this.pageCtrl.showSearch();
 
     if (this.origin === 'soundcloud') {
       this.tracks = searchResults[0];
@@ -36,7 +39,9 @@ class SongListController {
   });
 
   // Listen for playlist switching events
-  this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, playlist) => {   
+  this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, playlist) => {  
+    this.pageCtrl.showPlaylist();
+
     this.tracks = playlist.tracks;
     this.header = playlist.name;
     this.showTable = (playlist.tracks.length > 0);
@@ -88,6 +93,9 @@ class SongListController {
 export const songList = {
    templateUrl: require('./track-list.html'),
    controller: SongListController,
+   require: {
+     pageCtrl: '^musicPage',
+   },
    bindings: {
      origin: '@'
    }
