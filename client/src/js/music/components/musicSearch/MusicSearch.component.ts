@@ -16,8 +16,6 @@ class Controller {
     private $window
   ) {
     'ngInject';
-
-    this.$window.SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})
   }
 
 

@@ -4,10 +4,22 @@
   </music-page-row>
   
   <!--Playlist component-->
-  <song-list ng-if="$ctrl.hasPlaylist"></song-list>
+  <song-list ng-if="$ctrl.hasPlaylist"
+             songs=$ctrl.playlistTracks
+             >
+  </song-list>
 
   <!--Search list components-->
-  <song-list ng-if="!$ctrl.hasPlaylist" origin="soundcloud"></song-list>
-  <song-list ng-if="!$ctrl.hasPlaylist" origin="spotify"></song-list>
+  <song-list ng-if="!$ctrl.hasPlaylist" 
+             header="{{$ctrl.header}}" 
+             songs="$ctrl.soundcloudTracks"
+             >
+  </song-list>
+
+  <song-list ng-if="!$ctrl.hasPlaylist" 
+             header="{{$ctrl.header}}" 
+             songs="$ctrl.spotifyTracks"
+             >
+  </song-list>
 
 </section>
