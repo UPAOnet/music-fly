@@ -6,10 +6,20 @@
  </div>
 
  <!-- Music player button -->
- <div ng-click="$ctrl.playMusic()" ng-if="$ctrl.roleType === 'music-player'">
+ <div ng-if="$ctrl.roleType === 'music-player'">
   <span class="glyphicon glyphicon glyphicon-backward" aria-hidden="true"></span>
-  <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-  <!-- <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> -->
+
+  <span class="glyphicon glyphicon-play" 
+        ng-click="$ctrl.resumeMusic()"
+        ng-show="!$ctrl.playState.playing"
+        >
+  </span>
+  <span class="glyphicon glyphicon-pause" 
+        ng-click="$ctrl.pauseMusic()"
+        ng-show="$ctrl.playState.playing"
+        >
+  </span> 
+
   <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
  </div>
 

@@ -10,6 +10,7 @@ export class ButtonsController {
   private tracks: any;
   private song: any;
   private index: number;
+  private playState: any;
 
   constructor (
     private TrackList,
@@ -18,13 +19,18 @@ export class ButtonsController {
   ) {
     'ngInject';
 
+    this.playState = this.playerControls.checkPlayingState();
+
   }
 
-  // Passses clicked song to the main player
-  public playMusic () {
-    this.playerControls.playMusic(this.song);
-    // this.TrackList.setActive(this.index);
+  public resumeMusic () { 
+    this.playerControls.resumeMusic();
   }
+
+  public pauseMusic () {   
+    this.playerControls.pauseMusic();
+  }
+
 }
 
 export const playButton = {

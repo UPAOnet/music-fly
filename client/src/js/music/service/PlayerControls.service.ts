@@ -38,8 +38,9 @@ export class PlayerControls {
       company: null,
       duration: null
     }
+
     this.playState = {
-      playing: null,
+      playing: false,
       timerDuration: null,
       currentSong: null
     };
@@ -63,7 +64,7 @@ export class PlayerControls {
   }
 
   private checkPlayingState () {
-    return this.playState.playing;
+    return this.playState;
   }
 
   private setCurrentState (currentSong: any): void {
@@ -99,9 +100,19 @@ export class PlayerControls {
     () => this.currentSongInfo;
   }
 
+  public resumeMusic(): void {
+    this.Player.play();
+    this.playState.playing = true;
+  }
+
+  public pauseMusic (): void {
+    this.Player.pause();
+    this.playState.playing = false;
+  }
+
   public playMusic(song: any): void {
     this.TrackList.setActive(song);
-    this.setCurrentState(song);
+    // this.setCurrentState(song);
     this.setPlayerInfo(song);
     this.playState.playing = true;
 
