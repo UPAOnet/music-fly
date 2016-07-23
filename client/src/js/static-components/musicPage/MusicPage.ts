@@ -29,9 +29,6 @@ class Controller {
     this.header = playlist.name;
   });
 
-    
-    // this.showTable = (searchResults.length > 0);
-
   }
 
 }

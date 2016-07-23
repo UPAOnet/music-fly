@@ -62,7 +62,6 @@ class SongListController {
 
 }
 
-
 export const songList = {
    templateUrl: require('./track-list.html'),
    controller: SongListController,
