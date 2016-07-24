@@ -5,7 +5,7 @@ import {ISongInterface} from '../../../interfaces/songInterface.ts';
  * Displays information regarding current track.
  * @module playerInterfaceComponent
  */
-class playerInterfaceController {
+export class playerInterfaceController {
 
   private shouldShow: boolean;
   private currentTrack: ISongInterface
