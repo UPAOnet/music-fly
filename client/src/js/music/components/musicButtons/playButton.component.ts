@@ -1,4 +1,5 @@
-'use strict';
+import {PlayerControls} from '../../service/PlayerControls.service.ts';
+import {MusicEvents} from '../../constants/musicEvents.ts'
 
 /**
  * The buttons on the Player
@@ -13,9 +14,10 @@ export class ButtonsController {
   private playState: any;
 
   constructor (
-    private TrackList,
-    private $scope,
-    private playerControls
+    private $scope: ng.IScope,
+    private $rootScope: ng.IRootScopeService,
+    private playerControls: PlayerControls,
+    private musicEvents: MusicEvents
   ) {
     'ngInject';
 
@@ -29,6 +31,10 @@ export class ButtonsController {
 
   public pauseMusic () {   
     this.playerControls.pauseMusic();
+  }
+
+  public nextSong () {
+    this.playerControls.nextSong();
   }
 
 }

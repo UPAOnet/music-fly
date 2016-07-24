@@ -1,5 +1,5 @@
-import {musicEvents} from './musicEvents.ts';
+import {MUSIC_EVENTS} from './musicEvents.ts';
 
 angular.module('musicApp')
-  .constant('musicEvents', musicEvents)
+  .constant('musicEvents', MUSIC_EVENTS)
   

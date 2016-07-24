@@ -2,12 +2,12 @@
 
  <!-- track list button -->
  <div ng-if="$ctrl.roleType === 'trackList'">
-  <span class="glyphicon glyphicon-play-circle mf-l-absolute-center" aria-hidden="true"></span>
+  <span class="glyphicon glyphicon-play-circle mf-l-absolute-center"></span>
  </div>
 
  <!-- Music player button -->
  <div ng-if="$ctrl.roleType === 'music-player'">
-  <span class="glyphicon glyphicon glyphicon-backward" aria-hidden="true"></span>
+  <span class="glyphicon glyphicon glyphicon-backward"></span>
 
   <span class="glyphicon glyphicon-play" 
         ng-click="$ctrl.resumeMusic()"
@@ -20,7 +20,7 @@
         >
   </span> 
 
-  <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+  <span class="glyphicon glyphicon-forward" ng-click="$ctrl.nextSong()"></span>
  </div>
 
 </div>

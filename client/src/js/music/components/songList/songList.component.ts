@@ -1,3 +1,6 @@
+import {MusicEvents} from '../../constants/musicEvents.ts'
+import {PlayerControls} from '../../service/PlayerControls.service.ts';
+import {PlaylistsService} from '../../service/playlists.service.ts';
 
 class SongListController {
  private songs: any;
@@ -9,12 +12,12 @@ class SongListController {
  private pageCtrl: any;
 
  constructor (
-   private playlistsService,
-   private playerControls,
-   private $timeout,
-   private musicEvents,
-   private $rootScope,
-   private $scope
+   private playlistsService: PlaylistsService,
+   private playerControls: PlayerControls,
+   private $timeout: ng.ITimeoutService,
+   private musicEvents: MusicEvents,
+   private $rootScope: ng.IRootScopeService,
+   private $scope: ng.IScope
  ) {
   'ngInject';
 
@@ -23,6 +26,13 @@ class SongListController {
   // Listen for playlist creation events
   this.$scope.$on(this.musicEvents.newPlaylist, (event, newPlaylist) => {
     this.availablePlaylists = newPlaylist
+  });
+
+  // Listen for next song event
+  this.$scope.$on(this.musicEvents.nextSong, (event, currentSong) => {
+    if (currentSong.company === this.songs[0].company) {
+      console.log('should have one match');
+    }
   });
     
  }

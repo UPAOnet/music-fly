@@ -1,26 +1,30 @@
+import {MusicEvents} from '../constants/musicEvents.ts'
+
 interface IPlayerSongInfo {
-  name: string,
-  artist: string,
-  album: string,
-  image: string,
-  company: string,
-  duration: number
+  name: string;
+  artist: string;
+  album: string;
+  image: string;
+  company: string;
+  duration: number;
 }
 
 interface IPlayState {
-  playing: boolean,
-  currentSong: any,
-  timerDuration: number
+  playing: boolean;
+  timerDuration: number;
 }
 
 export class PlayerControls {
   private Player: any;
   private currentSongInfo: IPlayerSongInfo;
-  private playState: IPlayState
+  private playState: IPlayState;
+  private selectedSong: any;
 
   constructor (
     private $window,
+    private musicEvents: MusicEvents,
     private $timeout: ng.ITimeoutService,
+    private $rootScope: ng.IRootScopeService,
     private TrackList
   ) {
     'ngInject';
@@ -40,7 +44,6 @@ export class PlayerControls {
     this.playState = {
       playing: false,
       timerDuration: null,
-      currentSong: null
     };
 
   }
@@ -51,7 +54,7 @@ export class PlayerControls {
    * {urlSource} - url to use 
    * {Company} - Origin of the song
    */
-  private setUrl (urlSource, company) {
+  private setUrl (urlSource: string, company: string) {
     let SCClient = 'b10a9e77003de676a40bcd4ce7346f03';
 
     if (company === 'soundcloud') {
@@ -59,11 +62,7 @@ export class PlayerControls {
     } else {
       return urlSource
     }
-  }
-
-  private checkPlayingState () {
-    return this.playState;
-  }
+  } 
 
   private turnOffTimer () {
     this.playState.playing = false;
@@ -85,8 +84,16 @@ export class PlayerControls {
     this.currentSongInfo.duration = currentSong.duration;
   }
 
+  public checkPlayingState (): any {
+    return this.playState;
+  }
+
   public getInfo(): any {
-    () => this.currentSongInfo;
+    return this.currentSongInfo;
+  }
+
+  public nextSong (): void {
+    this.$rootScope.$broadcast(this.musicEvents.nextSong, this.selectedSong);
   }
 
   public resumeMusic(): void {
@@ -102,6 +109,7 @@ export class PlayerControls {
   public playMusic(song: any): void {
     this.setDurationTimer(song);
     this.setPlayerInfo(song);
+    this.selectedSong = song
     this.playState.playing = true;
 
     this.Player.src = this.setUrl(song.urlSource, song.company);
