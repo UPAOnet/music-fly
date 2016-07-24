@@ -47,6 +47,6 @@ export const playButton = {
     // changes look depending on where it is
     roleType: '@',
     //Index position of song for playing state
-    index: '<'
+    index: '<',
    }
 }

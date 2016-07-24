@@ -14,11 +14,17 @@ interface IPlayState {
   timerDuration: number;
 }
 
+interface ICurrentSongList {
+  songList: string;
+  index: number;
+}
+
 export class PlayerControls {
   private Player: any;
+  private currentSongList: ICurrentSongList;
+  private selectedSong: any;
   private currentSongInfo: IPlayerSongInfo;
   private playState: IPlayState;
-  private selectedSong: any;
 
   constructor (
     private $window,
@@ -45,6 +51,11 @@ export class PlayerControls {
       playing: false,
       timerDuration: null,
     };
+
+    this.currentSongList = {
+      songList: null,
+      index: null
+    }
 
   }
 
@@ -93,7 +104,7 @@ export class PlayerControls {
   }
 
   public nextSong (): void {
-    this.$rootScope.$broadcast(this.musicEvents.nextSong, this.selectedSong);
+    this.$rootScope.$broadcast(this.musicEvents.nextSong, this.currentSongList);
   }
 
   public resumeMusic(): void {
@@ -106,10 +117,19 @@ export class PlayerControls {
     this.playState.playing = false;
   }
 
-  public playMusic(song: any): void {
+  /**
+   * Plays the song and sets all the required state info 
+   * song - The song object
+   * songList - The song list the song came from
+   */
+  public playMusic(song: any, index: number, songList: string): void {
     this.setDurationTimer(song);
     this.setPlayerInfo(song);
-    this.selectedSong = song
+    this.selectedSong = song;
+
+    this.currentSongList.index = index;
+    this.currentSongList.songList = songList;
+
     this.playState.playing = true;
 
     this.Player.src = this.setUrl(song.urlSource, song.company);

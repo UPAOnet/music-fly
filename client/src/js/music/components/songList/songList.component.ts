@@ -5,6 +5,7 @@ import {PlaylistsService} from '../../service/playlists.service.ts';
 class SongListController {
  private songs: any;
  private selectedSong: any;
+ private songList: string;
  private availablePlaylists: any;
  private header: string;
 
@@ -24,14 +25,13 @@ class SongListController {
   this.availablePlaylists = this.playlistsService.loadSavedLists();
 
   // Listen for playlist creation events
-  this.$scope.$on(this.musicEvents.newPlaylist, (event, newPlaylist) => {
+  this.$scope.$on(this.musicEvents.newPlaylist, (event, newPlaylist: any) => {
     this.availablePlaylists = newPlaylist
   });
 
-  // Listen for next song event
-  this.$scope.$on(this.musicEvents.nextSong, (event, currentSong) => {
-    if (currentSong.company === this.songs[0].company) {
-      console.log('should have one match');
+  this.$scope.$on(this.musicEvents.nextSong, (event, originalList: any) => {
+    if (originalList.songList === this.songList) {
+      this.playNextSong(originalList.index);
     }
   });
     
@@ -46,11 +46,18 @@ class SongListController {
   }
 
  /**
+  * Plays the next song 
+  */
+ private playNextSong (index): void {
+   console.log(index);
+ }
+
+ /**
   * Passses clicked song to the main player
   * {song} - The song object
   */
- public playMusic (song: any) {
-   this.playerControls.playMusic(song);
+ public playMusic (song: any, index: number, songList: string) {
+   this.playerControls.playMusic(song, index, this.songList);
    this.selectedSong = song;
    this.emitSong(song);
  }
@@ -77,6 +84,7 @@ export const songList = {
    controller: SongListController,
    bindings: {
      songs: '<',
-     header: '@'
+     header: '@',
+     songList: '@'
    }
 }
