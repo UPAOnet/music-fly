@@ -37,6 +37,10 @@ export class ButtonsController {
     this.playerControls.nextSong();
   }
 
+  public previousSong () {
+    this.playerControls.previousSong();
+  }
+
 }
 
 export const playButton = {

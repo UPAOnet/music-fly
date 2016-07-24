@@ -4,8 +4,10 @@ import {PlaylistsService} from '../../service/playlists.service.ts';
 
 class SongListController {
  private songs: any;
+
  private selectedSong: any;
  private songList: string;
+
  private availablePlaylists: any;
  private header: string;
 
@@ -34,6 +36,12 @@ class SongListController {
       this.playNextSong(originalList.index);
     }
   });
+
+  this.$scope.$on(this.musicEvents.previousSong, (event, originalList: any) => {
+    if (originalList.songList === this.songList) {
+      this.playPreviousSong(originalList.index);
+    }
+  });
     
  }
 
@@ -48,8 +56,35 @@ class SongListController {
  /**
   * Plays the next song 
   */
- private playNextSong (index): void {
-   console.log(index);
+ private playNextSong (index:number): void {
+   let next;
+   let newIndex;
+
+   if (this.songs[index+1]) {
+     newIndex = index+1;
+     next = this.songs[newIndex];  
+   } else {
+     newIndex = 0;
+     next = this.songs[newIndex];   
+   }
+   this.playMusic(next, newIndex, this.songList)
+ }
+
+ /**
+  * Play Previous Song
+  */
+  private playPreviousSong (index:number): void {
+  let previous;
+  let newIndex;
+
+  if (this.songs[index-1]) {
+    newIndex = index-1;
+    previous = this.songs[newIndex];  
+  } else {
+    newIndex = this.songs.length - 1;
+    previous = this.songs[newIndex];   
+  }
+  this.playMusic(previous, newIndex, this.songList)
  }
 
  /**

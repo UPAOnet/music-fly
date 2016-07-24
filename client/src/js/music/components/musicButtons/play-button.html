@@ -7,7 +7,7 @@
 
  <!-- Music player button -->
  <div ng-if="$ctrl.roleType === 'music-player'">
-  <span class="glyphicon glyphicon glyphicon-backward"></span>
+  <span class="glyphicon glyphicon glyphicon-backward" ng-click="$ctrl.previousSong()"></span>
 
   <span class="glyphicon glyphicon-play" 
         ng-click="$ctrl.resumeMusic()"

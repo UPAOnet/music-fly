@@ -107,6 +107,10 @@ export class PlayerControls {
     this.$rootScope.$broadcast(this.musicEvents.nextSong, this.currentSongList);
   }
 
+  public previousSong (): void {
+    this.$rootScope.$broadcast(this.musicEvents.previousSong, this.currentSongList);
+  }
+
   public resumeMusic(): void {
     this.Player.play();
     this.playState.playing = true;

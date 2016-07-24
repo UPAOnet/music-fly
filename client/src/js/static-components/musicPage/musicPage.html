@@ -5,7 +5,9 @@
   
   <!--Playlist component-->
   <song-list ng-if="$ctrl.hasPlaylist"
-             songs=$ctrl.playlistTracks
+             songs="$ctrl.playlistTracks"
+             header="{{$ctrl.header}}"
+             song-list="playlist"
              >
   </song-list>
 
@@ -13,12 +15,14 @@
   <song-list ng-if="!$ctrl.hasPlaylist" 
              header="{{$ctrl.header}}" 
              songs="$ctrl.soundcloudTracks"
+             song-list="soundcloud"
              >
   </song-list>
 
   <song-list ng-if="!$ctrl.hasPlaylist" 
              header="{{$ctrl.header}}" 
              songs="$ctrl.spotifyTracks"
+             song-list="spotify"
              >
   </song-list>
 
