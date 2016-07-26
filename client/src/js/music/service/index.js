@@ -10,8 +10,10 @@ require('./TrackList.service.js');
 import {NumberConverter} from './NumberConverter.service.ts';
 import {PlayerControls} from './PlayerControls.service.ts';
 import {PlaylistsService} from './Playlists.service.ts';
+import {FeaturedContent} from './FeaturedContent.service.ts';
 
 angular.module('musicApp')
  .service('numberConverter', NumberConverter)
  .service('playerControls', PlayerControls)
  .service('playlistsService', PlaylistsService)
+ .service('featuredContent', FeaturedContent)

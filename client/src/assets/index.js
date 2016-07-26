@@ -10,3 +10,7 @@ require("./images/modal/sign-up.jpg");
 
 // Music Player
 require("./images/music-player/default-album.png");
+
+// artists 
+require("./images/artists/calvin-harris.jpg");
+require("./images/artists/drake.jpg")

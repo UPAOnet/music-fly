@@ -2,26 +2,8 @@
   <input class="prompt"
          type="text"
          ng-model="$ctrl.searchQuery"
-         ng-keypress="$ctrl.search($event)"
+         ng-keypress="$ctrl.searchEnter($event)"
          placeholder="Spotify...">
   <i class="search icon"></i>
 </div>
-<!-- <div class="ui search" id="search-sc" ng-show='player.searchDisplay.sc'>
-  <div class="ui icon input">
-    <input id="sc-box" class="prompt" type="text" ng-model="scQuery"
-    ng-keypress="player.scSearchEnter()" data-tab="search" placeholder="SoundCloud..."/>
-    <i class="search icon"></i>
-  </div>
-</div> -->
-<!-- <div id="search-type">
-  <div id="icon-box">
-    <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="sc" checked>
-    SoundCloud
-    </input>
-    <i id="sc-icon" class="fa fa-soundcloud fa-2x soundcloud sc-active"></i><br>
-    <input name="company" type="radio" ng-click= "player.changeSearch($event)" data-search="spotify">
-    Spotify
-    <i id="spotify-icon" class="fa fa-spotify fa-2x spotify"></i><br>
-    </input>
-  </div>
-</div> -->
+

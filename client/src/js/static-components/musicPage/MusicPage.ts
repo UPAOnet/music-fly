@@ -1,3 +1,5 @@
+import {MusicEvents} from '../../music/constants/musicEvents.ts'
+import {PlaylistsService} from '../../music/service/Playlists.service.ts'
 
 class Controller {
   private spotifyTracks: any;
@@ -7,10 +9,10 @@ class Controller {
   private hasPlaylist: boolean;
 
   constructor (
-    private $rootScope,
-    private $scope,
-    private musicEvents,
-    private playlistsService
+    private $rootScope: ng.IRootScopeService,
+    private $scope: ng.IScope,
+    private musicEvents: MusicEvents,
+    private playlistsService: PlaylistsService
   ) {
     'ngInject';
 

@@ -4,9 +4,7 @@ import {MusicEvents} from '../../constants/musicEvents.ts'
 /**
  * The buttons on the Player
  * All Button components use this controller
- * @module playerInterfaceComponent
  */
-
 export class ButtonsController {
   private tracks: any;
   private song: any;
@@ -25,19 +23,19 @@ export class ButtonsController {
 
   }
 
-  public resumeMusic () { 
+  public resumeMusic (): void { 
     this.playerControls.resumeMusic();
   }
 
-  public pauseMusic () {   
+  public pauseMusic (): void {   
     this.playerControls.pauseMusic();
   }
 
-  public nextSong () {
+  public nextSong (): void {
     this.playerControls.nextSong();
   }
 
-  public previousSong () {
+  public previousSong (): void {
     this.playerControls.previousSong();
   }
 

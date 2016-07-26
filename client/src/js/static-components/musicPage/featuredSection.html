@@ -1,0 +1,5 @@
+<section class="featured-section">
+  <div ng-repeat="content in $ctrl.contentList">
+    <img src="{{content.source}}" ng-click="$ctrl.clickSearch(content.name)">
+  </div>
+</section>
