@@ -1,3 +1,5 @@
+import {PlaylistsService} from '../../music/service/Playlists.service.ts';
+import {MusicEvents} from '../../music/constants/musicEvents.ts';
 
 class Controller {
   private tabs;
@@ -8,9 +10,10 @@ class Controller {
   private playlists: any;
                                                       
   constructor(
-    private playlistsService,
-    private $scope,
-    private musicEvents
+    private playlistsService: PlaylistsService,
+    private $scope: ng.IScope,
+    private musicEvents: MusicEvents,
+    private $rootScope: ng.IRootScopeService
   ) {
     'ngInject';
 
@@ -28,6 +31,14 @@ class Controller {
   private createTheList (list: any) {
      
   }
+
+  /**
+   * Switches to featured page
+   */
+  public switchFeatured () {
+    this.$rootScope.$broadcast(this.musicEvents.featuredPage);
+  }
+
 
   /**
    * Switches playlist

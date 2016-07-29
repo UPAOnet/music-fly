@@ -12,7 +12,6 @@ class FeaturedSectionController {
     private musicEvents: MusicEvents
   ) {
     'ngInject';
-    console.log(this.contentType);
   }
 
   $postLink () {

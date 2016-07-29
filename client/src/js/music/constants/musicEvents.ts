@@ -8,6 +8,7 @@ export interface MusicEvents {
   nextSong: string;
   previousSong: string;
   featuredSearch: string;
+  featuredPage: string;
 }
 
 export const MUSIC_EVENTS: MusicEvents = {
@@ -28,5 +29,7 @@ export const MUSIC_EVENTS: MusicEvents = {
   // A song is switching to previous one on list
   previousSong: 'PREVIOUS_SONG',
   // A search is made fomr the featured page
-  featuredSearch: 'FEATURED_SEARCH'
+  featuredSearch: 'FEATURED_SEARCH',
+  // Switch to featured page
+  featuredPage: 'FEATURED_PAGE'
 }

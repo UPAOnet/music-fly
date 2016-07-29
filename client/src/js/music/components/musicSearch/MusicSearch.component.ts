@@ -48,7 +48,6 @@ class Controller {
           this.tracks = this.combineResults(soundcloudTracks, spotifyTracks);
           this.searchQuery = "";
           this.emitSearchResults(this.tracks);
-          console.log(this.tracks);
           this.$scope.$apply();
       })         
     }

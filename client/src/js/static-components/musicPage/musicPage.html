@@ -3,10 +3,10 @@
     <music-search></music-search>
   </music-page-row>
   
-  <featured-page></featured-page>
+  <featured-page ng-if="!$ctrl.showSongs"></featured-page>
   
   <!--Playlist component-->
-  <song-list ng-if="$ctrl.hasPlaylist"
+  <song-list ng-if="$ctrl.hasPlaylist && $ctrl.showSongs"
              songs="$ctrl.playlistTracks"
              header="{{$ctrl.header}}"
              song-list="playlist"
@@ -14,14 +14,14 @@
   </song-list>
 
   <!--Search list components-->
-  <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.songs"
+  <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs"
              header="{{$ctrl.header}}" 
              songs="$ctrl.soundcloudTracks"
              song-list="soundcloud"
              >
   </song-list>
 
-  <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.songs" 
+  <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs" 
              header="{{$ctrl.header}}" 
              songs="$ctrl.spotifyTracks"
              song-list="spotify"
