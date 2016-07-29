@@ -1,0 +1,12 @@
+featured-section {
+  .featured-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    img {
+      height: 200px;
+      width: 200px;
+    }
+  }
+}

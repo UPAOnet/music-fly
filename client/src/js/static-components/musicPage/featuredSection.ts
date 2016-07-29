@@ -4,6 +4,7 @@ import {FeaturedContent} from '../../music/service/FeaturedContent.service.ts';
 class FeaturedSectionController {
   private contentList: any;
   private contentType: string;
+  private header: string;
 
   constructor (
     private featuredContent: FeaturedContent,
@@ -14,10 +15,14 @@ class FeaturedSectionController {
     'ngInject';
   }
 
-  $postLink () {
+  $onInit () {
     if (this.contentType === 'artist') {
       this.contentList = this.featuredContent.getArtists();
     }
+
+    if (this.contentType === 'genres') {
+      this.contentList = this.featuredContent.getGenres();
+    }    
   }
 
   clickSearch (searchName) {

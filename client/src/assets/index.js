@@ -14,3 +14,11 @@ require("./images/music-player/default-album.png");
 // artists 
 require("./images/artists/calvin-harris.jpg");
 require("./images/artists/drake.jpg")
+
+// Genres 
+require("./images/genres/pop.jpg");
+require("./images/genres/hip-hop.jpg");
+require("./images/genres/rock.jpg");
+require("./images/genres/clubbing.jpg");
+require("./images/genres/country.jpg");
+require("./images/genres/jazz.jpg");
