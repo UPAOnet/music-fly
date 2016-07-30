@@ -9,17 +9,24 @@ export class FeaturedContent{
   'ngInject';
 
     this.artists = [
-      {name: 'Calvin Harris', source: "/assets/images/artists/calvin-harris.jpg"},
-      {name: 'Drake', source: "/assets/images/artists/drake.jpg"}
+      {name: 'Coldplay', source: "/assets/images/artists/coldplay.jpg"},
+      {name: 'ChainSmokers', source: "/assets/images/artists/chainsmokers.jpg"},
+      {name: 'Kendrick', source: "/assets/images/artists/kendrick.jpg"},
+      {name: 'Ariana', source: "/assets/images/artists/ariana.jpg"}
     ]
 
-    this.genres = [
-      {name: 'Pop', source: "/assets/images/genres/pop.jpg"},
+    this.genres = [     
       {name: 'Hip Hop', source: "/assets/images/genres/hip-hop.jpg"},
       {name: 'Rock', source: "/assets/images/genres/rock.jpg"},
       {name: 'EDM', source: "/assets/images/genres/clubbing.jpg"},
       {name: 'Jazz', source: "/assets/images/genres/jazz.jpg"},
-      {name: 'Country', source: "/assets/images/genres/country.jpg"}
+      {name: 'Country', source: "/assets/images/genres/country.jpg"},
+      {name: 'Pop', source: "/assets/images/genres/pop.jpg"},
+      {name: 'Classical', source: "/assets/images/genres/classical.jpg"},
+      {name: 'Metal', source: "/assets/images/genres/metal.jpg"},
+      {name: 'RnB', source: "/assets/images/genres/rnb.jpg"},
+      {name: 'Romance', source: "/assets/images/genres/romance.jpg"},
+      {name: 'Workout', source: "/assets/images/genres/workout.jpg"}
     ]
   }
   

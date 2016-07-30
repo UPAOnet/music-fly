@@ -14,18 +14,29 @@
   </song-list>
 
   <!--Search list components-->
-  <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs"
-             header="{{$ctrl.header}}" 
-             songs="$ctrl.soundcloudTracks"
-             song-list="soundcloud"
-             >
-  </song-list>
+  <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs"
+              header="{{$ctrl.header}}" 
+              songs="$ctrl.soundcloudTracks"
+              song-list="soundcloud"
+              company="soundcloud"
+              >
+        </song-list>
+      </div>
 
-  <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs" 
-             header="{{$ctrl.header}}" 
-             songs="$ctrl.spotifyTracks"
-             song-list="spotify"
-             >
-  </song-list>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs" 
+              header="{{$ctrl.header}}" 
+              songs="$ctrl.spotifyTracks"
+              song-list="spotify"
+              company="spotify"
+              >
+        </song-list>
+      </div>
+    </div>
+  </div>
+
 
 </section>

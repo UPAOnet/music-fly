@@ -3,7 +3,11 @@ music-page-row {
     background-color: $playerBlack;
   }
 
-  .row-header {
-    // background-color: $very-dark-grey;
+  .results-header {
+    margin-left: 15px;
+  }
+
+  span {
+    text-transform: none;
   }
 }

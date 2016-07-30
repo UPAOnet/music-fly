@@ -1,12 +1,13 @@
 <section class="song-list">
-  <music-page-row header="{{$ctrl.header}}">
+  <music-page-row header="{{$ctrl.header}}"
+                  company="{{$ctrl.company}}">
     <table ng-hide="!$ctrl.songs">
-      <tr>
+      <!--<tr>
         <th class="hidden-xs"></th>
         <th class="mf-l-content-sides">Title</th>
         <th>Artist</th>
         <th>Duration</th>
-      </tr>
+      </tr>-->
 
       <!-- Description -->
       <tr class="prevent-wrapping default-cursor song animate-repeat"

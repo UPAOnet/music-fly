@@ -120,6 +120,7 @@ export const songList = {
    bindings: {
      songs: '<',
      header: '@',
-     songList: '@'
+     songList: '@',
+     company: '@?'
    }
 }

@@ -4,6 +4,7 @@ export const MusicPageRow = {
   transclude: true,
   bindings: {
     // Binding for any header text
-    header: '@'
+    header: '@',
+    company: '@?'
   }
 }

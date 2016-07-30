@@ -1,9 +1,13 @@
-<section class="featured-section">
-  <div ng-repeat="content in $ctrl.contentList">
-    <img src="{{content.source}}" ng-click="$ctrl.clickSearch(content.name)">
+<section class="featured-section container">
+  <div class="row">
+    <div class="img-container col-xs-12 col-sm-4 col-lg-3"
+         ng-class="{'genre-row': $ctrl.isGenreList,
+                    'artist-row': $ctrl.isArtistList}" 
+         ng-repeat="content in $ctrl.contentList" 
+         ng-click="$ctrl.clickSearch(content.name)">
+      <content-overlay class="mf-l-center-block"></content-overlay>
+      <h4 class="mf-l-absolute-center">{{content.name}}</h4>
+      <img class="mf-l-center-block" src="{{content.source}}" ">      
+    </div>
   </div>
-  <div><img/></div>
-  <div><img/></div>
-  <div><img/></div>
-  <div><img/></div>
 </section>

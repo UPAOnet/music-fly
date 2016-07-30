@@ -2,6 +2,8 @@
 {
   "files.exclude": {
     "node_modules/": true,
-    "client/dev": true
+  },
+  "search.exclude": {
+    "**/dev": true
   }
 }

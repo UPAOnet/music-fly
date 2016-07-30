@@ -6,10 +6,16 @@ h1, h2, h3 {
   color: $dark-orange;
 }
 
-h4, h5, h6 {
+h4, h5 {
   font-family: $header-font;
   color: $white;
   text-transform: uppercase;
+}
+
+h6 {
+  font-family: $header-font;
+  color: $white;
+  text-transform: none;
 }
 
 p {

@@ -1,12 +1,48 @@
 featured-section {
   .featured-section {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
 
-    img {
-      height: 200px;
-      width: 200px;
+    .genre-row {
+      margin-bottom: 60px;
+    } 
+
+    // Overlay component
+    content-overlay {
+      .darken-overlay {
+        height: 220px;
+        width: 220px;
+      }
     }
+    
+    img {
+      height: 220px;
+      width: 220px;
+    }
+
+    // Artist row only
+    .artist-row {
+      content-overlay {
+        .darken-overlay {
+          @include transition(all, .3s);
+          opacity: 0;
+        }
+      }
+
+      h4 {
+        @include transition(all, .3s);
+        opacity: 0;
+      }
+
+      &:hover {
+        content-overlay {
+          .darken-overlay {
+            opacity: 1;
+          }
+        }
+        h4 {
+          opacity: 1;
+        }
+      }
+    }
+
   }
 }

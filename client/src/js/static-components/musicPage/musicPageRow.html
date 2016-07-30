@@ -1,7 +1,15 @@
 <section class="row">
   <div class="row-header">
     <div class="mf-l-content">
-      <h4>{{$ctrl.header}}</h4>
+      <h4 class="m-player-border-bottom">
+
+        {{$ctrl.header}}
+        <span ng-if="$ctrl.company" class="results-header">
+          <img class="company-logo" src="/assets/images/music-player/{{$ctrl.company}}.svg" /> 
+          <span>{{$ctrl.company}}</span>
+        </span>
+
+      </h4>
     </div>
   </div>
   <div class="mf-l-content-sides">

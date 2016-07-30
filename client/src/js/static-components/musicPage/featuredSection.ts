@@ -5,6 +5,8 @@ class FeaturedSectionController {
   private contentList: any;
   private contentType: string;
   private header: string;
+private isGenreList: boolean;
+  private isArtistList: boolean;
 
   constructor (
     private featuredContent: FeaturedContent,
@@ -18,10 +20,12 @@ class FeaturedSectionController {
   $onInit () {
     if (this.contentType === 'artist') {
       this.contentList = this.featuredContent.getArtists();
+      this.isArtistList = true;
     }
 
     if (this.contentType === 'genres') {
       this.contentList = this.featuredContent.getGenres();
+      this.isGenreList = true;
     }    
   }
 

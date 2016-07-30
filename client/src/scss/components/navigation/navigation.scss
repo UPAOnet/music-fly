@@ -33,6 +33,7 @@ nav-bar {
 
   // Alt Nav
   .navbar-inverse {
+    z-index: 100;
     @extend %nav-transition;
     height: $alt-nav-height;
 
