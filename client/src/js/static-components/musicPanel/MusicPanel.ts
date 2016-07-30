@@ -60,6 +60,7 @@ class Controller {
     if (event.keyCode === 13) {
 
       if (this.newListName === '') {
+        this.isAddingPlaylist = false; 
         return
       }
       this.playlistsService.createNewPlaylist(this.newListName);

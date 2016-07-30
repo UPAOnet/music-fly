@@ -1,4 +1,4 @@
-<section class="music-page container-fluid">
+<section class="music-page m-l-full-height container-fluid">
   <music-page-row header="Search">
     <music-search></music-search>
   </music-page-row>
@@ -15,26 +15,24 @@
 
   <!--Search list components-->
   <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs"
-              header="{{$ctrl.header}}" 
-              songs="$ctrl.soundcloudTracks"
-              song-list="soundcloud"
-              company="soundcloud"
-              >
-        </song-list>
-      </div>
+    <div class="col-xs-12 col-md-6">
+      <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs" 
+            header="{{$ctrl.header}}" 
+            songs="$ctrl.spotifyTracks"
+            song-list="spotify"
+            company="spotify"
+            >
+      </song-list>
+    </div>
 
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs" 
-              header="{{$ctrl.header}}" 
-              songs="$ctrl.spotifyTracks"
-              song-list="spotify"
-              company="spotify"
-              >
-        </song-list>
-      </div>
+    <div class="col-xs-12 col-md-6">
+      <song-list ng-if="!$ctrl.hasPlaylist && $ctrl.showSongs"
+            header="{{$ctrl.header}}" 
+            songs="$ctrl.soundcloudTracks"
+            song-list="soundcloud"
+            company="soundcloud"
+            >
+      </song-list>
     </div>
   </div>
 

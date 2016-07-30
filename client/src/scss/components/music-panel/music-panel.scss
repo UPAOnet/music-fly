@@ -10,11 +10,20 @@ music-panel {
 
     h6 {
       display:inline-block;
+      font-size: 15px;
     }
     
-    p {
-      display: inline-block;
-      color: $grey;
+    li {
+      color: $white;
+      margin-bottom: 5px;
+    }
+
+    ul {
+      padding-left: 20px !important;
+    }
+
+    input {
+      color: black;
     }
 
 

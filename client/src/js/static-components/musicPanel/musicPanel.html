@@ -1,10 +1,13 @@
 <section class="music-panel mf-u-padtop-35">
-  <div class="default-cursor mf-l-content-sides m-player-border-top" ng-click="$ctrl.switchFeatured()">
+
+  <!--Featured-->
+  <div class="mf-l-content-sides" ng-click="$ctrl.switchFeatured()">
     <span class="glyphicon glyphicon-star-empty"></span>
-    <h6>Featured</h6>
-   
+    <h6>Featured</h6> 
   </div>
-  <div class="default-cursor mf-l-content-sides m-player-border-top">
+
+  <!--Playlist-->
+  <div class="default-cursor mf-l-content-sides">
      <span class="glyphicon glyphicon-th-list"></span>   
      <h6>Playlists</h6>
         <ul>
@@ -15,11 +18,12 @@
           <!--Add new Button and input-->
           <li ng-hide="$ctrl.isAddingPlaylist" 
               ng-click="$ctrl.showNewField()"
-              ><span class="glyphicon glyphicon-plus"></span><p>Add new<p>
+              ><span class="glyphicon glyphicon-plus"></span><span>Add new<span>
           </li>
           <li ng-hide="!$ctrl.isAddingPlaylist" ng-keypress="$ctrl.addNewPlaylist($event)">
             <input ng-model="$ctrl.newListName"></input>
           </li>
         </ul>
   </div>
+
 </section>
