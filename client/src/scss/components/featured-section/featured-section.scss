@@ -25,22 +25,22 @@ featured-section {
           @include transition(all, .3s);
           opacity: 0;
         }
-      }
 
-      h4 {
-        @include transition(all, .3s);
-        opacity: 0;
-      }
+        h4 {
+          z-index: 2;
+          @include transition(all, .3s);
+          opacity: 0;
+        }
 
-      &:hover {
-        content-overlay {
+        &:hover {
           .darken-overlay {
             opacity: 1;
           }
-        }
-        h4 {
-          opacity: 1;
-        }
+
+          h4 {
+            opacity: 1;
+          }
+        }      
       }
     }
 

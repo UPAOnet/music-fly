@@ -4,9 +4,10 @@
          ng-class="{'genre-row': $ctrl.isGenreList,
                     'artist-row': $ctrl.isArtistList}" 
          ng-repeat="content in $ctrl.contentList" 
-         ng-click="$ctrl.clickSearch(content.name)">
-      <content-overlay class="mf-l-center-block"></content-overlay>
-      <h4 class="mf-l-absolute-center">{{content.name}}</h4>
+         >
+      <content-overlay ng-click="$ctrl.clickSearch(content.name)" class="mf-l-center-block">
+        <h4 class="mf-l-absolute-center">{{content.name}}</h4>
+      </content-overlay>    
       <img class="mf-l-center-block" src="{{content.source}}" ">      
     </div>
   </div>
