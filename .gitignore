@@ -8,7 +8,7 @@
 
 #dev folder
 
-/client/dev
+/client/dev/**
 
 #bundle 
 
