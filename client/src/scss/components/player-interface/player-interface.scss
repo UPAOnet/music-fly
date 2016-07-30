@@ -4,6 +4,7 @@ player-interface {
   $interface-height-negative: -120px;
 
   .player-interface {
+    z-index: 100;
     background-color: $lowContrastBlack;
     display:flex;
     align-items: center;

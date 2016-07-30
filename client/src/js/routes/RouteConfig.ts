@@ -9,13 +9,14 @@ export const RouteConfig = function (
   $urlRouterProvider.otherwise('/');
   $stateProvider
 
-    .state('home', {
-      url: '/',
-      templateUrl: ('/js/views/home.html')
-    })
+    // Leave out home route until home page is done
+    // .state('home', {
+    //   url: '/',
+    //   templateUrl: ('/js/views/home.html')
+    // })
 
     .state('player', {
-      url: '/player',
+      url: '/',
       templateUrl: ('/js/views/player.html')
     })
 

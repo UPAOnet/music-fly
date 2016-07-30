@@ -49,8 +49,9 @@ class Controller {
   private checkForHome () {
     this.$rootScope.$on('$viewContentLoading',
       (event, toState, toParams, fromState, fromParams, options) => {
-        this.isHomePage = (this.$location.url() === '/')
-        this.showAltNav = (this.$location.url() !== '/');
+        // Change back when home page is done
+        // this.isHomePage = (this.$location.url() === '/')
+        this.showAltNav = (this.$location.url() === '/');
       }
     )
   }
