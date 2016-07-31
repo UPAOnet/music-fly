@@ -24,6 +24,7 @@ angular.module('musicApp')
         this.urlSource = urlSource;
         this.pageSource = pageSource;
         this.deleteAble = false;
+        this.viewDuration = this.setViewDuration(this.duration);
     }
 
     /**
@@ -32,6 +33,7 @@ angular.module('musicApp')
      */
     song.prototype.setPreviewLength = function (length) {
       this.duration = length;
+      this.viewDuration = '0:30';
     };
 
     /**
@@ -39,6 +41,27 @@ angular.module('musicApp')
      */
     song.prototype.deleteAble = function () {
       this.deleteAble = true;
+    };
+
+    /**
+     * Puts the song in a deleteable state
+     */
+    song.prototype.deleteAble = function () {
+      this.deleteAble = true;
+    };
+
+    /**
+     * Changes duration into a viewable state
+     */
+    song.prototype.setViewDuration = function (duration) {
+      var milliseconds = duration;
+      var time = milliseconds / 1000;
+      var minutes = Math.floor(time / 60);
+      var seconds =  Math.floor(time - minutes * 60);
+
+      return minutes + ':' + seconds;
+
+
     };
 
     return song;
