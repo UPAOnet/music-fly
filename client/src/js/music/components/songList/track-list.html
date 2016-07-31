@@ -12,42 +12,39 @@
       <!-- Description -->
       <tr class="prevent-wrapping default-cursor song animate-repeat"
           ng-repeat= "song in $ctrl.songs track by $index"
-          ng-click="$ctrl.playMusic(song)"
+          
           ng-class="{'active-song': $ctrl.selectedSong.name === song.name}">
-
-        <td class="hidden-xs mf-l-relative-parent">
+        <div>
+        <td class="hidden-xs mf-l-relative-parent" ng-click="$ctrl.playMusic(song)">
           <img class="song-img" ng-src="{{song.image}}"/>
           <play-button role-type="songList"></play-button>
         </td>
-        <td class="mf-l-content-sides">
+        <td class="mf-l-content-sides" ng-click="$ctrl.playMusic(song)">
           <span class="song-name">{{song.name}}</span>
         </td>
-        <td>
+        <td ng-click="$ctrl.playMusic(song)">
+          <img class="company-logo pull-left" 
+               src="/assets/images/music-player/{{song.company}}.svg" 
+               ng-show="$ctrl.songList === 'playlist'"
+               /> 
           <span class="song-artist">{{song.artist}}</span>
         </td>
-        <td>
+        <td ng-click="$ctrl.playMusic(song)">
           <span class="song-duration">{{song.duration}}</span>
         </td>
         <td>
-        <!--<td ng-click="$ctrl.addSong($event, song, $mdOpenMenu)">-->
-          <!--<span class="glyphicon glyphicon-plus"></span>
-          <span></span>-->
-            
-        <md-menu md-position-mode="target-right target">
-          <md-button class="md-icon-button" ng-click="$ctrl.openMenu($event, $mdOpenMenu)">
-            <span class="glyphicon glyphicon-plus"></span><span>Add to</span>
-          </md-button>
-          <md-menu-content width="4" >
-            <md-menu-item ng-repeat="playlist in $ctrl.availablePlaylists">
-              <md-button>
-                  <div layout="row" flex ng-click="$ctrl.addSong($event, song, playlist)">
-                    <p flex>{{playlist.name}}</p>
-                  </div>
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-plus"></span><span>Add to</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="playlist in $ctrl.availablePlaylists"
+                  ng-click="$ctrl.addSong($event, song, playlist)"
+                  class="mf-l-content-xs">
+                {{playlist.name}}
+              </li>
+            </ul>
+          </div>
         </td>
 
       </tr>

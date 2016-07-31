@@ -7,6 +7,7 @@ import {MusicEvents} from '../../music/constants/musicEvents.ts'
 import {PlayerControls} from '../../music/service/PlayerControls.service.ts';
 
 const angular = require('angular');
+const _ = require('lodash');
 const BUTTON_WIDTH: number = 30;
 
 interface ButtonStyle {
@@ -31,10 +32,13 @@ class Controller {
   private progressWidth: number;
   private moveRight: number;
   private isPaused: boolean;
+  private interfaceState: boolean;
 
   // Affected styles
   public elapsedStyle: elapsedStyle;
   public buttonStyle: ButtonStyle;
+
+  private Angular
 
   constructor (
     private $element: ng.IRootElementService,
@@ -42,32 +46,44 @@ class Controller {
     private $rootScope:ng.IRootScopeService,
     private playerControls: PlayerControls,
     private musicEvents: MusicEvents,
-    private numberConverter: INumberConverter
+    private numberConverter: INumberConverter,
+    private $timeout: ng.ITimeoutService   
   ) {
     'ngInject';
+
+    this.Angular = angular;
   }
 
+  
   $onInit() {
 
     /**
-     * Sets an interval to cache how much more time the song has
+     * Sets a timer to cache how much more time the song has
      */
     window.setInterval(() => {
       if (!this.isPaused && this.animationDuration > 0) {
         this.animationDuration = (this.animationDuration - 1000);
-        console.log(this.animationDuration); 
       }
     }, 1000);
+
+    // Waits for interface to fully load before starting animation
+    this.$scope.$watch (() => {
+      return this.interfaceState
+    }, () => {
+      this.startProgressBar();
+    })
 
     /**
      * Resets bar data if a new song is loaded in the player
      * @listens SONG_SELECTED
      */
     this.$rootScope.$on(this.musicEvents.songSelected, (event, data) => {
-      if (!data) {
-        return
-      }     
+      if (!data) {return}     
       this.getSongLength(data.duration);
+
+      // Passes responsibility to the watch function if interface
+      // is not fully loaded. This fixes bar not starting on initial load. 
+      if (!this.interfaceState) {return}
       this.resetProgressBar();
       this.startProgressBar();
     })
@@ -89,6 +105,7 @@ class Controller {
     })
 
     this.render();
+    this.setReadjust();
   }
 
   $postLink() {
@@ -122,6 +139,16 @@ class Controller {
     this.stubbyBar.stop();
     this.elapsedBar.stop();
   }
+
+  /**
+   * Readjusts animation, but not setting isPaused to false
+   * Because the song is not actually paused
+   */
+  private readjustProgress () {
+    this.stubbyBar.stop();
+    this.elapsedBar.stop();
+    this.startProgressBar();
+  }
   
   /**
    * Starts the animation once all properties are set
@@ -130,6 +157,7 @@ class Controller {
   private startProgressBar () {
     
     this.progressWidth = (this.entireBar.outerWidth());
+
     this.stubbyBar.animate({
       left: `${this.progressWidth}`
     }, this.animationDuration, 
@@ -150,6 +178,16 @@ class Controller {
   }
 
   /**
+  * Binds resize event to determine if progress bar needs to readjust
+  */
+  private setReadjust () {
+    this.Angular.element(window).bind('resize', _.debounce( () => {
+        this.readjustProgress();
+      }, 500)
+    );
+  }
+
+  /**
    * Initializes the styles
    */
   private render (): void {
@@ -167,5 +205,8 @@ class Controller {
 
 export const durationBar = {
   controller: Controller,
-  templateUrl: require('./durationBar.html')
+  templateUrl: require('./durationBar.html'),
+  bindings: {
+    interfaceState: '<'
+  }
 }

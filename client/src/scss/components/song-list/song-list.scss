@@ -88,6 +88,15 @@ song-list {
       }     
     }
 
+    // Dropdown styling
+    .btn-group {
+      .btn {
+        border: none !important;
+        background: none !important;
+        color: $white !important;
+      }   
+    }
+
   }
 }
 

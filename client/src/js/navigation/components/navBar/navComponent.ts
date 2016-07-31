@@ -1,6 +1,6 @@
 declare const require: any;
 
-const angular = require('angular');
+const Angular = require('angular');
 
 class Controller {
   private showSideNav: boolean;
@@ -8,15 +8,15 @@ class Controller {
   private showAltNav: boolean;
   private isHomePage: boolean;
   private userScroll: number;
-  private Angular;
+  // private Angular
   private isOpen;
 
   constructor(
-    private $scope,
-    private $rootScope,
-    private $location,
-    private $window,
-    private $timeout,
+    private $scope: ng.IScope,
+    private $rootScope: ng.IRootScopeService,
+    private $location: ng.ILocationService,
+    private $window: ng.IWindowService,
+    private $timeout: ng.ITimeoutService,
     private userLogin,
     private $mdSidenav
   ) {
@@ -26,7 +26,7 @@ class Controller {
     this.$mdSidenav = $mdSidenav;
     this.$scope = $scope;
     this.$window = $window;
-    this.Angular = angular;
+    // this.Angular = angular;
 
     // Controller props
     this.showAltNav = null;
@@ -61,7 +61,7 @@ class Controller {
   */
   private checkUserScroll () {
     const navChangePoint = 170
-    this.Angular.element(window).bind('scroll', () => {
+    Angular.element(window).bind('scroll', () => {
 
       if (this.isHomePage) {
         // Timeout set to make sure digest is called
