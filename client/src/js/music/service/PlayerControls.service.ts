@@ -114,11 +114,13 @@ export class PlayerControls {
   public resumeMusic(): void {
     this.Player.play();
     this.playState.playing = true;
+    this.$rootScope.$broadcast(this.musicEvents.songPlay);
   }
 
   public pauseMusic (): void {
     this.Player.pause();
     this.playState.playing = false;
+    this.$rootScope.$broadcast(this.musicEvents.songPause);
   }
 
   /**

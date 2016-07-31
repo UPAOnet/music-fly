@@ -11,6 +11,11 @@ featured-section {
         height: 220px;
         width: 220px;
       }
+
+      h4 {
+        z-index: 3;
+        font-weight: 700;
+      }
     }
     
     img {
@@ -18,7 +23,7 @@ featured-section {
       width: 220px;
     }
 
-    // Artist row only
+    // Artist row specific
     .artist-row {
       content-overlay {
         .darken-overlay {
@@ -27,7 +32,6 @@ featured-section {
         }
 
         h4 {
-          z-index: 2;
           @include transition(all, .3s);
           opacity: 0;
         }

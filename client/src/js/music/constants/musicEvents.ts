@@ -1,6 +1,7 @@
 export interface MusicEvents {
   songSelected: string;
   songPlay: string;
+  songPause: string;
   newSearch: string;
   switchPlaylist: string;
   addSong: string;
@@ -16,6 +17,8 @@ export const MUSIC_EVENTS: MusicEvents = {
   songSelected: 'SONG_SELECTED',
   // song is played
   songPlay: 'SONG_PLAY',
+  // Song is paused
+  songPause: 'SONG_PAUSE',
   // search is typed into a search bar
   newSearch: 'NEW_SEARCH',
   // user switches to a playlist view

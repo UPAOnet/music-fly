@@ -9,9 +9,9 @@ require("./images/album/mosaic.jpg");
 require("./images/modal/sign-up.jpg");
 
 // Music Player
-require("./images/music-player/default-album.png");
 require("./images/music-player/soundcloud.svg");
 require("./images/music-player/spotify.svg");
+require("./images/music-player/default-album.jpg");
 
 // artists 
 require("./images/artists/coldplay.jpg")

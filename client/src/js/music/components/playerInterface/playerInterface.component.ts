@@ -1,6 +1,5 @@
 import {ISongInterface} from '../../../interfaces/songInterface.ts';
 
-
 /**
  * Displays information regarding current track.
  * @module playerInterfaceComponent

@@ -32,14 +32,14 @@ angular.module('musicApp')
      */
     song.prototype.setPreviewLength = function (length) {
       this.duration = length;
-    }
+    };
 
     /**
      * Puts the song in a deleteable state
      */
     song.prototype.deleteAble = function () {
       this.deleteAble = true;
-    }
+    };
 
     return song;
 

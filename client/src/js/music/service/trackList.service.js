@@ -30,6 +30,10 @@ angular.module('musicApp')
     }
   };
 
+  function setDefaultImage () {
+    this.image = "/assets/images/music-player/default-album.jpg";
+  }
+
 
   factory.currentTracks = () => list;
 
@@ -58,7 +62,7 @@ angular.module('musicApp')
             each.preview_url, 
             each.external_urls.spotify
           )
-
+        
         theSong.setPreviewLength(30000); 
         searchList.push(theSong);
        
@@ -80,6 +84,10 @@ angular.module('musicApp')
           url, 
           each.permalink_url
         )
+
+        if (theSong.image === null) {
+          setDefaultImage.call(theSong);
+        }
 
         searchList.push(theSong);
       })
