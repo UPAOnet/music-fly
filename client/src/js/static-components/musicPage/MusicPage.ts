@@ -20,7 +20,7 @@ class Controller {
 
     // Listens for any search events
     this.$rootScope.$on(this.musicEvents.newSearch, (event, searchResults) => {
-      console.log(searchResults);
+
       this.soundcloudTracks = searchResults[0];
       this.spotifyTracks = searchResults[1];
       this.hasPlaylist = false;

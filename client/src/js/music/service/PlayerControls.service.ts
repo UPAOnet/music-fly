@@ -25,6 +25,7 @@ export class PlayerControls {
   private selectedSong: any;
   private currentSongInfo: IPlayerSongInfo;
   private playState: IPlayState;
+  private durationTimer: any;
 
   constructor (
     private $window,
@@ -81,8 +82,8 @@ export class PlayerControls {
 
   private setDurationTimer (currentSong: any): void {
 
-    // Sets timer to turn off timer once song is finished
-    this.$timeout(() => this.turnOffTimer(), currentSong.duration);
+    // Sets timer to turn off duration timer once song is finished
+    this.durationTimer = this.$timeout(() => this.turnOffTimer(), currentSong.duration);
     this.playState.timerDuration = currentSong.duration;
   }
 
@@ -113,12 +114,15 @@ export class PlayerControls {
 
   public resumeMusic(): void {
     this.Player.play();
+    this.setDurationTimer(this.selectedSong);
     this.playState.playing = true;
     this.$rootScope.$broadcast(this.musicEvents.songPlay);
   }
 
   public pauseMusic (): void {
     this.Player.pause();
+    this.$timeout.cancel(this.durationTimer);
+    console.log(this.durationTimer);
     this.playState.playing = false;
     this.$rootScope.$broadcast(this.musicEvents.songPause);
   }

@@ -70,23 +70,23 @@ song-list {
       }
     }
 
-    .animate-repeat {
-      &.ng-enter {
-        opacity: 0;
-        @include transition(opacity, .5s);
-      }
+    // .animate-repeat {
+    //   &.ng-enter {
+    //     opacity: 0;
+    //     @include transition(opacity, .5s);
+    //   }
 
-      &.ng-enter.ng-enter-active {
-        opacity: 1;
-      }
+    //   &.ng-enter.ng-enter-active {
+    //     opacity: 1;
+    //   }
       
-      &.ng-enter-stagger {
-        transition-delay: .05s;
+    //   &.ng-enter-stagger {
+    //     transition-delay: .05s;
 
-        // signals ngAnimate to not accidentally inherit a delay property from another CSS class
-        transition-duration: 0s;
-      }     
-    }
+    //     // signals ngAnimate to not accidentally inherit a delay property from another CSS class
+    //     transition-duration: 0s;
+    //   }     
+    // }
 
     // Dropdown styling
     .btn-group {

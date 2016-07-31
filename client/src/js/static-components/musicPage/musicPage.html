@@ -6,7 +6,7 @@
   <featured-page ng-if="!$ctrl.showSongs"></featured-page>
   
   <!--Playlist component-->
-  <song-list ng-hide="!$ctrl.hasPlaylist && $ctrl.showSongs"
+  <song-list ng-show="$ctrl.hasPlaylist && $ctrl.showSongs"
              songs="$ctrl.playlistTracks"
              header="{{$ctrl.header}}"
              song-list="playlist"
@@ -16,7 +16,7 @@
   <!--Search list components-->
   <div class="row">
     <div class="col-xs-12 col-md-6">
-      <song-list ng-hide="$ctrl.hasPlaylist && $ctrl.showSongs" 
+      <song-list ng-show="!$ctrl.hasPlaylist && $ctrl.showSongs" 
             header="{{$ctrl.header}}" 
             songs="$ctrl.spotifyTracks"
             song-list="spotify"
@@ -26,7 +26,7 @@
     </div>
 
     <div class="col-xs-12 col-md-6">
-      <song-list ng-hide="$ctrl.hasPlaylist && $ctrl.showSongs"
+      <song-list ng-show="!$ctrl.hasPlaylist && $ctrl.showSongs"
             header="{{$ctrl.header}}" 
             songs="$ctrl.soundcloudTracks"
             song-list="soundcloud"

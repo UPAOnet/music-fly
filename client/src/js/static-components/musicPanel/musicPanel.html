@@ -3,7 +3,7 @@
   <!--Featured-->
   <div class="mf-l-content-sides" ng-click="$ctrl.switchFeatured()">
     <span class="glyphicon glyphicon-star-empty"></span>
-    <h6>Featured</h6> 
+    <h6 class="mf-btn orange-text">Featured</h6> 
   </div>
 
   <!--Playlist-->
@@ -12,13 +12,14 @@
      <h6>Playlists</h6>
         <ul>
           <li ng-repeat="playlist in $ctrl.playlists track by $index"
-              ng-click="$ctrl.switchPlaylist($index)">
+              ng-click="$ctrl.switchPlaylist($index)"
+              class="mf-btn orange-text">
             {{playlist.name}}
           </li>
           <!--Add new Button and input-->
           <li ng-hide="$ctrl.isAddingPlaylist" 
               ng-click="$ctrl.showNewField()"
-              ><span class="glyphicon glyphicon-plus"></span><span>Add new<span>
+              ><span class="glyphicon glyphicon-plus"></span><span class="mf-btn orange-text">Add new<span>
           </li>
           <li ng-hide="!$ctrl.isAddingPlaylist" ng-keypress="$ctrl.addNewPlaylist($event)">
             <input ng-model="$ctrl.newListName"></input>

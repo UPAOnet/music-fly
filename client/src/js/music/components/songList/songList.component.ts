@@ -6,6 +6,7 @@ class SongListController {
  private songs: any;
 
  private selectedSong: any;
+ private selectedSongIndex: number;
  private songList: string;
 
  private availablePlaylists: any;
@@ -59,7 +60,6 @@ class SongListController {
  private playNextSong (index:number): void {
    let next;
    let newIndex;
-
    if (this.songs[index+1]) {
      newIndex = index+1;
      next = this.songs[newIndex];  
@@ -91,7 +91,7 @@ class SongListController {
   * Passses clicked song to the main player
   * {song} - The song object
   */
- public playMusic (song: any, index: number, songList: string) {
+ public playMusic (song: any, index: number, songList?: string) {
    this.playerControls.playMusic(song, index, this.songList);
    this.selectedSong = song;
    this.emitSong(song);

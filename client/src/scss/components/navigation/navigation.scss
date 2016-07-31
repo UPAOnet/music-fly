@@ -52,6 +52,30 @@ nav-bar {
   md-sidenav {
     background-color: $playerBlack;
     position: fixed;
+    z-index: 101;
+
+    music-panel {
+      .music-panel {
+        width: 100%;
+        position: static;
+        background-color: $playerBlack;
+      }
+    }
+
+    player-interface {
+      .player-interface {
+        background-color: $playerBlack;
+        text-align: center;
+
+        div {
+          display: block;
+        }
+
+        .player-info {
+          width: auto;
+        }
+      }
+    }
   }
 
   // Logo Styling
