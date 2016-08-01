@@ -19,8 +19,7 @@ class Controller {
     'ngInject';
 
     this.$scope.$on(this.musicEvents.featuredSearch, (event, search) => {
-      this.searchQuery = search;
-      this.search();
+      this.search(search);
     })
 
   }
@@ -36,11 +35,14 @@ class Controller {
   /**
    * Search functionality
    */
-    private search () {
+    private search (search?: string) {
       let spotifyTracks;
       let soundcloudTracks;    
+      let query;
 
-      Promise.all([this.soundCloudSearchQuery(), this.spotifySearchQuery() ])
+      search ? query = search : query = this.searchQuery;
+
+      Promise.all([this.soundCloudSearchQuery(query), this.spotifySearchQuery(query) ])
         .then( (results) => {
 
           spotifyTracks = this.TrackList.formatTracks(results[1].data.tracks.items, 'spotify');
@@ -64,8 +66,8 @@ class Controller {
   /**
    * Search functionality for spotify songs
    */
-  private spotifySearchQuery () {
-    let spotifyTracks = this.spotifySearch.makeRequest(this.searchQuery);
+  private spotifySearchQuery (query) {
+    let spotifyTracks = this.spotifySearch.makeRequest(query);
     return spotifyTracks  
   }
 
@@ -73,8 +75,8 @@ class Controller {
    * Search for soundcloud
    * 
    */
-  private soundCloudSearchQuery = function () {  
-    return this.scSearch.allTracks(this.searchQuery);
+  private soundCloudSearchQuery = function (query) {  
+    return this.scSearch.allTracks(query);
   };
 
   /** Search event from input field
