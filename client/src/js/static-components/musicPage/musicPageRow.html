@@ -6,7 +6,7 @@
         {{$ctrl.header}}
         <span ng-if="$ctrl.company" class="results-header">
           <img class="company-logo" src="/assets/images/music-player/{{$ctrl.company}}.svg" /> 
-          <span>{{$ctrl.company}}</span>
+          <span>{{$ctrl.company}}</span><span ng-if="$ctrl.company === 'spotify'">&nbsp;(preview only)</span>
         </span>
 
       </h4>
