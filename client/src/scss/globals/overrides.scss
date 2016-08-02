@@ -1,5 +1,12 @@
 // Overrides for default bootstrap behavior
 
+body {
+  background-color: $playerBlack;
+}
+
+li {
+  list-style-type: none;
+}
 
 // Nav Overrides
 nav.navbar-fixed-top {
