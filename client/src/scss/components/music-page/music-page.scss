@@ -3,9 +3,11 @@ music-page {
     background-color: $playerBlack;
     // Overflow hidden for phone stretching issue
     overflow-x: hidden;
-
+    
     @include tablet() {
       margin-left: $music-panel-width;
+      // padding for interface
+      padding-bottom: 120px;
     }
   }
 }
