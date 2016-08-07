@@ -40,6 +40,11 @@ export class playerInterfaceController {
     this.currentTrack = song
   }
 
+  public togglePanel () {
+    this.shouldShow = false;
+    this.isLoaded = false;
+  }
+
 }
 
 export const playerInterfaceComponent = {

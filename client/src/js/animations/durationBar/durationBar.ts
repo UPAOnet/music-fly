@@ -67,10 +67,9 @@ class Controller {
     }, 1000);
 
     // Waits for interface to fully load before starting animation
-    this.$scope.$watch (() => {
-      return this.interfaceState
-    }, () => {
-      this.startProgressBar();
+    this.$scope.$watch (() => this.interfaceState, 
+    (newVal, oldval) => {
+      newVal ? this.startProgressBar() : this.resetProgressBar();    
     })
 
     /**

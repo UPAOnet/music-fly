@@ -11,7 +11,7 @@ player-interface {
     width: 100%;
 
     @include fixed-bottom();
-    @include transition (bottom, 1s);
+    @include transition (bottom, .6s);
     
     // Enable transition animations
     &.ng-hide {
@@ -64,5 +64,17 @@ player-interface {
       } 
     }
 
+    // Toggle Button
+    .toggle-btn {
+      width: 65px;
+      height: 20px;
+      position:absolute;
+      top: -22px;
+      left: 3px;
+      background-color: $lowContrastBlack;
+      color: $white;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
   }
 }
