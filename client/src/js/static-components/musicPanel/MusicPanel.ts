@@ -8,20 +8,41 @@ class Controller {
   private newListName: string;
   private isAddingPlaylist: boolean;
   private playlists: any;
+  private addInputEvent: any;
                                                       
   constructor(
     private playlistsService: PlaylistsService,
     private $scope: ng.IScope,
+    private $timeout: ng.ITimeoutService,
     private musicEvents: MusicEvents,
-    private $rootScope: ng.IRootScopeService
+    private $rootScope: ng.IRootScopeService,
+    private $element: ng.IRootElementService,
+    private $window
   ) {
-    'ngInject';
+    'ngInject';   
+  }
 
+  $onInit () {
     this.playlists = this.playlistsService.loadSavedLists();
 
     this.$scope.$on(this.musicEvents.newPlaylist, (event, playlists) => {
       this.playlists = playlists;
     })
+  }
+
+
+  /**
+   * Exits the input field if clicking outside
+   * @event - click
+   * {element} - DOM selector
+   */
+  private clickExit (element?) {
+    let theInput = element.find('.panel-input');
+    if (event.target !== theInput[0]) {
+      this.$timeout(() => this.isAddingPlaylist = false); 
+      this.$window.removeEventListener("click", this.addInputEvent);
+      event.stopPropagation();
+    }
   }
 
   /**
@@ -52,8 +73,14 @@ class Controller {
   /**
    * Displays the input field for playlists
    */
-  public showNewField (): void {
+  public showNewField ($event): void {
     this.isAddingPlaylist = true;
+    $event.stopPropagation();
+    
+    this.addInputEvent = this.$window.addEventListener("click", () => {
+      this.clickExit(this.$element);
+    });
+    
   }
 
   public addNewPlaylist (event): void  {
@@ -65,7 +92,8 @@ class Controller {
       }
       this.playlistsService.createNewPlaylist(this.newListName);
       this.newListName = '';
-      this.isAddingPlaylist = false;    
+      this.isAddingPlaylist = false;   
+      this.$window.removeEventListener("click", this.addInputEvent); 
     } 
   }
 }

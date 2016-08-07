@@ -17,12 +17,15 @@
             {{playlist.name}}
           </li>
           <!--Add new Button and input-->
-          <li ng-hide="$ctrl.isAddingPlaylist" 
-              ng-click="$ctrl.showNewField()"
+          <li ng-if="!$ctrl.isAddingPlaylist" 
+              ng-click="$ctrl.showNewField($event)"
               ><span class="glyphicon glyphicon-plus"></span><span class="mf-btn orange-text">Add new<span>
           </li>
-          <li ng-hide="!$ctrl.isAddingPlaylist" ng-keypress="$ctrl.addNewPlaylist($event)">
-            <input ng-model="$ctrl.newListName"></input>
+          <li ng-if="$ctrl.isAddingPlaylist" 
+              ng-keypress="$ctrl.addNewPlaylist($event)"
+              class="m-input-underline-effect">
+            <input class="panel-input" mf-auto-focus="true" ng-model="$ctrl.newListName"></input>
+            <span></span>
           </li>
         </ul>
   </div>

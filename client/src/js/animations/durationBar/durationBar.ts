@@ -1,5 +1,5 @@
 /**
- * @file Handles song duration logic for the view. 
+ * @file Handles song duration logic on duration bar. 
  */
 
 import {INumberConverter} from '../../interfaces/serviceInterface.ts';

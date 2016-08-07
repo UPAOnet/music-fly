@@ -1,0 +1,36 @@
+// Default input styles
+%single-line {
+    border: 0; 
+    padding: 7px 0; 
+    border-bottom: 1px solid $white;
+    color: $white;
+  }
+
+.m-standard-input{
+    border: 1px solid #ccc; 
+    padding: 7px 14px 9px; 
+    transition: 0.4s;
+  }
+
+// Put this class on the containing element, along with an input and span
+.m-input-underline-effect {
+  position: relative; 
+
+    input {
+      @extend %single-line;
+    }
+
+    span {
+      position: absolute; 
+      bottom: 0; left: 0; 
+      width: 0; 
+      height: 2px; 
+      background-color: $dark-orange; 
+      @include transition(all, .4s);
+    }
+
+    input:focus ~ span {
+      width: 100%; 
+    }
+    
+  }
