@@ -13,7 +13,7 @@
       <tr class="prevent-wrapping default-cursor song animate-repeat"
           ng-repeat= "song in $ctrl.songs track by $index"
           
-          ng-class="{'active-song': $ctrl.selectedSong.name === song.name}">
+          ng-class="{'active-song': $ctrl.selectedSong === song}">
         <div>
         <td class="hidden-xs mf-l-relative-parent" ng-click="$ctrl.playMusic(song, $index)">
           <img class="song-img" ng-src="{{song.image}}"/>
