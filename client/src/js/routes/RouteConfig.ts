@@ -1,4 +1,3 @@
-declare const require;
 
 export const RouteConfig = function (
   $stateProvider,

@@ -94,7 +94,6 @@ class SongListController {
  public playMusic (song: any, index: number, songList?: string) {
    this.playerControls.playMusic(song, index, this.songList);
    this.selectedSong = song;
-   console.log(this.selectedSong);
    this.emitSong(song);
  }
 

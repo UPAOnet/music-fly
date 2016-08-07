@@ -25,6 +25,7 @@ export class PlayerControls {
   private selectedSong: any;
   private currentSongInfo: IPlayerSongInfo;
   private playState: IPlayState;
+  private Notification;
   private endSongTimer: any;
 
   constructor (
@@ -155,7 +156,7 @@ export class PlayerControls {
     this.currentSongList.songList = songList;
 
     this.playState.playing = true;
-
+    
     this.Player.src = this.setUrl(song.urlSource, song.company);
     this.Player.play();
   } 
