@@ -64,7 +64,6 @@ export class PlayerControls {
     window.setInterval(() => {
       if (this.playState.playing && this.playState.timerDuration > 0) {
         this.playState.timerDuration = (this.playState.timerDuration - 1000);
-        console.log(this.playState.timerDuration);
       }
     }, 1000);
 
@@ -92,6 +91,12 @@ export class PlayerControls {
 
   private setDurationTimer (currentSong: any): void {
     this.playState.timerDuration = currentSong.duration;
+
+    // Cancels any existing timers
+    if (this.endSongTimer) {
+      this.$timeout.cancel(this.endSongTimer);
+    }
+    
     // Sets timer to turn off duration timer once song is finished
     this.endSongTimer = this.$timeout(() => this.turnOffTimer(), this.playState.timerDuration); 
   }
@@ -123,7 +128,7 @@ export class PlayerControls {
 
   public resumeMusic(): void {
     this.Player.play();
-    // Sets timer to turn off duration timer once song is finished. use cached duration
+    // Sets a new timer using the cached duration.
     this.endSongTimer = this.$timeout(() => this.turnOffTimer(), this.playState.timerDuration);
     this.playState.playing = true;
     this.$rootScope.$broadcast(this.musicEvents.songPlay);
