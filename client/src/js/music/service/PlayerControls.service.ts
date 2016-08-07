@@ -25,7 +25,7 @@ export class PlayerControls {
   private selectedSong: any;
   private currentSongInfo: IPlayerSongInfo;
   private playState: IPlayState;
-  private durationTimer: any;
+  private endSongTimer: any;
 
   constructor (
     private $window,
@@ -56,7 +56,17 @@ export class PlayerControls {
     this.currentSongList = {
       songList: null,
       index: null
-    }
+    };
+
+    /**
+     * Sets a timer to cache how much more time the song has
+     */
+    window.setInterval(() => {
+      if (this.playState.playing && this.playState.timerDuration > 0) {
+        this.playState.timerDuration = (this.playState.timerDuration - 1000);
+        console.log(this.playState.timerDuration);
+      }
+    }, 1000);
 
   }
 
@@ -81,10 +91,9 @@ export class PlayerControls {
   }
 
   private setDurationTimer (currentSong: any): void {
-
-    // Sets timer to turn off duration timer once song is finished
-    this.durationTimer = this.$timeout(() => this.turnOffTimer(), currentSong.duration);
     this.playState.timerDuration = currentSong.duration;
+    // Sets timer to turn off duration timer once song is finished
+    this.endSongTimer = this.$timeout(() => this.turnOffTimer(), this.playState.timerDuration); 
   }
 
   private setPlayerInfo(currentSong: any): void {
@@ -114,15 +123,15 @@ export class PlayerControls {
 
   public resumeMusic(): void {
     this.Player.play();
-    this.setDurationTimer(this.selectedSong);
+    // Sets timer to turn off duration timer once song is finished. use cached duration
+    this.endSongTimer = this.$timeout(() => this.turnOffTimer(), this.playState.timerDuration);
     this.playState.playing = true;
     this.$rootScope.$broadcast(this.musicEvents.songPlay);
   }
 
   public pauseMusic (): void {
     this.Player.pause();
-    this.$timeout.cancel(this.durationTimer);
-    console.log(this.durationTimer);
+    this.$timeout.cancel(this.endSongTimer);
     this.playState.playing = false;
     this.$rootScope.$broadcast(this.musicEvents.songPause);
   }

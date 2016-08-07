@@ -29,11 +29,11 @@
                /> 
           <span class="song-artist">{{song.artist}}</span>
         </td>
-        <td ng-click="$ctrl.playMusic(song, $index)">
+        <td class="hidden-xs" ng-click="$ctrl.playMusic(song, $index)">
           <span class="song-duration">{{song.viewDuration}}</span>
         </td>
         <td>
-          <div class="btn-group">
+          <div class="btn-group hidden-xs">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
               <span class="glyphicon glyphicon-plus"></span><span>Add to</span>
             </button>
