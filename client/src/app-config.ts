@@ -5,13 +5,17 @@ const angular = require('angular');
 const uiRouter = require('angular-ui-router');
 const angularMaterial = require('angular-material');
 const angularAnimate = require('angular-animate');
+const angularNotification = require('angular-ui-notification');
 const MODULE_NAME = 'musicApp'
-// SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})
+
 import {RouteConfig} from './js/routes/RouteConfig.ts';
+import {uiNotifications} from './js/static-components/notification/notificationConfig.ts';
 
 export const module = angular.module(MODULE_NAME, [
   uiRouter,
   angularMaterial,
-  angularAnimate
+  angularAnimate,
+  angularNotification
 ])
   .config(RouteConfig)
+  .config(uiNotifications)
