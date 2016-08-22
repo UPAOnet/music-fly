@@ -1,12 +1,8 @@
 
 // Home Images
 require("./images/home/headphone.png");
-require("./images/home/hero2.jpg");
-require("./images/home/running.jpg");
 
 // Music Player
-require("./images/music-player/soundcloud.svg");
-require("./images/music-player/spotify.svg");
 require("./images/music-player/default-album.jpg");
 
 // artists 
