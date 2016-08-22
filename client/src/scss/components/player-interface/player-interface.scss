@@ -11,7 +11,7 @@ player-interface {
     width: 100%;
 
     @include fixed-bottom();
-    @include transition (bottom, .7s);
+    @include transition (bottom, .9s);
     
     // Enable transition animations
     &.ng-hide {

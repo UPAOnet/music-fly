@@ -40,9 +40,19 @@ export class playerInterfaceController {
     this.currentTrack = song
   }
 
-  public togglePanel () {
-    this.shouldShow = false;
-    this.isLoaded = false;
+  /**
+   * Toglges Display Panel
+   * {on} - true for on, false for off
+   */
+  public togglePanel (on: boolean) {
+
+    if (on) {
+      this.shouldShow = true;
+      this.isLoaded = true;
+    } else {
+      this.shouldShow = false;
+      this.isLoaded = false;
+    }
   }
 
 }

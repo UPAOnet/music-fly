@@ -54,10 +54,16 @@ module.exports = {
     }
    ]
   },
-  plugins: debug ? [] : [
+  // plugins: debug ? [] : [
+  //   new CopyWebpackPlugin([{ from: 'assets' }]),
+  //   new webpack.optimize.DedupePlugin(),
+  //   new webpack.optimize.OccurenceOrderPlugin(),
+  //   new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+  // ],
+  plugins: [
     new CopyWebpackPlugin([{ from: 'assets' }]),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-  ],
+  ]
 };

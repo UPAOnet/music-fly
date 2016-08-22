@@ -23,10 +23,7 @@
           <span class="song-name">{{song.name}}</span>
         </td>
         <td ng-click="$ctrl.playMusic(song, $index)">
-          <img class="company-logo pull-left" 
-               src="/assets/images/music-player/{{song.company}}.svg" 
-               ng-show="$ctrl.songList === 'playlist'"
-               /> 
+          <i class="fa fa-{{song.company}} fa-lg company-logo pull-left"  ng-show="$ctrl.songList === 'playlist'"></i>
           <span class="song-artist">{{song.artist}}</span>
         </td>
         <td class="hidden-xs" ng-click="$ctrl.playMusic(song, $index)">

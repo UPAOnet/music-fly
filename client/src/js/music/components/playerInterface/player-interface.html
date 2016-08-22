@@ -1,11 +1,18 @@
 <!--Full sized interface-->
 
+<!--<div ng-show="!$ctrl.isLoaded && $ctrl.currentTrack" class="toggle-btn mf-l-content-sides-xs hidden-xs" ng-click="$ctrl.togglePanel(false)">
+    open
+    <span class="glyphicon glyphicon-chevron-down"></span>
+</div>-->
 <aside ng-hide="!$ctrl.shouldShow" class="player-interface mf-l-content-sides m-player-border-top hidden-xs">
 
-  <div class="toggle-btn mf-l-content-sides-xs " ng-click="$ctrl.togglePanel($event)">
+  <!--Open and close buttons-->
+  <!--LEaving out because of UX cmoplexity-->
+  <!--<div ng-show="$ctrl.isLoaded" class="toggle-btn mf-l-content-sides-xs " ng-click="$ctrl.togglePanel(false)">
     close
     <span class="glyphicon glyphicon-chevron-down"></span>
-  </div>
+  </div>-->
+  
 
   <div class="player-image">   
     <!--<svg class="middle-circle"></svg>-->
