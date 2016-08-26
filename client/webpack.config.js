@@ -5,11 +5,11 @@ var path = require('path');
 
 
 module.exports = {
-  context: __dirname + '/client/src',
+  context: __dirname + '/src',
   devtool: debug ? "inline-sourcemap" : null,
   entry: "./entry.js",
   output: {
-    path: __dirname + "/client/dev/public",
+    path: __dirname + "/dev/public",
     filename: "scripts.min.js"
   },
   module: {
