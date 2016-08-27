@@ -2,6 +2,8 @@
   * entry point for webpack
   */
 
+require('./index.html');
+
 import module from './app-config.ts';
 SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})
 // path for all main JS directories
@@ -19,3 +21,4 @@ addIndex('navigation');
 addIndex('routes');
 addIndex('animations');
 addIndex('static-components');
+addIndex('api');
