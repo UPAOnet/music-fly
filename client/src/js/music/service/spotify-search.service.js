@@ -22,6 +22,6 @@ angular.module('musicApp')
       // }
 
       function makeRequest (input) {
-        return apiUtils.get('spotify');
+        return apiUtils.get(`spotify?search=${input}`);
       }
     })

@@ -44,7 +44,7 @@ class Controller {
 
       Promise.all([this.soundCloudSearchQuery(query), this.spotifySearchQuery(query) ])
         .then( (results) => {
-
+          console.log(results);
           spotifyTracks = this.TrackList.formatTracks(results[1].data.tracks.items, 'spotify');
           soundcloudTracks = this.TrackList.formatTracks(results[0], 'soundcloud');
           this.tracks = this.combineResults(soundcloudTracks, spotifyTracks);
