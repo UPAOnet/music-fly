@@ -24,8 +24,6 @@ class SpotifySearch
       song.preview_url, 
       song.external_urls.spotify
     end
-
-    binding.pry
   end
   
 end

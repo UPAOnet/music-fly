@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'pry'
 
-require_relative 'lib/spotify'
+# require_relative 'lib/spotify'
 require_relative 'routes/init'
 
 class MusicFlyApp < Sinatra::Application

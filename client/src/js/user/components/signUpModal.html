@@ -1,0 +1,40 @@
+<section class="sign-up-modal">
+
+  <h2>Create an account</h2>
+  <form name="signUp" novalidate>
+    <div>
+      <label>Username</label>
+      <input  name="username" 
+              required 
+              type="text"
+              ng-model="$ctrl.user.username" 
+              ng-model-options="{ updateOn: 'blur' }"
+              /> 
+      <p ng-show="signUp.username.$error.required && signUp.username.$dirty">
+        Please enter a valid user name
+      </p>
+    </div>
+    <div>
+      <label>Password</label>
+      <input name="password"
+             required 
+             type="text" 
+             ng-model="$ctrl.user.password"
+             ng-model-options="{ updateOn: 'blur' }"
+             /> 
+      <p ng-show="signUp.password.$error.required && signUp.password.$dirty">
+        Please enter a non blank password
+      </p>
+    </div>
+    <div>
+      <button type="submit" ng-click="$ctrl.submitForm()" ng-disabled="signUp.$invalid">Submit</button>
+      <button ng-click="$ctrl.close()">Cancel</button>
+    </div>
+<!--whole form: {{signUp.$error}}-->
+<br>
+password: {{$ctrl.user.$valid}}
+password: {{signUp.password.$dirty}}
+
+  </form>
+
+</secition>

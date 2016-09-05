@@ -17,16 +17,11 @@ class Controller {
     private $location: ng.ILocationService,
     private $window: ng.IWindowService,
     private $timeout: ng.ITimeoutService,
-    private userLogin,
-    private $mdSidenav
+    private $mdSidenav,
+    private $mdDialog
+
   ) {
     'ngInject';
-
-    // Services
-    this.$mdSidenav = $mdSidenav;
-    this.$scope = $scope;
-    this.$window = $window;
-    // this.Angular = angular;
 
     // Controller props
     this.showAltNav = null;

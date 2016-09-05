@@ -22,3 +22,4 @@ addIndex('routes');
 addIndex('animations');
 addIndex('static-components');
 addIndex('api');
+addIndex('user');
