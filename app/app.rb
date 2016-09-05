@@ -1,8 +1,9 @@
 require 'sinatra'
+require 'sinatra/activerecord'
 require 'json'
 require 'require_all'
 require 'pry'
-require 'sinatra/activerecord'
+
 
 
 # require_relative 'lib/spotify'
