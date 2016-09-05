@@ -1,4 +1,5 @@
 
 post '/api/v1/new_account' do 
-  binding.pry
+  userInfo = JSON.parse(request.body.read)
+  
 end
