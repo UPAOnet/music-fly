@@ -12,16 +12,16 @@ angular.module('musicApp')
 
      return search;
 
-      // function makeRequest (input) {
-      //   var query = JSON.stringify({queryInput: input})
-      //   return $http({
-      //     data: query,
-      //     url: '/spotify',
-      //     method: 'POST'
-      //   })
-      // }
-
       function makeRequest (input) {
-        return apiUtils.get(`spotify?search=${input}`);
+        var query = JSON.stringify({queryInput: input})
+        return $http({
+          data: query,
+          url: `https://api.spotify.com/v1/search?q=${input}&type=track&limit=20`,
+          method: 'GET'
+        })
       }
+
+      // function makeRequest (input) {
+      //   return apiUtils.get(`spotify?search=${input}`);
+      // }
     })
