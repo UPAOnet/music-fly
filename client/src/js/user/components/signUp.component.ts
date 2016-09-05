@@ -7,11 +7,9 @@ const Controller = function (
 
   this.openDialog = function ($event) {
     $uibModal.open({
-      // parent: parentEl,
-      // targetEvent: $event,
       controller: SignUpModal,
       controllerAs: '$ctrl',
-      templateUrl: require('./signUpModal.html')     
+      templateUrl: require('./createUserModal.html')     
     });
   }
 
@@ -19,16 +17,17 @@ const Controller = function (
 
 const SignUpModal = function (
   $mdDialog,
-  $scope
+  $scope,
+  auth
 ) {
   'ngInject';
 
   // Form model
-  this.user;
+  this.newUser;
 
   this.submitForm = function () {
-    console.log(this.user);
-    console.log('SUBMIT')
+    console.log(this.newUser);
+    auth.createUser(this.newUser)
   }
 
   this.close = function () {

@@ -7,7 +7,7 @@
       <input  name="username" 
               required 
               type="text"
-              ng-model="$ctrl.user.username" 
+              ng-model="$ctrl.newUser.username" 
               ng-model-options="{ updateOn: 'blur' }"
               /> 
       <p ng-show="signUp.username.$error.required && signUp.username.$dirty">
@@ -19,7 +19,7 @@
       <input name="password"
              required 
              type="text" 
-             ng-model="$ctrl.user.password"
+             ng-model="$ctrl.newUser.password"
              ng-model-options="{ updateOn: 'blur' }"
              /> 
       <p ng-show="signUp.password.$error.required && signUp.password.$dirty">
@@ -30,7 +30,6 @@
       <button type="submit" ng-click="$ctrl.submitForm()" ng-disabled="signUp.$invalid">Submit</button>
       <button ng-click="$ctrl.close()">Cancel</button>
     </div>
-    
   </form>
 
 </secition>
