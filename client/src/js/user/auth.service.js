@@ -10,7 +10,11 @@ export const Auth = function (
   }
 
   function createUser (user) {
-    apiUtils.post('new_account?', user);
+    apiUtils.post('account/new', user);
+  }
+
+  function currentUser() {
+    apiUtils.get('account/current')
   }
   
 

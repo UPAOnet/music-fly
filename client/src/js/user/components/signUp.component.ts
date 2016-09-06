@@ -1,9 +1,12 @@
 
 const Controller = function (
-  $uibModal
+  $uibModal,
+  auth
 ) {
   'ngInject';
   var self = this;
+
+
 
   this.openDialog = function ($event) {
     $uibModal.open({

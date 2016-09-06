@@ -4,7 +4,7 @@ require 'json'
 require 'require_all'
 require 'pry'
 
-
+enable :sessions
 
 # require_relative 'lib/spotify'
 require_relative './config/environments'
