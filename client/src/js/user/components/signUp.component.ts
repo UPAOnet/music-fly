@@ -37,6 +37,10 @@ const SignUpModal = function (
     $scope.$close();
   }
 
+  this.test = function () {
+    auth.getUser();
+  }
+
 }
 
 const signUp = {

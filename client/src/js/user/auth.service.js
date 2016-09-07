@@ -6,15 +6,18 @@ export const Auth = function (
 
   
   return {
-    createUser: createUser
+    createUser: createUser,
+    getUser: getUser
   }
 
   function createUser (user) {
-    apiUtils.post('account/new', user);
+    apiUtils.post('account', user);
   }
 
-  function currentUser() {
-    apiUtils.get('account/current')
+  function getUser() {
+    apiUtils.get('account').then(function (data) {
+      console.log(data);
+    })
   }
   
 
