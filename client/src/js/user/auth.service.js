@@ -1,23 +1,47 @@
 export const Auth = function (
-  apiUtils
+  apiUtils,
+  $rootScope,
+  musicEvents
 ) {
   'ngInject'
   var self = this;
+  var user = {};
 
+  // Gets stored session if any
+  checkSession().then(function (result) {
+    if (result) {
+      updateUser(result.data);
+    }
+  });
   
   return {
     createUser: createUser,
-    getUser: getUser
+    getUser: getUser,
+    logOut: logOut
+  }
+
+  function updateUser (userInfo) {
+    $rootScope.$broadcast(musicEvents.login, userInfo);
   }
 
   function createUser (user) {
-    apiUtils.post('account', user);
+    apiUtils.post('account', user).then((result) => {
+      updateUser(result.data)
+    });
+  }
+
+  function checkSession() {
+    return apiUtils.get('account');
   }
 
   function getUser() {
-    apiUtils.get('account').then(function (data) {
-      console.log(data);
-    })
+    return user;
+  }
+
+  function logOut () {
+    apiUtils.post('account/logout').then(() => {
+      $rootScope.$broadcast(musicEvents.logout);
+    });
   }
   
 

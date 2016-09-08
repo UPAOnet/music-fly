@@ -42,11 +42,12 @@
 
   .mf-btn {
    font-size: to-rem(24px);
-   color: #ffffff;
+   color: $white;
    @include transition(all, 0.25s);
 
    &:focus {
      outline: none;
+     color: $white;
    }
 
    // Text only modifications

@@ -1,4 +1,6 @@
 export interface MusicEvents {
+  login: string;
+  logout: string;
   songSelected: string;
   songPlay: string;
   songPause: string;
@@ -13,6 +15,10 @@ export interface MusicEvents {
 }
 
 export const MUSIC_EVENTS: MusicEvents = {
+  // User log in 
+  login: 'LOGIN_SUCCESSFUL',
+  // User log out 
+  logout: 'LOGOUT_SUCCESSFUL',
   // song is selected from a song list
   songSelected: 'SONG_SELECTED',
   // song is played

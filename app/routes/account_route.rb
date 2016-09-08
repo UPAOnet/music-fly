@@ -19,10 +19,16 @@ end
 
 get '/api/v1/account' do 
   if session["user"]
-    current = session["user"]
-    account = Account.find_by_id(current) 
-    return account.extend(AccountRepresenter).to_json
+    return get_current_user
   else 
-    halt 404, "No user logged in"
+    halt 404, "No current user"
+  end
+end
+
+post '/api/v1/account/logout' do 
+  if session["user"]
+    session["user"] = nil
+  else 
+    halt 404, "No current user"
   end
 end

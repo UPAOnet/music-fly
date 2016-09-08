@@ -1,3 +1,5 @@
+import {MusicEvents} from '../../music/constants/musicEvents.ts'
+
 
 const Controller = function (
   $uibModal,
@@ -5,8 +7,6 @@ const Controller = function (
 ) {
   'ngInject';
   var self = this;
-
-
 
   this.openDialog = function ($event) {
     $uibModal.open({
@@ -21,7 +21,9 @@ const Controller = function (
 const SignUpModal = function (
   $mdDialog,
   $scope,
-  auth
+  auth,
+  musicEvents: MusicEvents,
+  $rootScope: ng.IRootScopeService
 ) {
   'ngInject';
 
@@ -40,6 +42,11 @@ const SignUpModal = function (
   this.test = function () {
     auth.getUser();
   }
+
+  $rootScope.$on(musicEvents.login, (event, data) => {
+    this.close();
+  })
+
 
 }
 

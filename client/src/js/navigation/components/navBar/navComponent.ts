@@ -1,4 +1,4 @@
-declare const require: any;
+import {MusicEvents} from '../../../music/constants/musicEvents.ts'
 
 const Angular = require('angular');
 
@@ -8,6 +8,7 @@ class Controller {
   private showAltNav: boolean;
   private isHomePage: boolean;
   private userScroll: number;
+  private user: any;
   // private Angular
   private isOpen;
 
@@ -17,6 +18,8 @@ class Controller {
     private $location: ng.ILocationService,
     private $window: ng.IWindowService,
     private $timeout: ng.ITimeoutService,
+    private musicEvents: MusicEvents,
+    private auth,
     private $mdSidenav,
     private $mdDialog
 
@@ -25,10 +28,29 @@ class Controller {
 
     // Controller props
     this.showAltNav = null;
-    this.isHomePage = null;
+    this.isHomePage = null;  
+    this.user = null;
+
+  }
+
+  $onInit () {
     this.checkUserScroll();
     this.checkForHome();
+  }
 
+  $postLink () {
+    this.$rootScope.$on(this.musicEvents.login, (event, data) => {
+      this.user = data;
+      console.log(this.user);
+    })
+
+    this.$rootScope.$on(this.musicEvents.logout, (event, data) => {
+      this.user = null;
+    })
+  }
+
+  private userLogout () {
+    this.auth.logOut();
   }
 
   private openLeftMenu () {
