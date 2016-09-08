@@ -21,7 +21,7 @@ get '/api/v1/account' do
   if session["user"]
     current = session["user"]
     account = Account.find_by_id(current) 
-    return account.to_json
+    return account.extend(AccountRepresenter).to_json
   else 
     halt 404, "No user logged in"
   end

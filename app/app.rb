@@ -9,7 +9,7 @@ enable :sessions
 # require_relative 'lib/spotify'
 require_relative './config/environments'
 require_relative 'routes/init'
-require_rel 'models', 'lib', 'helpers'
+require_rel 'models', 'lib', 'helpers', 'representers'
 
 class MusicFlyApp < Sinatra::Application
 
