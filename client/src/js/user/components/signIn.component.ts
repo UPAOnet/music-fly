@@ -1,6 +1,5 @@
 import {MusicEvents} from '../../music/constants/musicEvents.ts'
 
-
 const Controller = function (
   $uibModal,
   auth
@@ -10,15 +9,15 @@ const Controller = function (
 
   this.openDialog = function ($event) {
     $uibModal.open({
-      controller: SignUpModal,
+      controller: AuthModal,
       controllerAs: '$ctrl',
-      templateUrl: require('./createUserModal.html')     
+      templateUrl: require('./signInModal.html')     
     });
   }
 
 }
 
-const SignUpModal = function (
+const AuthModal = function (
   $mdDialog,
   $scope,
   auth,
@@ -28,10 +27,11 @@ const SignUpModal = function (
   'ngInject';
 
   // Form model
-  this.newUser;
+  this.signInInfo
 
   this.submitForm = function () {
-    auth.createUser(this.newUser)
+    console.log(this.signInInfo);
+    auth.logIn(this.signInInfo);
   }
 
   this.close = function () {
@@ -45,9 +45,9 @@ const SignUpModal = function (
 
 }
 
-const signUp = {
-  templateUrl: require('./signUp.html'),
+const signIn = {
+  templateUrl: require('./signIn.html'),
   controller: Controller
 }
 
-export default signUp;
+export default signIn;

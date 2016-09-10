@@ -8,7 +8,7 @@ post '/api/v1/account' do
     @account.save
     session["user"] = @account.id
 
-    return @account.to_json
+    get_current_session
     # @session = @account.sessions.create
 		# set_session_cookie(@session.session_token)
   else 
@@ -19,10 +19,20 @@ end
 
 get '/api/v1/account' do 
   if session["user"]
-    return get_current_user
+    return get_current_session
   else 
-    halt 404, "No current user"
+    return
   end
+end
+
+post '/api/v1/account/login' do 
+  userInfo = JSON.parse(request.body.read)
+  @account = Account.new(userInfo)
+  user = get_user(@account.username)
+  session["user"] = user
+
+  return user
+
 end
 
 post '/api/v1/account/logout' do 
@@ -32,3 +42,5 @@ post '/api/v1/account/logout' do
     halt 404, "No current user"
   end
 end
+
+

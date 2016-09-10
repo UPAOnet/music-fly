@@ -7,7 +7,7 @@ export const Auth = function (
   var self = this;
   var user = {};
 
-  // Gets stored session if any
+  // Gets stored session upon load if any
   checkSession().then(function (result) {
     if (result) {
       updateUser(result.data);
@@ -17,10 +17,12 @@ export const Auth = function (
   return {
     createUser: createUser,
     getUser: getUser,
-    logOut: logOut
+    logOut: logOut,
+    logIn: logIn
   }
 
   function updateUser (userInfo) {
+    user = userInfo;
     $rootScope.$broadcast(musicEvents.login, userInfo);
   }
 
@@ -41,6 +43,12 @@ export const Auth = function (
   function logOut () {
     apiUtils.post('account/logout').then(() => {
       $rootScope.$broadcast(musicEvents.logout);
+    });
+  }
+
+  function logIn (user) {
+    apiUtils.post('account/login', user).then((result) => {
+      updateUser(result.data);
     });
   }
   

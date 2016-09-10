@@ -1,17 +1,17 @@
 <section class="sign-up-modal">
 
-  <h2>Create an account</h2>
+  <h2>Sign In</h2>
   <form name="signUp" novalidate>
     <div>
       <label>Username</label>
       <input  name="username" 
               required 
               type="text"
-              ng-model="$ctrl.newUser.username" 
+              ng-model="$ctrl.signInInfo.username" 
               ng-model-options="{ updateOn: 'blur' }"
               /> 
       <p ng-show="signUp.username.$error.required && signUp.username.$dirty">
-        Please enter a valid user name
+        Please enter a valid username
       </p>
     </div>
     <div>
@@ -19,17 +19,19 @@
       <input name="password"
              required 
              type="text" 
-             ng-model="$ctrl.newUser.password"
+             ng-model="$ctrl.signInInfo.password"
              ng-model-options="{ updateOn: 'blur' }"
              /> 
       <p ng-show="signUp.password.$error.required && signUp.password.$dirty">
-        Please enter a non blank password
+        Please enter a valid password
+      </p>
+      <p ng-show="signUp.password.$error.required && signUp.password.$dirty">
+        Could not sign in, please check your username and password
       </p>
     </div>
     <div>
-      <button type="submit" ng-click="$ctrl.submitForm()" ng-disabled="signUp.$invalid">Submit</button>
+      <button type="submit" ng-click="$ctrl.submitForm()" ng-disabled="signUp.$invalid">Sign In</button>
       <button ng-click="$ctrl.close()">Cancel</button>
+      <button ng-click="$ctrl.test()"></button>
     </div>
   </form>
-
-</secition>
