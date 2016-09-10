@@ -8,7 +8,11 @@ module AccountHelper
 
   def get_user (userInfo)
     @account = Account.authenticate_password(userInfo.username, userInfo.password)
-    return @account.extend(AccountRepresenter).to_json
+    if @account
+      return @account.extend(AccountRepresenter).to_json
+    else 
+      return nil
+    end
   end
-
+  
 end

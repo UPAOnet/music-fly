@@ -47,9 +47,13 @@ export const Auth = function (
   }
 
   function logIn (user) {
-    apiUtils.post('account/login', user).then((result) => {
-      updateUser(result.data);
-    });
+    apiUtils.post('account/login', user)
+      .then((result) => {
+        updateUser(result.data);
+      })
+      .catch((e) => {
+        updateUser(undefined)
+      })
   }
   
 

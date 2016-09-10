@@ -25,12 +25,20 @@ const AuthModal = function (
   $rootScope: ng.IRootScopeService
 ) {
   'ngInject';
+  const self = this;
+
+  const authStatus = {
+    success: 'success',
+    failed: 'failed'
+  }
 
   // Form model
   this.signInInfo
 
+  // Validity state
+  this.authState;
+
   this.submitForm = function () {
-    console.log(this.signInInfo);
     auth.logIn(this.signInInfo);
   }
 
@@ -39,7 +47,11 @@ const AuthModal = function (
   }
 
   $rootScope.$on(musicEvents.login, (event, data) => {
-    this.close();
+    data === undefined ? this.authState = authStatus.failed : this.authState = authStatus.success;
+
+    if (this.authState === 'success') {
+      this.close();
+    }
   })
 
 

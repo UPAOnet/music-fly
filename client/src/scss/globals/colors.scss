@@ -12,6 +12,9 @@ $grey: #828282;
 $light-grey: #6d6d6d;
 $dark-grey: #232323;
 
+//red
+$error-red: #942c2c;
+
 // Black
 $playerBlack: #191919;
 $panelBlack: #212223;
@@ -19,3 +22,8 @@ $lowContrastBlack: #060606;
 
 // white
 $white: #ffffff;
+
+
+.error-text {
+  color: $error-red;
+}

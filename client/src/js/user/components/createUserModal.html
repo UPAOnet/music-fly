@@ -1,35 +1,49 @@
-<section class="sign-up-modal">
+<section class="auth-modal">
+    <div class="text-center mf-l-content">
+      <h2 class="mf-l-content-bottom">Sign In</h2>
+      <form name="signUp" novalidate>
+        <div class="mf-l-content-bottom">
+          <div class="mf-l-relative-parent inline-block input-box ">
+            <input name="username"
+                  class="underline-popover"
+                  ng-class="{'has-content': $ctrl.signInInfo.username}"
+                  required 
+                  type="text" 
+                  ng-model="$ctrl.signInInfo.username"
+                  ng-model-options="{ updateOn: 'blur' }"
+                  placeholder
+                  />
+            <label>Username</label>
+            <span class="focus-border"></span>      
+          </div>
+        </div>
 
-  <h2>Create an account</h2>
-  <form name="signUp" novalidate>
-    <div>
-      <label>Username</label>
-      <input  name="username" 
-              required 
-              type="text"
-              ng-model="$ctrl.newUser.username" 
-              ng-model-options="{ updateOn: 'blur' }"
-              /> 
-      <p ng-show="signUp.username.$error.required && signUp.username.$dirty">
-        Please enter a valid user name
-      </p>
+        <div class="password-field">
+          <div class="mf-l-relative-parent inline-block input-box">
+            <input name="password"
+                  class="underline-popover"
+                  ng-class="{'has-content': $ctrl.signInInfo.password}"
+                  required 
+                  type="text" 
+                  ng-model="$ctrl.signInInfo.password"
+                  placeholder
+                  />
+            <label>Password</label>
+            <span class="focus-border"></span>      
+          </div>
+        </div>
+        <div>
+          <p class="error-text" ng-show="$ctrl.authState === 'failed'">
+            Sign in failed, please check your username and password
+          </p>   
+          <button type="submit" 
+                  ng-click="$ctrl.submitForm()" 
+                  ng-disabled="signUp.$invalid"
+                  class="btn mf-btn orange-fill"
+                  >Sign In</button>
+          <button ng-click="$ctrl.close()" class="btn mf-btn orange-text">Cancel</button>
+        </div>
+      </form>
     </div>
-    <div>
-      <label>Password</label>
-      <input name="password"
-             required 
-             type="text" 
-             ng-model="$ctrl.newUser.password"
-             ng-model-options="{ updateOn: 'blur' }"
-             /> 
-      <p ng-show="signUp.password.$error.required && signUp.password.$dirty">
-        Please enter a non blank password
-      </p>
-    </div>
-    <div>
-      <button type="submit" ng-click="$ctrl.submitForm()" ng-disabled="signUp.$invalid">Submit</button>
-      <button ng-click="$ctrl.close()">Cancel</button>
-    </div>
-  </form>
-
-</secition>
+</section>
+  

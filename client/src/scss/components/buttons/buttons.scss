@@ -29,9 +29,12 @@
  @mixin fill-button ( $text-color: $white, $fill: $dark-orange) {
    @extend %button;
 
+   color: $white;
+   background-color: $fill;
+
    &:hover {
-     color: $text-color;
-     background-color: $fill;
+    color: $text-color;
+    background-color: none;
    }
 
  }

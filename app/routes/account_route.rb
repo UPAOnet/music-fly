@@ -9,8 +9,7 @@ post '/api/v1/account' do
     session["user"] = @account.id
 
     get_current_session
-    # @session = @account.sessions.create
-		# set_session_cookie(@session.session_token)
+
   else 
     halt 404, "Account could not be created"
   end 
@@ -26,16 +25,14 @@ get '/api/v1/account' do
 end
 
 post '/api/v1/account/login' do 
-
   userInfo = JSON.parse(request.body.read)
   @account = Account.new(userInfo)
 
   user = get_user(@account)
-  
+  halt 404, 'Account not found.' unless user
+   
   session["user"] = user
-
   return user
-
 end
 
 post '/api/v1/account/logout' do 
