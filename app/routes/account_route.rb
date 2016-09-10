@@ -26,9 +26,12 @@ get '/api/v1/account' do
 end
 
 post '/api/v1/account/login' do 
+
   userInfo = JSON.parse(request.body.read)
   @account = Account.new(userInfo)
-  user = get_user(@account.username)
+
+  user = get_user(@account)
+  
   session["user"] = user
 
   return user
