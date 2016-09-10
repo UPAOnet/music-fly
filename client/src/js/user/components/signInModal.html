@@ -1,37 +1,50 @@
-<section class="sign-up-modal">
-
-  <h2>Sign In</h2>
-  <form name="signUp" novalidate>
-    <div>
-      <label>Username</label>
-      <input  name="username" 
-              required 
-              type="text"
-              ng-model="$ctrl.signInInfo.username" 
-              ng-model-options="{ updateOn: 'blur' }"
-              /> 
-      <p ng-show="signUp.username.$error.required && signUp.username.$dirty">
-        Please enter a valid username
-      </p>
-    </div>
-    <div>
-      <label>Password</label>
-      <input name="password"
-             required 
-             type="text" 
-             ng-model="$ctrl.signInInfo.password"
-             ng-model-options="{ updateOn: 'blur' }"
-             /> 
-      <p ng-show="signUp.password.$error.required && signUp.password.$dirty">
-        Please enter a valid password
-      </p>
-      <p ng-show="signUp.password.$error.required && signUp.password.$dirty">
-        Could not sign in, please check your username and password
-      </p>
-    </div>
-    <div>
-      <button type="submit" ng-click="$ctrl.submitForm()" ng-disabled="signUp.$invalid">Sign In</button>
-      <button ng-click="$ctrl.close()">Cancel</button>
-      <button ng-click="$ctrl.test()"></button>
-    </div>
-  </form>
+<section class="auth-modal">
+  <div class="text-center mf-l-content">
+    <h2 class="mf-l-content-bottom">Sign In</h2>
+    <form name="signIn" novalidate>
+      <div>
+        <div class="mf-l-content-bottom">
+          <div class="mf-l-relative-parent inline-block input-box ">     
+            <input name="username"
+                    class="underline-popover"
+                    ng-class="{'has-content': $ctrl.signInInfo.username}"
+                    required 
+                    type="text" 
+                    ng-model="$ctrl.signInInfo.username"
+                    ng-model-options="{ updateOn: 'blur' }"
+                    placeholder
+                    />
+            <label>Username</label>
+            <span class="focus-border"></span>
+          </div>
+        </div>
+        <div class="mf-l-content-bottom-large">
+          <div class="mf-l-relative-parent inline-block input-box ">     
+            <input name="password"
+                    class="underline-popover"
+                    ng-class="{'has-content': $ctrl.signInInfo.password}"
+                    required 
+                    type="text" 
+                    ng-model="$ctrl.signInInfo.password"
+                    placeholder
+                    />
+            <label>Password</label>
+            <span class="focus-border"></span>
+          </div>
+        </div>
+        <p class="error-text" ng-show="$ctrl.authState === 'failed'">
+            Sign in failed, please check your username and password
+        </p> 
+        <div>
+          <button type="submit" 
+                  ng-click="$ctrl.submitForm()" 
+                  ng-disabled="signIn.$invalid"
+                  class="btn mf-btn orange-fill"
+                  >Sign In</button>
+          <button ng-click="$ctrl.close()" class="btn mf-btn orange-text">Cancel</button>
+        </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
