@@ -5,6 +5,7 @@ export const MusicPageRow = {
   bindings: {
     // Binding for any header text
     header: '@',
-    company: '@?'
+    company: '@?',
+    deleteable: '<'
   }
 }

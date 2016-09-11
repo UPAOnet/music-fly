@@ -1,6 +1,7 @@
 <section class="song-list">
   <music-page-row header="{{$ctrl.header}}"
-                  company="{{$ctrl.company}}">
+                  company="{{$ctrl.company}}"
+                  deleteable="$ctrl.songList === 'playlist' && $ctrl.header !== 'My Playlist'">
     <table ng-hide="!$ctrl.songs">
       <!--<tr>
         <th class="hidden-xs"></th>
@@ -8,7 +9,6 @@
         <th>Artist</th>
         <th>Duration</th>
       </tr>-->
-
       <!-- Description -->
       <tr class="prevent-wrapping default-cursor song animate-repeat"
           ng-repeat= "song in $ctrl.songs track by $index"

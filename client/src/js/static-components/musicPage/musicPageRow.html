@@ -1,13 +1,25 @@
 <section class="row">
   <div class="row-header">
     <div class="mf-l-content">
-      <h4 class="m-player-border-bottom">    
+      <h3 class="m-player-border-bottom">    
         {{$ctrl.header}}
+        <!--Shows company icons for searches-->
         <span ng-if="$ctrl.company" class="results-header">
           <i class="fa fa-{{$ctrl.company}}"></i>
           <span>{{$ctrl.company}}</span><span ng-if="$ctrl.company === 'spotify'">&nbsp;(preview only)</span>
         </span>
-      </h4>
+        
+        <!--Shows delete for playlists. Do not show delete for default playlist-->
+        <button class="delete-text btn mf-btn orange-text"
+                ng-class="{'show-delete': $ctrl.deleteable}"
+                >
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+          delete playlist 
+        </button>
+      <h3>
+
+      
+
     </div>
   </div>
   <div class="mf-l-content-sides">

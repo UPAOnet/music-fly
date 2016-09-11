@@ -10,4 +10,14 @@ music-page-row {
   span {
     text-transform: none;
   }
+
+  .delete-text {
+    font-size: 13px;
+    padding: 0 0 0 70px;
+    display: none;
+  }
+
+  .show-delete {
+    display: inline-block !important;
+  }
 }
