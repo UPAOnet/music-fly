@@ -1,28 +1,27 @@
+import {MusicEvents} from '../constants/musicEvents.ts'
 
 export class PlaylistsService {
   private currentPlaylists: any;
-  private playlistTabs: any;
 
   constructor(
-    private $rootScope,
-    private musicEvents,
+    private $rootScope: ng.IRootScopeService,
+    private musicEvents: MusicEvents,
     private apiUtils,
     private auth
   ) {
-    'ngInject';
-
-    // My Playlist is a hard coded sample playlist
+    'ngInject';   
+    
     this.currentPlaylists = [];
 
+    // My Playlist is a hard coded sample playlist
     this.currentPlaylists.push({
       name: 'My Playlist',
       tracks: []
     });
 
-    this.playlistTabs
-  }
-
-  $onInit() {
+    this.$rootScope.$on(this.musicEvents.login, (event, user) => {
+      this.loadSavedLists(user.id);
+    });
 
   }
 
@@ -36,13 +35,25 @@ export class PlaylistsService {
       console.log('NO USER');
       return;
     }
-    this.apiUtils.post('/playlist', playListName);
+    this.apiUtils.post(`playlist/${playListName}`);
   }
 
   /**
-   * Renders already created or saved playlists
+   * Retrieves saved plylists from the server
    */
-  public loadSavedLists () {
+  public loadSavedLists (userId) {
+    this.apiUtils.get(`playlist`).then((result) => {
+      result.data.forEach((current, i) => {
+        this.currentPlaylists.push(current);
+        console.log(this.currentPlaylists);
+      })
+    });
+  } 
+
+  /**
+   * Gets currently cached playlists
+   */
+  public getPlaylists() {
     return this.currentPlaylists;
   }
 

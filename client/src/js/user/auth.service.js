@@ -21,6 +21,9 @@ export const Auth = function (
     logIn: logIn
   }
 
+  /**
+   * Caches current user and notfifies components
+   */
   function updateUser (userInfo) {
     user = userInfo;
     $rootScope.$broadcast(musicEvents.login, userInfo);

@@ -25,7 +25,7 @@ class SongListController {
  ) {
   'ngInject';
 
-  this.availablePlaylists = this.playlistsService.loadSavedLists();
+  this.availablePlaylists = this.playlistsService.getPlaylists();
 
   // Listen for playlist creation events
   this.$scope.$on(this.musicEvents.newPlaylist, (event, newPlaylist: any) => {

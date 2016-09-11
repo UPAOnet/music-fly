@@ -3,7 +3,6 @@ post '/api/v1/account' do
   userInfo = JSON.parse(request.body.read)
   @account = Account.new(userInfo)
 
-
   if @account
     @account.save
     # Use account id as the session id

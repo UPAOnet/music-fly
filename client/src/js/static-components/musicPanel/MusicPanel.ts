@@ -23,7 +23,7 @@ class Controller {
   }
 
   $onInit () {
-    this.playlists = this.playlistsService.loadSavedLists();
+    this.playlists = this.playlistsService.getPlaylists();
 
     this.$scope.$on(this.musicEvents.newPlaylist, (event, playlists) => {
       this.playlists = playlists;
