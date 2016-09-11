@@ -5,7 +5,9 @@ export class PlaylistsService {
 
   constructor(
     private $rootScope,
-    private musicEvents
+    private musicEvents,
+    private apiUtils,
+    private auth
   ) {
     'ngInject';
 
@@ -20,6 +22,23 @@ export class PlaylistsService {
     this.playlistTabs
   }
 
+  $onInit() {
+
+  }
+
+  /**
+   * Saves playlist data
+   * @params playListName - name of the playlist
+   */
+  private saveNewPlaylist (playListName) {
+    // Can only save playlists if theres a user
+    if (!this.auth.getUser()) {
+      console.log('NO USER');
+      return;
+    }
+    this.apiUtils.post('/playlist', playListName);
+  }
+
   /**
    * Renders already created or saved playlists
    */
@@ -27,12 +46,19 @@ export class PlaylistsService {
     return this.currentPlaylists;
   }
 
+  /**
+   * Adds new playlists to current paylist cache
+   * This will create a single source for playlists
+   * Only users will actually be able save them
+   */
   public createNewPlaylist (name: string): any {
 
     let playlist = {
       name: name,
       tracks: []
-    }
+    };
+
+    this.saveNewPlaylist(playlist.name);
     this.currentPlaylists.push(playlist);
     this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
   }

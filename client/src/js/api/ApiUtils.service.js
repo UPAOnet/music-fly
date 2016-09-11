@@ -23,7 +23,6 @@ export const ApiUtils = /*@ngInject*/ function (
   function post (path, data) {
     // Post needs to transofrm because usually we're passing
     // in an object
-    console.log(transformData(data));
     return $http({
       data: transformData(data),
       url: `${v1}${path}`,

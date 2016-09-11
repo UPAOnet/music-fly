@@ -41,7 +41,6 @@ class Controller {
   $postLink () {
     this.$rootScope.$on(this.musicEvents.login, (event, data) => {
       this.user = data;
-      console.log(this.user);
     })
 
     this.$rootScope.$on(this.musicEvents.logout, (event, data) => {

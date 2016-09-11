@@ -6,10 +6,10 @@ post '/api/v1/account' do
 
   if @account
     @account.save
+    # Use account id as the session id
     session["user"] = @account.id
-
-    get_current_session
-
+    user = get_current_session
+    user.to_json
   else 
     halt 404, "Account could not be created"
   end 
@@ -18,7 +18,8 @@ end
 
 get '/api/v1/account' do 
   if session["user"]
-    return get_current_session
+    user = get_current_session
+    return user.to_json
   else 
     return
   end
@@ -27,12 +28,13 @@ end
 post '/api/v1/account/login' do 
   userInfo = JSON.parse(request.body.read)
   @account = Account.new(userInfo)
-
+  
   user = get_user(@account)
   halt 404, 'Account not found.' unless user
-   
-  session["user"] = user
-  return user
+
+  # Use account id as the session id
+  session["user"] = user.id
+  return user.to_json
 end
 
 post '/api/v1/account/logout' do 
