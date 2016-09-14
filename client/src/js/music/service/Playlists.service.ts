@@ -13,15 +13,16 @@ export class PlaylistsService {
     
     this.currentPlaylists = [];
 
-    // My Playlist is a hard coded sample playlist
-    this.currentPlaylists.push({
-      name: 'My Playlist',
-      tracks: []
-    });
+    // Sets the default playlist
+    this.resetPlaylist();
 
     this.$rootScope.$on(this.musicEvents.login, (event, user) => {
       this.loadSavedLists(user.id);
     });
+
+    this.$rootScope.$on(this.musicEvents.logout, (event, data) => {
+      this.resetPlaylist();
+    })
 
   }
 
@@ -29,15 +30,25 @@ export class PlaylistsService {
    * Saves playlist data
    * @params playListName - name of the playlist
    */
-  private saveNewPlaylist (playListName) {
+  private saveNewPlaylist (playListName): void {
     // Can only save playlists if theres a user
     if (!this.auth.getUser()) {
-      console.log('NO USER');
       return;
     }
     this.apiUtils.post(`playlist/${playListName}`);
   }
 
+  /**
+   * Resets playlist upon logout
+   */
+  private resetPlaylist (): void {
+    this.currentPlaylists = [];
+    this.currentPlaylists.push({
+      name: 'Demo Playlist',
+      tracks: []
+    });
+  }
+ 
   /**
    * Retrieves saved plylists from the server
    */
@@ -45,7 +56,6 @@ export class PlaylistsService {
     this.apiUtils.get(`playlist`).then((result) => {
       result.data.forEach((current, i) => {
         this.currentPlaylists.push(current);
-        console.log(this.currentPlaylists);
       })
     });
   } 
@@ -55,6 +65,13 @@ export class PlaylistsService {
    */
   public getPlaylists() {
     return this.currentPlaylists;
+  }
+
+  /**
+   * Deletes a playlist
+   */
+  public deletePlaylist(name) {
+    this.apiUtils.deleteCall('playlist', name);
   }
 
   /**

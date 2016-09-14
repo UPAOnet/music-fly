@@ -7,7 +7,8 @@ export const ApiUtils = /*@ngInject*/ function (
 
   var api = {
     get: get,
-    post: post
+    post: post,
+    delete: deleteCall
   }
   return api
 
@@ -27,6 +28,14 @@ export const ApiUtils = /*@ngInject*/ function (
       data: transformData(data),
       url: `${v1}${path}`,
       method: 'POST'
+    })
+  }
+
+  function deleteCall (path, data) {
+    return $http({
+      data: transformData(data),
+      url: `${v1}${path}`,
+      method: 'DELETE'
     })
   }
 

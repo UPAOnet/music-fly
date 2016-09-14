@@ -19,17 +19,19 @@ class Controller {
     private $element: ng.IRootElementService,
     private $window
   ) {
-    'ngInject';   
-  }
+    'ngInject';
 
-  $onInit () {
     this.playlists = this.playlistsService.getPlaylists();
 
-    this.$scope.$on(this.musicEvents.newPlaylist, (event, playlists) => {
+    this.$rootScope.$on(this.musicEvents.newPlaylist, (event, playlists) => {
       this.playlists = playlists;
     })
-  }
 
+    this.$rootScope.$on(this.musicEvents.logout, (event, data) => {
+      this.playlists = this.playlistsService.getPlaylists();
+    })
+
+  }
 
   /**
    * Exits the input field if clicking outside
