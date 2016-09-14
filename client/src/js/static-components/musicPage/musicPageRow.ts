@@ -8,7 +8,7 @@ class Controller {
   }
 
   public deletePlaylist (name) {
-    this.playlistsService.deletePlaylist()
+    this.playlistsService.deletePlaylist(name)
   }
 }
 

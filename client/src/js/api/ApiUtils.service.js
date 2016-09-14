@@ -8,7 +8,7 @@ export const ApiUtils = /*@ngInject*/ function (
   var api = {
     get: get,
     post: post,
-    delete: deleteCall
+    deleteCall: deleteCall
   }
   return api
 

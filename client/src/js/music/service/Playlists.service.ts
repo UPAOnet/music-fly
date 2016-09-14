@@ -71,7 +71,8 @@ export class PlaylistsService {
    * Deletes a playlist
    */
   public deletePlaylist(name) {
-    this.apiUtils.deleteCall('playlist', name);
+    console.log('deleting playlist', name);
+    this.apiUtils.deleteCall(`playlist/${name}`);
   }
 
   /**

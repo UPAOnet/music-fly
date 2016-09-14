@@ -14,3 +14,8 @@ get '/api/v1/playlist' do
   playlists = get_current_playlists
   return playlists.to_json
 end
+
+delete '/api/v1/playlist/:name' do
+  halt 404, "No current user logged in" unless session["user"]
+  delete_a_playlist(params["name"])
+end

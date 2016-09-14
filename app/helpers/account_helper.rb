@@ -35,4 +35,10 @@ module AccountHelper
     return all
   end
 
+  def delete_a_playlist(playlist_name)
+    @current = session["user"]
+    playlist = Playlist.where("account_id = ? AND name = ?", @current, playlist_name)[0]
+    Playlist.destroy(playlist.id)
+  end
+
 end
