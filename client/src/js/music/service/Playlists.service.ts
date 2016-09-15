@@ -17,7 +17,7 @@ export class PlaylistsService {
     this.resetPlaylist();
 
     this.$rootScope.$on(this.musicEvents.login, (event, user) => {
-      this.loadSavedLists(user.id);
+      this.loadSavedLists();
     });
 
     this.$rootScope.$on(this.musicEvents.logout, (event, data) => {
@@ -42,7 +42,7 @@ export class PlaylistsService {
    * Resets playlist upon logout
    */
   private resetPlaylist (): void {
-    this.currentPlaylists = [];
+    this.currentPlaylists.length = 0;
     this.currentPlaylists.push({
       name: 'Demo Playlist',
       tracks: []
@@ -52,7 +52,7 @@ export class PlaylistsService {
   /**
    * Retrieves saved plylists from the server
    */
-  public loadSavedLists (userId) {
+  public loadSavedLists () {
     this.apiUtils.get(`playlist`).then((result) => {
       result.data.forEach((current, i) => {
         this.currentPlaylists.push(current);
@@ -70,9 +70,14 @@ export class PlaylistsService {
   /**
    * Deletes a playlist
    */
-  public deletePlaylist(name) {
-    console.log('deleting playlist', name);
-    this.apiUtils.deleteCall(`playlist/${name}`);
+  public deletePlaylist(name, playlistIndex) {
+    this.apiUtils.deleteCall(`playlist/${name}`).then((response) => {
+      if (response.status === 200) {
+        // On successful deletion, remove the deleted playlist
+        this.currentPlaylists.splice(playlistIndex, 1);
+        this.$rootScope.$broadcast(this.musicEvents.deletePlaylist);
+      }
+    });
   }
 
   /**

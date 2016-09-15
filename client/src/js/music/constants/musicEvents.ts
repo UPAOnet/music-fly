@@ -6,6 +6,7 @@ export interface MusicEvents {
   songPause: string;
   newSearch: string;
   switchPlaylist: string;
+  deletePlaylist: string;
   addSong: string;
   newPlaylist: string;
   nextSong: string;
@@ -29,10 +30,12 @@ export const MUSIC_EVENTS: MusicEvents = {
   newSearch: 'NEW_SEARCH',
   // user switches to a playlist view
   switchPlaylist: 'SWITCH_PLAYLIST',
-  // user adds a song to a playlist
-  addSong: 'ADD_SONG_TO_PLAYLIST',
   // user creates a playlist
   newPlaylist: 'NEW_PLAYLIST',
+  // User deletes a playlist
+  deletePlaylist: 'DELETE_PLAYLIST',
+  // user adds a song to a playlist
+  addSong: 'ADD_SONG_TO_PLAYLIST',
   // A song is switching to next one on list
   nextSong: 'NEXT_SONG',
   // A song is switching to previous one on list

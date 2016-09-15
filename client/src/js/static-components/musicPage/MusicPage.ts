@@ -29,11 +29,11 @@ class Controller {
     })  
 
     // Listen for playlist switching events
-    this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, playlist) => {
-      this.playlistTracks = playlist.tracks;
+    this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, data) => {
+      this.playlistTracks = data.playlist.tracks;
       this.hasPlaylist = true;
       this.showSongs = true;
-      this.header = playlist.name;
+      this.header = data.playlist.name;
     });
 
     // Listens for featured page switch

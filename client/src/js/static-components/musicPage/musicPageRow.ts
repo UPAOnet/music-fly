@@ -1,14 +1,25 @@
 // Row components for the music pages
 
 class Controller {
+  private currentPlaylistIndex: number;
+  //bindings
+  private header: string;
+
   constructor (
-    private playlistsService
+    private playlistsService,
+    private $rootScope: ng.IRootScopeService,
+    private musicEvents
   ) {
     'ngInject';
+
+    this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, data) => {
+      this.currentPlaylistIndex = data.index;
+    });
+
   }
 
-  public deletePlaylist (name) {
-    this.playlistsService.deletePlaylist(name)
+  public deletePlaylist () {
+    this.playlistsService.deletePlaylist(this.header, this.currentPlaylistIndex);
   }
 }
 

@@ -31,6 +31,10 @@ class Controller {
       this.playlists = this.playlistsService.getPlaylists();
     })
 
+    this.$rootScope.$on(this.musicEvents.deletePlaylist, (event, data) => {
+      this.switchFeatured();
+    })
+
   }
 
   /**
@@ -68,8 +72,11 @@ class Controller {
    * {index} - index position of array element in repeater
    */
   public switchPlaylist (index) {
-    let desiredList = this.playlists[index];
-    this.$scope.$emit(this.musicEvents.switchPlaylist, desiredList);
+    let data = {
+      playlist: this.playlists[index],
+      index: index
+    }
+    this.$scope.$emit(this.musicEvents.switchPlaylist, data);
   }
 
   /**
