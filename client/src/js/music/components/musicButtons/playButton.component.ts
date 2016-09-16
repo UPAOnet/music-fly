@@ -6,7 +6,6 @@ import {MusicEvents} from '../../constants/musicEvents.ts'
  * All Button components use this controller
  */
 export class ButtonsController {
-  private tracks: any;
   private song: any;
   private index: number;
   private playState: any;

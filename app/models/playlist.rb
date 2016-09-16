@@ -1,19 +1,21 @@
 # == Schema Information
 #
-# Table name: accounts
+# Table name: playlists
 #
 #  id                                   :integer          not null, primary key
 #  name                                 :string
 #  account_id                           :string
-#  songs                                :text
+#  tracks                               :text
 
 class Playlist < ActiveRecord::Base
-  
-  def song_list 
-    if self.songs?
-      return self.songs
+  serialize :songs
+  belongs_to :account
+
+  def track_list 
+    if self.tracks?
+      return self.tracks
     else 
-      return nil
+      return []
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911064436) do
+ActiveRecord::Schema.define(version: 20160916065147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160911064436) do
   create_table "playlists", force: :cascade do |t|
     t.string  "name"
     t.integer "account_id"
-    t.text    "songs"
+    t.text    "tracks"
   end
 
 end

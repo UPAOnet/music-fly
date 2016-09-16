@@ -29,13 +29,14 @@ export class PlaylistsService {
   /**
    * Saves playlist data
    * @params playListName - name of the playlist
+   * @params songs - list of songs
    */
-  private saveNewPlaylist (playListName): void {
+  private saveNewPlaylist (playListName, songs): void {
     // Can only save playlists if theres a user
     if (!this.auth.getUser()) {
       return;
     }
-    this.apiUtils.post(`playlist/${playListName}`);
+    this.apiUtils.post(`playlist/${playListName}`, songs);
   }
 
   /**
@@ -48,14 +49,25 @@ export class PlaylistsService {
       tracks: []
     });
   }
+
+  /**
+   * Saves a song to the database
+   */
+  private saveSong (song, playlistName) {
+    return this.apiUtils.post(`playlist/${playlistName}/song`, song);
+  }
  
   /**
    * Retrieves saved plylists from the server
    */
   public loadSavedLists () {
     this.apiUtils.get(`playlist`).then((result) => {
-      result.data.forEach((current, i) => {
+      let playlist = result.data
+      
+      playlist.forEach((current, i) => {
+        current.tracks = [];
         this.currentPlaylists.push(current);
+        console.log(playlist);
       })
     });
   } 
@@ -92,7 +104,7 @@ export class PlaylistsService {
       tracks: []
     };
 
-    this.saveNewPlaylist(playlist.name);
+    this.saveNewPlaylist(playlist.name, playlist.tracks);
     this.currentPlaylists.push(playlist);
     this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
   }
@@ -103,13 +115,16 @@ export class PlaylistsService {
   public addTrack (song: any, playlist: any) {
 
       this.currentPlaylists.forEach((aList, i) => {
-        if (aList.name === playlist.name) {
-          this.currentPlaylists[i].tracks.push(song);
-          this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
+
+        if (aList.name === playlist.name) {        
+          this.saveSong(song, playlist.name).then((result) => {
+            console.log(this.currentPlaylists);
+            this.currentPlaylists[i].tracks.push(song);
+            this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
+          })        
         }
       })      
     }
-
 
 }
 

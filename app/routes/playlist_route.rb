@@ -1,11 +1,15 @@
 
 post '/api/v1/playlist/:name' do
-  
-  playlist_name = params["name"]
-  halt 404, "No current account to save playlist" unless session["user"]
-  
+  halt 404, "No current account to save playlist" unless session["user"] 
+  playlist_name = params["name"] 
   playlist = create_new_playlist(playlist_name)
-  
+end
+
+post '/api/v1/playlist/:name/song' do
+  song = JSON.parse(request.body.read)
+  name = params["name"]
+  add_song_to_playlist(name, song)
+
 end
 
 get '/api/v1/playlist' do 

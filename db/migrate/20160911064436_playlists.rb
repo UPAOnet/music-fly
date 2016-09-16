@@ -3,7 +3,7 @@ class Playlists < ActiveRecord::Migration
     create_table :playlists do |t|
       t.string :name
       t.integer :account_id
-      t.text :songs
+      t.text :tracks
     end
   end
 end
