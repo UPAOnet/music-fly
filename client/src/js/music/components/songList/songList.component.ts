@@ -103,7 +103,6 @@ class SongListController {
   * {playlist} - Name of the playlist
   */
   public addSong (event, song: any, playlist: any): void {
-    // this.emitAddTo(song, playlist);
     this.playlistsService.addTrack(song, playlist);
   }
 

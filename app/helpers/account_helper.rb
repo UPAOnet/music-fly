@@ -47,7 +47,6 @@ module AccountHelper
     playlist = Playlist.where("account_id = ? AND name = ?", @current, playlist_name)[0]
     playlist.tracks << @song
     playlist.save
-    # binding.pry
   end
 
 end

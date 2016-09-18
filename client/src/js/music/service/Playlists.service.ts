@@ -5,6 +5,7 @@ export class PlaylistsService {
 
   constructor(
     private $rootScope: ng.IRootScopeService,
+    private $timeout: ng.ITimeoutService,
     private musicEvents: MusicEvents,
     private apiUtils,
     private auth
@@ -14,14 +15,18 @@ export class PlaylistsService {
     this.currentPlaylists = [];
 
     // Sets the default playlist
-    this.resetPlaylist();
+    if (!auth.getUser().id) {
+      this.loadDefault();
+    }
+    
 
     this.$rootScope.$on(this.musicEvents.login, (event, user) => {
+      $timeout(this.currentPlaylists.length = 0);
       this.loadSavedLists();
     });
 
     this.$rootScope.$on(this.musicEvents.logout, (event, data) => {
-      this.resetPlaylist();
+      this.loadDefault();
     })
 
   }
@@ -33,7 +38,7 @@ export class PlaylistsService {
    */
   private saveNewPlaylist (playListName, songs): void {
     // Can only save playlists if theres a user
-    if (!this.auth.getUser()) {
+    if (!this.auth.getUser().id) {
       return;
     }
     this.apiUtils.post(`playlist/${playListName}`, songs);
@@ -42,7 +47,7 @@ export class PlaylistsService {
   /**
    * Resets playlist upon logout
    */
-  private resetPlaylist (): void {
+  private loadDefault (): void {
     this.currentPlaylists.length = 0;
     this.currentPlaylists.push({
       name: 'Demo Playlist',
@@ -61,6 +66,7 @@ export class PlaylistsService {
    * Retrieves saved plylists from the server
    */
   public loadSavedLists () {
+
     this.apiUtils.get(`playlist`).then((result) => {
       let playlist = result.data
       
@@ -103,7 +109,12 @@ export class PlaylistsService {
       tracks: []
     };
 
-    this.saveNewPlaylist(playlist.name, playlist.tracks);
+    // Check if there's a user to save playlist
+    if (this.auth.getUser().id) {
+      alert('sdfsfds');
+      this.saveNewPlaylist(playlist.name, playlist.tracks);
+    }
+    // Regardless of user, push a newly created playlist into the panel list
     this.currentPlaylists.push(playlist);
     this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
   }

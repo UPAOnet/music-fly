@@ -9,7 +9,7 @@ export const Auth = function (
 
   // Gets stored session upon load if any
   checkSession().then(function (result) {
-    if (result) {
+    if (result.status === 200) {
       updateUser(result.data);
     }
   });
