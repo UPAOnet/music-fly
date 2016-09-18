@@ -24,11 +24,17 @@ export class playerInterfaceController {
 
     this.$rootScope.$on(this.musicEvents.songSelected, (event, data: ISongInterface) => {
       this.updateInfo(data);
-      this.shouldShow = true;
+      this.togglePanel(true);
+    })
 
-      this.$timeout(() => {
-        this.isLoaded = true;
-      })
+    // Reset the panel on logout
+    this.$rootScope.$on(this.musicEvents.logout, (event, data: ISongInterface) => {
+      this.togglePanel();
+    })
+
+    // Reset the panel on login
+    this.$rootScope.$on(this.musicEvents.login, (event, data: ISongInterface) => {
+      this.togglePanel();
     })
 
   }
@@ -44,14 +50,18 @@ export class playerInterfaceController {
    * Toglges Display Panel
    * {on} - true for on, false for off
    */
-  public togglePanel (on: boolean) {
+  public togglePanel (on?: boolean) {
 
     if (on) {
       this.shouldShow = true;
-      this.isLoaded = true;
+      this.$timeout(() => {
+        this.isLoaded = true;
+      })
     } else {
       this.shouldShow = false;
-      this.isLoaded = false;
+      this.$timeout(() => {
+        this.isLoaded = false;
+      })
     }
   }
 

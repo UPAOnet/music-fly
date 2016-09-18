@@ -47,6 +47,12 @@ class Controller {
       this.hasPlaylist = false;
     });
 
+    // Switches to featured page on logout to avoid funky playlist states
+    this.$rootScope.$on(this.musicEvents.login, (event) => {
+      this.showSongs = false;
+      this.hasPlaylist = false;
+    });
+
   }
   
 }

@@ -72,7 +72,6 @@ export class PlaylistsService {
       
       playlist.forEach((current, i) => {
         this.currentPlaylists.push(current);
-        console.log(playlist);
       })
     });
   } 

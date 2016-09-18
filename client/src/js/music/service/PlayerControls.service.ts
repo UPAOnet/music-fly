@@ -59,6 +59,15 @@ export class PlayerControls {
       index: null
     };
 
+    // Stop playing on logout
+    $rootScope.$on(this.musicEvents.logout, (event, data) => {
+      this.pauseMusic();
+    })
+    // Stop playing on login
+    $rootScope.$on(this.musicEvents.login, (event, data) => {
+      this.pauseMusic();
+    })
+
     /**
      * Sets a timer to cache how much more time the song has
      */
