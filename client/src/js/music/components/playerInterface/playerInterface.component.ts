@@ -11,6 +11,7 @@ export class playerInterfaceController {
   private shouldShow: boolean;
   private currentTrack: ISongInterface;
   private isLoaded: boolean;
+  private musicPlaying: boolean;
 
   constructor (
     private TrackList,
@@ -21,6 +22,11 @@ export class playerInterfaceController {
     private $scope: ng.IScope
   ) {
     'ngInject';
+
+    $scope.$watchCollection(() => playerControls.checkPlayingState(), 
+      (newVal, oldVal) => { 
+        this.musicPlaying = newVal.playing;
+      })
 
     this.$rootScope.$on(this.musicEvents.songSelected, (event, data: ISongInterface) => {
       this.updateInfo(data);

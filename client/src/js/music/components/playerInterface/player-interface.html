@@ -1,22 +1,12 @@
 <!--Full sized interface-->
 
-<!--<div ng-show="!$ctrl.isLoaded && $ctrl.currentTrack" class="toggle-btn mf-l-content-sides-xs hidden-xs" ng-click="$ctrl.togglePanel(false)">
-    open
-    <span class="glyphicon glyphicon-chevron-down"></span>
-</div>-->
 <aside ng-hide="!$ctrl.shouldShow" class="player-interface mf-l-content-sides m-player-border-top hidden-xs">
-
-  <!--Open and close buttons-->
-  <!--LEaving out because of UX cmoplexity-->
-  <!--<div ng-show="$ctrl.isLoaded" class="toggle-btn mf-l-content-sides-xs " ng-click="$ctrl.togglePanel(false)">
-    close
-    <span class="glyphicon glyphicon-chevron-down"></span>
-  </div>-->
-  
 
   <div class="player-image">   
     <!--<svg class="middle-circle"></svg>-->
-    <img class="mf-m-circlify mf-m-rotating" ng-src= "{{$ctrl.currentTrack.image}}">
+    <img class="mf-m-circlify mf-m-rotating" 
+         ng-class="{'animation-pause': !$ctrl.musicPlaying}"
+         ng-src= "{{$ctrl.currentTrack.image}}">
   </div>
 
   <div class="player-info default-cursor mf-l-content-sides">
