@@ -46,6 +46,20 @@ class Controller {
     this.$rootScope.$on(this.musicEvents.logout, (event, data) => {
       this.user = null;
     })
+
+    this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, data) => {
+      this.closeMobileNav();
+    })
+
+    this.$rootScope.$on(this.musicEvents.featuredPage, (event, data) => {
+      this.closeMobileNav();
+    })
+  }
+
+  private closeMobileNav () {
+    if (this.$mdSidenav('left').isOpen()) {
+      this.$mdSidenav('left').close();
+    }
   }
 
   private userLogout () {
