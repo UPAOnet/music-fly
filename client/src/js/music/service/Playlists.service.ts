@@ -122,17 +122,23 @@ export class PlaylistsService {
    */
   public addTrack (song: any, playlist: any) {
 
-      this.currentPlaylists.forEach((aList, i) => {
-
-        if (aList.name === playlist.name) {        
-          this.saveSong(song, playlist.name).then((result) => {
-            console.log(this.currentPlaylists);
+    this.currentPlaylists.forEach((aList, i) => {
+      
+      if (aList.name === playlist.name) {
+        // if user, update panel after saving
+        if (this.auth.getUser().id) {
+            this.saveSong(song, playlist.name).then((result) => {
             this.currentPlaylists[i].tracks.push(song);
             this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
-          })        
-        }
-      })      
-    }
+          })
+        } else {
+          // else there's no user, so just update panel
+          this.currentPlaylists[i].tracks.push(song);
+          this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
+        }                          
+      }
+    })      
+  }
 
 }
 
