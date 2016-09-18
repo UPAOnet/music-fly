@@ -30,9 +30,15 @@ export const Auth = function (
   }
 
   function createUser (user) {
-    apiUtils.post('account', user).then((result) => {
-      updateUser(result.data)
-    });
+    apiUtils.post('account', user)
+      .then((result) => {
+        updateUser(result.data)
+      })
+      .catch((result) => {
+        if (result.status === 500) {
+          $rootScope.$broadcast(musicEvents.loginFailed, result.status);
+        }
+      })
   }
 
   function checkSession() {

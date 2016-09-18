@@ -2,15 +2,14 @@
 post '/api/v1/account' do 
   userInfo = JSON.parse(request.body.read)
   @account = Account.new(userInfo)
-
-  if @account
-    @account.save
+  
+  if !@account.save
+    return status 400 
+  else 
     # Use account id as the session id
     session["user"] = @account.id
     user = get_current_session
     user.to_json
-  else 
-    halt 404, "Account could not be created"
   end 
 
 end

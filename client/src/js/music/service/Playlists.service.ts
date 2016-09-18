@@ -111,7 +111,6 @@ export class PlaylistsService {
 
     // Check if there's a user to save playlist
     if (this.auth.getUser().id) {
-      alert('sdfsfds');
       this.saveNewPlaylist(playlist.name, playlist.tracks);
     }
     // Regardless of user, push a newly created playlist into the panel list
