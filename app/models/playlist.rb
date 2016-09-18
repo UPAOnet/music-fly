@@ -8,15 +8,7 @@
 #  tracks                               :text
 
 class Playlist < ActiveRecord::Base
-  serialize :songs
+  serialize :tracks, Array
   belongs_to :account
-
-  def track_list 
-    if self.tracks?
-      return self.tracks
-    else 
-      return []
-    end
-  end
 
 end

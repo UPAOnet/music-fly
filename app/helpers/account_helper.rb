@@ -44,8 +44,10 @@ module AccountHelper
   def add_song_to_playlist(playlist_name, song)
     @current = session["user"]
     @song = song
-    # binding.pry
     playlist = Playlist.where("account_id = ? AND name = ?", @current, playlist_name)[0]
+    playlist.tracks << @song
+    playlist.save
+    # binding.pry
   end
 
 end

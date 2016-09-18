@@ -65,7 +65,6 @@ export class PlaylistsService {
       let playlist = result.data
       
       playlist.forEach((current, i) => {
-        current.tracks = [];
         this.currentPlaylists.push(current);
         console.log(playlist);
       })
