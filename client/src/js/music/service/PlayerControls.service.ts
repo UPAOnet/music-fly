@@ -95,8 +95,8 @@ export class PlayerControls {
     }
   } 
 
-  private turnOffTimer () {
-    this.playState.playing = false;
+  private songEndTimer () {
+    this.nextSong();
   }
 
   private setDurationTimer (currentSong: any): void {
@@ -108,7 +108,7 @@ export class PlayerControls {
     }
     
     // Sets timer to turn off duration timer once song is finished
-    this.endSongTimer = this.$timeout(() => this.turnOffTimer(), this.playState.timerDuration); 
+    this.endSongTimer = this.$timeout(() => this.songEndTimer(), this.playState.timerDuration); 
   }
 
   private setPlayerInfo(currentSong: any): void {
@@ -139,7 +139,7 @@ export class PlayerControls {
   public resumeMusic(): void {
     this.Player.play();
     // Sets a new timer using the cached duration.
-    this.endSongTimer = this.$timeout(() => this.turnOffTimer(), this.playState.timerDuration);
+    this.endSongTimer = this.$timeout(() => this.songEndTimer(), this.playState.timerDuration);
     this.playState.playing = true;
     this.$rootScope.$broadcast(this.musicEvents.songPlay);
   }
