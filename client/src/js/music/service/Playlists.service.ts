@@ -87,13 +87,21 @@ export class PlaylistsService {
    * Deletes a playlist
    */
   public deletePlaylist(name, playlistIndex) {
-    this.apiUtils.deleteCall(`playlist/${name}`).then((response) => {
-      if (response.status === 200) {
-        // On successful deletion, remove the deleted playlist
-        this.currentPlaylists.splice(playlistIndex, 1);
-        this.$rootScope.$broadcast(this.musicEvents.deletePlaylist);
-      }
-    });
+    // If user logged in, delete form DB and update panel
+    if (this.auth.getUser().id) {
+      this.apiUtils.deleteCall(`playlist/${name}`).then((response) => {
+        if (response.status === 200) {
+          // On successful deletion, remove the deleted playlist
+          this.currentPlaylists.splice(playlistIndex, 1);
+          this.$rootScope.$broadcast(this.musicEvents.deletePlaylist);
+        }
+      });
+    } else {
+       // Else just update panel
+       this.currentPlaylists.splice(playlistIndex, 1);
+       this.$rootScope.$broadcast(this.musicEvents.deletePlaylist);
+    }
+    
   }
 
   /**
