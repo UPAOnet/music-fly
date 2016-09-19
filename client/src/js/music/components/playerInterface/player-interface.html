@@ -13,7 +13,6 @@
     <div>
       <h4>{{$ctrl.currentTrack.name}}</h4>
       <p>{{$ctrl.currentTrack.artist}}</p>
-      <p>{{$ctrl.currentTrack.album}}</p>
     </div>
   </div>
 
@@ -28,17 +27,18 @@
 </aside>
 
 <!-- Mobile interface-->
-<aside class="player-interface mf-l-content-bottom  visible-xs">
+<aside ng-hide="!$ctrl.shouldShow" class="player-interface mf-l-content-bottom  visible-xs">
   <div class="player-image">   
-    <!--<svg class="middle-circle"></svg>-->
-    <img class="mf-m-circlify mf-m-rotating" ng-src= "{{$ctrl.currentTrack.image}}">
+    <img class="mf-m-circlify mf-m-rotating" 
+         ng-src= "{{$ctrl.currentTrack.image}}"
+         ng-class="{'animation-pause': !$ctrl.musicPlaying}"
+    >
   </div>
 
   <div class="player-info default-cursor mf-l-content-sides">
     <div>
       <h4>{{$ctrl.currentTrack.name}}</h4>
       <p>{{$ctrl.currentTrack.artist}}</p>
-      <p>{{$ctrl.currentTrack.album}}</p>
     </div>
   </div>
 

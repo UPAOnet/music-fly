@@ -102,27 +102,25 @@
 <!-- Side Nav for Mobile -->
 <nav>
   <md-sidenav md-component-id="left" class="md-sidenav-left">
-
-    <div ng-show="$ctrl.user" class="text-center mf-u-padtop-35">
-    <!--User-->
-
-      <div><i class="fa fa-user fa-3x mf-l-content-sides-xs" aria-hidden="true"></i></div>
-      <h3>{{$ctrl.user.username}}</h3>
-      <button class="btn mf-btn orange-text">Log Out</button>
-    <!--<li ng-show="$ctrl.user">
-      <a class="mf-u-padtop-35 default-cursor">
-        <button class="btn mf-btn orange-text">
-        <i class="fa fa-user fa-lg mf-l-content-sides-xs" aria-hidden="true"></i>
-        {{$ctrl.user.username}}
-        </button>
-      </a>
-    </li>-->
-    <!--<li ng-show="$ctrl.user"><a class="mf-u-padtop-35"><button class="btn mf-btn orange-text">Log Out</button></a></li>-->
+    <div class="text-center mf-u-padtop-35">
+      <!--No User-->
+      <div ng-show="!$ctrl.user">
+        <li>
+          <sign-in></sign-in>
+        </li>
+        <li>
+          <sign-up></sign-up>
+        </li>
+      </div>
+      <!--User-->
+      <div ng-show="$ctrl.user">
+        <div><i class="fa fa-user fa-3x mf-l-content-sides-xs" aria-hidden="true"></i></div>
+        <h3>{{$ctrl.user.username}}</h3>
+        <button class="btn mf-btn orange-text" ng-click="$ctrl.userLogout()">Log Out</button>
+      </div>
     </div>
 
     <div class="mf-l-content">
-      <!--<li><a><button class="btn mf-btn orange-fill btn-stretch">Log In </button></a></li>
-      <li><a><button class="btn mf-btn orange-fill btn-stretch">Create Account</button></a></li>-->
       <music-panel></music-panel>
     </div>
     <player-interface class="visible-xs"></player-interface>

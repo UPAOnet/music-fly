@@ -5,6 +5,7 @@ player-interface {
 
   .player-interface {
     z-index: 100;
+    height: 100px;
     background-color: $lowContrastBlack;
     display:flex;
     align-items: center;
