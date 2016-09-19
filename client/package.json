@@ -4,8 +4,8 @@
   "description": "A website for merging playlists across multiple platforms",
   "main": "index.js",
   "scripts": {
-    "watch:test": "npm test -- --auto-watch --no-single-run",
-    "start": "node app.js"
+    "watch:test": "npm test -- --auto-watch --no-single-run"
+    // "start": "node app.js"
   },
   "repository": {
     "type": "git",
