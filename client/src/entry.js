@@ -4,7 +4,7 @@
 
 require('./index.html');
 
-import module from './app-config.ts';
+import app from './app-config.ts';
 SC.initialize({client_id: 'b10a9e77003de676a40bcd4ce7346f03'})
 // path for all main JS directories
 function addIndex (directory) {

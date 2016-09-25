@@ -5,9 +5,10 @@ require 'require_all'
 require 'pry'
 
 enable :sessions
+set :session_secret, 'Me love you long time.'
 
 # require_relative 'lib/spotify'
-require_relative './config/environments'
+require_relative '../config/environments'
 require_relative 'routes/init'
 require_rel 'models', 'lib', 'helpers', 'representers'
 

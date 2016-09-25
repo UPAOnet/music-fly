@@ -9,7 +9,7 @@ const MODULE_NAME = 'musicApp'
 
 import {RouteConfig} from './js/routes/RouteConfig.ts';
 
-export const module = angular.module(MODULE_NAME, [
+export const app = angular.module(MODULE_NAME, [
   uiRouter,
   angularMaterial,
   angularAnimate,
