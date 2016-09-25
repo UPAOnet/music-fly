@@ -10,8 +10,12 @@ player-interface {
     display:flex;
     align-items: center;
     width: 100%;
+    position: fixed;
+    bottom: 0px;
 
-    @include fixed-bottom();
+    @include phone() {
+      bottom: 120px;
+    }
     @include transition (bottom, .9s);
     
     // Enable transition animations
