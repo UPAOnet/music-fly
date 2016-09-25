@@ -7,12 +7,13 @@ class Controller {
 
   constructor (
     private playlistsService,
+    private $scope: ng.IScope,
     private $rootScope: ng.IRootScopeService,
     private musicEvents
   ) {
     'ngInject';
 
-    this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, data) => {
+    this.$scope.$on(this.musicEvents.switchPlaylist, (event, data) => {
       this.currentPlaylistIndex = data.index;
     });
 

@@ -50,8 +50,8 @@ class SongListController {
   * Emits newly selected songs
   * @event SONG_SELECTED
   */
- private emitSong (song: any) {
-    this.$scope.$emit(this.musicEvents.songSelected, this.selectedSong);
+ private broadcastSong (song: any) {
+    this.$rootScope.$broadcast(this.musicEvents.songSelected, this.selectedSong);
   }
 
  /**
@@ -94,7 +94,7 @@ class SongListController {
  public playMusic (song: any, index: number, songList?: string) {
    this.playerControls.playMusic(song, index, this.songList);
    this.selectedSong = song;
-   this.emitSong(song);
+   this.broadcastSong(song);
  }
 
  /**

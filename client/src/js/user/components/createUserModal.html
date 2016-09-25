@@ -38,7 +38,10 @@
             Please enter a valid password
           </p>
         </div>
-        <div>  
+        <div>
+          <p class="error-text mf-l-content-small" ng-show="$ctrl.errors">
+            {{$ctrl.errors}}
+          </p>
           <button type="submit" 
                   ng-click="$ctrl.submitForm()" 
                   ng-disabled="signUp.$invalid"

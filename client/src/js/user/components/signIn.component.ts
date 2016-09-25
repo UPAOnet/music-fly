@@ -46,7 +46,7 @@ const AuthModal = function (
     $scope.$close();
   }
 
-  $rootScope.$on(musicEvents.login, (event, data) => {
+  $scope.$on(musicEvents.login, (event, data) => {
     data === undefined ? this.authState = authStatus.failed : this.authState = authStatus.success;
 
     if (this.authState === 'success') {

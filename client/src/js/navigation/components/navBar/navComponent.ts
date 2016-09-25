@@ -39,19 +39,19 @@ class Controller {
   }
 
   $postLink () {
-    this.$rootScope.$on(this.musicEvents.login, (event, data) => {
+    this.$scope.$on(this.musicEvents.login, (event, data) => {
       this.user = data;
     })
 
-    this.$rootScope.$on(this.musicEvents.logout, (event, data) => {
+    this.$scope.$on(this.musicEvents.logout, (event, data) => {
       this.user = null;
     })
 
-    this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, data) => {
+    this.$scope.$on(this.musicEvents.switchPlaylist, (event, data) => {
       this.closeMobileNav();
     })
 
-    this.$rootScope.$on(this.musicEvents.featuredPage, (event, data) => {
+    this.$scope.$on(this.musicEvents.featuredPage, (event, data) => {
       this.closeMobileNav();
     })
   }

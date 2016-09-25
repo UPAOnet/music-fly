@@ -19,7 +19,7 @@ class Controller {
     'ngInject';
 
     // Listens for any search events
-    this.$rootScope.$on(this.musicEvents.newSearch, (event, searchResults) => {
+    this.$scope.$on(this.musicEvents.newSearch, (event, searchResults) => {
 
       this.soundcloudTracks = searchResults[0];
       this.spotifyTracks = searchResults[1];
@@ -29,7 +29,7 @@ class Controller {
     })  
 
     // Listen for playlist switching events
-    this.$rootScope.$on(this.musicEvents.switchPlaylist, (event, data) => {
+    this.$scope.$on(this.musicEvents.switchPlaylist, (event, data) => {
       this.playlistTracks = data.playlist.tracks;
       this.hasPlaylist = true;
       this.showSongs = true;
@@ -37,18 +37,18 @@ class Controller {
     });
 
     // Listens for featured page switch
-    this.$rootScope.$on(this.musicEvents.featuredPage, (event) => {
+    this.$scope.$on(this.musicEvents.featuredPage, (event) => {
       this.showSongs = false; 
     });
 
     // Switches to featured page on logout to avoid funky playlist states
-    this.$rootScope.$on(this.musicEvents.logout, (event) => {
+    this.$scope.$on(this.musicEvents.logout, (event) => {
       this.showSongs = false;
       this.hasPlaylist = false;
     });
 
     // Switches to featured page on logout to avoid funky playlist states
-    this.$rootScope.$on(this.musicEvents.login, (event) => {
+    this.$scope.$on(this.musicEvents.login, (event) => {
       this.showSongs = false;
       this.hasPlaylist = false;
     });

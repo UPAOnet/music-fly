@@ -23,15 +23,15 @@ class Controller {
 
     this.playlists = this.playlistsService.getPlaylists();
 
-    this.$rootScope.$on(this.musicEvents.newPlaylist, (event, playlists) => {
+    this.$scope.$on(this.musicEvents.newPlaylist, (event, playlists) => {
       this.playlists = playlists;
     })
 
-    this.$rootScope.$on(this.musicEvents.logout, (event, data) => {
+    this.$scope.$on(this.musicEvents.logout, (event, data) => {
       this.playlists = this.playlistsService.getPlaylists();
     })
 
-    this.$rootScope.$on(this.musicEvents.deletePlaylist, (event, data) => {
+    this.$scope.$on(this.musicEvents.deletePlaylist, (event, data) => {
       this.switchFeatured();
     })
 
@@ -76,7 +76,7 @@ class Controller {
       playlist: this.playlists[index],
       index: index
     }
-    this.$scope.$emit(this.musicEvents.switchPlaylist, data);
+    this.$rootScope.$broadcast(this.musicEvents.switchPlaylist, data);
   }
 
   /**

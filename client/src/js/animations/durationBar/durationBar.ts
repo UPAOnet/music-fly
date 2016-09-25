@@ -76,10 +76,9 @@ class Controller {
      * Resets bar data if a new song is loaded in the player
      * @listens SONG_SELECTED
      */
-    this.$rootScope.$on(this.musicEvents.songSelected, (event, data) => {
+    this.$scope.$on(this.musicEvents.songSelected, (event, data) => {
       if (!data) {return}     
       this.getSongLength(data.duration);
-
       // Passes responsibility to the watch function if interface
       // is not fully loaded. This fixes bar not starting on initial load. 
       if (!this.interfaceState) {return}
@@ -91,7 +90,7 @@ class Controller {
      * Listen for player pauses
      * @listens song pauses
      */
-    this.$rootScope.$on(this.musicEvents.songPause, (event, data) => {
+    this.$scope.$on(this.musicEvents.songPause, (event, data) => {
       this.stopProgress();
     })
 
@@ -99,7 +98,7 @@ class Controller {
      * Listens for player resumes
      * @listens song play
      */
-    this.$rootScope.$on(this.musicEvents.songPlay, (event, data) => {
+    this.$scope.$on(this.musicEvents.songPlay, (event, data) => {
       this.startProgressBar();
     })
 

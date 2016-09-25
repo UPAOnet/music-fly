@@ -28,18 +28,18 @@ export class playerInterfaceController {
         this.musicPlaying = newVal.playing;
       })
 
-    this.$rootScope.$on(this.musicEvents.songSelected, (event, data: ISongInterface) => {
+    this.$scope.$on(this.musicEvents.songSelected, (event, data: ISongInterface) => {
       this.updateInfo(data);
       this.togglePanel(true);
     })
 
     // Reset the panel on logout
-    this.$rootScope.$on(this.musicEvents.logout, (event, data: ISongInterface) => {
+    this.$scope.$on(this.musicEvents.logout, (event, data: ISongInterface) => {
       this.togglePanel();
     })
 
     // Reset the panel on login
-    this.$rootScope.$on(this.musicEvents.login, (event, data: ISongInterface) => {
+    this.$scope.$on(this.musicEvents.login, (event, data: ISongInterface) => {
       this.togglePanel();
     })
 

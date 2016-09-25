@@ -25,11 +25,11 @@ class Controller {
   }
 
   /**
-   * Emits search results 
+   * broadcasts search results 
    * @event NEW_SEARCH
    */
-  private emitSearchResults (songList) {
-    this.$scope.$emit(this.musicEvents.newSearch, songList);
+  private broadcastSearchResults (songList) {
+    this.$rootScope.$broadcast(this.musicEvents.newSearch, songList);
   } 
 
   /**
@@ -48,7 +48,7 @@ class Controller {
           soundcloudTracks = this.TrackList.formatTracks(results[0], 'soundcloud');
           this.tracks = this.combineResults(soundcloudTracks, spotifyTracks);
           this.searchQuery = "";
-          this.emitSearchResults(this.tracks);
+          this.broadcastSearchResults(this.tracks);
           this.$scope.$apply();
       })         
     }

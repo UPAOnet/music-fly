@@ -40,11 +40,11 @@ const SignUpModal = function (
     $scope.$close();
   }
 
-  $rootScope.$on(musicEvents.login, (event, data) => {
+  $scope.$on(musicEvents.login, (event, data) => {
     this.close();
   })
 
-  $rootScope.$on(musicEvents.loginFailed, (event, data) => {
+  $scope.$on(musicEvents.loginFailed, (event, data) => {
     if (data === 500) {
       this.errors = 'Sorry, that username is already taken';
     }
