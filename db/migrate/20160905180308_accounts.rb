@@ -5,9 +5,7 @@ class Accounts < ActiveRecord::Migration
       t.string :password
     end
   end
-
   def down
   	drop_table :accounts
   end
-
 end

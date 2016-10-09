@@ -13,3 +13,6 @@
 #bundle 
 
 /client/dev/public/scripts.min.js
+
+#typings
+/client/typings
