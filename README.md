@@ -17,10 +17,10 @@ Music Fly is an application that aims to bring music streaming from different pl
 
 **_All songs belong to either Spotify or Soundcloud and any of their affiliates_**
 
-###Home###
-![alt text](client/app/assets/images/demo-images/home.png "Landing")
-![alt text](client/app/assets/images/demo-images/info.png "info")
+###Player###
+![alt text](client/src/assets/images/demo/image1.png "Search")
+![alt text](client/src/assets/images/demo/image2.png "Playlist")
 
-###Player Menu###
-![alt text](client/app/assets/images/demo-images/list.png "player")
+###Mobile###
+![alt text](client/src/assets/images/demo/image3.png "Mobile")
 
