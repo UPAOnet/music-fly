@@ -28,7 +28,7 @@ post '/api/v1/account/login' do
   @account = Account.new(userInfo)
   
   user = get_user(@account)
-  halt 400, 'Account not found.' unless user
+  halt 400, 'Account or Password is invalid' unless user
 
   # Use account id as the session id
   session["user"] = user.id

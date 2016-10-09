@@ -47,10 +47,13 @@ const AuthModal = function (
   }
 
   $scope.$on(musicEvents.login, (event, data) => {
-    data === undefined ? this.authState = authStatus.failed : this.authState = authStatus.success;
+    this.authState = authStatus.success;  
+    this.close();
+  })
 
-    if (this.authState === 'success') {
-      this.close();
+  $scope.$on(musicEvents.loginFailed, (event, data) => {
+    if (data.status === 400) {
+      this.authState = authStatus.failed
     }
   })
 

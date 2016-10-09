@@ -26,7 +26,17 @@ export const Auth = function (
    */
   function updateUser (userInfo) {
     user = userInfo;
-    $rootScope.$broadcast(musicEvents.login, userInfo);
+    $rootScope.$broadcast(musicEvents.login, userInfo);    
+  }
+
+  /**
+   * Sends event for errors
+   */
+  function handleLoginError (error) {
+    user = undefined;
+    if (error.status === 400) {
+       $rootScope.$broadcast(musicEvents.loginFailed, error);
+    }
   }
 
   function createUser (user) {
@@ -61,7 +71,7 @@ export const Auth = function (
         updateUser(result.data);
       })
       .catch((e) => {
-        updateUser(undefined)
+        handleLoginError(e);
       })
   }
   
