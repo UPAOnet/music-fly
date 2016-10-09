@@ -5,7 +5,7 @@ export const Auth = function (
 ) {
   'ngInject'
   var self = this;
-  var user = {};
+  var user = null;
 
   // Gets stored session upon load if any
   checkSession().then(function (result) {
@@ -59,8 +59,9 @@ export const Auth = function (
     return user;
   }
 
-  function logOut () {
+  function logOut () {   
     apiUtils.post('account/logout').then(() => {
+      user = undefined;
       $rootScope.$broadcast(musicEvents.logout);
     });
   }

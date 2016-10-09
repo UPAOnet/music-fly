@@ -15,7 +15,7 @@ export class PlaylistsService {
     this.currentPlaylists = [];
 
     // Sets the default playlist
-    if (!auth.getUser().id) {
+    if (!auth.getUser()) {
       this.loadDefault();
     }
     
@@ -38,7 +38,7 @@ export class PlaylistsService {
    */
   private saveNewPlaylist (playListName, songs): void {
     // Can only save playlists if theres a user
-    if (!this.auth.getUser().id) {
+    if (!this.auth.getUser()) {
       return;
     }
     this.apiUtils.post(`playlist/${playListName}`, songs);
@@ -59,7 +59,7 @@ export class PlaylistsService {
    * Saves a song to the database
    */
   private saveSong (song, playlistName) {
-    return this.apiUtils.post(`playlist/${playlistName}/song`, song);
+    return this.apiUtils.post(`playlist/${playlistName}/song`, song);  
   }
  
   /**
@@ -88,7 +88,7 @@ export class PlaylistsService {
    */
   public deletePlaylist(name, playlistIndex) {
     // If user logged in, delete form DB and update panel
-    if (this.auth.getUser().id) {
+    if (this.auth.getUser()) {
       this.apiUtils.deleteCall(`playlist/${name}`).then((response) => {
         if (response.status === 200) {
           // On successful deletion, remove the deleted playlist
@@ -117,7 +117,7 @@ export class PlaylistsService {
     };
 
     // Check if there's a user to save playlist
-    if (this.auth.getUser().id) {
+    if (this.auth.getUser()) {
       this.saveNewPlaylist(playlist.name, playlist.tracks);
     }
     // Regardless of user, push a newly created playlist into the panel list
@@ -131,10 +131,9 @@ export class PlaylistsService {
   public addTrack (song: any, playlist: any) {
 
     this.currentPlaylists.forEach((aList, i) => {
-      
       if (aList.name === playlist.name) {
         // if user, update panel after saving
-        if (this.auth.getUser().id) {
+        if (this.auth.getUser()) {
             this.saveSong(song, playlist.name).then((result) => {
             this.currentPlaylists[i].tracks.push(song);
             this.$rootScope.$broadcast(this.musicEvents.newPlaylist, this.currentPlaylists);
