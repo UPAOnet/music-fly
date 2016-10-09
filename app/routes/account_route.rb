@@ -16,7 +16,7 @@ end
 
 # Gets the current log in session
 get '/api/v1/account' do 
-  halt 404, 'No current Session' unless session["user"]
+  halt 400, 'No current Session' unless session["user"]
   
   user = get_current_session
   return user.to_json
@@ -28,7 +28,7 @@ post '/api/v1/account/login' do
   @account = Account.new(userInfo)
   
   user = get_user(@account)
-  halt 404, 'Account not found.' unless user
+  halt 400, 'Account not found.' unless user
 
   # Use account id as the session id
   session["user"] = user.id
@@ -40,7 +40,7 @@ post '/api/v1/account/logout' do
   if session["user"]
     session["user"] = nil
   else 
-    halt 404, "No current user"
+    halt 400, "No current user"
   end
 end
 

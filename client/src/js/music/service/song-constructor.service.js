@@ -37,6 +37,7 @@ angular.module('musicApp')
 
     /**
      * Changes duration into a viewable state
+     * @param Duration - Duration in ms
      */
     song.prototype.setViewDuration = function (duration) {
       var milliseconds = duration;

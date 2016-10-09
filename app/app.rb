@@ -5,12 +5,11 @@ require 'require_all'
 require 'pry'
 
 enable :sessions
-set :session_secret, 'Me love you long time.'
+set :session_secret, 'Eat, Sleep, Code, Repeat'
 
-# require_relative 'lib/spotify'
 require_relative '../config/environments'
 require_relative 'routes/init'
-require_rel 'models', 'lib', 'helpers', 'representers'
+require_rel 'models', 'helpers', 'representers'
 
 class MusicFlyApp < Sinatra::Application
 

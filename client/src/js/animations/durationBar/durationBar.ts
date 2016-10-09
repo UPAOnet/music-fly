@@ -57,9 +57,7 @@ class Controller {
   
   $onInit() {
 
-    /**
-     * Sets a timer to cache how much more time the song has
-     */
+    // Sets a timer to cache how much more time the song has
     window.setInterval(() => {
       if (!this.isPaused && this.animationDuration > 0) {
         this.animationDuration = (this.animationDuration - 1000);

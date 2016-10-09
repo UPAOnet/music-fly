@@ -20,8 +20,4 @@ angular.module('musicApp')
           method: 'GET'
         })
       }
-
-      // function makeRequest (input) {
-      //   return apiUtils.get(`spotify?search=${input}`);
-      // }
     })

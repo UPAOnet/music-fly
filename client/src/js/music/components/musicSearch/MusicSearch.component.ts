@@ -34,6 +34,7 @@ class Controller {
 
   /**
    * Search functionality
+   * @params search
    */
     private search (search?: string) {
       let spotifyTracks;

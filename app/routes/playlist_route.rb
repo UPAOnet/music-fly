@@ -1,6 +1,6 @@
 # Creates new playlist
 post '/api/v1/playlist/:name' do
-  halt 404, "No current account to save playlist" unless session["user"] 
+  halt 400, "No current account to save playlist" unless session["user"] 
   playlist_name = params["name"] 
   playlist = create_new_playlist(playlist_name)
 end
@@ -15,7 +15,7 @@ end
 
 # gets current playlists
 get '/api/v1/playlist' do 
-  halt 404, "No current user logged in" unless session["user"]
+  halt 400, "No current user logged in" unless session["user"]
 
   playlists = get_current_playlists
   return playlists.to_json
@@ -23,6 +23,6 @@ end
 
 # Deletes a playlist
 delete '/api/v1/playlist/:name' do
-  halt 404, "No current user logged in" unless session["user"]
+  halt 400, "No current user logged in" unless session["user"]
   delete_a_playlist(params["name"])
 end

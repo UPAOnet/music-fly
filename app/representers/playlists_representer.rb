@@ -7,5 +7,4 @@ module PlaylistRepresenter
   property :tracks
   property :name
   
-
 end

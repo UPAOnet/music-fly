@@ -41,7 +41,6 @@ module.exports = {
     },
     {
       test: /\.html$/,
-      // loader: 'html-loader'
       loader: 'file-loader?name=[path][name].[ext]'
     },
     {
@@ -54,11 +53,4 @@ module.exports = {
     }
    ]
   },
-  // plugins: debug ? [] : [
-  //   new CopyWebpackPlugin([{ from: 'assets' }]),
-  //   new webpack.optimize.DedupePlugin(),
-  //   new webpack.optimize.OccurenceOrderPlugin(),
-  //   new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-  // ],
-
 };

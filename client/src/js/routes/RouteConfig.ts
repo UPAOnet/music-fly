@@ -8,7 +8,7 @@ export const RouteConfig = function (
   $urlRouterProvider.otherwise('/');
   $stateProvider
 
-    // Leave out home route until home page is done
+    // TODO: Leave out home route until home page is done
     // .state('home', {
     //   url: '/',
     //   templateUrl: ('/js/views/home.html')
