@@ -1,5 +1,3 @@
-declare const require
-
 const angular = require('angular');
 const uiRouter = require('angular-ui-router');
 const angularMaterial = require('angular-material');
