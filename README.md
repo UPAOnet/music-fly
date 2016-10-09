@@ -6,8 +6,8 @@ An application for people to play, save, and merge music files from  across diff
 - Javascript ES6
 - Angular.js 1.5x
 - Typescipt
-- Ruby with Sinatra
-- PostgreSQL
+- Ruby + Sinatra
+- PostgreSQL + ActiveRecord
 - Bootstrap
 - SASS
 - Webpack
