@@ -59,7 +59,7 @@ export class PlaylistsService {
    * Saves a song to the database
    */
   private saveSong (song, playlistName) {
-    return this.apiUtils.post(`playlist/${playlistName}/song`, song);  
+    return this.apiUtils.put(`playlist/${playlistName}/song`, song);  
   }
  
   /**

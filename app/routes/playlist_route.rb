@@ -6,7 +6,7 @@ post '/api/v1/playlist/:name' do
 end
 
 # Add track to a playlist
-post '/api/v1/playlist/:name/song' do
+put '/api/v1/playlist/:name/song' do
   song = JSON.parse(request.body.read)
   name = params["name"]
   add_song_to_playlist(name, song)

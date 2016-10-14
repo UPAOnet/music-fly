@@ -8,7 +8,7 @@
 
 
 class Account < ActiveRecord::Base 
-  has_many :account
+  has_many :playlist
   
   def self.authenticate_password(username, password)
     account = find_by_username(username)
