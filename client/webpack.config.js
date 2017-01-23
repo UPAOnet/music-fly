@@ -14,7 +14,23 @@ module.exports = {
     ],
   output: {
     path: __dirname + "/dev/public",
-    filename: "scripts.min.js"
+    filename: "bundle.js"
+  },
+  devServer: {
+    contentBase: "/client/dev/public",
+    noInfo: true,
+    inline: true,
+    hot: true,
+    proxy: {
+      '/api/**': {
+        target: 'http://localhost:9292/',
+        secure: false,
+        changeOrigin: true
+        // pathRewrite: {
+        //   "^/api": ""
+        // }
+      }
+    }
   },
   module: {
    loaders: [
@@ -56,16 +72,10 @@ module.exports = {
         }
       }
    ],
-    devServer: {
-      contentBase: "/client/dev/public",
-      noInfo: true,
-      inline: true,
-      hot: true,
-    },
-    devtool: "eval",
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin(),
-    ],
   },
+  devtool: "eval",
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ],
 };
