@@ -50,7 +50,6 @@ module.exports = {
         test: /\.(eot|ttf|svg|gif|png|jpg)$/,
         loader: 'file-loader?name=[path][name].[ext]'
       },
-
       {
         test: /\.ts$/,
         loader: 'ts'
